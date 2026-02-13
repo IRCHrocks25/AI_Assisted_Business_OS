@@ -1,0 +1,89 @@
+{% comment %}
+Examples Section - Mini case studies/scenarios
+{% endcomment %}
+<section id="examples" class="py-24 px-4">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-text-light mb-4">Examples</h2>
+            <p class="text-xl text-text-mid">See how businesses deploy AI systems</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            {% block example_1 %}
+            <div class="glass-card rounded-2xl p-6">
+                <div class="mb-4">
+                    {% include 'components/_icon_badge.html' with icon="fa-hospital" size="md" %}
+                </div>
+                <h3 class="text-xl font-bold text-text-light mb-2">Clinic</h3>
+                <div class="mb-4">
+                    <p class="text-sm text-text-gray mb-2">Before → After</p>
+                    <p class="text-text-mid text-sm">Manual booking → Automated voice receptionist</p>
+                </div>
+                <div class="mb-4">
+                    <p class="text-xs font-semibold text-text-gray mb-2 uppercase">Deployed</p>
+                    <ul class="space-y-1 text-sm text-text-mid">
+                        <li>• Voice receptionist</li>
+                        <li>• Booking automation</li>
+                        <li>• Email follow-ups</li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold text-text-gray mb-2 uppercase">Outcomes</p>
+                    <p class="text-sm text-text-mid">40% reduction in missed calls, 24/7 availability</p>
+                </div>
+            </div>
+            {% endblock %}
+            
+            {% block example_2 %}
+            <div class="glass-card rounded-2xl p-6">
+                <div class="mb-4">
+                    {% include 'components/_icon_badge.html' with icon="fa-building" size="md" %}
+                </div>
+                <h3 class="text-xl font-bold text-text-light mb-2">Agency</h3>
+                <div class="mb-4">
+                    <p class="text-sm text-text-gray mb-2">Before → After</p>
+                    <p class="text-text-mid text-sm">Lost leads → Qualified pipeline</p>
+                </div>
+                <div class="mb-4">
+                    <p class="text-xs font-semibold text-text-gray mb-2 uppercase">Deployed</p>
+                    <ul class="space-y-1 text-sm text-text-mid">
+                        <li>• Lead capture bot</li>
+                        <li>• Qualification system</li>
+                        <li>• CRM routing</li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold text-text-gray mb-2 uppercase">Outcomes</p>
+                    <p class="text-sm text-text-mid">3x more qualified leads, 2-hour response time</p>
+                </div>
+            </div>
+            {% endblock %}
+            
+            {% block example_3 %}
+            <div class="glass-card rounded-2xl p-6">
+                <div class="mb-4">
+                    {% include 'components/_icon_badge.html' with icon="fa-cloud" size="md" %}
+                </div>
+                <h3 class="text-xl font-bold text-text-light mb-2">SaaS</h3>
+                <div class="mb-4">
+                    <p class="text-sm text-text-gray mb-2">Before → After</p>
+                    <p class="text-text-mid text-sm">Support backlog → Instant responses</p>
+                </div>
+                <div class="mb-4">
+                    <p class="text-xs font-semibold text-text-gray mb-2 uppercase">Deployed</p>
+                    <ul class="space-y-1 text-sm text-text-mid">
+                        <li>• Support bot</li>
+                        <li>• Ticketing automation</li>
+                        <li>• Onboarding flows</li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold text-text-gray mb-2 uppercase">Outcomes</p>
+                    <p class="text-sm text-text-mid">60% ticket deflection, faster onboarding</p>
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+</section>
+

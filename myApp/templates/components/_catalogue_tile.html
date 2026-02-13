@@ -1,0 +1,40 @@
+<div class="{{ col }} group rounded-2xl border border-text-dark/20 bg-gradient-to-br from-dark-2/70 via-dark-2/60 to-dark-2/50 backdrop-blur-xl p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:shadow-[0_12px_48px_rgba(37,99,235,0.25)] hover:border-blue-electric/30 transition-all duration-500 relative overflow-hidden">
+  <!-- Premium gradient glow effects -->
+  <div class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+    <div class="absolute -top-32 -right-32 h-80 w-80 rounded-full bg-gradient-to-br from-blue-electric/20 to-transparent blur-3xl"></div>
+    <div class="absolute -bottom-32 -left-32 h-80 w-80 rounded-full bg-gradient-to-br from-pink-neon/20 to-transparent blur-3xl"></div>
+  </div>
+
+  <div class="relative z-10">
+    <!-- Header Section -->
+    <div class="flex items-start justify-between gap-6 mb-6">
+      <div class="flex items-start gap-4 flex-1">
+        <div class="shrink-0">
+          <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 shadow-lg backdrop-blur-sm">
+            <i class="fas {{ icon }} {{ icon_color }} text-xl"></i>
+          </div>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="inline-flex items-center gap-2 mb-2">
+            <span class="text-[10px] uppercase tracking-[0.15em] font-bold text-text-gray/90 px-2.5 py-1 rounded-full bg-gradient-to-r from-blue-electric/10 to-pink-neon/10 border border-white/5">{{ kicker }}</span>
+          </div>
+          <h3 class="text-xl md:text-2xl font-bold text-text-light leading-tight tracking-tight mb-1">{{ title }}</h3>
+        </div>
+      </div>
+
+      <a href="https://danielwoodcourses-production.up.railway.app/" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center gap-2 text-sm font-semibold text-text-light px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-gradient-to-r hover:from-blue-electric/20 hover:to-pink-neon/20 hover:border-blue-electric/30 transition-all duration-300 shadow-sm hover:shadow-md">
+        <span>Demo</span>
+        <i class="fas fa-arrow-right text-xs"></i>
+      </a>
+    </div>
+
+    <!-- Description -->
+    <p class="text-[15px] text-text-mid/90 leading-relaxed mb-6 font-light">{{ description }}</p>
+
+    <!-- Tags Section -->
+    <div class="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+      <span class="text-xs text-text-mid/70 font-medium leading-relaxed">{{ tags }}</span>
+    </div>
+  </div>
+</div>
+

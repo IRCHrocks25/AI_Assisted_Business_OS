@@ -1,0 +1,56 @@
+{% comment %}
+Solution Finder - Guided selector for visitors who don't know what they need
+{% endcomment %}
+<section id="solutions" class="py-24 px-4">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-text-light mb-4">Solution Finder</h2>
+            <p class="text-xl text-text-mid">Tell us what you want to achieve, and we'll show you the right solutions</p>
+        </div>
+        
+        <div class="glass-card rounded-2xl p-8">
+            <div class="grid md:grid-cols-3 gap-4 mb-8" id="solution-tabs">
+                <button class="solution-tab px-6 py-4 rounded-lg font-semibold text-text-light bg-dark-2 border border-text-dark/30 hover:border-blue-electric/50 transition-all active-tab" data-filter="leads">
+                    <i class="fas fa-user-plus mr-2"></i>
+                    I want more leads
+                </button>
+                <button class="solution-tab px-6 py-4 rounded-lg font-semibold text-text-light bg-dark-2 border border-text-dark/30 hover:border-blue-electric/50 transition-all" data-filter="support">
+                    <i class="fas fa-headset mr-2"></i>
+                    I want less support load
+                </button>
+                <button class="solution-tab px-6 py-4 rounded-lg font-semibold text-text-light bg-dark-2 border border-text-dark/30 hover:border-blue-electric/50 transition-all" data-filter="automation">
+                    <i class="fas fa-cogs mr-2"></i>
+                    I want ops automation
+                </button>
+            </div>
+            
+            <div id="solution-results" class="space-y-4">
+                <!-- Results will be filtered here via JavaScript -->
+                <div class="text-center text-text-mid">
+                    Select a category above to see relevant solutions
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.solution-tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            tabs.forEach(t => t.classList.remove('active-tab', 'border-blue-electric', 'bg-blue-electric/10'));
+            this.classList.add('active-tab', 'border-blue-electric', 'bg-blue-electric/10');
+            // Filter logic would go here
+        });
+    });
+});
+</script>
+
+<style>
+.active-tab {
+    border-color: #2563EB !important;
+    background: rgba(37, 99, 235, 0.1) !important;
+}
+</style>
+

@@ -1,0 +1,16 @@
+{% comment %}
+CTAButton - Primary or Secondary CTA button
+Usage: {% include 'components/_cta_button.html' with text="Book Demo" type="primary" %}
+{% endcomment %}
+{% if type == "primary" %}
+<a href="{{ href|default:'#' }}" class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-blue-electric to-blue-bright hover:from-blue-bright hover:to-blue-accent transition-all duration-300 shadow-lg shadow-blue-electric/30 hover:shadow-xl hover:shadow-blue-electric/50 hover:-translate-y-0.5">
+    {{ text }}
+    {% if icon %}<i class="fas {{ icon }} ml-2"></i>{% endif %}
+</a>
+{% else %}
+<a href="{{ href|default:'#' }}" class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-text-light bg-dark-2 border border-text-dark/30 hover:border-blue-electric/50 hover:text-blue-light transition-all duration-300">
+    {{ text }}
+    {% if icon %}<i class="fas {{ icon }} ml-2"></i>{% endif %}
+</a>
+{% endif %}
+

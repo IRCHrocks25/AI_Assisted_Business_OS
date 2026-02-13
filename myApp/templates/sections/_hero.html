@@ -1,0 +1,99 @@
+{% comment %}
+Hero Section - Premium 2-column layout
+{% endcomment %}
+<section class="py-24 px-4">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Left: Message -->
+            <div>
+                <div class="inline-block mb-4">
+                    <span class="text-xs font-bold uppercase tracking-wider text-blue-light">AI CAPABILITIES CATALOGUE</span>
+                </div>
+                
+                <h1 class="text-5xl lg:text-6xl font-bold text-text-light mb-6 leading-tight">
+                    Deploy AI that <span class="bg-gradient-to-r from-blue-electric to-pink-neon bg-clip-text text-transparent">answers, qualifies, and takes action</span>—across every channel.
+                </h1>
+                
+                <p class="text-xl text-text-mid mb-8 leading-relaxed max-w-[60ch]">
+                    Chat, voice, email, workflows, knowledge, support, sales, analytics—integrated into your CRM in days, not months.
+                </p>
+                
+                <!-- Bullets -->
+                <div class="space-y-4 mb-8">
+                    <div class="flex items-start gap-3">
+                        {% include 'components/_icon_badge.html' with icon="fa-bolt" size="sm" %}
+                        <div>
+                            <p class="text-text-light font-semibold">Action-taking bots (not just Q&A)</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        {% include 'components/_icon_badge.html' with icon="fa-globe" size="sm" %}
+                        <div>
+                            <p class="text-text-light font-semibold">Omnichannel: web, FB/IG/WhatsApp, email, phone</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        {% include 'components/_icon_badge.html' with icon="fa-database" size="sm" %}
+                        <div>
+                            <p class="text-text-light font-semibold">CRM + permissions + reporting built-in</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CTA Row -->
+                <div class="flex flex-wrap gap-4 mb-4">
+                    {% include 'components/_cta_button.html' with text="See the Catalogue" type="primary" href="#catalogue" icon="fa-arrow-right" %}
+                    {% include 'components/_cta_button.html' with text="Book a Demo" type="secondary" href="#" icon="fa-calendar" %}
+                </div>
+                
+                <!-- Trust microcopy -->
+                <p class="text-sm text-text-gray">
+                    Fast setup. Approval-based options. Secure data handling.
+                </p>
+            </div>
+            
+            <!-- Right: Visual -->
+            <div class="relative">
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- Dashboard Cards Stack -->
+                    <div class="glass-card rounded-2xl p-4 float-animation glow-blue">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fas fa-comments text-blue-electric"></i>
+                            <span class="text-sm font-semibold text-text-light">Live Conversations</span>
+                        </div>
+                        <div class="text-2xl font-bold text-text-light">247</div>
+                        <div class="text-xs text-text-gray">Active now</div>
+                    </div>
+                    
+                    <div class="glass-card rounded-2xl p-4 float-animation glow-pink" style="animation-delay: 1s;">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fas fa-user-check text-pink-neon"></i>
+                            <span class="text-sm font-semibold text-text-light">Lead Qualification</span>
+                        </div>
+                        <div class="text-2xl font-bold text-text-light">89%</div>
+                        <div class="text-xs text-text-gray">Qualified</div>
+                    </div>
+                    
+                    <div class="glass-card rounded-2xl p-4 float-animation glow-blue" style="animation-delay: 2s;">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fas fa-route text-blue-electric"></i>
+                            <span class="text-sm font-semibold text-text-light">Ticket Routing</span>
+                        </div>
+                        <div class="text-2xl font-bold text-text-light">Auto</div>
+                        <div class="text-xs text-text-gray">Smart routing</div>
+                    </div>
+                    
+                    <div class="glass-card rounded-2xl p-4 float-animation glow-pink" style="animation-delay: 3s;">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fas fa-envelope text-pink-neon"></i>
+                            <span class="text-sm font-semibold text-text-light">Email Triage</span>
+                        </div>
+                        <div class="text-2xl font-bold text-text-light">1.2k</div>
+                        <div class="text-xs text-text-gray">Processed today</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

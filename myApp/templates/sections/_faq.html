@@ -1,0 +1,48 @@
+{% comment %}
+FAQ Section
+{% endcomment %}
+<section id="faq" class="py-24 px-4">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-text-light mb-4">Frequently Asked Questions</h2>
+        </div>
+        
+        <div class="space-y-4">
+            {% block faq_item_1 %}
+            <div class="glass-card rounded-xl p-6">
+                <h3 class="text-lg font-bold text-text-light mb-2">How quickly can we deploy?</h3>
+                <p class="text-text-mid text-sm">Most systems deploy in 1-4 weeks depending on complexity. Starter packages typically go live in 1-2 weeks.</p>
+            </div>
+            {% endblock %}
+            
+            {% block faq_item_2 %}
+            <div class="glass-card rounded-xl p-6">
+                <h3 class="text-lg font-bold text-text-light mb-2">Do I need technical knowledge?</h3>
+                <p class="text-text-mid text-sm">No. We handle all technical setup, integration, and configuration. You just need to provide access and approve workflows.</p>
+            </div>
+            {% endblock %}
+            
+            {% block faq_item_3 %}
+            <div class="glass-card rounded-xl p-6">
+                <h3 class="text-lg font-bold text-text-light mb-2">Can AI responses be reviewed before sending?</h3>
+                <p class="text-text-mid text-sm">Yes. We offer approval-based deployment where AI drafts responses and humans approve before sending. Or fully automated with guardrails.</p>
+            </div>
+            {% endblock %}
+            
+            {% block faq_item_4 %}
+            <div class="glass-card rounded-xl p-6">
+                <h3 class="text-lg font-bold text-text-light mb-2">What CRM systems do you integrate with?</h3>
+                <p class="text-text-mid text-sm">We integrate with HubSpot, Salesforce, GoHighLevel, and many others. If you use a specific CRM, ask us—we're flexible.</p>
+            </div>
+            {% endblock %}
+            
+            {% block faq_item_5 %}
+            <div class="glass-card rounded-xl p-6">
+                <h3 class="text-lg font-bold text-text-light mb-2">How do you ensure data security?</h3>
+                <p class="text-text-mid text-sm">All data is encrypted in transit and at rest. We follow SOC 2 compliance standards and can work with your security team on specific requirements.</p>
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+</section>
+

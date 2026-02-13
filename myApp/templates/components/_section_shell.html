@@ -1,0 +1,10 @@
+{% comment %}
+SectionShell - Wrapper for consistent section spacing and max-width
+Usage: {% include 'components/_section_shell.html' with content="your content here" %}
+{% endcomment %}
+<section class="py-24 px-4">
+    <div class="max-w-7xl mx-auto">
+        {% block section_content %}{% endblock %}
+    </div>
+</section>
+
