@@ -1,4 +1,4 @@
-<div class="group rounded-2xl border border-text-dark/20 bg-gradient-to-br from-dark-2/60 via-dark-2/50 to-dark-2/40 backdrop-blur-xl p-7 hover:bg-gradient-to-br hover:from-dark-2/70 hover:via-dark-2/60 hover:to-dark-2/50 hover:border-blue-electric/20 transition-all duration-500 shadow-[0_4px_24px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_32px_rgba(37,99,235,0.2)] relative overflow-hidden w-full max-w-sm">
+<div class="group rounded-2xl border border-text-dark/20 bg-gradient-to-br from-dark-2/60 via-dark-2/50 to-dark-2/40 backdrop-blur-xl p-7 hover:bg-gradient-to-br hover:from-dark-2/70 hover:via-dark-2/60 hover:to-dark-2/50 hover:border-blue-electric/20 transition-all duration-500 shadow-[0_4px_24px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_32px_rgba(37,99,235,0.2)] relative overflow-hidden {% if not onclick and not href or href == '#demo' %}opacity-60 grayscale{% endif %}">
   <!-- Subtle hover glow -->
   <div class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
     <div class="absolute -top-16 -right-16 h-48 w-48 rounded-full bg-gradient-to-br from-blue-electric/15 to-transparent blur-2xl"></div>
@@ -11,10 +11,17 @@
         <i class="fas {{ icon }} text-text-light text-lg"></i>
       </div>
 
-      <a href="https://danielwoodcourses-production.up.railway.app/" target="_blank" rel="noopener noreferrer" class="shrink-0 text-sm font-semibold text-text-mid/70 hover:text-blue-light transition-colors duration-300 flex items-center gap-1.5 group/link">
+      {% if onclick %}
+      <a href="#" onclick="{{ onclick }}; return false;" class="shrink-0 text-sm font-semibold text-text-mid/70 hover:text-blue-light transition-colors duration-300 flex items-center gap-1.5 group/link">
         <span>Demo</span>
         <i class="fas fa-arrow-right text-xs transform group-hover/link:translate-x-0.5 transition-transform"></i>
       </a>
+      {% else %}
+      <a href="{% if href %}{{ href }}{% else %}#demo{% endif %}" {% if href and href|slice:":4" == "http" %}target="_blank" rel="noopener noreferrer"{% endif %} class="shrink-0 text-sm font-semibold text-text-mid/70 hover:text-blue-light transition-colors duration-300 flex items-center gap-1.5 group/link">
+        <span>Demo</span>
+        <i class="fas fa-arrow-right text-xs transform group-hover/link:translate-x-0.5 transition-transform"></i>
+      </a>
+      {% endif %}
     </div>
 
     <!-- Title -->

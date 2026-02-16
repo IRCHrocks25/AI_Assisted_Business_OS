@@ -1,13 +1,12 @@
-<div class="mb-6">
-  <div class="flex items-center gap-3">
-    <div class="shrink-0">
-      <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg {% if accent == 'pink' %}bg-pink-neon/10{% else %}bg-blue-electric/10{% endif %}">
-        <i class="fas {{ icon }} {% if accent == 'pink' %}text-pink-neon{% else %}text-blue-electric{% endif %} text-base"></i>
-      </span>
-    </div>
-    <div class="flex-1 min-w-0">
-      <h3 class="text-xl font-bold text-text-light leading-tight tracking-tight">{{ title }}</h3>
-    </div>
+<div class="col-span-full flex items-center gap-4 py-4 px-2 border-b border-white/10 mb-2">
+  <div class="shrink-0">
+    <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg {% if accent == 'pink' %}bg-gradient-to-br from-pink-neon/20 to-pink-neon/10 border border-pink-neon/30{% else %}bg-gradient-to-br from-blue-electric/20 to-blue-electric/10 border border-blue-electric/30{% endif %} backdrop-blur-sm">
+      <i class="fas {{ icon }} {% if accent == 'pink' %}text-pink-neon{% else %}text-blue-electric{% endif %} text-sm"></i>
+    </span>
   </div>
+  <div class="flex-1 min-w-0">
+    <h3 class="text-lg md:text-xl font-bold text-text-light leading-tight tracking-tight">{{ title }}</h3>
+  </div>
+  <div class="hidden sm:block flex-1 h-px {% if accent == 'pink' %}bg-gradient-to-r from-pink-neon/20 to-transparent{% else %}bg-gradient-to-r from-blue-electric/20 to-transparent{% endif %}"></div>
 </div>
 

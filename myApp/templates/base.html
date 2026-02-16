@@ -81,6 +81,9 @@
 <body class="text-text-light antialiased">
     {% block content %}{% endblock %}
     
+    <!-- AI Chatbot -->
+    {% include 'components/_chatbot.html' %}
+    
     <script>
         // Process catalogue cards - split comma-separated strings into lists
         document.addEventListener('DOMContentLoaded', function() {
