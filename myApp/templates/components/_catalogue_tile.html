@@ -1,4 +1,4 @@
-<div class="{{ col }} group rounded-2xl border border-text-dark/20 bg-gradient-to-br from-dark-2/70 via-dark-2/60 to-dark-2/50 backdrop-blur-xl p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:shadow-[0_12px_48px_rgba(37,99,235,0.25)] hover:border-blue-electric/30 transition-all duration-500 relative overflow-hidden {% if not href or href == '#demo' %}{% if not presentation_link %}opacity-60 grayscale{% endif %}{% endif %}">
+<div class="{{ col }} group rounded-2xl border border-text-dark/20 bg-gradient-to-br from-dark-2/70 via-dark-2/60 to-dark-2/50 backdrop-blur-xl p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:shadow-[0_12px_48px_rgba(37,99,235,0.25)] hover:border-blue-electric/30 transition-all duration-500 relative overflow-hidden {% if not onclick %}{% if not href or href == '#demo' %}{% if not presentation_link %}opacity-60 grayscale{% endif %}{% endif %}{% endif %}">
   <!-- Premium gradient glow effects -->
   <div class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
     <div class="absolute -top-32 -right-32 h-80 w-80 rounded-full bg-gradient-to-br from-blue-electric/20 to-transparent blur-3xl"></div>
@@ -23,10 +23,17 @@
       </div>
 
       <div class="shrink-0 flex flex-col gap-2 items-end">
+        {% if onclick %}
+        <a href="#" onclick="{{ onclick }}; return false;" class="inline-flex items-center gap-2 text-sm font-semibold text-text-light px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-gradient-to-r hover:from-blue-electric/20 hover:to-pink-neon/20 hover:border-blue-electric/30 transition-all duration-300 shadow-sm hover:shadow-md">
+          <span>Demo</span>
+          <i class="fas fa-arrow-right text-xs"></i>
+        </a>
+        {% else %}
         <a href="{% if href %}{{ href }}{% else %}#demo{% endif %}" {% if href and href|slice:":4" == "http" %}target="_blank" rel="noopener noreferrer"{% endif %} class="inline-flex items-center gap-2 text-sm font-semibold text-text-light px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-gradient-to-r hover:from-blue-electric/20 hover:to-pink-neon/20 hover:border-blue-electric/30 transition-all duration-300 shadow-sm hover:shadow-md">
           <span>{% if href and href|slice:":4" == "http" %}View Demo{% else %}Demo{% endif %}</span>
           <i class="fas fa-arrow-right text-xs"></i>
         </a>
+        {% endif %}
         {% if presentation_link %}
         <a href="{{ presentation_link }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-medium text-blue-electric px-3 py-1.5 rounded-lg bg-blue-electric/10 border border-blue-electric/20 hover:bg-blue-electric/20 transition-all duration-300 group/pres">
           <i class="fas fa-file-powerpoint text-xs"></i>

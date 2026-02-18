@@ -1,0 +1,578 @@
+{% extends 'base.html' %}
+
+{% block title %}AI Email Automation Demo - AI Assisted Business OS{% endblock %}
+
+{% block content %}
+<!-- Navigation -->
+{% include 'sections/_nav.html' %}
+
+<div class="min-h-screen bg-dark-1 text-text-light">
+  <!-- Premium background effects -->
+  <div class="pointer-events-none fixed inset-0">
+    <div class="absolute -top-40 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-blue-electric/10 blur-[160px]"></div>
+    <div class="absolute -bottom-40 right-[-120px] h-[600px] w-[600px] rounded-full bg-pink-neon/10 blur-[180px]"></div>
+    <div class="absolute inset-0 opacity-[0.04] bg-[radial-gradient(circle_at_center,#ffffff_1px,transparent_1px)] bg-[length:44px_44px]"></div>
+  </div>
+
+  <!-- Header -->
+  <section class="pt-32 pb-8 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/5 border border-white/10 mb-4">
+          <i class="fas fa-envelope-open-text text-pink-neon text-2xl"></i>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-text-light mb-3">
+          AI Email Automation
+        </h1>
+        <p class="text-lg text-text-mid max-w-2xl mx-auto mb-4">
+          Simulated AI Demo Environment — See how AI reads, understands, and processes emails automatically.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs text-text-mid">
+            <i class="fas fa-info-circle"></i>
+            <span>Example data — production version integrates with Gmail/Outlook</span>
+          </div>
+          <a href="/demo/email-crm/" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-electric/20 to-pink-neon/20 border border-white/10 text-xs text-text-light hover:opacity-90 transition">
+            <i class="fas fa-database"></i>
+            <span>View CRM Records</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three Panel Layout -->
+  <section class="pb-24 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 h-[calc(100vh-280px)] min-h-[600px]">
+        
+        <!-- LEFT: Inbox -->
+        <div class="lg:col-span-3 rounded-2xl border border-white/10 bg-dark-2/60 backdrop-blur-xl shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] overflow-hidden flex flex-col">
+          <div class="h-px w-full bg-gradient-to-r from-pink-neon/60 via-blue-electric/40 to-transparent"></div>
+          
+          <div class="px-4 py-4 border-b border-white/10">
+            <div class="flex items-center justify-between mb-2">
+              <h2 class="text-lg font-semibold text-text-light">Inbox</h2>
+              <span class="text-xs text-text-mid bg-white/5 px-2 py-1 rounded-full">{{ emails|length }}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="auto-mode-toggle" class="sr-only peer" checked>
+                <div class="w-11 h-6 bg-white/10 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-pink-neon/50 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-pink-neon/30"></div>
+                <span class="ml-2 text-xs text-text-mid">Auto Mode</span>
+              </label>
+            </div>
+          </div>
+
+          <div id="email-list" class="flex-1 overflow-y-auto">
+            {% for email in emails %}
+            <div 
+              class="email-item px-4 py-3 border-b border-white/5 hover:bg-white/5 cursor-pointer transition {% if forloop.first %}bg-white/5{% endif %}" 
+              data-email-id="{{ email.id|stringformat:'s' }}"
+              onclick="selectEmail('{{ email.id|stringformat:'s' }}')"
+            >
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-electric/20 to-pink-neon/20 border border-white/10 flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-envelope text-sm text-text-light"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-medium text-text-light truncate mb-1">{{ email.from_name }}</p>
+                  <p class="text-xs text-text-mid truncate mb-1">{{ email.subject }}</p>
+                  <p class="text-xs text-text-gray">{{ email.received_at|date:"M d, H:i" }}</p>
+                </div>
+                {% if not email.is_read %}
+                <span class="w-2 h-2 rounded-full bg-blue-electric flex-shrink-0 mt-2"></span>
+                {% endif %}
+              </div>
+            </div>
+            {% empty %}
+            <div class="px-4 py-8 text-center text-text-mid text-sm">
+              No emails available
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- CENTER: Selected Email -->
+        <div class="lg:col-span-5 rounded-2xl border border-white/10 bg-dark-2/60 backdrop-blur-xl shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] overflow-hidden flex flex-col">
+          <div class="h-px w-full bg-gradient-to-r from-pink-neon/60 via-blue-electric/40 to-transparent"></div>
+          
+          <div id="email-view" class="flex-1 overflow-y-auto p-6">
+            <div class="text-center py-12 text-text-mid">
+              <i class="fas fa-envelope-open text-4xl mb-4 opacity-30"></i>
+              <p>Select an email from the inbox to view</p>
+            </div>
+          </div>
+
+          <div id="email-actions" class="px-6 py-4 border-t border-white/10 hidden">
+            <button 
+              id="process-btn"
+              onclick="processEmail()"
+              class="w-full px-6 py-3 rounded-xl bg-gradient-to-r from-blue-electric to-pink-neon text-white font-semibold hover:opacity-95 transition shadow-[0_20px_60px_-20px_rgba(236,72,153,0.35)] flex items-center justify-center gap-2"
+            >
+              <i class="fas fa-magic"></i>
+              Run AI Auto-Triage
+            </button>
+          </div>
+        </div>
+
+        <!-- RIGHT: AI Output Panel -->
+        <div class="lg:col-span-4 rounded-2xl border border-white/10 bg-dark-2/60 backdrop-blur-xl shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] overflow-hidden flex flex-col">
+          <div class="h-px w-full bg-gradient-to-r from-pink-neon/60 via-blue-electric/40 to-transparent"></div>
+          
+          <div class="px-4 py-4 border-b border-white/10">
+            <h2 class="text-lg font-semibold text-text-light">AI Analysis</h2>
+            <p class="text-xs text-text-mid mt-1">Processing results will appear here</p>
+          </div>
+
+          <div id="ai-output" class="flex-1 overflow-y-auto p-6">
+            <div class="text-center py-12 text-text-mid">
+              <i class="fas fa-robot text-4xl mb-4 opacity-30"></i>
+              <p class="text-sm">Click "Run AI Auto-Triage" to process</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+let currentEmailId = null;
+let emailData = {};
+
+// Load email data
+{% for email in emails %}
+emailData['{{ email.id|stringformat:"s" }}'] = {
+  id: '{{ email.id|stringformat:"s" }}',
+  subject: '{{ email.subject|escapejs }}',
+  body: '{{ email.body|escapejs }}',
+  from_email: '{{ email.from_email|escapejs }}',
+  from_name: '{{ email.from_name|escapejs }}',
+  received_at: '{{ email.received_at|date:"M d, Y H:i" }}',
+  is_processed: {{ email.is_processed|yesno:"true,false" }}
+};
+{% endfor %}
+
+// Debug: Log email data
+console.log('Email data loaded:', emailData);
+
+function selectEmail(emailId) {
+  console.log('selectEmail called with:', emailId);
+  console.log('Available emails:', Object.keys(emailData));
+  
+  currentEmailId = emailId;
+  const email = emailData[emailId];
+  
+  if (!email) {
+    console.error('Email not found:', emailId);
+    return;
+  }
+  
+  console.log('Selected email:', email);
+  
+  // Update active state
+  document.querySelectorAll('.email-item').forEach(item => {
+    item.classList.remove('bg-white/5');
+    if (item.dataset.emailId === emailId) {
+      item.classList.add('bg-white/5');
+    }
+  });
+  
+  // Show email content
+  const emailView = document.getElementById('email-view');
+  if (!emailView) {
+    console.error('email-view element not found');
+    return;
+  }
+  
+  emailView.innerHTML = `
+    <div class="space-y-4">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="text-lg font-semibold text-text-light">${email.subject}</h3>
+        </div>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm text-text-mid mb-4">
+          <div>
+            <span class="font-medium text-text-light">From:</span> ${email.from_name} &lt;${email.from_email}&gt;
+          </div>
+          <div>
+            <span class="font-medium text-text-light">Date:</span> ${email.received_at}
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-4">
+        <div class="prose prose-invert max-w-none">
+          <pre class="whitespace-pre-wrap text-sm text-text-mid leading-relaxed font-sans">${email.body}</pre>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  // Scroll to top
+  emailView.scrollTop = 0;
+  
+  // Show process button
+  document.getElementById('email-actions').classList.remove('hidden');
+  
+  // Reset AI output if not processed
+  if (!email.is_processed) {
+    document.getElementById('ai-output').innerHTML = `
+      <div class="text-center py-12 text-text-mid">
+        <i class="fas fa-robot text-4xl mb-4 opacity-30"></i>
+        <p class="text-sm">Click "Run AI Auto-Triage" to process</p>
+      </div>
+    `;
+  }
+}
+
+async function processEmail() {
+  if (!currentEmailId) return;
+  
+  const processBtn = document.getElementById('process-btn');
+  const aiOutput = document.getElementById('ai-output');
+  
+  // Show loading state with animated timeline
+  processBtn.disabled = true;
+  processBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+  
+  // Show initial timeline
+  aiOutput.innerHTML = `
+    <div class="space-y-4">
+      <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+        <h4 class="text-sm font-semibold text-text-light mb-3 flex items-center gap-2">
+          <i class="fas fa-clock"></i>
+          Processing Timeline
+        </h4>
+        <div id="timeline-log" class="space-y-2 text-xs">
+          <div class="flex items-center gap-2 text-text-mid">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+            <span>Email received</span>
+            <span class="ml-auto text-text-gray text-xs">${new Date().toLocaleTimeString()}</span>
+          </div>
+          <div class="flex items-center gap-2 text-text-mid timeline-step" data-step="read">
+            <span class="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
+            <span>Reading email content...</span>
+          </div>
+          <div class="flex items-center gap-2 text-text-mid timeline-step" data-step="analyze">
+            <span class="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
+            <span>Analyzing intent...</span>
+          </div>
+          <div class="flex items-center gap-2 text-text-mid timeline-step" data-step="urgency">
+            <span class="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
+            <span>Assessing urgency...</span>
+          </div>
+          <div class="flex items-center gap-2 text-text-mid timeline-step" data-step="draft">
+            <span class="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
+            <span>Drafting reply...</span>
+          </div>
+          <div class="flex items-center gap-2 text-text-mid timeline-step" data-step="route">
+            <span class="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
+            <span>Routing to team...</span>
+          </div>
+          <div class="flex items-center gap-2 text-text-mid timeline-step" data-step="crm">
+            <span class="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
+            <span>Updating CRM...</span>
+          </div>
+          <div class="flex items-center gap-2 text-text-mid timeline-step" data-step="task">
+            <span class="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
+            <span>Creating task...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  // Animate timeline steps
+  const steps = ['read', 'analyze', 'urgency', 'draft', 'route', 'crm', 'task'];
+  let stepIndex = 0;
+  
+  const animateStep = () => {
+    if (stepIndex < steps.length) {
+      const step = document.querySelector(`.timeline-step[data-step="${steps[stepIndex]}"]`);
+      if (step) {
+        step.querySelector('span').classList.remove('bg-gray-500');
+        step.querySelector('span').classList.add('bg-green-400');
+        step.classList.remove('opacity-50');
+        step.querySelector('span:last-child').textContent = new Date().toLocaleTimeString();
+      }
+      stepIndex++;
+      setTimeout(animateStep, 300);
+    }
+  };
+  
+  setTimeout(animateStep, 500);
+  
+  try {
+    const response = await fetch('/api/email/process/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email_id: currentEmailId })
+    });
+    
+    const data = await response.json();
+    
+    if (data.error) {
+      throw new Error(data.message || data.error);
+    }
+    
+    // Wait for animation to complete
+    await new Promise(resolve => setTimeout(resolve, steps.length * 300 + 500));
+    
+    // Show results
+    displayResults(data);
+    
+    // Mark as processed
+    emailData[currentEmailId].is_processed = true;
+    
+  } catch (error) {
+    console.error('Error:', error);
+    aiOutput.innerHTML = `
+      <div class="text-center py-8 text-red-400">
+        <i class="fas fa-exclamation-circle text-2xl mb-2"></i>
+        <p class="text-sm">Error: ${error.message}</p>
+      </div>
+    `;
+  } finally {
+    processBtn.disabled = false;
+    processBtn.innerHTML = '<i class="fas fa-magic"></i> Run AI Auto-Triage';
+  }
+}
+
+function displayResults(data) {
+  const urgencyColors = {
+    'High': 'bg-red-500/20 border-red-500/30 text-red-300',
+    'Medium': 'bg-yellow-500/20 border-yellow-500/30 text-yellow-300',
+    'Low': 'bg-green-500/20 border-green-500/30 text-green-300'
+  };
+  
+  const sentimentColors = {
+    'Positive': 'text-green-400',
+    'Neutral': 'text-blue-400',
+    'Negative': 'text-red-400'
+  };
+  
+  const urgencyColor = urgencyColors[data.urgency] || urgencyColors['Medium'];
+  const sentimentColor = sentimentColors[data.sentiment] || sentimentColors['Neutral'];
+  
+  const aiOutput = document.getElementById('ai-output');
+  aiOutput.innerHTML = `
+    <div class="space-y-4">
+      <!-- Timeline Log -->
+      <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+        <h4 class="text-sm font-semibold text-text-light mb-3 flex items-center gap-2">
+          <i class="fas fa-clock"></i>
+          Processing Timeline
+        </h4>
+        <div id="timeline-log" class="space-y-2 text-xs">
+          <div class="flex items-center gap-2 text-text-mid">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+            <span>Email received</span>
+            <span class="ml-auto text-text-gray text-xs">${new Date().toLocaleTimeString()}</span>
+          </div>
+          <div class="flex items-center gap-2 text-text-mid">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+            <span>Email read and parsed</span>
+            <span class="ml-auto text-text-gray text-xs">${new Date(Date.now() + 300).toLocaleTimeString()}</span>
+          </div>
+          <div class="flex items-center gap-2 text-text-mid">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+            <span>Intent classified: ${data.intent}</span>
+            <span class="ml-auto text-text-gray text-xs">${new Date(Date.now() + 600).toLocaleTimeString()}</span>
+          </div>
+          <div class="flex items-center gap-2 text-text-mid">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+            <span>Urgency assessed: ${data.urgency}</span>
+            <span class="ml-auto text-text-gray text-xs">${new Date(Date.now() + 900).toLocaleTimeString()}</span>
+          </div>
+          <div class="flex items-center gap-2 text-text-mid">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+            <span>Draft reply generated</span>
+            <span class="ml-auto text-text-gray text-xs">${new Date(Date.now() + 1200).toLocaleTimeString()}</span>
+          </div>
+          <div class="flex items-center gap-2 text-text-mid">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+            <span>Routed to: ${data.suggested_owner}</span>
+            <span class="ml-auto text-text-gray text-xs">${new Date(Date.now() + 1500).toLocaleTimeString()}</span>
+          </div>
+          <div class="flex items-center gap-2 text-text-mid">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+            <span>CRM updated: ${data.crm_action}</span>
+            <span class="ml-auto text-text-gray text-xs">${new Date(Date.now() + 1800).toLocaleTimeString()}</span>
+          </div>
+          <div class="flex items-center gap-2 text-text-mid">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+            <span>Task created: Follow-up in ${data.follow_up_hours}h</span>
+            <span class="ml-auto text-text-gray text-xs">${new Date(Date.now() + 2100).toLocaleTimeString()}</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Confidence Score -->
+      <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm font-medium text-text-light">Confidence Score</span>
+          <span class="text-lg font-bold text-text-light">${data.confidence_score}%</span>
+        </div>
+        <div class="w-full bg-white/10 rounded-full h-2">
+          <div class="bg-gradient-to-r from-blue-electric to-pink-neon h-2 rounded-full transition-all duration-500" style="width: ${data.confidence_score}%"></div>
+        </div>
+      </div>
+      
+      <!-- Key Metrics -->
+      <div class="grid grid-cols-2 gap-3">
+        <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+          <p class="text-xs text-text-mid mb-1">Detected Intent</p>
+          <p class="text-sm font-semibold text-text-light">${data.intent}</p>
+        </div>
+        <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+          <p class="text-xs text-text-mid mb-1">Urgency</p>
+          <span class="inline-flex items-center px-2 py-1 rounded-lg text-xs font-medium border ${urgencyColor}">
+            ${data.urgency}
+          </span>
+        </div>
+        <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+          <p class="text-xs text-text-mid mb-1">Sentiment</p>
+          <p class="text-sm font-semibold ${sentimentColor}">${data.sentiment}</p>
+        </div>
+        <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+          <p class="text-xs text-text-mid mb-1">Follow-up</p>
+          <p class="text-sm font-semibold text-text-light">${data.follow_up_hours}h</p>
+        </div>
+      </div>
+      
+      <!-- Suggested Owner & CRM Action -->
+      <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+        <h4 class="text-sm font-semibold text-text-light mb-3">Routing & Actions</h4>
+        <div class="space-y-2">
+          <div class="flex items-center gap-2">
+            <i class="fas fa-user text-text-mid text-xs"></i>
+            <span class="text-xs text-text-mid">Suggested Owner:</span>
+            <span class="text-xs font-medium text-text-light">${data.suggested_owner}</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="fas fa-tasks text-text-mid text-xs"></i>
+            <span class="text-xs text-text-mid">CRM Action:</span>
+            <span class="text-xs font-medium text-text-light">${data.crm_action}</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Auto-Actions Completed -->
+      <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+        <h4 class="text-sm font-semibold text-text-light mb-3">Auto-Actions Completed</h4>
+        <div id="actions-checklist" class="space-y-2">
+          <div class="flex items-center gap-2 text-xs action-item" data-action="read">
+            <i class="fas fa-check-circle text-green-400"></i>
+            <span class="text-text-mid">Email read and parsed</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs action-item" data-action="intent">
+            <i class="fas fa-check-circle text-green-400"></i>
+            <span class="text-text-mid">Intent detected: <span class="font-medium text-text-light">${data.intent}</span></span>
+          </div>
+          <div class="flex items-center gap-2 text-xs action-item" data-action="urgency">
+            <i class="fas fa-check-circle text-green-400"></i>
+            <span class="text-text-mid">Urgency assessed: <span class="font-medium text-text-light">${data.urgency}</span></span>
+          </div>
+          <div class="flex items-center gap-2 text-xs action-item" data-action="sentiment">
+            <i class="fas fa-check-circle text-green-400"></i>
+            <span class="text-text-mid">Sentiment analyzed: <span class="font-medium text-text-light">${data.sentiment}</span></span>
+          </div>
+          <div class="flex items-center gap-2 text-xs action-item" data-action="draft">
+            <i class="fas fa-check-circle text-green-400"></i>
+            <span class="text-text-mid">Draft reply generated</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs action-item" data-action="route">
+            <i class="fas fa-check-circle text-green-400"></i>
+            <span class="text-text-mid">Routed to: <span class="font-medium text-text-light">${data.suggested_owner}</span></span>
+          </div>
+          <div class="flex items-center gap-2 text-xs action-item" data-action="crm">
+            <i class="fas fa-check-circle text-green-400"></i>
+            <span class="text-text-mid">CRM updated: <span class="font-medium text-text-light">${data.crm_action}</span></span>
+          </div>
+          <div class="flex items-center gap-2 text-xs action-item" data-action="task">
+            <i class="fas fa-check-circle text-green-400"></i>
+            <span class="text-text-mid">Task created: Follow-up in ${data.follow_up_hours}h</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- CRM & Task Details -->
+      <div class="bg-gradient-to-br from-blue-electric/10 to-pink-neon/10 rounded-xl border border-blue-electric/20 p-4">
+        <h4 class="text-sm font-semibold text-text-light mb-3 flex items-center gap-2">
+          <i class="fas fa-sync-alt"></i>
+          System Integrations
+        </h4>
+        <div class="space-y-2 text-xs">
+          <div class="flex items-center justify-between">
+            <span class="text-text-mid">CRM Record:</span>
+            <span class="text-text-light font-mono">#CRM-${Math.random().toString(36).substr(2, 9).toUpperCase()}</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-text-mid">Task ID:</span>
+            <span class="text-text-light font-mono">#TASK-${Math.random().toString(36).substr(2, 9).toUpperCase()}</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-text-mid">Ticket ID:</span>
+            <span class="text-text-light font-mono">#TKT-${Math.random().toString(36).substr(2, 9).toUpperCase()}</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Draft Reply -->
+      <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+        <h4 class="text-sm font-semibold text-text-light mb-3">Draft Reply</h4>
+        <div class="bg-dark-1 rounded-lg border border-white/10 p-4">
+          <pre class="whitespace-pre-wrap text-xs text-text-mid leading-relaxed">${data.draft_reply}</pre>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  // Auto-scroll to top
+  aiOutput.scrollTop = 0;
+}
+
+// Select first email on load
+{% if emails %}
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM loaded, selecting first email');
+  const firstEmail = document.querySelector('.email-item');
+  if (firstEmail) {
+    const emailId = firstEmail.dataset.emailId;
+    console.log('First email ID:', emailId);
+    selectEmail(emailId);
+  } else {
+    console.warn('No email items found');
+  }
+});
+{% endif %}
+</script>
+
+<style>
+#email-list {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.2) transparent;
+}
+#email-list::-webkit-scrollbar { width: 6px; }
+#email-list::-webkit-scrollbar-track { background: transparent; }
+#email-list::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.18);
+  border-radius: 999px;
+}
+
+#email-view, #ai-output {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.2) transparent;
+}
+#email-view::-webkit-scrollbar, #ai-output::-webkit-scrollbar { width: 6px; }
+#email-view::-webkit-scrollbar-track, #ai-output::-webkit-scrollbar-track { background: transparent; }
+#email-view::-webkit-scrollbar-thumb, #ai-output::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.18);
+  border-radius: 999px;
+}
+</style>
+{% endblock %}
+

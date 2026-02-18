@@ -1,0 +1,549 @@
+{% extends 'base.html' %}
+
+{% block title %}AI Sales Lead Qualification - AI Assisted Business OS{% endblock %}
+
+{% block content %}
+<!-- Navigation -->
+{% include 'sections/_nav.html' %}
+
+<div class="min-h-screen bg-dark-1 text-text-light">
+  <!-- Premium background effects -->
+  <div class="pointer-events-none fixed inset-0">
+    <div class="absolute -top-40 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-blue-electric/10 blur-[160px]"></div>
+    <div class="absolute -bottom-40 right-[-120px] h-[600px] w-[600px] rounded-full bg-pink-neon/10 blur-[180px]"></div>
+    <div class="absolute inset-0 opacity-[0.04] bg-[radial-gradient(circle_at_center,#ffffff_1px,transparent_1px)] bg-[length:44px_44px]"></div>
+  </div>
+
+  <!-- Header -->
+  <section class="pt-24 pb-8 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-6">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/5 border border-white/10 mb-4">
+          <i class="fas fa-user-check text-pink-neon text-2xl"></i>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-text-light mb-3">
+          AI Sales Lead Qualification
+        </h1>
+        <p class="text-lg text-text-mid max-w-2xl mx-auto mb-4">
+          Watch AI qualify leads, score them, and automatically route to the right sales team.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs text-text-mid">
+            <i class="fas fa-info-circle"></i>
+            <span>Simulated demo — production integrates with real CRM and calendar</span>
+          </div>
+          <a href="/demo/qualification-leads/" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-electric/20 to-pink-neon/20 border border-white/10 text-xs text-text-light hover:opacity-90 transition">
+            <i class="fas fa-database"></i>
+            <span>View All Qualified Leads</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three Panel Layout -->
+  <section class="pb-24 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- LEFT: Lead Intake Form -->
+        <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/10 shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] p-6">
+          <div class="h-px w-full bg-gradient-to-r from-pink-neon/60 via-blue-electric/40 to-transparent mb-6"></div>
+          <h2 class="text-xl font-semibold text-text-light mb-4 flex items-center gap-2">
+            <i class="fas fa-clipboard-list text-pink-neon"></i>
+            Lead Intake
+          </h2>
+          
+          <form id="lead-form" class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-text-mid mb-2">Name</label>
+              <input 
+                type="text" 
+                id="lead-name"
+                required
+                class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-text-light placeholder-text-gray focus:outline-none focus:border-pink-neon/50 focus:ring-2 focus:ring-pink-neon/10"
+                placeholder="John Doe"
+              />
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-text-mid mb-2">Email</label>
+              <input 
+                type="email" 
+                id="lead-email"
+                required
+                class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-text-light placeholder-text-gray focus:outline-none focus:border-pink-neon/50 focus:ring-2 focus:ring-pink-neon/10"
+                placeholder="john@company.com"
+              />
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-text-mid mb-2">Company</label>
+              <input 
+                type="text" 
+                id="lead-company"
+                required
+                class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-text-light placeholder-text-gray focus:outline-none focus:border-pink-neon/50 focus:ring-2 focus:ring-pink-neon/10"
+                placeholder="Acme Corp"
+              />
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-text-mid mb-2">Budget Range</label>
+              <select 
+                id="lead-budget"
+                required
+                class="w-full px-4 py-3 rounded-xl bg-dark-2 border border-white/10 text-text-light focus:outline-none focus:border-pink-neon/50 focus:ring-2 focus:ring-pink-neon/10"
+                style="background-color: rgba(15, 23, 42, 0.8); color: #e2e8f0;"
+              >
+                <option value="" style="background-color: rgba(15, 23, 42, 0.95); color: #94a3b8;">Select budget range</option>
+                <option value="Under $10k" style="background-color: rgba(15, 23, 42, 0.95); color: #e2e8f0;">Under $10k</option>
+                <option value="$10k - $25k" style="background-color: rgba(15, 23, 42, 0.95); color: #e2e8f0;">$10k - $25k</option>
+                <option value="$25k - $50k" style="background-color: rgba(15, 23, 42, 0.95); color: #e2e8f0;">$25k - $50k</option>
+                <option value="$50k - $100k" style="background-color: rgba(15, 23, 42, 0.95); color: #e2e8f0;">$50k - $100k</option>
+                <option value="$100k+" style="background-color: rgba(15, 23, 42, 0.95); color: #e2e8f0;">$100k+</option>
+              </select>
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-text-mid mb-2">Service Interest</label>
+              <select 
+                id="lead-interest"
+                required
+                class="w-full px-4 py-3 rounded-xl bg-dark-2 border border-white/10 text-text-light focus:outline-none focus:border-pink-neon/50 focus:ring-2 focus:ring-pink-neon/10"
+                style="background-color: rgba(15, 23, 42, 0.8); color: #e2e8f0;"
+              >
+                <option value="" style="background-color: rgba(15, 23, 42, 0.95); color: #94a3b8;">Select service</option>
+                <option value="AI Automation" style="background-color: rgba(15, 23, 42, 0.95); color: #e2e8f0;">AI Automation</option>
+                <option value="Custom AI Systems" style="background-color: rgba(15, 23, 42, 0.95); color: #e2e8f0;">Custom AI Systems</option>
+                <option value="Document Processing" style="background-color: rgba(15, 23, 42, 0.95); color: #e2e8f0;">Document Processing</option>
+                <option value="Customer Support" style="background-color: rgba(15, 23, 42, 0.95); color: #e2e8f0;">Customer Support</option>
+                <option value="Email Automation" style="background-color: rgba(15, 23, 42, 0.95); color: #e2e8f0;">Email Automation</option>
+                <option value="Multiple Services" style="background-color: rgba(15, 23, 42, 0.95); color: #e2e8f0;">Multiple Services</option>
+              </select>
+            </div>
+            
+            <button 
+              type="submit"
+              id="start-qualification-btn"
+              class="w-full px-6 py-3 rounded-xl bg-gradient-to-r from-pink-neon to-blue-electric text-white font-semibold hover:opacity-90 transition shadow-lg shadow-pink-neon/20"
+            >
+              <i class="fas fa-rocket mr-2"></i>
+              Start Qualification
+            </button>
+          </form>
+        </div>
+
+        <!-- CENTER: Qualification Chat -->
+        <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/10 shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] p-6 flex flex-col">
+          <div class="h-px w-full bg-gradient-to-r from-pink-neon/60 via-blue-electric/40 to-transparent mb-6"></div>
+          <h2 class="text-xl font-semibold text-text-light mb-4 flex items-center gap-2">
+            <i class="fas fa-comments text-blue-electric"></i>
+            Qualification Chat
+          </h2>
+          
+          <div id="chat-messages" class="flex-1 overflow-y-auto mb-4 space-y-4 min-h-[400px] max-h-[500px]">
+            <div class="text-center text-text-mid text-sm py-8">
+              <i class="fas fa-comment-dots text-4xl mb-3 opacity-30"></i>
+              <p>Complete the lead intake form to start qualification</p>
+            </div>
+          </div>
+          
+          <div id="chat-input-container" class="hidden">
+            <div class="flex gap-2">
+              <input 
+                type="text" 
+                id="chat-input"
+                placeholder="Type your answer..."
+                class="flex-1 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-text-light placeholder-text-gray focus:outline-none focus:border-blue-electric/50 focus:ring-2 focus:ring-blue-electric/10"
+              />
+              <button 
+                id="send-answer-btn"
+                class="px-6 py-3 rounded-xl bg-blue-electric text-white font-semibold hover:opacity-90 transition"
+              >
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: AI Analysis Panel -->
+        <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/10 shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] p-6">
+          <div class="h-px w-full bg-gradient-to-r from-pink-neon/60 via-blue-electric/40 to-transparent mb-6"></div>
+          <h2 class="text-xl font-semibold text-text-light mb-4 flex items-center gap-2">
+            <i class="fas fa-brain text-pink-neon"></i>
+            AI Analysis
+          </h2>
+          
+          <div id="analysis-panel" class="space-y-4">
+            <div class="text-center text-text-mid text-sm py-8">
+              <i class="fas fa-chart-line text-4xl mb-3 opacity-30"></i>
+              <p>Analysis will appear here after qualification</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+let currentQuestionIndex = 0;
+let leadData = {};
+let answers = {};
+let qualificationQuestions = [
+  {
+    question: "What is your monthly revenue?",
+    key: 'revenue',
+    placeholder: "e.g., $500k, $1M+, under $100k"
+  },
+  {
+    question: "What CRM are you currently using?",
+    key: 'crm',
+    placeholder: "e.g., Salesforce, HubSpot, Spreadsheet, None"
+  },
+  {
+    question: "How soon are you looking to implement?",
+    key: 'urgency',
+    placeholder: "e.g., Immediately, 30 days, Next quarter"
+  },
+  {
+    question: "What's your biggest bottleneck or challenge?",
+    key: 'bottleneck',
+    placeholder: "Describe your main pain point..."
+  }
+];
+
+function addMessage(content, isAI = false) {
+  const messagesContainer = document.getElementById('chat-messages');
+  if (messagesContainer.querySelector('.text-center')) {
+    messagesContainer.innerHTML = '';
+  }
+  
+  const messageDiv = document.createElement('div');
+  messageDiv.className = `flex ${isAI ? 'justify-start' : 'justify-end'}`;
+  
+  messageDiv.innerHTML = `
+    <div class="max-w-[80%] ${isAI ? 'bg-white/5 border border-white/10' : 'bg-gradient-to-r from-blue-electric/20 to-pink-neon/20 border border-white/10'} rounded-2xl px-4 py-3">
+      <p class="text-sm text-text-light leading-relaxed">${content}</p>
+    </div>
+  `;
+  
+  messagesContainer.appendChild(messageDiv);
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+function askNextQuestion() {
+  if (currentQuestionIndex >= qualificationQuestions.length) {
+    // All questions answered, process qualification
+    processQualification();
+    return;
+  }
+  
+  const question = qualificationQuestions[currentQuestionIndex];
+  addMessage(question.question, true);
+  
+  // Show input
+  document.getElementById('chat-input-container').classList.remove('hidden');
+  document.getElementById('chat-input').placeholder = question.placeholder;
+  document.getElementById('chat-input').focus();
+}
+
+function processQualification() {
+  // Hide input
+  document.getElementById('chat-input-container').classList.add('hidden');
+  
+  addMessage("Thank you! Analyzing your responses...", true);
+  
+  // Show processing animation
+  setTimeout(() => {
+    fetch('/api/qualification/process/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCookie('csrftoken')
+      },
+      body: JSON.stringify({
+        lead: leadData,
+        answers: answers
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        displayAnalysis(data.qualification);
+        addMessage("Qualification complete! Check the analysis panel for your score and next steps.", true);
+      } else {
+        addMessage("Sorry, there was an error processing your qualification. Please try again.", true);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      addMessage("Sorry, there was an error. Please try again.", true);
+    });
+  }, 1500);
+}
+
+function displayAnalysis(qualification) {
+  const panel = document.getElementById('analysis-panel');
+  
+  // Determine tier color
+  let tierColor = 'text-gray-400';
+  let tierBg = 'bg-gray-500/20 border-gray-500/30';
+  let tierText = 'Cold';
+  
+  if (qualification.score >= 70) {
+    tierColor = 'text-red-400';
+    tierBg = 'bg-red-500/20 border-red-500/30';
+    tierText = 'Hot';
+  } else if (qualification.score >= 40) {
+    tierColor = 'text-yellow-400';
+    tierBg = 'bg-yellow-500/20 border-yellow-500/30';
+    tierText = 'Warm';
+  }
+  
+  // Determine intent color
+  const intentColors = {
+    'strong': 'text-green-400',
+    'moderate': 'text-yellow-400',
+    'weak': 'text-gray-400'
+  };
+  
+  const intentColor = intentColors[qualification.intent] || 'text-gray-400';
+  
+  panel.innerHTML = `
+    <!-- Score Meter -->
+    <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-sm font-semibold text-text-mid">Lead Score</span>
+        <span class="text-2xl font-bold text-text-light">${qualification.score}<span class="text-sm text-text-mid">/100</span></span>
+      </div>
+      <div class="w-full h-3 bg-white/5 rounded-full overflow-hidden">
+        <div class="h-full bg-gradient-to-r from-pink-neon to-blue-electric transition-all duration-1000" style="width: ${qualification.score}%"></div>
+      </div>
+      <div class="mt-2 flex items-center justify-between text-xs">
+        <span class="text-text-gray">Cold</span>
+        <span class="text-text-gray">Warm</span>
+        <span class="text-text-gray">Hot</span>
+      </div>
+    </div>
+    
+    <!-- Tier Badge -->
+    <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+      <span class="text-xs text-text-mid mb-1 block">Fit Level</span>
+      <span class="inline-flex items-center px-3 py-1 rounded-lg text-sm font-medium border ${tierBg} ${tierColor}">
+        ${qualification.fit_level.charAt(0).toUpperCase() + qualification.fit_level.slice(1)} (${tierText})
+      </span>
+    </div>
+    
+    <!-- Metrics Grid -->
+    <div class="grid grid-cols-2 gap-3">
+      <div class="bg-white/5 rounded-xl border border-white/10 p-3">
+        <span class="text-xs text-text-mid block mb-1">Buying Intent</span>
+        <span class="text-sm font-semibold ${intentColor}">
+          ${qualification.intent.charAt(0).toUpperCase() + qualification.intent.slice(1)}
+        </span>
+      </div>
+      <div class="bg-white/5 rounded-xl border border-white/10 p-3">
+        <span class="text-xs text-text-mid block mb-1">Budget Match</span>
+        <span class="text-sm font-semibold ${qualification.budget_match ? 'text-green-400' : 'text-gray-400'}">
+          ${qualification.budget_match ? 'Yes' : 'No'}
+        </span>
+      </div>
+      <div class="bg-white/5 rounded-xl border border-white/10 p-3 col-span-2">
+        <span class="text-xs text-text-mid block mb-1">Urgency</span>
+        <span class="text-sm font-semibold text-text-light">
+          ${qualification.urgency_days ? qualification.urgency_days + ' days' : 'Not specified'}
+        </span>
+      </div>
+    </div>
+    
+    <!-- Recommended Action -->
+    <div class="bg-gradient-to-br from-blue-electric/10 to-pink-neon/10 rounded-xl border border-blue-electric/20 p-4">
+      <h4 class="text-sm font-semibold text-text-light mb-3">Recommended Action</h4>
+      <div class="space-y-2 text-xs">
+        <div class="flex items-center gap-2">
+          <i class="fas fa-check-circle text-green-400"></i>
+          <span class="text-text-mid">${qualification.recommended_action}</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i class="fas fa-check-circle text-green-400"></i>
+          <span class="text-text-mid">Assign to: <span class="font-medium text-text-light">${qualification.assigned_team}</span></span>
+        </div>
+        ${qualification.demo_booked ? `
+        <div class="flex items-center gap-2">
+          <i class="fas fa-check-circle text-green-400"></i>
+          <span class="text-text-mid">Demo booked: <span class="font-medium text-text-light">${qualification.demo_date}</span></span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i class="fas fa-check-circle text-green-400"></i>
+          <span class="text-text-mid">Assigned to: <span class="font-medium text-text-light">${qualification.assigned_to}</span></span>
+        </div>
+        ` : ''}
+        <div class="flex items-center gap-2">
+          <i class="fas fa-check-circle text-green-400"></i>
+          <span class="text-text-mid">Create Opportunity</span>
+        </div>
+        ${qualification.demo_booked ? `
+        <div class="flex items-center gap-2">
+          <i class="fas fa-check-circle text-green-400"></i>
+          <span class="text-text-mid">Send calendar link</span>
+        </div>
+        ` : ''}
+      </div>
+    </div>
+    
+    <!-- Activity Timeline -->
+    <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+      <h4 class="text-sm font-semibold text-text-light mb-3">Activity Timeline</h4>
+      <div class="space-y-3 text-xs">
+        <div class="flex items-start gap-3">
+          <div class="w-2 h-2 rounded-full bg-green-400 mt-1.5"></div>
+          <div>
+            <div class="text-text-light font-medium">Lead submitted</div>
+            <div class="text-text-gray">${new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-2 h-2 rounded-full bg-green-400 mt-1.5"></div>
+          <div>
+            <div class="text-text-light font-medium">Qualification completed</div>
+            <div class="text-text-gray">${new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-2 h-2 rounded-full bg-green-400 mt-1.5"></div>
+          <div>
+            <div class="text-text-light font-medium">Score calculated (${qualification.score})</div>
+            <div class="text-text-gray">${new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-2 h-2 rounded-full bg-green-400 mt-1.5"></div>
+          <div>
+            <div class="text-text-light font-medium">Opportunity created</div>
+            <div class="text-text-gray">${new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</div>
+          </div>
+        </div>
+        ${qualification.demo_booked ? `
+        <div class="flex items-start gap-3">
+          <div class="w-2 h-2 rounded-full bg-green-400 mt-1.5"></div>
+          <div>
+            <div class="text-text-light font-medium">Calendar slot reserved</div>
+            <div class="text-text-gray">${new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</div>
+          </div>
+        </div>
+        ` : ''}
+      </div>
+    </div>
+  `;
+}
+
+// Form submission
+document.getElementById('lead-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  leadData = {
+    name: document.getElementById('lead-name').value,
+    email: document.getElementById('lead-email').value,
+    company: document.getElementById('lead-company').value,
+    budget_range: document.getElementById('lead-budget').value,
+    service_interest: document.getElementById('lead-interest').value
+  };
+  
+  // Reset chat
+  document.getElementById('chat-messages').innerHTML = '';
+  answers = {};
+  currentQuestionIndex = 0;
+  
+  // Start qualification
+  addMessage("Hi! I'm your AI qualification assistant. I'll ask you a few quick questions to understand your needs better.", true);
+  
+  setTimeout(() => {
+    askNextQuestion();
+  }, 1000);
+});
+
+// Answer submission
+document.getElementById('send-answer-btn').addEventListener('click', function() {
+  const input = document.getElementById('chat-input');
+  const answer = input.value.trim();
+  
+  if (!answer) return;
+  
+  // Add user message
+  addMessage(answer, false);
+  
+  // Store answer
+  const currentQuestion = qualificationQuestions[currentQuestionIndex];
+  answers[currentQuestion.key] = answer;
+  
+  // Clear input
+  input.value = '';
+  
+  // Move to next question
+  currentQuestionIndex++;
+  
+  setTimeout(() => {
+    askNextQuestion();
+  }, 500);
+});
+
+// Enter key support
+document.getElementById('chat-input')?.addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    document.getElementById('send-answer-btn').click();
+  }
+});
+
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+</script>
+
+<style>
+#chat-messages {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.2) transparent;
+}
+#chat-messages::-webkit-scrollbar { width: 6px; }
+#chat-messages::-webkit-scrollbar-track { background: transparent; }
+#chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.18);
+  border-radius: 999px;
+}
+
+/* Fix select dropdown styling - dark background with light text */
+select {
+  background-color: rgba(15, 23, 42, 0.8) !important;
+  color: #e2e8f0 !important;
+}
+
+select option {
+  background-color: rgba(15, 23, 42, 0.95) !important;
+  color: #e2e8f0 !important;
+}
+
+select option:first-child {
+  color: #94a3b8 !important;
+}
+
+select:focus {
+  background-color: rgba(15, 23, 42, 0.9) !important;
+  color: #e2e8f0 !important;
+}
+</style>
+{% endblock %}
+

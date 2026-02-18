@@ -1,0 +1,1017 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}AI Analytics & Insights - AI Assisted Business OS{% endblock %}
+
+{% block content %}
+{% include 'sections/_nav.html' %}
+
+<div class="min-h-screen bg-dark-1 text-text-light">
+  <!-- Background (keep subtle) -->
+  <div class="pointer-events-none fixed inset-0">
+    <div class="absolute -top-40 left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-blue-electric/10 blur-[160px]"></div>
+    <div class="absolute -bottom-40 right-[-120px] h-[560px] w-[560px] rounded-full bg-pink-neon/10 blur-[180px]"></div>
+    <div class="absolute inset-0 opacity-[0.035] bg-[radial-gradient(circle_at_center,#ffffff_1px,transparent_1px)] bg-[length:48px_48px]"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-[1600px] px-4 sm:px-6 pt-24 pb-16">
+    <!-- Header -->
+    <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between mb-6">
+      <div class="min-w-0">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[11px] uppercase tracking-widest text-text-mid">
+          <i class="fas fa-wand-magic-sparkles text-text-dark"></i>
+          Insights Console
+        </div>
+
+        <h1 class="mt-3 text-3xl md:text-4xl font-semibold tracking-tight">
+          AI Analytics & Insights
+        </h1>
+
+        <p class="mt-2 text-text-mid max-w-3xl">
+          A real operator view: filters, evidence-backed insights, and actions that create tasks/automation drafts.
+        </p>
+
+        <div class="mt-3 flex flex-wrap items-center gap-2">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-text-mid">
+            <i class="fas fa-circle-info"></i>
+            <span>Simulated demo — production analyzes live signals across CRM, inbox, and support</span>
+          </div>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/20 border border-white/10 text-xs text-text-mid">
+            <i class="fas fa-clock"></i>
+            <span>Last run: <span id="lastRunText">{% if last_run %}{{ last_run|date:"M d, Y H:i" }}{% else %}—{% endif %}</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button
+          id="runInsightsBtn"
+          onclick="runInsights()"
+          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-blue-electric to-pink-neon text-white font-semibold hover:opacity-95 transition"
+        >
+          <i class="fas fa-brain"></i>
+          <span>Run Analysis</span>
+        </button>
+
+        <button
+          onclick="toggleDrawer(false)"
+          class="hidden lg:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-sm text-text-light hover:bg-white/10 transition"
+        >
+          <i class="fas fa-sliders text-text-mid"></i>
+          <span>Controls</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Filters / Controls Bar (CRM-native feel) -->
+    <div class="rounded-2xl border border-white/10 bg-dark-2/45 backdrop-blur-xl shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] p-4 mb-6">
+      <div class="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 flex-1">
+          <!-- Date range -->
+          <div class="rounded-xl border border-white/10 bg-black/20 px-3 py-2">
+            <div class="text-[11px] uppercase tracking-widest text-text-mid">Date Range</div>
+            <select id="filterRange" class="mt-1 w-full bg-dark-2 text-text-light text-sm outline-none rounded-lg px-2 py-1 border border-white/10">
+              <option value="7">Last 7 days</option>
+              <option value="30" selected>Last 30 days</option>
+              <option value="90">Last 90 days</option>
+            </select>
+          </div>
+
+          <!-- Segment -->
+          <div class="rounded-xl border border-white/10 bg-black/20 px-3 py-2">
+            <div class="text-[11px] uppercase tracking-widest text-text-mid">Segment</div>
+            <select id="filterSegment" class="mt-1 w-full bg-dark-2 text-text-light text-sm outline-none rounded-lg px-2 py-1 border border-white/10">
+              <option value="all" selected>All</option>
+              <option value="enterprise">Enterprise</option>
+              <option value="smb">SMB</option>
+              <option value="paid">Paid Traffic</option>
+              <option value="organic">Organic</option>
+            </select>
+          </div>
+
+          <!-- Channel -->
+          <div class="rounded-xl border border-white/10 bg-black/20 px-3 py-2">
+            <div class="text-[11px] uppercase tracking-widest text-text-mid">Channel</div>
+            <select id="filterChannel" class="mt-1 w-full bg-dark-2 text-text-light text-sm outline-none rounded-lg px-2 py-1 border border-white/10">
+              <option value="all" selected>All</option>
+              <option value="web">Web</option>
+              <option value="email">Email</option>
+              <option value="instagram">Instagram</option>
+              <option value="facebook">Facebook</option>
+              <option value="whatsapp">WhatsApp</option>
+            </select>
+          </div>
+
+          <!-- Owner -->
+          <div class="rounded-xl border border-white/10 bg-black/20 px-3 py-2">
+            <div class="text-[11px] uppercase tracking-widest text-text-mid">Owner</div>
+            <select id="filterOwner" class="mt-1 w-full bg-dark-2 text-text-light text-sm outline-none rounded-lg px-2 py-1 border border-white/10">
+              <option value="all" selected>All</option>
+              <option value="sales">Sales</option>
+              <option value="support">Support</option>
+              <option value="ops">Ops</option>
+            </select>
+          </div>
+
+          <!-- Sort -->
+          <div class="rounded-xl border border-white/10 bg-black/20 px-3 py-2">
+            <div class="text-[11px] uppercase tracking-widest text-text-mid">Sort</div>
+            <select id="filterSort" class="mt-1 w-full bg-dark-2 text-text-light text-sm outline-none rounded-lg px-2 py-1 border border-white/10">
+              <option value="impact" selected>Highest impact</option>
+              <option value="confidence">Highest confidence</option>
+              <option value="lift">Highest revenue lift</option>
+              <option value="risk">Highest risk</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <div class="hidden md:flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-xs text-text-mid">
+            <i class="fas fa-database"></i>
+            <span>Data window: <span id="dataWindowText">Last 30 days</span></span>
+          </div>
+
+          <button
+            onclick="resetFilters()"
+            class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-sm text-text-light hover:bg-white/10 transition"
+          >
+            <i class="fas fa-rotate-left text-text-mid"></i>
+            Reset
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Snapshot (make it feel operational, include deltas if available) -->
+    <div class="rounded-2xl border border-white/10 bg-dark-2/45 backdrop-blur-xl shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] p-6 mb-6">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <div class="text-[11px] uppercase tracking-widest text-text-mid">Command Snapshot</div>
+          <h2 class="mt-2 text-lg font-semibold">Executive metrics for the selected window</h2>
+        </div>
+        <div class="hidden sm:flex items-center gap-2 text-xs text-text-mid">
+          <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/20 border border-white/10">
+            <i class="fas fa-shield-halved text-text-dark"></i>
+            Evidence-backed insights
+          </span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-5">
+        <div class="rounded-xl border border-white/10 bg-black/20 p-4">
+          <div class="text-xs text-text-mid mb-1">Revenue (month)</div>
+          <div id="kpiRevenue" class="text-2xl font-bold text-green-400">
+            ${{ revenue_this_month|floatformat:0|intcomma }}
+          </div>
+          <div class="text-xs text-text-mid mt-1">Bookings + retained</div>
+        </div>
+
+        <div class="rounded-xl border border-white/10 bg-black/20 p-4">
+          <div class="text-xs text-text-mid mb-1">Pipeline Value</div>
+          <div id="kpiPipeline" class="text-2xl font-bold text-blue-electric">
+            ${{ pipeline_value|floatformat:0|intcomma }}
+          </div>
+          <div class="text-xs text-text-mid mt-1">Open opportunities</div>
+        </div>
+
+        <div class="rounded-xl border border-white/10 bg-black/20 p-4">
+          <div class="text-xs text-text-mid mb-1">Avg Response Time</div>
+          <div id="kpiResponse" class="text-2xl font-bold text-text-light">
+            {{ snapshot.average_response_time_minutes|floatformat:0 }}m
+          </div>
+          <div class="text-xs text-text-mid mt-1">Support + inbox</div>
+        </div>
+
+        <div class="rounded-xl border border-white/10 bg-black/20 p-4">
+          <div class="text-xs text-text-mid mb-1">Conversion Rate</div>
+          <div id="kpiConversion" class="text-2xl font-bold text-pink-neon">
+            {{ snapshot.conversion_rate }}%
+          </div>
+          <div class="text-xs text-text-mid mt-1">Lead → closed</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main: Insights + Evidence -->
+    <div class="grid grid-cols-1 xl:grid-cols-[1fr_520px] gap-6">
+      <!-- Insights list -->
+      <div class="min-w-0">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-3">
+            <h2 class="text-xl font-semibold">Insights</h2>
+            <span class="text-xs px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-text-mid">
+              <span id="insightsCount">{{ insights|length }}</span> items
+            </span>
+          </div>
+
+          <div class="text-xs text-text-mid">
+            Click an insight for details
+          </div>
+        </div>
+
+        <div id="insights-container" class="space-y-4">
+          {% for insight in insights %}
+          <div class="group rounded-2xl border border-white/10 bg-dark-2/45 backdrop-blur-xl shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] p-6 hover:border-white/20 transition cursor-pointer"
+               onclick="openInsightDrawerFromDOM(this)"
+               data-insight-id="{{ insight.id }}"
+               data-insight-title="{{ insight.title|escapejs }}"
+               data-insight-type="{{ insight.insight_type }}"
+               data-impact="{{ insight.impact_level }}"
+               data-confidence="{{ insight.confidence_score }}"
+               data-description="{{ insight.description|default:''|escapejs }}"
+               data-what="{{ insight.what_happened|default:''|escapejs }}"
+               data-why="{{ insight.why_it_matters|default:''|escapejs }}"
+               data-action="{{ insight.recommended_action|default:''|escapejs }}"
+               data-lift="{% if insight.estimated_revenue_lift %}{{ insight.estimated_revenue_lift }}{% else %}{% endif %}"
+               data-evidence="{% if insight.evidence_json %}{{ insight.evidence_json|escapejs }}{% else %}{% endif %}"
+          >
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex items-start gap-4 min-w-0">
+                <div class="h-12 w-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                  {% if insight.insight_type == 'bottleneck' %}
+                    <i class="fas fa-hourglass-half text-yellow-300"></i>
+                  {% elif insight.insight_type == 'opportunity' %}
+                    <i class="fas fa-lightbulb text-green-300"></i>
+                  {% elif insight.insight_type == 'risk' %}
+                    <i class="fas fa-shield-halved text-red-300"></i>
+                  {% elif insight.insight_type == 'optimization' %}
+                    <i class="fas fa-wand-magic-sparkles text-blue-electric"></i>
+                  {% else %}
+                    <i class="fas fa-brain text-pink-neon"></i>
+                  {% endif %}
+                </div>
+
+                <div class="min-w-0">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <h3 class="text-lg font-semibold truncate">{{ insight.title }}</h3>
+
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium border
+                      {% if insight.impact_level == 'high' %}bg-red-500/10 border-red-500/20 text-red-300
+                      {% elif insight.impact_level == 'medium' %}bg-yellow-500/10 border-yellow-500/20 text-yellow-300
+                      {% else %}bg-blue-500/10 border-blue-500/20 text-blue-300{% endif %}">
+                      {{ insight.get_impact_level_display }} impact
+                    </span>
+
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] border border-white/10 bg-white/5 text-text-mid">
+                      {{ insight.get_insight_type_display }}
+                    </span>
+                  </div>
+
+                  <p class="mt-2 text-sm text-text-mid leading-relaxed">
+                    {{ insight.description }}
+                  </p>
+
+                  <!-- Evidence (this is what makes it feel real) -->
+                  <div class="mt-4 rounded-xl border border-white/10 bg-black/20 p-4">
+                    <div class="text-[11px] uppercase tracking-widest text-text-mid mb-2">
+                      Evidence
+                    </div>
+
+                    {% if insight.evidence_summary %}
+                      <div class="text-sm text-text-light leading-relaxed">
+                        {{ insight.evidence_summary }}
+                      </div>
+                    {% else %}
+                      <div class="text-sm text-text-mid leading-relaxed">
+                        Evidence attached to this insight (open to view). For MVP, keep one concrete metric shift here.
+                      </div>
+                    {% endif %}
+                  </div>
+
+                  <!-- Actions preview -->
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs bg-white/5 border border-white/10 text-text-mid">
+                      <i class="fas fa-list-check text-text-dark"></i>
+                      Next actions ready
+                    </span>
+
+                    {% if insight.estimated_revenue_lift %}
+                    <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs bg-green-500/10 border border-green-500/20 text-green-300">
+                      <i class="fas fa-arrow-trend-up"></i>
+                      +${{ insight.estimated_revenue_lift|floatformat:0|intcomma }}/mo
+                    </span>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+
+              <div class="shrink-0 text-right">
+                <div class="text-[11px] uppercase tracking-widest text-text-mid">Confidence</div>
+                <div class="mt-1 text-xl font-bold">{{ insight.confidence_score }}%</div>
+              </div>
+            </div>
+
+            <div class="mt-5 pt-5 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-2 text-xs text-text-mid">
+                <i class="fas fa-mouse-pointer text-text-dark"></i>
+                Open details to create tasks or draft automations
+              </div>
+
+              <div class="flex items-center gap-2">
+                <button class="px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-sm hover:bg-white/10 transition"
+                        onclick="event.stopPropagation(); quickAction('task', '{{ insight.id }}')">
+                  <i class="fas fa-check mr-2 text-text-mid"></i>Create Task
+                </button>
+                <button class="px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-sm hover:bg-white/10 transition"
+                        onclick="event.stopPropagation(); quickAction('automation', '{{ insight.id }}')">
+                  <i class="fas fa-bolt mr-2 text-text-mid"></i>Draft Automation
+                </button>
+                <button class="px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-sm hover:bg-white/10 transition"
+                        onclick="event.stopPropagation(); quickAction('notify', '{{ insight.id }}')">
+                  <i class="fas fa-bell mr-2 text-text-mid"></i>Notify
+                </button>
+              </div>
+            </div>
+          </div>
+          {% empty %}
+          <div class="rounded-2xl border border-white/10 bg-dark-2/45 backdrop-blur-xl shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] p-12 text-center">
+            <i class="fas fa-brain text-4xl mb-4 opacity-30"></i>
+            <p class="text-text-mid mb-2">No insights generated yet</p>
+            <p class="text-sm text-text-gray mb-5">Run analysis to generate evidence-backed recommendations</p>
+            <button
+              onclick="runInsights()"
+              class="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-electric to-pink-neon text-white font-semibold hover:opacity-90 transition"
+            >
+              <i class="fas fa-brain mr-2"></i>
+              Run Analysis
+            </button>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Evidence / Trends (keep minimal, support “why”) -->
+      <div class="min-w-0">
+        <div class="rounded-2xl border border-white/10 bg-dark-2/45 backdrop-blur-xl shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] p-6">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <div class="text-[11px] uppercase tracking-widest text-text-mid">Evidence & Trends</div>
+              <h3 class="mt-2 text-lg font-semibold">Drill-down</h3>
+              <p class="mt-1 text-sm text-text-mid">Keep charts minimal. Use them as proof for insights.</p>
+            </div>
+            <div class="hidden sm:flex items-center gap-2 text-xs text-text-mid">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/20 border border-white/10">
+                <i class="fas fa-chart-simple text-text-dark"></i>
+                3 core views
+              </span>
+            </div>
+          </div>
+
+          <!-- Funnel -->
+          <div class="mt-6 rounded-2xl border border-white/10 bg-black/20 p-5">
+            <div class="flex items-center justify-between">
+              <div class="font-semibold">Conversion Funnel</div>
+              <div class="text-xs text-text-mid">Leads → SQL → Closed</div>
+            </div>
+
+            <div class="mt-4 space-y-3">
+              <div>
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-sm text-text-mid">Leads</span>
+                  <span class="text-sm font-semibold">{{ snapshot.leads|intcomma }}</span>
+                </div>
+                <div class="w-full h-2.5 bg-white/5 rounded-full overflow-hidden">
+                  <div class="h-full bg-blue-electric" style="width: 100%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-sm text-text-mid">Sales Qualified</span>
+                  <span class="text-sm font-semibold">{{ snapshot.sales_qualified_leads|intcomma }}</span>
+                </div>
+                <div class="w-full h-2.5 bg-white/5 rounded-full overflow-hidden">
+                  {% widthratio snapshot.sales_qualified_leads snapshot.leads 100 as sql_percent %}
+                  <div class="h-full bg-yellow-300" style="width: {{ sql_percent }}%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-sm text-text-mid">Deals Closed</span>
+                  <span class="text-sm font-semibold">{{ snapshot.deals_closed|intcomma }}</span>
+                </div>
+                <div class="w-full h-2.5 bg-white/5 rounded-full overflow-hidden">
+                  {% widthratio snapshot.deals_closed snapshot.leads 100 as deals_percent %}
+                  <div class="h-full bg-green-300" style="width: {{ deals_percent }}%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Channel performance -->
+          <div class="mt-4 rounded-2xl border border-white/10 bg-black/20 p-5">
+            <div class="flex items-center justify-between">
+              <div class="font-semibold">Channel Performance</div>
+              <div class="text-xs text-text-mid">Conversion proof</div>
+            </div>
+
+            <div class="mt-4 space-y-4">
+              {% for channel, data in snapshot.channel_breakdown.items %}
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-sm font-medium capitalize">{{ channel }}</span>
+                  <span class="text-sm text-text-mid">{{ data.conversion }}% conversion</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
+                    {% widthratio data.conversion 1 10 as conv_width %}
+                    <div class="h-full bg-gradient-to-r from-blue-electric to-pink-neon" style="width: {{ conv_width }}%"></div>
+                  </div>
+                  <span class="text-xs text-text-gray">{{ data.leads|intcomma }} leads</span>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <!-- Response time -->
+          <div class="mt-4 rounded-2xl border border-white/10 bg-black/20 p-5">
+            <div class="flex items-center justify-between">
+              <div class="font-semibold">Response Time Trend</div>
+              <div class="text-xs text-text-mid">Bottleneck indicator</div>
+            </div>
+
+            <div class="mt-4 flex items-end gap-2 h-28">
+              <div class="flex-1 flex flex-col items-center justify-end">
+                <div class="w-full bg-yellow-400/25 rounded-t" style="height: 55%"></div>
+                <span class="text-[11px] text-text-gray mt-1">W1</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center justify-end">
+                <div class="w-full bg-yellow-400/25 rounded-t" style="height: 65%"></div>
+                <span class="text-[11px] text-text-gray mt-1">W2</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center justify-end">
+                <div class="w-full bg-yellow-400/25 rounded-t" style="height: 72%"></div>
+                <span class="text-[11px] text-text-gray mt-1">W3</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center justify-end">
+                <div class="w-full bg-red-400/25 rounded-t" style="height: 100%"></div>
+                <span class="text-[11px] text-text-gray mt-1">W4</span>
+              </div>
+            </div>
+
+            <div class="mt-3 text-sm text-text-mid">
+              Current average: <span class="text-text-light font-semibold">{{ snapshot.average_response_time_minutes|floatformat:0 }}m</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Insight Drawer (real product behavior) -->
+  <div id="insightDrawer" class="fixed inset-0 z-[80] hidden">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="toggleDrawer(false)"></div>
+
+    <div class="absolute right-0 top-0 h-full w-full max-w-[560px]">
+      <div class="h-full rounded-l-3xl border-l border-white/10 bg-dark-2/75 backdrop-blur-xl shadow-[0_30px_140px_-60px_rgba(0,0,0,0.9)] overflow-hidden flex flex-col">
+        <div class="px-6 py-5 border-b border-white/10 flex items-start justify-between gap-3">
+          <div class="min-w-0">
+            <div class="text-[11px] uppercase tracking-widest text-text-mid">Insight</div>
+            <div id="drawerTitle" class="mt-2 text-xl font-semibold truncate">—</div>
+            <div id="drawerMeta" class="mt-1 text-sm text-text-mid">—</div>
+          </div>
+
+          <button class="h-11 w-11 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition flex items-center justify-center"
+                  onclick="toggleDrawer(false)">
+            <i class="fas fa-xmark text-text-mid"></i>
+          </button>
+        </div>
+
+        <!-- Tabs -->
+        <div class="px-6 py-3 border-b border-white/10 flex items-center gap-2 text-sm">
+          <button class="px-3 py-2 rounded-xl bg-white/5 border border-white/10" data-tab="overview" onclick="switchTab('overview')">Overview</button>
+          <button class="px-3 py-2 rounded-xl bg-transparent hover:bg-white/5 border border-white/10" data-tab="evidence" onclick="switchTab('evidence')">Evidence</button>
+          <button class="px-3 py-2 rounded-xl bg-transparent hover:bg-white/5 border border-white/10" data-tab="actions" onclick="switchTab('actions')">Actions</button>
+        </div>
+
+        <div class="p-6 overflow-y-auto flex-1">
+          <!-- Overview -->
+          <div id="tab-overview">
+            <div class="rounded-2xl border border-white/10 bg-black/20 p-5">
+              <div class="text-[11px] uppercase tracking-widest text-text-mid">Summary</div>
+              <p id="drawerDescription" class="mt-2 text-sm text-text-light leading-relaxed">—</p>
+
+              <div class="mt-4 grid grid-cols-2 gap-3">
+                <div class="rounded-xl border border-white/10 bg-black/20 p-4">
+                  <div class="text-[11px] uppercase tracking-widest text-text-mid">Impact</div>
+                  <div id="drawerImpact" class="mt-2 text-sm font-semibold">—</div>
+                </div>
+                <div class="rounded-xl border border-white/10 bg-black/20 p-4">
+                  <div class="text-[11px] uppercase tracking-widest text-text-mid">Confidence</div>
+                  <div id="drawerConfidence" class="mt-2 text-sm font-semibold">—</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 grid grid-cols-1 gap-3">
+              <div class="rounded-2xl border border-white/10 bg-black/20 p-5">
+                <div class="text-[11px] uppercase tracking-widest text-text-mid">What happened</div>
+                <p id="drawerWhat" class="mt-2 text-sm text-text-light leading-relaxed">—</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-black/20 p-5">
+                <div class="text-[11px] uppercase tracking-widest text-text-mid">Why it matters</div>
+                <p id="drawerWhy" class="mt-2 text-sm text-text-light leading-relaxed">—</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-black/20 p-5">
+                <div class="text-[11px] uppercase tracking-widest text-text-mid">Recommended action</div>
+                <p id="drawerAction" class="mt-2 text-sm text-text-light leading-relaxed">—</p>
+              </div>
+            </div>
+
+            <div id="drawerLiftWrap" class="mt-4 hidden rounded-2xl border border-green-500/20 bg-green-500/10 p-5">
+              <div class="text-[11px] uppercase tracking-widest text-green-200/80">Estimated revenue lift</div>
+              <div id="drawerLift" class="mt-2 text-2xl font-bold text-green-300">—</div>
+            </div>
+          </div>
+
+          <!-- Evidence -->
+          <div id="tab-evidence" class="hidden">
+            <div class="rounded-2xl border border-white/10 bg-black/20 p-5">
+              <div class="text-[11px] uppercase tracking-widest text-text-mid">Evidence</div>
+              <div class="mt-2 text-sm text-text-light leading-relaxed">
+                The point of this tab is trust: show the concrete metric shifts that triggered the insight.
+              </div>
+
+              <div class="mt-4 rounded-xl border border-white/10 bg-black/20 p-4">
+                <div class="text-[11px] uppercase tracking-widest text-text-mid">Raw evidence</div>
+                <pre id="drawerEvidence" class="mt-2 text-xs text-text-light/90 whitespace-pre-wrap break-words">—</pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div id="tab-actions" class="hidden">
+            <div class="rounded-2xl border border-white/10 bg-black/20 p-5">
+              <div class="text-[11px] uppercase tracking-widest text-text-mid">Actions</div>
+              <div class="mt-2 text-sm text-text-mid">
+                For MVP, these POST to your backend and create real objects (Task / Automation Draft / Notification Log).
+              </div>
+
+              <div class="mt-4 flex flex-col gap-2">
+                <button id="drawerCreateTask"
+                        class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition text-sm"
+                        onclick="drawerAction('task')">
+                  <i class="fas fa-check text-text-mid"></i>
+                  Create Task in CRM
+                </button>
+
+                <button id="drawerDraftAutomation"
+                        class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition text-sm"
+                        onclick="drawerAction('automation')">
+                  <i class="fas fa-bolt text-text-mid"></i>
+                  Draft Automation
+                </button>
+
+                <button id="drawerNotify"
+                        class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition text-sm"
+                        onclick="drawerAction('notify')">
+                  <i class="fas fa-bell text-text-mid"></i>
+                  Notify Team
+                </button>
+              </div>
+
+              <div id="drawerActionResult" class="mt-4 hidden rounded-xl border border-white/10 bg-black/20 p-4 text-sm text-text-light">
+                —
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="px-6 py-4 border-t border-white/10 flex items-center justify-between text-xs text-text-mid">
+          <span>Insights console • MVP</span>
+          <span id="drawerFooterHint">Click outside to close</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tiny toast (no framework) -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[90] hidden">
+    <div class="rounded-2xl border border-white/10 bg-dark-2/80 backdrop-blur-xl px-4 py-3 text-sm shadow-[0_25px_90px_-45px_rgba(0,0,0,0.9)]">
+      <span id="toastText">—</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Fix dropdown styling for better visibility */
+  select {
+    color: #e5e7eb !important;
+    background-color: #1a1a2e !important;
+  }
+  
+  select option {
+    background-color: #1a1a2e !important;
+    color: #e5e7eb !important;
+  }
+</style>
+
+<script>
+  // ---------- helpers ----------
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+  function toast(msg) {
+    const wrap = document.getElementById('toast');
+    const text = document.getElementById('toastText');
+    if (!wrap || !text) return;
+    text.textContent = msg;
+    wrap.classList.remove('hidden');
+    setTimeout(() => wrap.classList.add('hidden'), 2400);
+  }
+
+  function formatKey(key) {
+    return (key || '')
+      .replace(/_/g, ' ')
+      .replace(/\b\w/g, l => l.toUpperCase())
+      .replace(/\bId\b/g, 'ID');
+  }
+
+  function impactLabel(level) {
+    if (level === 'high') return 'High impact';
+    if (level === 'medium') return 'Medium impact';
+    if (level === 'low') return 'Low impact';
+    return (level || '—');
+  }
+
+  function setDataWindowText() {
+    const range = document.getElementById('filterRange')?.value || '30';
+    const map = { '7':'Last 7 days', '30':'Last 30 days', '90':'Last 90 days' };
+    const t = map[range] || 'Last 30 days';
+    const el = document.getElementById('dataWindowText');
+    if (el) el.textContent = t;
+  }
+  document.getElementById('filterRange')?.addEventListener('change', setDataWindowText);
+  setDataWindowText();
+
+  function resetFilters() {
+    document.getElementById('filterRange').value = '30';
+    document.getElementById('filterSegment').value = 'all';
+    document.getElementById('filterChannel').value = 'all';
+    document.getElementById('filterOwner').value = 'all';
+    document.getElementById('filterSort').value = 'impact';
+    setDataWindowText();
+    toast('Filters reset');
+  }
+
+  // ---------- Run insights without full reload ----------
+  async function runInsights() {
+    const btn = document.getElementById('runInsightsBtn');
+    const original = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Running…</span>';
+
+    const payload = {
+      range_days: parseInt(document.getElementById('filterRange').value || '30', 10),
+      segment: document.getElementById('filterSegment').value || 'all',
+      channel: document.getElementById('filterChannel').value || 'all',
+      owner: document.getElementById('filterOwner').value || 'all',
+      sort: document.getElementById('filterSort').value || 'impact'
+    };
+
+    try {
+      const res = await fetch('/api/analytics/generate-insights/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+
+      if (!data || !data.success) {
+        throw new Error(data?.error || 'Failed to generate insights');
+      }
+
+      // Update KPIs if provided
+      if (data.snapshot) {
+        if (data.snapshot.revenue_this_month != null) {
+          document.getElementById('kpiRevenue').textContent = '$' + Number(data.snapshot.revenue_this_month).toLocaleString();
+        }
+        if (data.snapshot.pipeline_value != null) {
+          document.getElementById('kpiPipeline').textContent = '$' + Number(data.snapshot.pipeline_value).toLocaleString();
+        }
+        if (data.snapshot.average_response_time_minutes != null) {
+          document.getElementById('kpiResponse').textContent = Math.round(data.snapshot.average_response_time_minutes) + 'm';
+        }
+        if (data.snapshot.conversion_rate != null) {
+          document.getElementById('kpiConversion').textContent = data.snapshot.conversion_rate + '%';
+        }
+      }
+
+      // Update last run text if provided
+      if (data.run && data.run.generated_at) {
+        const lastRun = document.getElementById('lastRunText');
+        if (lastRun) lastRun.textContent = data.run.generated_at;
+      } else {
+        const lastRun = document.getElementById('lastRunText');
+        if (lastRun) lastRun.textContent = 'Just now';
+      }
+
+      // Replace insights list
+      if (Array.isArray(data.insights)) {
+        renderInsights(data.insights);
+      } else {
+        // Fallback: if backend doesn’t return insights array, reload
+        window.location.reload();
+        return;
+      }
+
+      toast('Analysis complete');
+    } catch (e) {
+      console.error(e);
+      toast('Error: ' + (e?.message || 'Could not run analysis'));
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = original;
+    }
+  }
+
+  function renderInsights(insights) {
+    const container = document.getElementById('insights-container');
+    const countEl = document.getElementById('insightsCount');
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    if (countEl) countEl.textContent = String(insights.length);
+
+    if (!insights.length) {
+      container.innerHTML = `
+        <div class="rounded-2xl border border-white/10 bg-dark-2/45 backdrop-blur-xl shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] p-12 text-center">
+          <i class="fas fa-brain text-4xl mb-4 opacity-30"></i>
+          <p class="text-text-mid mb-2">No insights found for these filters</p>
+          <p class="text-sm text-text-gray">Try widening the date range or switching segments.</p>
+        </div>
+      `;
+      return;
+    }
+
+    insights.forEach(ins => {
+      const icon = ins.insight_type === 'bottleneck' ? 'fa-hourglass-half text-yellow-300'
+        : ins.insight_type === 'opportunity' ? 'fa-lightbulb text-green-300'
+        : ins.insight_type === 'risk' ? 'fa-shield-halved text-red-300'
+        : ins.insight_type === 'optimization' ? 'fa-wand-magic-sparkles text-blue-electric'
+        : 'fa-brain text-pink-neon';
+
+      const impactClass = ins.impact_level === 'high'
+        ? 'bg-red-500/10 border-red-500/20 text-red-300'
+        : ins.impact_level === 'medium'
+          ? 'bg-yellow-500/10 border-yellow-500/20 text-yellow-300'
+          : 'bg-blue-500/10 border-blue-500/20 text-blue-300';
+
+      const evidenceText = ins.evidence_summary || 'Evidence attached to this insight (open to view).';
+
+      const liftChip = ins.estimated_revenue_lift != null
+        ? `<span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs bg-green-500/10 border border-green-500/20 text-green-300">
+             <i class="fas fa-arrow-trend-up"></i>
+             +$${Number(ins.estimated_revenue_lift).toLocaleString()}/mo
+           </span>`
+        : '';
+
+      const node = document.createElement('div');
+      node.className = "group rounded-2xl border border-white/10 bg-dark-2/45 backdrop-blur-xl shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] p-6 hover:border-white/20 transition cursor-pointer";
+      node.setAttribute('onclick', 'openInsightDrawerFromDOM(this)');
+      node.dataset.insightId = ins.id || '';
+      node.dataset.insightTitle = ins.title || '';
+      node.dataset.insightType = ins.insight_type || '';
+      node.dataset.impact = ins.impact_level || '';
+      node.dataset.confidence = ins.confidence_score != null ? String(ins.confidence_score) : '';
+      node.dataset.description = ins.description || '';
+      node.dataset.what = ins.what_happened || '';
+      node.dataset.why = ins.why_it_matters || '';
+      node.dataset.action = ins.recommended_action || '';
+      node.dataset.lift = ins.estimated_revenue_lift != null ? String(ins.estimated_revenue_lift) : '';
+      node.dataset.evidence = ins.evidence_json ? JSON.stringify(ins.evidence_json) : (ins.evidence_summary || '');
+
+      node.innerHTML = `
+        <div class="flex items-start justify-between gap-4">
+          <div class="flex items-start gap-4 min-w-0">
+            <div class="h-12 w-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+              <i class="fas ${icon}"></i>
+            </div>
+
+            <div class="min-w-0">
+              <div class="flex flex-wrap items-center gap-2">
+                <h3 class="text-lg font-semibold truncate">${ins.title || 'Insight'}</h3>
+
+                <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-medium border ${impactClass}">
+                  ${impactLabel(ins.impact_level)}
+                </span>
+
+                <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] border border-white/10 bg-white/5 text-text-mid">
+                  ${(ins.insight_type || 'insight').replace(/_/g,' ')}
+                </span>
+              </div>
+
+              <p class="mt-2 text-sm text-text-mid leading-relaxed">${ins.description || ''}</p>
+
+              <div class="mt-4 rounded-xl border border-white/10 bg-black/20 p-4">
+                <div class="text-[11px] uppercase tracking-widest text-text-mid mb-2">Evidence</div>
+                <div class="text-sm text-text-light leading-relaxed">${evidenceText}</div>
+              </div>
+
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs bg-white/5 border border-white/10 text-text-mid">
+                  <i class="fas fa-list-check text-text-dark"></i>
+                  Next actions ready
+                </span>
+                ${liftChip}
+              </div>
+            </div>
+          </div>
+
+          <div class="shrink-0 text-right">
+            <div class="text-[11px] uppercase tracking-widest text-text-mid">Confidence</div>
+            <div class="mt-1 text-xl font-bold">${ins.confidence_score != null ? ins.confidence_score + '%' : '—'}</div>
+          </div>
+        </div>
+
+        <div class="mt-5 pt-5 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-2 text-xs text-text-mid">
+            <i class="fas fa-mouse-pointer text-text-dark"></i>
+            Open details to create tasks or draft automations
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button class="px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-sm hover:bg-white/10 transition"
+                    onclick="event.stopPropagation(); quickAction('task', '${ins.id || ''}')">
+              <i class="fas fa-check mr-2 text-text-mid"></i>Create Task
+            </button>
+            <button class="px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-sm hover:bg-white/10 transition"
+                    onclick="event.stopPropagation(); quickAction('automation', '${ins.id || ''}')">
+              <i class="fas fa-bolt mr-2 text-text-mid"></i>Draft Automation
+            </button>
+            <button class="px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-sm hover:bg-white/10 transition"
+                    onclick="event.stopPropagation(); quickAction('notify', '${ins.id || ''}')">
+              <i class="fas fa-bell mr-2 text-text-mid"></i>Notify
+            </button>
+          </div>
+        </div>
+      `;
+
+      container.appendChild(node);
+    });
+  }
+
+  // ---------- Drawer ----------
+  let currentInsightId = null;
+
+  function toggleDrawer(open) {
+    const drawer = document.getElementById('insightDrawer');
+    if (!drawer) return;
+    if (open) {
+      drawer.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    } else {
+      drawer.classList.add('hidden');
+      document.body.style.overflow = '';
+      currentInsightId = null;
+      document.getElementById('drawerActionResult')?.classList.add('hidden');
+    }
+  }
+
+  function switchTab(tab) {
+    const tabs = ['overview','evidence','actions'];
+    tabs.forEach(t => {
+      const el = document.getElementById('tab-' + t);
+      if (!el) return;
+      el.classList.toggle('hidden', t !== tab);
+    });
+
+    document.querySelectorAll('[data-tab]').forEach(btn => {
+      const active = btn.getAttribute('data-tab') === tab;
+      btn.classList.toggle('bg-white/5', active);
+      btn.classList.toggle('border-white/10', true);
+    });
+  }
+
+  function openInsightDrawerFromDOM(el) {
+    const id = el.dataset.insightId || null;
+    currentInsightId = id;
+
+    document.getElementById('drawerTitle').textContent = el.dataset.insightTitle || 'Insight';
+    document.getElementById('drawerMeta').textContent = `${formatKey(el.dataset.insightType || 'Insight')} • ${impactLabel(el.dataset.impact)} • ${el.dataset.confidence || '—'}% confidence`;
+
+    document.getElementById('drawerDescription').textContent = el.dataset.description || '—';
+    document.getElementById('drawerImpact').textContent = impactLabel(el.dataset.impact);
+    document.getElementById('drawerConfidence').textContent = (el.dataset.confidence ? el.dataset.confidence + '%' : '—');
+
+    document.getElementById('drawerWhat').textContent = el.dataset.what || '—';
+    document.getElementById('drawerWhy').textContent = el.dataset.why || '—';
+    document.getElementById('drawerAction').textContent = el.dataset.action || '—';
+
+    const liftWrap = document.getElementById('drawerLiftWrap');
+    const liftEl = document.getElementById('drawerLift');
+    const lift = el.dataset.lift;
+    if (lift && liftEl && liftWrap) {
+      liftEl.textContent = '+$' + Number(lift).toLocaleString() + '/mo';
+      liftWrap.classList.remove('hidden');
+    } else if (liftWrap) {
+      liftWrap.classList.add('hidden');
+    }
+
+    // Evidence (raw)
+    const evidence = el.dataset.evidence || '';
+    const evEl = document.getElementById('drawerEvidence');
+    if (evEl) {
+      try {
+        // if it’s JSON, pretty print
+        const parsed = JSON.parse(evidence);
+        evEl.textContent = JSON.stringify(parsed, null, 2);
+      } catch {
+        evEl.textContent = evidence || '—';
+      }
+    }
+
+    // default tab
+    switchTab('overview');
+    toggleDrawer(true);
+  }
+
+  // ---------- Actions (MVP-real: create objects server-side) ----------
+  async function quickAction(kind, insightId) {
+    if (!insightId) {
+      toast('No insight ID (demo)');
+      return;
+    }
+    await postInsightAction(kind, insightId, false);
+  }
+
+  async function drawerAction(kind) {
+    if (!currentInsightId) {
+      toast('No insight selected');
+      return;
+    }
+    await postInsightAction(kind, currentInsightId, true);
+  }
+
+  async function postInsightAction(kind, insightId, showInDrawer) {
+    const endpoints = {
+      task: `/api/analytics/insights/${insightId}/create-task/`,
+      automation: `/api/analytics/insights/${insightId}/draft-automation/`,
+      notify: `/api/analytics/insights/${insightId}/notify/`
+    };
+
+    const url = endpoints[kind];
+    if (!url) return;
+
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify({ source: 'analytics_insight' })
+      });
+      const data = await res.json();
+
+      if (!data || !data.success) {
+        throw new Error(data?.error || 'Action failed');
+      }
+
+      const msg = data.message || (kind === 'task'
+        ? 'Task created'
+        : kind === 'automation'
+          ? 'Automation draft created'
+          : 'Notification created');
+
+      toast(msg);
+
+      if (showInDrawer) {
+        const out = document.getElementById('drawerActionResult');
+        if (out) {
+          out.textContent = msg + (data.reference ? ` • Ref: ${data.reference}` : '');
+          out.classList.remove('hidden');
+        }
+      }
+    } catch (e) {
+      console.error(e);
+      toast('Error: ' + (e?.message || 'Could not execute action'));
+    }
+  }
+
+  // ESC closes drawer
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') toggleDrawer(false);
+  });
+</script>
+
+{% endblock %}

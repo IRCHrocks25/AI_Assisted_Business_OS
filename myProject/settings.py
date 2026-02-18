@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
+    'pgvector.django',
     'myApp',
 ]
 
@@ -85,12 +87,25 @@ WSGI_APPLICATION = 'myProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Use PostgreSQL if DATABASE_URL is set, otherwise fall back to SQLite
+DATABASE_URL = os.getenv('DATABASE_URL', '')
+
+if DATABASE_URL:
+    import dj_database_url
+    db_config = dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
+    # Ensure we're using PostgreSQL engine for pgvector
+    if 'ENGINE' not in db_config or 'postgresql' not in db_config.get('ENGINE', ''):
+        db_config['ENGINE'] = 'django.db.backends.postgresql'
+    DATABASES = {
+        'default': db_config
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
@@ -136,3 +151,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # OpenAI API Key
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', '')
+
+# Cloudinary Configuration
+CLOUDINARY_CLOUD_NAME = os.getenv('CLOUDINARY_CLOUD_NAME', '')
+CLOUDINARY_API_KEY = os.getenv('CLOUDINARY_API_KEY', '')
+CLOUDINARY_API_SECRET = os.getenv('CLOUDINARY_API_SECRET', '')
+
+# File Upload Settings
+FILE_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024  # 10MB
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024  # 10MB

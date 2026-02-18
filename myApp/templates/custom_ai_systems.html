@@ -1,0 +1,415 @@
+{% extends 'base.html' %}
+
+{% block title %}Custom AI Systems - AI Assisted Business OS{% endblock %}
+
+{% block content %}
+<!-- Navigation -->
+{% include 'sections/_nav.html' %}
+
+<div class="min-h-screen bg-dark-1 text-text-light">
+  <!-- Premium background effects -->
+  <div class="pointer-events-none fixed inset-0">
+    <div class="absolute -top-40 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-blue-electric/10 blur-[160px]"></div>
+    <div class="absolute -bottom-40 right-[-120px] h-[600px] w-[600px] rounded-full bg-pink-neon/10 blur-[180px]"></div>
+    <div class="absolute inset-0 opacity-[0.04] bg-[radial-gradient(circle_at_center,#ffffff_1px,transparent_1px)] bg-[length:44px_44px]"></div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-20 px-4">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-br from-blue-electric/20 to-pink-neon/20 border border-white/[0.05] backdrop-blur-xl mb-8 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+        <i class="fas fa-wand-magic-sparkles text-3xl bg-gradient-to-r from-blue-electric to-pink-neon bg-clip-text text-transparent"></i>
+      </div>
+
+      <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-6 bg-gradient-to-r from-text-light via-blue-light to-text-light bg-clip-text text-transparent">
+        Your Business, Your AI System
+      </h1>
+
+      <p class="text-xl md:text-2xl text-text-mid mb-8 max-w-3xl mx-auto leading-relaxed">
+        Stop adapting to generic solutions. Build an AI system that understands <span class="text-text-light font-semibold">your</span> workflows, speaks <span class="text-text-light font-semibold">your</span> language, and solves <span class="text-text-light font-semibold">your</span> unique challenges.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-3 mb-12">
+        <span class="px-4 py-2 rounded-full bg-white/[0.02] border border-white/[0.04] backdrop-blur-sm text-sm">Tailored Logic</span>
+        <span class="px-4 py-2 rounded-full bg-white/[0.02] border border-white/[0.04] backdrop-blur-sm text-sm">Your Brand Voice</span>
+        <span class="px-4 py-2 rounded-full bg-white/[0.02] border border-white/[0.04] backdrop-blur-sm text-sm">Custom Workflows</span>
+        <span class="px-4 py-2 rounded-full bg-white/[0.02] border border-white/[0.04] backdrop-blur-sm text-sm">Your Integrations</span>
+      </div>
+
+      <a href="#demo" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-blue-electric to-pink-neon text-white font-semibold hover:opacity-95 transition shadow-[0_20px_60px_-20px_rgba(236,72,153,0.35)]">
+        <i class="fas fa-calendar-check"></i>
+        Schedule a Consultation
+      </a>
+    </div>
+  </section>
+
+  <!-- The Problem Section -->
+  <section class="relative py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-500/20 bg-red-500/10 backdrop-blur-sm mb-4">
+          <i class="fas fa-exclamation-triangle text-red-400"></i>
+          <span class="text-sm font-medium text-red-300">The Problem</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">One Size Doesn't Fit All</h2>
+        <p class="text-lg text-text-mid max-w-2xl mx-auto">
+          Generic AI tools force you to change how you work. What if your AI could adapt to you instead?
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/[0.03] p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+          <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-4">
+            <i class="fas fa-times-circle text-red-400 text-xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Rigid Workflows</h3>
+          <p class="text-text-mid">Off-the-shelf tools force you into their process. Your team wastes time adapting instead of working.</p>
+        </div>
+
+        <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/[0.03] p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+          <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-4">
+            <i class="fas fa-puzzle-piece text-red-400 text-xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Integration Gaps</h3>
+          <p class="text-text-mid">Your tools don't talk to each other. Data gets stuck in silos, decisions get delayed.</p>
+        </div>
+
+        <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/[0.03] p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+          <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-4">
+            <i class="fas fa-user-slash text-red-400 text-xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Generic Responses</h3>
+          <p class="text-text-mid">AI sounds robotic, doesn't understand your industry, and can't represent your brand properly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Solution Section -->
+  <section class="relative py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-500/20 bg-green-500/10 backdrop-blur-sm mb-4">
+          <i class="fas fa-check-circle text-green-400"></i>
+          <span class="text-sm font-medium text-green-300">The Solution</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Built For You, By You</h2>
+        <p class="text-lg text-text-mid max-w-2xl mx-auto">
+          A custom AI system that mirrors your business logic, integrates with your stack, and speaks your language.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <!-- Left Column -->
+        <div class="space-y-6">
+          <div class="bg-gradient-to-br from-blue-electric/10 to-transparent rounded-2xl border border-blue-electric/20 p-6 backdrop-blur-sm">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-blue-electric/20 border border-blue-electric/30 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-code text-blue-electric"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2">Your Business Logic</h3>
+                <p class="text-text-mid text-sm">We encode your decision-making process, approval workflows, and business rules directly into the AI. It thinks like your best employee.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-pink-neon/10 to-transparent rounded-2xl border border-pink-neon/20 p-6 backdrop-blur-sm">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-pink-neon/20 border border-pink-neon/30 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-microphone text-pink-neon"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2">Your Brand Voice</h3>
+                <p class="text-text-mid text-sm">Trained on your communications, style guides, and customer interactions. Every response sounds like it came from your team.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-purple-500/10 to-transparent rounded-2xl border border-purple-500/20 p-6 backdrop-blur-sm">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-plug text-purple-400"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2">Your Tech Stack</h3>
+                <p class="text-text-mid text-sm">Seamlessly connects to your CRM, email, calendar, Slack, and any API. No more manual data entry or context switching.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="space-y-6">
+          <div class="bg-gradient-to-br from-green-500/10 to-transparent rounded-2xl border border-green-500/20 p-6 backdrop-blur-sm">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-green-500/20 border border-green-500/30 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-shield-halved text-green-400"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2">Your Security & Compliance</h3>
+                <p class="text-text-mid text-sm">Built with your industry regulations, data privacy requirements, and security protocols in mind from day one.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-orange-500/10 to-transparent rounded-2xl border border-orange-500/20 p-6 backdrop-blur-sm">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-orange-500/20 border border-orange-500/30 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-chart-line text-orange-400"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2">Your KPIs & Metrics</h3>
+                <p class="text-text-mid text-sm">Tracks what matters to you. Custom dashboards show exactly the metrics that drive your business decisions.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-cyan-500/10 to-transparent rounded-2xl border border-cyan-500/20 p-6 backdrop-blur-sm">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-users text-cyan-400"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2">Your Team's Workflow</h3>
+                <p class="text-text-mid text-sm">Designed around how your team actually works. Handoffs, escalations, and approvals happen exactly when and how you need them.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What You Get Section -->
+  <section class="relative py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">What You Get</h2>
+        <p class="text-lg text-text-mid max-w-2xl mx-auto">
+          A complete AI system tailored to your business needs
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/[0.03] p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+          <div class="w-12 h-12 rounded-xl bg-blue-electric/10 border border-blue-electric/20 flex items-center justify-center mb-4">
+            <i class="fas fa-brain text-blue-electric text-xl"></i>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">Custom AI Models</h3>
+          <p class="text-text-mid text-sm">Fine-tuned on your data, trained on your processes, optimized for your outcomes.</p>
+        </div>
+
+        <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/[0.03] p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+          <div class="w-12 h-12 rounded-xl bg-pink-neon/10 border border-pink-neon/20 flex items-center justify-center mb-4">
+            <i class="fas fa-sitemap text-pink-neon text-xl"></i>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">Workflow Automation</h3>
+          <p class="text-text-mid text-sm">Automated processes that follow your exact business rules and approval chains.</p>
+        </div>
+
+        <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/[0.03] p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-4">
+            <i class="fas fa-chart-pie text-purple-400 text-xl"></i>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">Custom Dashboards</h3>
+          <p class="text-text-mid text-sm">Real-time insights into the metrics that matter most to your business.</p>
+        </div>
+
+        <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/[0.03] p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+          <div class="w-12 h-12 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center mb-4">
+            <i class="fas fa-key text-green-400 text-xl"></i>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">Role-Based Access</h3>
+          <p class="text-text-mid text-sm">Granular permissions that match your organizational structure and security requirements.</p>
+        </div>
+
+        <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/[0.03] p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+          <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mb-4">
+            <i class="fas fa-sync-alt text-orange-400 text-xl"></i>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">API Integrations</h3>
+          <p class="text-text-mid text-sm">Connect to any tool in your stack. Two-way sync, webhooks, and real-time updates.</p>
+        </div>
+
+        <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/[0.03] p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-4">
+            <i class="fas fa-headset text-cyan-400 text-xl"></i>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">Multi-Channel Support</h3>
+          <p class="text-text-mid text-sm">Chat, voice, email, SMS—all unified in one system that understands context across channels.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Business Impact Section -->
+  <section class="relative py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="bg-gradient-to-br from-blue-electric/10 via-pink-neon/10 to-transparent rounded-3xl border border-white/[0.05] p-8 md:p-12 backdrop-blur-xl shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)]">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4">The Business Impact</h2>
+          <p class="text-lg text-text-mid max-w-2xl mx-auto">
+            What happens when your AI system is built specifically for your business
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-lg bg-green-500/20 border border-green-500/30 flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fas fa-check text-green-400 text-sm"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-1">3x Faster Response Times</h3>
+                <p class="text-text-mid text-sm">AI handles routine inquiries instantly, freeing your team for high-value work.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-lg bg-green-500/20 border border-green-500/30 flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fas fa-check text-green-400 text-sm"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-1">50% Reduction in Manual Tasks</h3>
+                <p class="text-text-mid text-sm">Automation handles data entry, routing, and follow-ups automatically.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-lg bg-green-500/20 border border-green-500/30 flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fas fa-check text-green-400 text-sm"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-1">100% Brand Consistency</h3>
+                <p class="text-text-mid text-sm">Every interaction reflects your brand voice, tone, and values perfectly.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-lg bg-green-500/20 border border-green-500/30 flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fas fa-check text-green-400 text-sm"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-1">Zero Integration Headaches</h3>
+                <p class="text-text-mid text-sm">Built to work with your existing tools from day one.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-lg bg-green-500/20 border border-green-500/30 flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fas fa-check text-green-400 text-sm"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-1">Complete Data Visibility</h3>
+                <p class="text-text-mid text-sm">See everything in one place. No more switching between tools to understand what's happening.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-lg bg-green-500/20 border border-green-500/30 flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fas fa-check text-green-400 text-sm"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-1">Scalable Without Limits</h3>
+                <p class="text-text-mid text-sm">Grows with your business. Add new capabilities, channels, or integrations as needed.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="relative py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">How We Build It</h2>
+        <p class="text-lg text-text-mid max-w-2xl mx-auto">
+          A collaborative process that ensures your system is exactly what you need
+        </p>
+      </div>
+
+      <div class="space-y-8">
+        <!-- Step 1 -->
+        <div class="flex flex-col md:flex-row gap-6 items-start">
+          <div class="flex-shrink-0">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-electric/20 to-pink-neon/20 border border-white/[0.05] flex items-center justify-center text-2xl font-bold">
+              1
+            </div>
+          </div>
+          <div class="flex-1 bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/[0.03] p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+            <h3 class="text-xl font-semibold mb-2">Discovery & Mapping</h3>
+            <p class="text-text-mid">We dive deep into your business. We map your workflows, understand your pain points, and identify where AI can have the biggest impact. You'll see a detailed blueprint before we write a single line of code.</p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="flex flex-col md:flex-row gap-6 items-start">
+          <div class="flex-shrink-0">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-electric/20 to-pink-neon/20 border border-white/[0.05] flex items-center justify-center text-2xl font-bold">
+              2
+            </div>
+          </div>
+          <div class="flex-1 bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/[0.03] p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+            <h3 class="text-xl font-semibold mb-2">Custom Development</h3>
+            <p class="text-text-mid">We build your system using your data, your logic, and your requirements. Every feature is designed specifically for your use case. You'll see progress updates and can test features as we build them.</p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="flex flex-col md:flex-row gap-6 items-start">
+          <div class="flex-shrink-0">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-electric/20 to-pink-neon/20 border border-white/[0.05] flex items-center justify-center text-2xl font-bold">
+              3
+            </div>
+          </div>
+          <div class="flex-1 bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/[0.03] p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+            <h3 class="text-xl font-semibold mb-2">Training & Fine-Tuning</h3>
+            <p class="text-text-mid">We train the AI on your communications, documents, and processes. We fine-tune until responses are indistinguishable from your best team members. Your feedback shapes every iteration.</p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="flex flex-col md:flex-row gap-6 items-start">
+          <div class="flex-shrink-0">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-electric/20 to-pink-neon/20 border border-white/[0.05] flex items-center justify-center text-2xl font-bold">
+              4
+            </div>
+          </div>
+          <div class="flex-1 bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/[0.03] p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+            <h3 class="text-xl font-semibold mb-2">Integration & Launch</h3>
+            <p class="text-text-mid">We connect everything to your existing tools, train your team, and launch with full support. You'll have ongoing access to updates, new features, and optimizations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="relative py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-gradient-to-br from-blue-electric/20 via-pink-neon/20 to-transparent rounded-3xl border border-white/[0.05] p-8 md:p-12 text-center backdrop-blur-xl shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)]">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Build Your Custom AI System?</h2>
+        <p class="text-lg text-text-mid mb-8 max-w-2xl mx-auto">
+          Let's discuss how a custom AI system can transform your business operations. Schedule a consultation to explore the possibilities.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#demo" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-blue-electric to-pink-neon text-white font-semibold hover:opacity-95 transition shadow-[0_20px_60px_-20px_rgba(236,72,153,0.35)]">
+            <i class="fas fa-calendar-check"></i>
+            Schedule Consultation
+          </a>
+          <a href="/#catalogue" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-white/[0.02] border border-white/[0.04] backdrop-blur-sm text-text-light font-semibold hover:bg-white/[0.05] transition">
+            <i class="fas fa-layer-group"></i>
+            View Catalogue
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}
+

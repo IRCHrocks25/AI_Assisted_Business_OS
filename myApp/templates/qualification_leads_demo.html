@@ -1,0 +1,462 @@
+{% extends 'base.html' %}
+
+{% block title %}Qualified Leads & CRM - AI Assisted Business OS{% endblock %}
+
+{% block content %}
+<!-- Navigation -->
+{% include 'sections/_nav.html' %}
+
+<div class="min-h-screen bg-dark-1 text-text-light">
+  <!-- Premium background effects -->
+  <div class="pointer-events-none fixed inset-0">
+    <div class="absolute -top-40 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-blue-electric/10 blur-[160px]"></div>
+    <div class="absolute -bottom-40 right-[-120px] h-[600px] w-[600px] rounded-full bg-pink-neon/10 blur-[180px]"></div>
+    <div class="absolute inset-0 opacity-[0.04] bg-[radial-gradient(circle_at_center,#ffffff_1px,transparent_1px)] bg-[length:44px_44px]"></div>
+  </div>
+
+  <!-- Header -->
+  <section class="pt-32 pb-8 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/5 border border-white/10 mb-4">
+          <i class="fas fa-filter-circle-dollar text-pink-neon text-2xl"></i>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-text-light mb-3">
+          Qualified Leads & CRM
+        </h1>
+        <p class="text-lg text-text-mid max-w-2xl mx-auto mb-4">
+          See how leads are automatically qualified, scored, and routed to the right sales teams.
+        </p>
+        <a href="/demo/qualification/" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-text-light hover:bg-white/10 transition">
+          <i class="fas fa-arrow-left"></i>
+          <span>Back to Qualification Demo</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="pb-8 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+        <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/10 p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+          <div class="text-3xl font-bold text-text-light mb-1">{{ qualifications|length }}</div>
+          <div class="text-sm text-text-mid">Total Leads</div>
+        </div>
+        <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/10 p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+          <div class="text-3xl font-bold text-red-400 mb-1">{{ hot_leads }}</div>
+          <div class="text-sm text-text-mid">Hot Leads (70+)</div>
+        </div>
+        <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/10 p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+          <div class="text-3xl font-bold text-yellow-400 mb-1">{{ warm_leads }}</div>
+          <div class="text-sm text-text-mid">Warm Leads (40-69)</div>
+        </div>
+        <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/10 p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+          <div class="text-3xl font-bold text-green-400 mb-1">{{ demos_booked }}</div>
+          <div class="text-sm text-text-mid">Demos Booked</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leads Table -->
+  <section class="pb-24 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/10 shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] overflow-hidden">
+        <div class="h-px w-full bg-gradient-to-r from-pink-neon/60 via-blue-electric/40 to-transparent"></div>
+        
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl font-semibold text-text-light">Qualified Leads</h2>
+            <input 
+              type="text" 
+              id="search-input"
+              placeholder="Search leads..." 
+              class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-text-light text-sm placeholder-text-gray focus:outline-none focus:border-pink-neon/50 focus:ring-2 focus:ring-pink-neon/10"
+            />
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr class="border-b border-white/10">
+                  <th class="text-left py-3 px-4 text-sm font-semibold text-text-mid">Lead</th>
+                  <th class="text-left py-3 px-4 text-sm font-semibold text-text-mid">Company</th>
+                  <th class="text-left py-3 px-4 text-sm font-semibold text-text-mid">Budget</th>
+                  <th class="text-left py-3 px-4 text-sm font-semibold text-text-mid">Score</th>
+                  <th class="text-left py-3 px-4 text-sm font-semibold text-text-mid">Fit Level</th>
+                  <th class="text-left py-3 px-4 text-sm font-semibold text-text-mid">Intent</th>
+                  <th class="text-left py-3 px-4 text-sm font-semibold text-text-mid">Assigned Team</th>
+                  <th class="text-left py-3 px-4 text-sm font-semibold text-text-mid">Action</th>
+                  <th class="text-left py-3 px-4 text-sm font-semibold text-text-mid">Created</th>
+                  <th class="text-left py-3 px-4 text-sm font-semibold text-text-mid"></th>
+                </tr>
+              </thead>
+              <tbody id="leads-table">
+                {% for qualification in qualifications %}
+                <tr class="border-b border-white/5 hover:bg-white/5 transition lead-row" 
+                    data-lead="{{ qualification.lead.name|lower }}" 
+                    data-company="{{ qualification.lead.company|lower }}"
+                    data-score="{{ qualification.score }}">
+                  <td class="py-4 px-4">
+                    <div class="text-sm font-medium text-text-light">{{ qualification.lead.name }}</div>
+                    <div class="text-xs text-text-gray">{{ qualification.lead.email }}</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <div class="text-sm text-text-light">{{ qualification.lead.company }}</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <div class="text-sm text-text-light">{{ qualification.lead.budget_range }}</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <div class="flex items-center gap-2">
+                      <div class="text-lg font-bold {% if qualification.score >= 70 %}text-red-400{% elif qualification.score >= 40 %}text-yellow-400{% else %}text-gray-400{% endif %}">
+                        {{ qualification.score }}
+                      </div>
+                      <div class="w-16 h-2 bg-white/5 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-pink-neon to-blue-electric transition-all" style="width: {{ qualification.score }}%"></div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2 py-1 rounded-lg text-xs font-medium border 
+                      {% if qualification.fit_level == 'high' %}bg-red-500/20 border-red-500/30 text-red-300
+                      {% elif qualification.fit_level == 'medium' %}bg-yellow-500/20 border-yellow-500/30 text-yellow-300
+                      {% else %}bg-gray-500/20 border-gray-500/30 text-gray-300{% endif %}">
+                      {{ qualification.get_fit_level_display }}
+                    </span>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center px-2 py-1 rounded-lg text-xs font-medium border 
+                      {% if qualification.intent == 'strong' %}bg-green-500/20 border-green-500/30 text-green-300
+                      {% elif qualification.intent == 'moderate' %}bg-yellow-500/20 border-yellow-500/30 text-yellow-300
+                      {% else %}bg-gray-500/20 border-gray-500/30 text-gray-300{% endif %}">
+                      {{ qualification.get_intent_display }}
+                    </span>
+                  </td>
+                  <td class="py-4 px-4">
+                    <div class="text-sm text-text-light">{{ qualification.assigned_team }}</div>
+                    {% if qualification.assigned_to %}
+                    <div class="text-xs text-text-gray">{{ qualification.assigned_to }}</div>
+                    {% endif %}
+                  </td>
+                  <td class="py-4 px-4">
+                    <div class="text-sm text-text-light">{{ qualification.recommended_action }}</div>
+                    {% if qualification.demo_booked %}
+                    <div class="text-xs text-green-400 flex items-center gap-1 mt-1">
+                      <i class="fas fa-calendar-check"></i>
+                      <span>Demo booked</span>
+                    </div>
+                    {% endif %}
+                  </td>
+                  <td class="py-4 px-4">
+                    <div class="text-xs text-text-gray">{{ qualification.created_at|date:"M d, Y" }}</div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <button 
+                      onclick="showLeadDetails('{{ qualification.id }}')"
+                      class="text-pink-neon hover:text-pink-neon/80 transition text-sm"
+                    >
+                      <i class="fas fa-chevron-right"></i>
+                    </button>
+                  </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="10" class="py-12 text-center text-text-mid">
+                    <i class="fas fa-filter-circle-dollar text-4xl mb-4 opacity-30"></i>
+                    <p>No qualified leads yet. Run the seed command or complete a qualification to see leads here.</p>
+                    <p class="text-xs mt-2 text-text-gray">Run: <code class="bg-white/5 px-2 py-1 rounded">python manage.py seed_qualification_leads</code></p>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Lead Details Modal -->
+<div id="lead-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+  <div class="bg-dark-2 rounded-2xl border border-white/10 max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)]">
+    <div class="h-px w-full bg-gradient-to-r from-pink-neon/60 via-blue-electric/40 to-transparent"></div>
+    
+    <div class="p-6 border-b border-white/10 flex items-center justify-between">
+      <h3 class="text-xl font-semibold text-text-light">Lead Details</h3>
+      <button onclick="closeLeadModal()" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center transition">
+        <i class="fas fa-times text-text-mid text-sm"></i>
+      </button>
+    </div>
+    
+    <div id="modal-content" class="flex-1 overflow-y-auto p-6">
+      <!-- Content will be loaded here -->
+    </div>
+  </div>
+</div>
+
+<script>
+const qualificationsData = {
+  {% for qualification in qualifications %}
+  '{{ qualification.id }}': {
+    lead_name: {{ qualification.lead.name|escapejs }},
+    lead_email: {{ qualification.lead.email|escapejs }},
+    lead_company: {{ qualification.lead.company|escapejs }},
+    budget_range: {{ qualification.lead.budget_range|escapejs }},
+    service_interest: {{ qualification.lead.service_interest|escapejs }},
+    score: {{ qualification.score }},
+    intent: '{{ qualification.intent }}',
+    intent_display: '{{ qualification.get_intent_display }}',
+    fit_level: '{{ qualification.fit_level }}',
+    fit_level_display: '{{ qualification.get_fit_level_display }}',
+    budget_match: {{ qualification.budget_match|yesno:"true,false" }},
+    urgency_days: {{ qualification.urgency_days|default:"null" }},
+    assigned_team: {{ qualification.assigned_team|escapejs }},
+    assigned_to: {{ qualification.assigned_to|escapejs }},
+    recommended_action: {{ qualification.recommended_action|escapejs }},
+    demo_booked: {{ qualification.demo_booked|yesno:"true,false" }},
+    demo_date: {% if qualification.demo_date %}'{{ qualification.demo_date|date:"F d, Y at g:i A" }}'{% else %}null{% endif %},
+    created_at: '{{ qualification.created_at|date:"F d, Y at g:i A" }}',
+    answers: {{ qualification.answers|safe }}
+  }{% if not forloop.last %},{% endif %}
+  {% endfor %}
+};
+
+// Calculate stats
+let hotCount = 0;
+let warmCount = 0;
+let demosBooked = 0;
+
+{% for qualification in qualifications %}
+{% if qualification.score >= 70 %}hotCount++;{% endif %}
+{% if qualification.score >= 40 and qualification.score < 70 %}warmCount++;{% endif %}
+{% if qualification.demo_booked %}demosBooked++;{% endif %}
+{% endfor %}
+
+document.getElementById('hot-leads-stat').textContent = hotCount;
+document.getElementById('warm-leads-stat').textContent = warmCount;
+document.getElementById('demos-booked-stat').textContent = demosBooked;
+
+function showLeadDetails(qualificationId) {
+  const qual = qualificationsData[qualificationId];
+  if (!qual) return;
+  
+  const fitColors = {
+    'high': 'bg-red-500/20 border-red-500/30 text-red-300',
+    'medium': 'bg-yellow-500/20 border-yellow-500/30 text-yellow-300',
+    'low': 'bg-gray-500/20 border-gray-500/30 text-gray-300'
+  };
+  
+  const intentColors = {
+    'strong': 'bg-green-500/20 border-green-500/30 text-green-300',
+    'moderate': 'bg-yellow-500/20 border-yellow-500/30 text-yellow-300',
+    'weak': 'bg-gray-500/20 border-gray-500/30 text-gray-300'
+  };
+  
+  const fitColor = fitColors[qual.fit_level] || fitColors['low'];
+  const intentColor = intentColors[qual.intent] || intentColors['weak'];
+  
+  document.getElementById('modal-content').innerHTML = `
+    <div class="space-y-6">
+      <div>
+        <h4 class="text-sm font-semibold text-text-mid mb-2">Lead Information</h4>
+        <div class="bg-white/5 rounded-xl border border-white/10 p-4 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-text-mid">Name:</span>
+            <span class="text-sm font-medium text-text-light">${qual.lead_name}</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-text-mid">Email:</span>
+            <span class="text-sm text-text-light">${qual.lead_email}</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-text-mid">Company:</span>
+            <span class="text-sm font-medium text-text-light">${qual.lead_company}</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-text-mid">Budget Range:</span>
+            <span class="text-sm text-text-light">${qual.budget_range}</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-text-mid">Service Interest:</span>
+            <span class="text-sm text-text-light">${qual.service_interest}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <h4 class="text-sm font-semibold text-text-mid mb-2">Qualification Score</h4>
+        <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-sm font-semibold text-text-mid">Score</span>
+            <span class="text-3xl font-bold ${qual.score >= 70 ? 'text-red-400' : qual.score >= 40 ? 'text-yellow-400' : 'text-gray-400'}">${qual.score}<span class="text-sm text-text-mid">/100</span></span>
+          </div>
+          <div class="w-full h-3 bg-white/5 rounded-full overflow-hidden">
+            <div class="h-full bg-gradient-to-r from-pink-neon to-blue-electric transition-all" style="width: ${qual.score}%"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <h4 class="text-sm font-semibold text-text-mid mb-2">Fit Level</h4>
+          <span class="inline-flex items-center px-3 py-1 rounded-lg text-sm font-medium border ${fitColor}">
+            ${qual.fit_level_display}
+          </span>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-text-mid mb-2">Buying Intent</h4>
+          <span class="inline-flex items-center px-3 py-1 rounded-lg text-sm font-medium border ${intentColor}">
+            ${qual.intent_display}
+          </span>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-text-mid mb-2">Budget Match</h4>
+          <span class="text-sm font-semibold ${qual.budget_match ? 'text-green-400' : 'text-gray-400'}">
+            ${qual.budget_match ? 'Yes' : 'No'}
+          </span>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-text-mid mb-2">Urgency</h4>
+          <span class="text-sm font-semibold text-text-light">
+            ${qual.urgency_days ? qual.urgency_days + ' days' : 'Not specified'}
+          </span>
+        </div>
+      </div>
+      
+      <div>
+        <h4 class="text-sm font-semibold text-text-mid mb-2">Qualification Answers</h4>
+        <div class="bg-white/5 rounded-xl border border-white/10 p-4 space-y-3">
+          ${Object.entries(qual.answers).map(([key, value]) => `
+            <div>
+              <span class="text-xs text-text-mid font-medium capitalize">${key.replace('_', ' ')}:</span>
+              <div class="text-sm text-text-light mt-1">${value}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      
+      <div>
+        <h4 class="text-sm font-semibold text-text-mid mb-2">Routing & Actions</h4>
+        <div class="bg-gradient-to-br from-blue-electric/10 to-pink-neon/10 rounded-xl border border-blue-electric/20 p-4 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-text-mid">Assigned Team:</span>
+            <span class="text-sm font-medium text-text-light">${qual.assigned_team}</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-text-mid">Assigned To:</span>
+            <span class="text-sm text-text-light">${qual.assigned_to}</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-text-mid">Recommended Action:</span>
+            <span class="text-sm font-medium text-text-light">${qual.recommended_action}</span>
+          </div>
+          ${qual.demo_booked ? `
+          <div class="flex items-center justify-between pt-2 border-t border-white/10">
+            <span class="text-xs text-text-mid">Demo Booked:</span>
+            <span class="text-sm font-medium text-green-400">${qual.demo_date}</span>
+          </div>
+          ` : ''}
+        </div>
+      </div>
+      
+      <div>
+        <h4 class="text-sm font-semibold text-text-mid mb-2">Timeline</h4>
+        <div class="bg-white/5 rounded-xl border border-white/10 p-4 space-y-3 text-xs">
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 rounded-full bg-green-400 mt-1.5"></div>
+            <div>
+              <div class="text-text-light font-medium">Lead submitted</div>
+              <div class="text-text-gray">${qual.created_at}</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 rounded-full bg-green-400 mt-1.5"></div>
+            <div>
+              <div class="text-text-light font-medium">Qualification completed</div>
+              <div class="text-text-gray">${qual.created_at}</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 rounded-full bg-green-400 mt-1.5"></div>
+            <div>
+              <div class="text-text-light font-medium">Score calculated (${qual.score})</div>
+              <div class="text-text-gray">${qual.created_at}</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 rounded-full bg-green-400 mt-1.5"></div>
+            <div>
+              <div class="text-text-light font-medium">Routed to ${qual.assigned_team}</div>
+              <div class="text-text-gray">${qual.created_at}</div>
+            </div>
+          </div>
+          ${qual.demo_booked ? `
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 rounded-full bg-green-400 mt-1.5"></div>
+            <div>
+              <div class="text-text-light font-medium">Demo scheduled</div>
+              <div class="text-text-gray">${qual.demo_date}</div>
+            </div>
+          </div>
+          ` : ''}
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.getElementById('lead-modal').classList.remove('hidden');
+  document.getElementById('lead-modal').classList.add('flex');
+}
+
+function closeLeadModal() {
+  document.getElementById('lead-modal').classList.add('hidden');
+  document.getElementById('lead-modal').classList.remove('flex');
+}
+
+// Search functionality
+document.getElementById('search-input')?.addEventListener('input', function(e) {
+  const searchTerm = e.target.value.toLowerCase();
+  const rows = document.querySelectorAll('.lead-row');
+  
+  rows.forEach(row => {
+    const lead = row.dataset.lead || '';
+    const company = row.dataset.company || '';
+    const score = row.dataset.score || '';
+    
+    if (lead.includes(searchTerm) || company.includes(searchTerm) || score.includes(searchTerm)) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+});
+
+// Close modal on outside click
+document.getElementById('lead-modal')?.addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeLeadModal();
+  }
+});
+</script>
+
+<style>
+#lead-modal {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.2) transparent;
+}
+#modal-content {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.2) transparent;
+}
+#modal-content::-webkit-scrollbar { width: 6px; }
+#modal-content::-webkit-scrollbar-track { background: transparent; }
+#modal-content::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.18);
+  border-radius: 999px;
+}
+</style>
+{% endblock %}
+

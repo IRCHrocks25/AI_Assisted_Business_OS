@@ -59,7 +59,7 @@ Tailwind Head + FontAwesome
       <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
         {% include "components/_catalogue_tile.html" with col="md:col-span-6" icon="fa-chalkboard-teacher" icon_color="text-blue-electric" title="AI Course Creator Platform" kicker="Live Demo" href="https://danielwoodcourses-production.up.railway.app/" description="Build comprehensive courses with AI-powered content generation. Create structured learning paths, interactive modules, and engaging educational experiences—all in one platform." tags="Course creation, AI content generation, Learning paths, Interactive modules, Student management" %}
 
-        {% include "components/_catalogue_tile.html" with col="md:col-span-6" icon="fa-brain" icon_color="text-pink-neon" title="Generative Engine Optimisation (GEO)" kicker="Live Demo" presentation_link="https://gamma.app/docs/Generative-Engine-Optimisation-GEO-x2jmgx0dg9w8yfa?mode=doc" description="Optimize content for AI-driven answer engines (ChatGPT, Gemini, Claude, Perplexity). Structure content for AI comprehension, ensure authoritative citations, and maintain visibility in the era where AI models mediate content discovery." tags="AI-first content, Machine-readable structure, Quality primacy, Visibility optimization, Citation strategy" %}
+        {% include "components/_catalogue_tile.html" with col="md:col-span-6" icon="fa-magnifying-glass-chart" icon_color="text-pink-neon" title="SEO & Generative Engine Optimisation (GEO)" kicker="Live Demo" href="/demo/geo/" presentation_link="https://gamma.app/docs/Generative-Engine-Optimisation-GEO-x2jmgx0dg9w8yfa?mode=doc" description="Complete search visibility strategy combining traditional SEO with AI-driven optimization. Optimize for Google rankings and AI platforms (ChatGPT, Gemini, Claude, Perplexity). Keyword research, technical SEO, content strategy, and GEO optimization for maximum visibility." tags="SEO, GEO, Keyword optimization, Technical SEO, AI-first content, Content strategy, Link building" %}
 
         {% include "components/_catalogue_tile.html" with col="md:col-span-6" icon="fa-robot" icon_color="text-blue-electric" title="Website AI Assistant" kicker="Live Demo" onclick="document.getElementById('chatbot-toggle').click();" description="Answers questions, guides users, captures leads, and hands off to humans. Try the chatbot in the bottom-right corner!" tags="Lead capture, Handoff, CRM actions, Permissions" %}
 
@@ -79,17 +79,16 @@ Tailwind Head + FontAwesome
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-12 gap-4 mb-10">
-        {% include "components/_catalogue_tile.html" with col="md:col-span-6" icon="fa-envelope-open-text" icon_color="text-pink-neon" title="AI Email Automation (Inbox on Autopilot)" kicker="Most requested" description="Reads incoming emails, detects intent + urgency, drafts replies, routes to the right team, updates CRM, and creates tasks/tickets." tags="Auto-triage, Approval mode, CRM sync, Follow-ups, Prioritization" %}
+        {% include "components/_catalogue_tile.html" with col="md:col-span-6" icon="fa-envelope-open-text" icon_color="text-pink-neon" title="AI Email Automation (Inbox on Autopilot)" kicker="Live Demo" href="/demo/email-automation/" description="Reads incoming emails, detects intent + urgency, drafts replies, routes to the right team, updates CRM, and creates tasks/tickets." tags="Auto-triage, Approval mode, CRM sync, Follow-ups, Prioritization" %}
 
-        {% include "components/_catalogue_tile.html" with col="md:col-span-6" icon="fa-magnifying-glass-chart" icon_color="text-blue-electric" title="Search Engine Optimisation (SEO)" kicker="Proven results" description="Traditional SEO that drives organic traffic and rankings. Keyword research, on-page optimization, technical SEO, link building, and content strategy that converts visitors into customers." tags="Keyword optimization, Technical SEO, Link building, Content strategy, Analytics tracking" %}
 
-        {% include "components/_catalogue_tile.html" with col="md:col-span-4" icon="fa-headset" icon_color="text-blue-electric" title="Omnichannel AI Customer Support" kicker="High leverage" description="Website + social + email support in one system. Auto-replies, creates tickets, escalates, and summarizes for humans." tags="Web, FB/IG/WhatsApp, Ticketing, Handoff, Analytics" %}
+        {% include "components/_catalogue_tile.html" with col="md:col-span-4" icon="fa-headset" icon_color="text-blue-electric" title="Omnichannel AI Customer Support" kicker="Live Demo" href="/demo/omnichannel-support/" description="Website + social + email support in one system. Auto-replies, creates tickets, escalates, and summarizes for humans." tags="Web, FB/IG/WhatsApp, Ticketing, Handoff, Analytics" %}
 
-        {% include "components/_catalogue_tile.html" with col="md:col-span-4" icon="fa-phone" icon_color="text-pink-neon" title="Voice AI Agent" kicker="24/7 phone" description="Answers calls, routes, books appointments, and logs everything into your CRM." tags="Receptionist, Routing, Booking, Call summaries" %}
+        {% include "components/_catalogue_tile.html" with col="md:col-span-4" icon="fa-phone" icon_color="text-pink-neon" title="Voice AI Agent" kicker="24/7 phone" href="/demo/voice-agent/" description="Answers calls, routes, books appointments, and logs everything into your CRM. Request a callback or call directly." tags="Receptionist, Routing, Booking, Call summaries" %}
 
-        {% include "components/_catalogue_tile.html" with col="md:col-span-4" icon="fa-filter-circle-dollar" icon_color="text-blue-electric" title="AI Sales & Lead Qualification" kicker="More booked calls" description="Qualifies leads, scores them, pushes to CRM, and books the right next step." tags="Lead scoring, Qualification flows, CRM push, Personalization" %}
+        {% include "components/_catalogue_tile.html" with col="md:col-span-4" icon="fa-filter-circle-dollar" icon_color="text-blue-electric" title="AI Sales & Lead Qualification" kicker="Live Demo" href="/demo/qualification/" description="Qualifies leads, scores them, pushes to CRM, and books the right next step." tags="Lead scoring, Qualification flows, CRM push, Personalization" %}
 
-        {% include "components/_catalogue_tile.html" with col="md:col-span-4" icon="fa-diagram-project" icon_color="text-blue-electric" title="Backend Automation Engine" kicker="Connect everything" description="Triggers workflows from chat, forms, emails, and CRM events. Smart routing + real-time updates." tags="Triggers, Webhooks, Routing, Two-way sync" %}
+        {% include "components/_catalogue_tile.html" with col="md:col-span-4" icon="fa-diagram-project" icon_color="text-blue-electric" title="Backend Automation Engine" kicker="Live Demo" href="/demo/automation-engine/" description="Triggers workflows from chat, forms, emails, and CRM events. Smart routing + real-time updates." tags="Triggers, Webhooks, Routing, Two-way sync" %}
       </div>
     </div>
 
@@ -99,39 +98,43 @@ Tailwind Head + FontAwesome
       {% comment %} Section header tile pattern {% endcomment %}
       {% include "components/_catalogue_header_tile.html" with title="Chatbots (Text)" icon="fa-comments" accent="blue" %}
 
-      {% include "components/_catalogue_card_bento.html" with icon="fa-robot" title="Website AI Assistant" href="javascript:void(0)" onclick="document.getElementById('chatbot-toggle').click();" description="Answers questions, guides users, captures leads, and hands off to humans. Try the chatbot in the bottom-right corner!" tags="Lead capture, Handoff, CRM actions, Permissions" %}
-
       {% include "components/_catalogue_card_bento.html" with icon="fa-brands fa-whatsapp" title="WhatsApp Business Bot" description="Customer service, updates, and bookings via WhatsApp with CRM sync." tags="WhatsApp, Templates, Media, Routing" %}
+
+      {% include "components/_catalogue_card_bento.html" with icon="fa-calendar-check" title="AI Booking System" href="/demo/booking-bot/" description="Intelligent conversational booking assistant that handles reservations, consultations, and appointments with natural human-like interactions. Seamlessly manages availability, confirms bookings, and syncs with your calendar." tags="Reservations, Consultations, Calendar sync, Availability management, Confirmation" %}
 
       {% include "components/_catalogue_header_tile.html" with title="Knowledge & Training" icon="fa-book" accent="pink" %}
 
-      {% include "components/_catalogue_card_bento.html" with icon="fa-file-shield" title="Internal SOP & Policy Bot" description="Trained on PDFs/docs/Notion. Secure answers with access control." tags="Docs, Q&A, Secure access, Onboarding" %}
-
-      {% include "components/_catalogue_card_bento.html" with icon="fa-graduation-cap" title="Onboarding Assistant" href="https://katekai-production.up.railway.app/onboarding/" description="Step-by-step guidance, completion tracking, and drop-off recovery." tags="Guided flows, Tracking, CRM updates" %}
+      {% include "components/_catalogue_card_bento.html" with icon="fa-file-shield" title="Internal SOP & Policy Bot" href="/demo/sop-bot/" description="Trained on real estate and automation services documentation. Secure answers with access control." tags="Docs, Q&A, Secure access, Onboarding" %}
 
       {% include "components/_catalogue_header_tile.html" with title="Documents" icon="fa-file-lines" accent="blue" %}
 
-      {% include "components/_catalogue_card_bento.html" with icon="fa-magnifying-glass" title="Document Q&A" description="Ask questions across files and get structured answers with citations." tags="PDFs, Search, Summaries, Extraction" %}
+      {% include "components/_catalogue_card_bento.html" with icon="fa-magnifying-glass" title="Document Q&A" href="https://document-qa-search.vercel.app/" description="Upload PDFs and ask questions. Get instant answers with page citations powered by AI semantic search." tags="PDFs, Search, Summaries, Extraction, Citations" %}
 
-      {% include "components/_catalogue_card_bento.html" with icon="fa-table" title="Structured Data Extraction" description="Pull key fields from contracts/reports into CRM or spreadsheets." tags="Extraction, Validation, CRM push" %}
+      {% include "components/_catalogue_card_bento.html" with icon="fa-table" title="Structured Data Extraction" href="/demo/extraction/" description="Pull key fields from contracts/reports into CRM or spreadsheets. Upload PDFs, extract structured data using AI, validate, and push to CRM or export to spreadsheets." tags="Extraction, Validation, CRM push, Spreadsheet export" %}
 
       {% include "components/_catalogue_header_tile.html" with title="Automation & Integrations" icon="fa-plug" accent="pink" %}
 
-      {% include "components/_catalogue_card_bento.html" with icon="fa-gears" title="AI CRM & Workflow Automation" description="Auto-tag contacts, route leads, create tickets, and trigger follow-ups." tags="Routing, Triggers, Real-time, CRM" %}
+      {% include "components/_catalogue_card_bento.html" with icon="fa-gears" title="AI CRM & Workflow Automation" href="/demo/crm-workflow/" description="Auto-tag contacts, route leads, create tickets, and trigger follow-ups." tags="Routing, Triggers, Real-time, CRM" %}
 
       {% include "components/_catalogue_card_bento.html" with icon="fa-arrows-rotate" title="Integration Services" description="Two-way sync across CRMs, email, booking, Slack/Discord, APIs." tags="Webhooks, APIs, Sync, Events" %}
 
       {% include "components/_catalogue_header_tile.html" with title="Analytics & Quality" icon="fa-chart-line" accent="blue" %}
 
-      {% include "components/_catalogue_card_bento.html" with icon="fa-chart-pie" title="AI Analytics & Insights" description="Intent detection, performance reports, support bottlenecks, conversion insights." tags="Analytics, Optimization, Funnels" %}
+      {% include "components/_catalogue_card_bento.html" with icon="fa-chart-pie" title="AI Analytics & Insights" href="/demo/analytics/" description="Intent detection, performance reports, support bottlenecks, conversion insights." tags="Analytics, Optimization, Funnels" %}
 
-      {% include "components/_catalogue_card_bento.html" with icon="fa-shield-heart" title="Quality Control & Monitoring" description="Detect unhappy customers, bad responses, compliance issues — alert humans." tags="Sentiment, QA, Compliance, Alerts" %}
+      {% include "components/_catalogue_card_bento.html" with icon="fa-shield-heart" title="Quality Control & Monitoring" href="/demo/quality-control/" description="Detect unhappy customers, bad responses, compliance issues — alert humans." tags="Sentiment, QA, Compliance, Alerts" %}
+
+      {% include "components/_catalogue_card_bento.html" with icon="fa-sitemap" title="AI CRM & Workflow Automation" href="/demo/crm-workflow/" description="One lead → Full auto pipeline. Creates contacts, tags, tasks, tickets, follow-ups automatically." tags="CRM, Automation, Pipeline, Workflow" %}
 
       {% include "components/_catalogue_header_tile.html" with title="Custom Builds" icon="fa-wand-magic-sparkles" accent="pink" %}
 
-      {% include "components/_catalogue_card_bento.html" with icon="fa-code" title="Custom AI Systems" description="Tailored logic, flows, permissions, dashboards, and integrations." tags="Custom logic, Dashboards, Permissions" %}
+      {% include "components/_catalogue_card_bento.html" with icon="fa-code" title="Custom AI Systems" href="/demo/custom-ai-systems/" description="Tailored logic, flows, permissions, dashboards, and integrations. Built specifically for your business needs." tags="Custom logic, Dashboards, Permissions" %}
 
-      {% include "components/_catalogue_card_bento.html" with icon="fa-pen-nib" title="Prompt Engineering & Training" description="Brand voice tuning, workflow prompts, safety + compliance tuning." tags="Brand voice, Guardrails, Tuning" %}
+      {% include "components/_catalogue_card_bento.html" with icon="fa-pen-nib" title="Prompt Engineering & Training" href="https://prompt-engineering-ai-training.vercel.app/" description="Brand voice tuning, workflow prompts, safety + compliance tuning. Learn advanced prompt engineering techniques and AI training methodologies." tags="Brand voice, Guardrails, Tuning" %}
+
+      {% include "components/_catalogue_card_bento.html" with icon="fa-file-pdf" title="Pitch Deck Generation" href="https://pdf-generation-pink.vercel.app/" description="AI-powered pitch deck creation. Generate professional, investor-ready presentations with custom branding, data visualization, and compelling narratives." tags="Pitch decks, Presentations, Investor materials, Branding" %}
+
+      {% include "components/_catalogue_card_bento.html" with icon="fa-filter-circle-dollar" title="AI Sales Lead Qualification" href="/demo/qualification/" description="Automatically qualify leads, score them, and route to sales teams. AI asks qualifying questions and determines next actions." tags="Lead scoring, Qualification, CRM routing, Sales automation" %}
 
     </div>
 
