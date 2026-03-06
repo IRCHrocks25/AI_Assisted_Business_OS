@@ -28,8 +28,8 @@ AI Chatbot Widget - Floating chat interface
         <div class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-electric/30 to-pink-neon/30 flex items-center justify-center shrink-0 shadow-lg">
           <i class="fas fa-robot text-blue-light text-sm"></i>
         </div>
-        <div class="flex-1">
-          <div class="rounded-2xl rounded-tl-none bg-gradient-to-br from-dark-3/80 to-dark-3/60 p-5 border border-blue-electric/20 shadow-lg backdrop-blur-sm">
+        <div class="max-w-[80%]">
+          <div class="inline-block rounded-2xl rounded-tl-none bg-gradient-to-br from-dark-3/80 to-dark-3/60 p-5 border border-blue-electric/20 shadow-lg backdrop-blur-sm max-w-full">
             <p class="text-[15px] text-text-light leading-normal font-light chat-msg">
               Hello! I'm your AI assistant. I can help you learn about AI Assisted Business OS services, answer questions about our AI capabilities, and guide you through our solutions. How can I help you today?
             </p>
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
     chatbotInput.disabled = true;
     chatbotSend.disabled = true;
 
-    // User message (LEFT aligned like Messenger)
+    // User message (avatar on right side)
     addMessage(message, 'user');
 
     chatbotInput.value = '';
@@ -151,9 +151,10 @@ document.addEventListener('DOMContentLoaded', function () {
   function addMessage(text, sender) {
     const messageDiv = document.createElement('div');
 
-    // ✅ Both sides LEFT-aligned (Messenger-like)
-    // If you still want a subtle difference, keep user bubble color, not alignment.
-    messageDiv.className = 'flex items-start gap-4';
+    // User messages: avatar on right, AI messages: avatar on left
+    messageDiv.className = sender === 'user' 
+      ? 'flex items-start gap-4 flex-row-reverse' 
+      : 'flex items-start gap-4';
 
     const avatar = document.createElement('div');
     avatar.className = `w-9 h-9 rounded-full flex items-center justify-center shrink-0 shadow-lg ${
@@ -166,15 +167,13 @@ document.addEventListener('DOMContentLoaded', function () {
     } text-sm"></i>`;
 
     const content = document.createElement('div');
-
-    // ✅ no text-right, no reverse, keep consistent left rail
-    content.className = 'flex-1 max-w-[85%]';
+    content.className = 'max-w-[80%]';
 
     const bubble = document.createElement('div');
-    bubble.className = `rounded-2xl p-5 border shadow-lg backdrop-blur-sm ${
+    bubble.className = `inline-block rounded-2xl p-5 border shadow-lg backdrop-blur-sm max-w-full ${
       sender === 'user'
-        ? 'bg-gradient-to-r from-blue-electric/20 to-pink-neon/20 border-blue-electric/30'
-        : 'bg-gradient-to-br from-dark-3/80 to-dark-3/60 border-blue-electric/20'
+        ? 'bg-gradient-to-r from-blue-electric/20 to-pink-neon/20 border-blue-electric/30 rounded-tr-none'
+        : 'bg-gradient-to-br from-dark-3/80 to-dark-3/60 border-blue-electric/20 rounded-tl-none'
     }`;
 
     const textP = document.createElement('div');
@@ -272,10 +271,10 @@ document.addEventListener('DOMContentLoaded', function () {
     avatar.innerHTML = '<i class="fas fa-robot text-blue-light text-sm"></i>';
 
     const content = document.createElement('div');
-    content.className = 'flex-1';
+    content.className = 'max-w-[80%]';
 
     const bubble = document.createElement('div');
-    bubble.className = 'rounded-2xl bg-gradient-to-br from-dark-3/80 to-dark-3/60 p-5 border border-blue-electric/20 shadow-lg backdrop-blur-sm';
+    bubble.className = 'inline-block rounded-2xl bg-gradient-to-br from-dark-3/80 to-dark-3/60 p-5 border border-blue-electric/20 shadow-lg backdrop-blur-sm max-w-full';
     bubble.innerHTML = '<div class="flex gap-1.5"><div class="w-2.5 h-2.5 bg-blue-electric rounded-full animate-bounce"></div><div class="w-2.5 h-2.5 bg-blue-electric rounded-full animate-bounce" style="animation-delay: 0.2s"></div><div class="w-2.5 h-2.5 bg-blue-electric rounded-full animate-bounce" style="animation-delay: 0.4s"></div></div>';
 
     content.appendChild(bubble);
