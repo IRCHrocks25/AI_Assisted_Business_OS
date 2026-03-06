@@ -29,9 +29,16 @@
           <i class="fas fa-arrow-right text-xs"></i>
         </a>
         {% else %}
-        <a href="{% if href %}{{ href }}{% else %}#demo{% endif %}" {% if href and href|slice:":4" == "http" %}target="_blank" rel="noopener noreferrer"{% endif %} class="inline-flex items-center gap-2 text-sm font-semibold text-text-light px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-gradient-to-r hover:from-blue-electric/20 hover:to-pink-neon/20 hover:border-blue-electric/30 transition-all duration-300 shadow-sm hover:shadow-md">
+        <a href="{% if href %}{{ href }}{% else %}#demo{% endif %}" {% if href and href != "#demo" %}target="_blank" rel="noopener noreferrer"{% endif %} class="inline-flex items-center gap-2 text-sm font-semibold text-text-light px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-gradient-to-r hover:from-blue-electric/20 hover:to-pink-neon/20 hover:border-blue-electric/30 transition-all duration-300 shadow-sm hover:shadow-md">
           <span>{% if href and href|slice:":4" == "http" %}View Demo{% else %}Demo{% endif %}</span>
           <i class="fas fa-arrow-right text-xs"></i>
+        </a>
+        {% endif %}
+        {% if watch_demo_link %}
+        <a href="{{ watch_demo_link }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-medium text-pink-neon px-3 py-1.5 rounded-lg bg-pink-neon/10 border border-pink-neon/20 hover:bg-pink-neon/20 transition-all duration-300 group/video">
+          <i class="fas fa-play-circle text-xs"></i>
+          <span>Watch Demo</span>
+          <i class="fas fa-arrow-up-right-from-square text-[10px] opacity-60 group-hover/video:opacity-100 transition-opacity"></i>
         </a>
         {% endif %}
         {% if presentation_link %}

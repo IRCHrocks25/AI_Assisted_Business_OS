@@ -1,10 +1,7 @@
-{% comment %}
-Hero Section using custom AI Assisted Business OS layout
-{% endcomment %}
 
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+  
   :root {
     --blue:       #2563EB;
     --blue-light: #60A5FA;
@@ -18,19 +15,19 @@ Hero Section using custom AI Assisted Business OS layout
     --text:       #F0F4FF;
     --text-mid:   #A8B4CC;
     --text-dim:   #5A6580;
+    --green:      #4ade80;
   }
-
-  html { font-size: 16px; }
-
+  
+  html { font-size: 16px; scroll-behavior: smooth; }
+  
   body {
     background: var(--bg);
-    font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'DM Sans', system-ui, sans-serif;
     color: var(--text);
     min-height: 100vh;
     overflow-x: hidden;
   }
-
-  /* ── Noise grain overlay ─────────────────────── */
+  
   body::before {
     content: '';
     position: fixed;
@@ -40,167 +37,652 @@ Hero Section using custom AI Assisted Business OS layout
     z-index: 0;
     opacity: 0.4;
   }
-
-  /* ── Background: grid + orbs ────────────────── */
+  
   .bg-grid {
     position: fixed;
     inset: 0;
     background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
     background-size: 48px 48px;
     mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 40%, transparent 100%);
     pointer-events: none;
     z-index: 0;
   }
-
-  .orb {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(80px);
-    pointer-events: none;
-    animation: orb-drift 12s ease-in-out infinite alternate;
-    z-index: 0;
-  }
-  .orb-1 {
-    width: 600px; height: 600px;
-    background: var(--blue-glow);
-    top: -200px; right: -100px;
-    animation-delay: 0s;
-  }
-  .orb-2 {
-    width: 400px; height: 400px;
-    background: var(--pink-glow);
-    bottom: -100px; left: 20%;
-    animation-delay: -6s;
-  }
-
-  @keyframes orb-drift {
-    from { transform: translate(0, 0) scale(1); }
-    to   { transform: translate(30px, -40px) scale(1.1); }
-  }
-
-  /* ── Hero section ───────────────────────────── */
-  .hero {
+  
+  /* ── NARRATIVE WRAPPER ─────────────────────────── */
+  .narrative {
     position: relative;
     z-index: 1;
-    padding: 100px 2rem 80px;
-    max-width: 1280px;
+    max-width: 860px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-    min-height: 100vh;
+    padding: 120px 2rem 160px;
   }
-
-  @media (max-width: 1024px) {
-    .hero { grid-template-columns: 1fr; gap: 60px; padding: 80px 1.5rem 60px; }
+  
+  /* ── SECTION DIVIDER ─────────────────────────── */
+  .section-intro {
+    text-align: center;
+    margin-bottom: 100px;
   }
-
-  /* ── LEFT COLUMN ────────────────────────────── */
-  .hero-left { opacity: 0; animation: fade-up 0.8s ease forwards 0.1s; }
-
-  @keyframes fade-up {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .eyebrow {
+  
+  .section-label {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 1.5rem;
-    padding: 6px 14px;
-    border: 1px solid rgba(96,165,250,0.3);
+    padding: 6px 16px;
+    border: 1px solid rgba(96,165,250,0.2);
     border-radius: 999px;
-    background: rgba(37,99,235,0.08);
-  }
-  .eyebrow-dot {
-    width: 6px; height: 6px;
-    background: var(--blue-light);
-    border-radius: 50%;
-    animation: pulse-dot 2s ease-in-out infinite;
-  }
-  @keyframes pulse-dot {
-    0%,100% { opacity:1; transform:scale(1); }
-    50%      { opacity:0.3; transform:scale(0.6); }
-  }
-  .eyebrow span {
+    background: rgba(37,99,235,0.06);
     font-size: 0.65rem;
     font-weight: 700;
     letter-spacing: 0.15em;
     color: var(--blue-light);
     text-transform: uppercase;
+    margin-bottom: 2rem;
   }
-
-  .hero h1 {
-    font-size: clamp(2.1rem, 3.4vw, 3.1rem);
-    font-weight: 600;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.75rem;
+  
+  .section-label-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--blue-light);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-dot {
+    0%,100% { opacity:1; transform:scale(1); }
+    50%      { opacity:0.3; transform:scale(0.6); }
+  }
+  
+  .section-intro h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    line-height: 1.2;
     color: var(--text);
-    text-align: left;
+    max-width: 640px;
+    margin: 0 auto;
   }
-
-  .gradient-text {
+  
+  .section-intro h2 em {
+    font-style: italic;
     background: linear-gradient(135deg, var(--blue-light) 0%, var(--pink-light) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
-  .body-block { margin-bottom: 2rem; }
-  .body-block p { color: var(--text-mid); line-height: 1.7; margin-bottom: 0.85rem; }
-  .body-block p:last-child { color: var(--text); font-weight: 500; margin-bottom: 0; }
-
-  /* Bullets */
-  .bullets-label {
-    font-size: 0.7rem;
+  
+  /* ── ACT BLOCKS ─────────────────────────── */
+  .act {
+    margin-bottom: 100px;
+  }
+  
+  .act-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 2.5rem;
+  }
+  
+  .act-number {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  
+  .act-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  
+  .act-tag {
+    font-size: 0.6rem;
     font-weight: 700;
     letter-spacing: 0.12em;
     color: var(--text-dim);
     text-transform: uppercase;
-    margin-bottom: 1rem;
   }
-
-  .bullets-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.6rem 1.25rem;
-    margin-bottom: 2.25rem;
+  
+  /* ── DIAGNOSTIC CARD — Act 1 ─────────────────────────── */
+  .diagnostic-card {
+    background: rgba(10,16,35,0.6);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2rem;
   }
-
-  @media (max-width: 540px) { .bullets-grid { grid-template-columns: 1fr; } }
-
-  .bullet-item {
+  
+  .diagnostic-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(37,99,235,0.4), transparent);
+  }
+  
+  .diagnostic-header {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px 12px;
+    margin-bottom: 1.75rem;
+  }
+  
+  .diagnostic-icon {
+    width: 36px; height: 36px;
     border-radius: 10px;
+    background: rgba(225,29,120,0.1);
+    border: 1px solid rgba(225,29,120,0.2);
+    display: flex; align-items: center; justify-content: center;
+  }
+  
+  .diagnostic-icon i { font-size: 0.8rem; color: var(--pink-light); }
+  
+  .diagnostic-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-mid);
+    letter-spacing: 0.04em;
+  }
+  
+  .diagnostic-subtitle {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    margin-top: 1px;
+  }
+  
+  .symptom-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  
+  .symptom {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: rgba(225,29,120,0.04);
+    border: 1px solid rgba(225,29,120,0.08);
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.25s, background 0.25s;
+  }
+  
+  .symptom.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .symptom:hover {
+    border-color: rgba(225,29,120,0.2);
+    background: rgba(225,29,120,0.08);
+  }
+  
+  .symptom-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--pink-light);
+    margin-top: 5px;
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+  
+  .symptom p {
+    font-size: 0.875rem;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+  
+  /* ── PROSE BLOCKS ─────────────────────────── */
+  .prose {
+    margin: 2rem 0;
+  }
+  
+  .prose p {
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+  
+  .prose p:last-child { margin-bottom: 0; }
+  
+  .prose strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+  
+  .prose .accent {
+    color: var(--text);
+    font-weight: 700;
+    font-size: 1.15rem;
+  }
+  
+  /* ── PULL QUOTE ─────────────────────────── */
+  .pull-quote {
+    border-left: 3px solid var(--blue);
+    padding: 1.25rem 1.75rem;
+    margin: 2.5rem 0;
+    background: rgba(37,99,235,0.04);
+    border-radius: 0 12px 12px 0;
+  }
+  
+  .pull-quote p {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.35rem;
+    line-height: 1.5;
+    color: var(--text);
+    font-style: italic;
+  }
+  
+  .pull-quote-pink {
+    border-left-color: var(--pink);
+    background: rgba(225,29,120,0.04);
+  }
+  
+  /* ── CHAOS CARD — Act 2 ─────────────────────────── */
+  .chaos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin: 2rem 0;
+  }
+  
+  @media (max-width: 600px) { .chaos-grid { grid-template-columns: 1fr; } }
+  
+  .chaos-item {
+    padding: 1rem 1.1rem;
+    border-radius: 12px;
     border: 1px solid var(--border);
     background: var(--surface);
-    transition: border-color 0.2s, background 0.2s;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }
-  .bullet-item:hover {
-    border-color: rgba(96,165,250,0.25);
-    background: rgba(37,99,235,0.06);
+  
+  .chaos-item.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
-  .bullet-icon {
-    width: 28px; height: 28px;
-    border-radius: 7px;
-    background: rgba(37,99,235,0.12);
+  
+  .chaos-item-icon {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.04);
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
-  .bullet-icon i { font-size: 0.7rem; color: var(--blue-light); }
-  .bullet-item p { font-size: 0.85rem; color: var(--text-mid); line-height: 1.3; }
-
-  /* CTAs */
-  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 1.25rem; }
-
+  
+  .chaos-item-icon i { font-size: 0.7rem; color: var(--text-dim); }
+  
+  .chaos-item p {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.4;
+    padding-top: 5px;
+  }
+  
+  /* ── SCALE METER ─────────────────────────── */
+  .scale-card {
+    background: rgba(10,16,35,0.6);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 2rem;
+    backdrop-filter: blur(16px);
+    margin: 2rem 0;
+  }
+  
+  .scale-card-header {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  
+  .scale-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 1rem;
+  }
+  
+  .scale-row:last-child { margin-bottom: 0; }
+  
+  .scale-label {
+    font-size: 0.75rem;
+    color: var(--text-mid);
+    width: 90px;
+    flex-shrink: 0;
+  }
+  
+  .scale-bar-track {
+    flex: 1;
+    height: 6px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  
+  .scale-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    width: 0%;
+    transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .scale-val {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-dim);
+    width: 36px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  
+  /* ── SHIFT FRAME — Act 3 ─────────────────────────── */
+  .frame-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  
+  @media (max-width: 600px) { .frame-split { grid-template-columns: 1fr; } }
+  
+  .frame-col {
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+  
+  .frame-col.old {
+    background: rgba(225,29,120,0.04);
+    border-color: rgba(225,29,120,0.1);
+  }
+  
+  .frame-col.new {
+    background: rgba(37,99,235,0.05);
+    border-color: rgba(37,99,235,0.15);
+  }
+  
+  .frame-col-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+  
+  .frame-col.old .frame-col-label { color: var(--pink-light); }
+  .frame-col.new .frame-col-label { color: var(--blue-light); }
+  
+  .frame-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  
+  .frame-list li {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.4;
+  }
+  
+  .frame-list li::before {
+    content: '—';
+    flex-shrink: 0;
+    margin-top: 0;
+  }
+  
+  .frame-col.old .frame-list li::before { color: var(--pink-light); opacity: 0.5; }
+  .frame-col.new .frame-list li { color: var(--text-mid); }
+  .frame-col.new .frame-list li::before { content: '→'; color: var(--blue-light); opacity: 0.7; }
+  
+  /* ── CAPABILITIES GRID — Act 4 ─────────────────────────── */
+  .caps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin: 2rem 0;
+  }
+  
+  @media (max-width: 560px) { .caps-grid { grid-template-columns: 1fr; } }
+  
+  .cap-item {
+    padding: 1.1rem 1.25rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: border-color 0.25s, background 0.25s, transform 0.25s;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.25s, background 0.25s;
+  }
+  
+  .cap-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .cap-item:hover {
+    border-color: rgba(96,165,250,0.25);
+    background: rgba(37,99,235,0.06);
+    transform: translateY(-2px);
+  }
+  
+  .cap-icon {
+    width: 32px; height: 32px;
+    border-radius: 9px;
+    background: rgba(37,99,235,0.1);
+    border: 1px solid rgba(37,99,235,0.15);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .cap-icon i { font-size: 0.7rem; color: var(--blue-light); }
+  .cap-item p { font-size: 0.82rem; color: var(--text-mid); line-height: 1.35; }
+  
+  /* ── CONNECTION DIAGRAM ─────────────────────────── */
+  .connect-card {
+    background: rgba(10,16,35,0.7);
+    border: 1px solid rgba(37,99,235,0.2);
+    border-radius: 20px;
+    padding: 2rem 2rem 1.75rem;
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+    margin: 2rem 0;
+  }
+  
+  .connect-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(37,99,235,0.5), rgba(225,29,120,0.3), transparent);
+  }
+  
+  .connect-center {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .connect-hub {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 24px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(37,99,235,0.2), rgba(225,29,120,0.1));
+    border: 1px solid rgba(37,99,235,0.3);
+  }
+  
+  .connect-hub-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--blue-light);
+    text-transform: uppercase;
+  }
+  
+  .connect-hub-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  
+  .connect-nodes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .connect-node {
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .connect-node i { font-size: 0.6rem; color: var(--blue-light); }
+  
+  /* ── OUTCOME CARD — Act 5 ─────────────────────────── */
+  .outcome-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 2rem 0;
+  }
+  
+  .outcome-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    border: 1px solid rgba(74,222,128,0.12);
+    background: rgba(74,222,128,0.04);
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .outcome-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .outcome-check {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: rgba(74,222,128,0.12);
+    border: 1px solid rgba(74,222,128,0.25);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  
+  .outcome-check i { font-size: 0.55rem; color: var(--green); }
+  .outcome-item p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.5; }
+  .outcome-item strong { color: var(--text); font-weight: 600; }
+  
+  /* ── FINAL CTA ─────────────────────────── */
+  .final-cta {
+    text-align: center;
+    padding: 4rem 2rem;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    background: rgba(10,16,35,0.6);
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+  
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(37,99,235,0.6), rgba(225,29,120,0.4), transparent);
+  }
+  
+  .final-cta::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 50%;
+    transform: translateX(-50%);
+    width: 400px; height: 200px;
+    background: radial-gradient(ellipse, rgba(37,99,235,0.15), transparent 70%);
+    pointer-events: none;
+  }
+  
+  .final-cta-eyebrow {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--blue-light);
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+  
+  .final-cta h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--text);
+    margin-bottom: 1rem;
+    max-width: 500px;
+    margin-left: auto; margin-right: auto;
+  }
+  
+  .final-cta h3 em {
+    font-style: italic;
+    background: linear-gradient(135deg, var(--blue-light) 0%, var(--pink-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .final-cta p {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+  }
+  
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+  
   .btn {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 13px 24px;
@@ -211,468 +693,398 @@ Hero Section using custom AI Assisted Business OS layout
     letter-spacing: 0.01em;
     transition: all 0.2s ease;
     cursor: pointer;
+    border: none;
   }
+  
   .btn-primary {
     background: linear-gradient(135deg, var(--blue) 0%, #1d4ed8 100%);
     color: #fff;
     box-shadow: 0 0 0 1px rgba(37,99,235,0.4), 0 8px 24px rgba(37,99,235,0.3);
   }
+  
   .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 0 1px rgba(37,99,235,0.6), 0 12px 32px rgba(37,99,235,0.45);
   }
+  
   .btn-secondary {
     background: var(--surface);
     color: var(--text);
     border: 1px solid var(--border);
   }
+  
   .btn-secondary:hover {
     background: rgba(255,255,255,0.07);
     border-color: rgba(255,255,255,0.15);
     transform: translateY(-2px);
   }
-
-  .trust-line { font-size: 0.78rem; color: var(--text-dim); line-height: 1.6; }
-  .trust-line span { color: var(--text-mid); margin: 0 4px; }
-
-  /* ── RIGHT COLUMN ───────────────────────────── */
-  .hero-right {
-    position: relative;
-    opacity: 0;
-    animation: fade-up 0.8s ease forwards 0.35s;
-  }
-
-  #node-canvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .hub-wrapper {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .card-main {
-    background: rgba(10,16,35,0.7);
-    border: 1px solid rgba(37,99,235,0.25);
-    border-radius: 18px;
-    padding: 1.5rem;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 0 1px var(--border), 0 24px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
-    position: relative;
-    overflow: hidden;
-  }
-  .card-main::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
+  
+  /* ── DIVIDER LINE ─────────────────────────── */
+  .divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(37,99,235,0.6), rgba(225,29,120,0.4), transparent);
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 3rem 0;
   }
-
-  .card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.25rem;
-  }
-  .card-title-row { display: flex; align-items: center; gap: 8px; }
-  .card-title-row i { font-size: 0.8rem; color: var(--blue-light); }
-  .card-title { font-size: 0.8rem; font-weight: 700; color: var(--text); }
-  .live-badge {
-    display: flex; align-items: center; gap: 5px;
-    padding: 3px 10px;
-    border-radius: 999px;
-    background: rgba(34,197,94,0.1);
-    border: 1px solid rgba(34,197,94,0.2);
-    font-size: 0.65rem;
-    font-weight: 600;
-    color: #4ade80;
-    letter-spacing: 0.08em;
-  }
-  .live-dot {
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: #4ade80;
-    animation: pulse-dot 1.5s ease-in-out infinite;
-  }
-
-  .wave-bars {
-    display: flex;
-    align-items: flex-end;
-    gap: 3px;
-    height: 48px;
-    margin-bottom: 1rem;
-  }
-  .wave-bar {
-    flex: 1;
-    background: linear-gradient(to top, var(--blue), var(--blue-light));
-    border-radius: 3px 3px 0 0;
-    opacity: 0.7;
-    animation: wave-anim 1.4s ease-in-out infinite alternate;
-    min-height: 4px;
-  }
-  @keyframes wave-anim {
-    from { transform: scaleY(0.2); opacity: 0.4; }
-    to   { transform: scaleY(1);   opacity: 0.9; }
-  }
-
-  .big-stat { font-size: 2.75rem; font-weight: 800; color: var(--text); line-height: 1; }
-  .stat-sub { font-size: 0.75rem; color: var(--text-dim); margin-top: 2px; }
-
-  .cards-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-  .card-sm {
-    background: rgba(10,16,35,0.6);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 1.1rem 1.1rem 1rem;
-    backdrop-filter: blur(16px);
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.25s, transform 0.25s;
-  }
-  .card-sm:hover { border-color: rgba(96,165,250,0.3); transform: translateY(-3px); }
-  .card-sm::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 2px;
+  
+  /* scroll reveal base */
+  .reveal {
     opacity: 0;
-    transition: opacity 0.3s;
+    transform: translateY(16px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
   }
-  .card-sm.accent-blue::after  { background: linear-gradient(90deg, var(--blue), var(--blue-light)); }
-  .card-sm.accent-pink::after  { background: linear-gradient(90deg, var(--pink), var(--pink-light)); }
-  .card-sm:hover::after { opacity: 1; }
-
-  .card-sm-icon {
-    width: 32px; height: 32px;
-    border-radius: 9px;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 0.75rem;
-    font-size: 0.75rem;
+  
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
-  .icon-blue { background: rgba(37,99,235,0.15); color: var(--blue-light); }
-  .icon-pink { background: rgba(225,29,120,0.12); color: var(--pink-light); }
-
-  .card-sm-val { font-size: 1.75rem; font-weight: 800; color: var(--text); line-height: 1; }
-  .card-sm-label { font-size: 0.7rem; color: var(--text-dim); margin-top: 2px; }
-  .card-sm-name { font-size: 0.75rem; font-weight: 500; color: var(--text-mid); margin-bottom: 0.35rem; }
-
-  .mini-bar { height: 3px; background: rgba(255,255,255,0.06); border-radius: 999px; margin-top: 0.75rem; overflow: hidden; }
-  .mini-bar-fill { height: 100%; border-radius: 999px; }
-  .fill-blue { background: linear-gradient(90deg, var(--blue), var(--blue-light)); }
-  .fill-pink  { background: linear-gradient(90deg, var(--pink), var(--pink-light)); }
-
-  .pill-row { display: flex; gap: 5px; margin-top: 0.6rem; flex-wrap: wrap; }
-  .pill {
-    padding: 2px 8px;
-    border-radius: 999px;
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-  }
-  .pill-b { background: rgba(37,99,235,0.15); color: #93c5fd; }
-  .pill-p { background: rgba(225,29,120,0.12); color: #f9a8d4; }
-  .pill-g { background: rgba(255,255,255,0.06); color: var(--text-dim); }
-
-  .status-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 14px;
-    background: rgba(255,255,255,0.02);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    font-size: 0.7rem;
-    color: var(--text-dim);
-  }
-  .status-dots { display: flex; gap: 5px; }
-  .sdot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    animation: pulse-dot 2s ease-in-out infinite;
-  }
-  .sdot:nth-child(2) { animation-delay: 0.7s; }
-  .sdot:nth-child(3) { animation-delay: 1.4s; }
-
-  .count { display: inline-block; }
-</style>
-
-<div class="bg-grid"></div>
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-
-<section class="hero">
-
-  <!-- LEFT -->
-  <div class="hero-left">
-
-    <div class="eyebrow">
-      <div class="eyebrow-dot"></div>
-      <span>AI Assisted Business OS</span>
+  </style>
+ 
+  
+  <div class="bg-grid"></div>
+  
+  <section class="narrative">
+  
+    <!-- INTRO -->
+    <div class="section-intro reveal">
+      <div class="section-label">
+        <div class="section-label-dot"></div>
+        The State of Modern Business
+      </div>
+      <h2>Most businesses look modern.<br><em>But step inside the operations.</em></h2>
     </div>
-
-    <h1>
-      Move from "experimenting with AI" to an
-      <span class="gradient-text">AI operations platform that actually runs your business</span>.
-    </h1>
-
-    <div class="body-block">
-      <p style="font-size:1.05rem;">
-        AI Assisted Business OS is a unified AI operations platform designed to move businesses from "experimenting with AI" to deploying tailored AI solutions that actually work inside the business.
-      </p>
-      <p>
-        Instead of juggling disconnected tools and half-working automations, you get one intelligent system that connects a smart AI stack directly to your sales, support, and operations—so much of the "heavy lifting" happens automatically across your entire customer journey.
-      </p>
-      <p>This is not just AI that talks. This is AI that acts.</p>
-    </div>
-
-    <p class="bullets-label">From one centralized system, AI Assisted Business OS can:</p>
-
-    <div class="bullets-grid">
-      <div class="bullet-item">
-        <div class="bullet-icon"><i class="fas fa-user-check"></i></div>
-        <p>Qualify and respond to leads</p>
+  
+    <!-- ACT 1: THE HIDDEN PROBLEM -->
+    <div class="act">
+      <div class="act-eyebrow">
+        <span class="act-number">01</span>
+        <div class="act-line"></div>
+        <span class="act-tag">The Hidden Problem</span>
       </div>
-      <div class="bullet-item">
-        <div class="bullet-icon"><i class="fas fa-headset"></i></div>
-        <p>Handle customer inquiries across chat, email, and voice</p>
+  
+      <div class="prose reveal">
+        <p>Most businesses in 2026 look modern. They use AI tools. They use cloud software. They use dozens of apps. From the outside, it looks like a technology-driven company.</p>
+        <p><strong>But if you step inside the operations, something surprising appears.</strong></p>
+        <p class="accent">The business is still running like it's 2005.</p>
       </div>
-      <div class="bullet-item">
-        <div class="bullet-icon"><i class="fas fa-calendar-check"></i></div>
-        <p>Book appointments and route requests</p>
-      </div>
-      <div class="bullet-item">
-        <div class="bullet-icon"><i class="fas fa-database"></i></div>
-        <p>Update your CRM automatically</p>
-      </div>
-      <div class="bullet-item">
-        <div class="bullet-icon"><i class="fas fa-gears"></i></div>
-        <p>Trigger workflows and internal actions</p>
-      </div>
-      <div class="bullet-item">
-        <div class="bullet-icon"><i class="fas fa-chart-line"></i></div>
-        <p>Provide real-time insights and reporting</p>
-      </div>
-    </div>
-
-    <div class="cta-row">
-      <a href="#catalogue" class="btn btn-primary">
-        See the Catalogue <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i>
-      </a>
-      <a href="#" class="btn btn-secondary">
-        <i class="fas fa-calendar" style="font-size:0.75rem;"></i> Book a Demo
-      </a>
-    </div>
-
-    <p class="trust-line">
-      Less manual work.<span>·</span>Faster response times.<span>·</span>Higher conversion rates.<span>·</span>Better customer experience.<span>·</span>Smarter operations at scale.
-    </p>
-
-  </div>
-
-  <!-- RIGHT -->
-  <div class="hero-right">
-    <canvas id="node-canvas"></canvas>
-
-    <div class="hub-wrapper">
-
-      <!-- Main card -->
-      <div class="card-main">
-        <div class="card-header">
-          <div class="card-title-row">
-            <i class="fas fa-comments"></i>
-            <span class="card-title">Live Conversations</span>
-          </div>
-          <div class="live-badge">
-            <div class="live-dot"></div>
-            LIVE
-          </div>
-        </div>
-
-        <div class="wave-bars" id="waveBars"></div>
-
-        <div style="display:flex; align-items:flex-end; justify-content:space-between;">
+  
+      <div class="diagnostic-card reveal">
+        <div class="diagnostic-header">
+          <div class="diagnostic-icon"><i class="fas fa-triangle-exclamation"></i></div>
           <div>
-            <div class="big-stat"><span class="count" id="counter1">0</span></div>
-            <div class="stat-sub">Active conversations right now</div>
-          </div>
-          <div style="text-align:right;">
-            <div style="font-size:1.1rem; font-weight:700; color:#4ade80;">↑ 12%</div>
-            <div class="stat-sub">vs yesterday</div>
+            <div class="diagnostic-title">Operational Symptoms Detected</div>
+            <div class="diagnostic-subtitle">Common patterns across businesses with $1M–$20M in revenue</div>
           </div>
         </div>
+        <div class="symptom-list" id="symptomList">
+          <div class="symptom"><div class="symptom-dot"></div><p>Leads arrive and sit in inboxes waiting for replies.</p></div>
+          <div class="symptom"><div class="symptom-dot"></div><p>Customers ask questions that employees answer manually — for the hundredth time.</p></div>
+          <div class="symptom"><div class="symptom-dot"></div><p>Emails pile up until someone finally has time to process them.</p></div>
+          <div class="symptom"><div class="symptom-dot"></div><p>Deals move through the pipeline only when someone remembers to update the CRM.</p></div>
+          <div class="symptom"><div class="symptom-dot"></div><p>Support requests wait in queues for a human to assign them.</p></div>
+          <div class="symptom"><div class="symptom-dot"></div><p>Information lives in five different systems.</p></div>
+          <div class="symptom"><div class="symptom-dot"></div><p>And every day, people spend hours doing work that software should already be doing.</p></div>
+        </div>
       </div>
-
-      <!-- 2-col cards -->
-      <div class="cards-row">
-
-        <div class="card-sm accent-blue">
-          <div class="card-sm-icon icon-blue"><i class="fas fa-user-check"></i></div>
-          <div class="card-sm-name">Lead Qualification</div>
-          <div class="card-sm-val"><span class="count" id="counter2">0</span>%</div>
-          <div class="card-sm-label">Qualified this week</div>
-          <div class="mini-bar"><div class="mini-bar-fill fill-blue" style="width:89%"></div></div>
-        </div>
-
-        <div class="card-sm accent-pink">
-          <div class="card-sm-icon icon-pink"><i class="fas fa-envelope"></i></div>
-          <div class="card-sm-name">Email Triage</div>
-          <div class="card-sm-val"><span class="count" id="counter3">0</span>k</div>
-          <div class="card-sm-label">Processed today</div>
-          <div class="mini-bar"><div class="mini-bar-fill fill-pink" style="width:60%"></div></div>
-        </div>
-
-        <div class="card-sm accent-pink">
-          <div class="card-sm-icon icon-pink"><i class="fas fa-route"></i></div>
-          <div class="card-sm-name">Ticket Routing</div>
-          <div class="card-sm-val" style="font-size:1.2rem; padding-top:4px;">Auto</div>
-          <div class="pill-row">
-            <span class="pill pill-b">Sales</span>
-            <span class="pill pill-p">Support</span>
-            <span class="pill pill-g">Ops</span>
-          </div>
-        </div>
-
-        <div class="card-sm accent-blue">
-          <div class="card-sm-icon icon-blue"><i class="fas fa-bolt"></i></div>
-          <div class="card-sm-name">Automations Fired</div>
-          <div class="card-sm-val"><span class="count" id="counter4">0</span></div>
-          <div class="card-sm-label">Last 24 hours</div>
-          <div class="mini-bar"><div class="mini-bar-fill fill-blue" style="width:78%"></div></div>
-        </div>
-
+  
+      <div class="prose reveal">
+        <p>The company may have modern tools. But <strong>the operations are still manual</strong>.</p>
       </div>
-
-      <!-- Status bar -->
-      <div class="status-bar">
-        <div class="status-dots">
-          <div class="sdot" style="background:#4ade80;"></div>
-          <div class="sdot" style="background:var(--blue-light);"></div>
-          <div class="sdot" style="background:var(--pink-light);"></div>
-        </div>
-        <span>All systems operational · Updated live</span>
-        <span style="color:var(--text-mid); font-weight:500;">v4.2.1</span>
-      </div>
-
     </div>
-  </div>
+  
+    <div class="divider"></div>
+  
+    <!-- ACT 2: THE STRUCTURAL PROBLEM -->
+    <div class="act">
+      <div class="act-eyebrow">
+        <span class="act-number">02</span>
+        <div class="act-line"></div>
+        <span class="act-tag">The Structural Problem</span>
+      </div>
+  
+      <div class="prose reveal">
+        <p>Many founders believe operational chaos is simply the cost of growing a business.</p>
+        <p><strong>It isn't. It's a structural problem.</strong></p>
+      </div>
+  
+      <div class="pull-quote pull-quote-pink reveal">
+        <p>A company doing $10M in revenue today often runs the same way a $1M company ran twenty years ago.</p>
+      </div>
+  
+      <div class="chaos-grid" id="chaosGrid">
+        <div class="chaos-item"><div class="chaos-item-icon"><i class="fas fa-envelope"></i></div><p>People responding to emails all day.</p></div>
+        <div class="chaos-item"><div class="chaos-item-icon"><i class="fas fa-table"></i></div><p>People updating spreadsheets.</p></div>
+        <div class="chaos-item"><div class="chaos-item-icon"><i class="fas fa-arrows-split-up-and-left"></i></div><p>People routing requests between teams.</p></div>
+        <div class="chaos-item"><div class="chaos-item-icon"><i class="fas fa-comment-dots"></i></div><p>People answering the same customer questions over and over.</p></div>
+        <div class="chaos-item"><div class="chaos-item-icon"><i class="fas fa-bell"></i></div><p>People remembering to follow up with leads.</p></div>
+        <div class="chaos-item"><div class="chaos-item-icon"><i class="fas fa-brain"></i></div><p>People trying to keep dozens of moving parts in their heads.</p></div>
+      </div>
+  
+      <div class="scale-card reveal" id="scaleCard">
+        <div class="scale-card-header">What happens as the company grows</div>
+        <div class="scale-row">
+          <span class="scale-label">Revenue</span>
+          <div class="scale-bar-track"><div class="scale-bar-fill fill-blue" data-width="85" style="background: linear-gradient(90deg, #2563EB, #60A5FA);"></div></div>
+          <span class="scale-val" id="sv1">0%</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-label">Team size</span>
+          <div class="scale-bar-track"><div class="scale-bar-fill fill-blue" data-width="60" style="background: linear-gradient(90deg, #2563EB, #60A5FA);"></div></div>
+          <span class="scale-val" id="sv2">0%</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-label" style="color: var(--pink-light);">Op. load</span>
+          <div class="scale-bar-track"><div class="scale-bar-fill" data-width="96" style="background: linear-gradient(90deg, #E11D78, #F472B6);"></div></div>
+          <span class="scale-val" id="sv3" style="color: var(--pink-light);">0%</span>
+        </div>
+      </div>
+  
+      <div class="prose reveal">
+        <p>The company grows. But <strong>the operational load grows faster</strong>.</p>
+        <p>Eventually the entire system depends on human memory. And human memory is the weakest infrastructure a company can build on.</p>
+      </div>
+    </div>
+  
+    <div class="divider"></div>
+  
+    <!-- ACT 3: THE SHIFT -->
+    <div class="act">
+      <div class="act-eyebrow">
+        <span class="act-number">03</span>
+        <div class="act-line"></div>
+        <span class="act-tag">From Tools to Systems</span>
+      </div>
+  
+      <div class="prose reveal">
+        <p>For years, businesses have tried to solve this problem by adding more software. A new CRM. A chatbot. A scheduling tool. An automation platform. Another dashboard.</p>
+        <p><strong>But adding more tools does not fix operations. It just spreads the work across more places.</strong></p>
+        <p>What businesses actually need is something different. They need an <strong>operational layer</strong>. A system that ensures the work happens automatically — without someone needing to remember, check, or manually trigger the next step.</p>
+      </div>
+  
+      <div class="frame-split reveal">
+        <div class="frame-col old">
+          <div class="frame-col-label">Before: More Tools</div>
+          <ul class="frame-list">
+            <li>Scattered across platforms</li>
+            <li>Requires human triggers</li>
+            <li>Information in silos</li>
+            <li>Manual handoffs between steps</li>
+            <li>Breaks when people are busy</li>
+          </ul>
+        </div>
+        <div class="frame-col new">
+          <div class="frame-col-label">After: An Operational Layer</div>
+          <ul class="frame-list">
+            <li>One coordinated system</li>
+            <li>Triggers itself automatically</li>
+            <li>All data connected</li>
+            <li>Workflows run end-to-end</li>
+            <li>Works 24/7 without oversight</li>
+          </ul>
+        </div>
+      </div>
+  
+      <div class="pull-quote reveal">
+        <p>The real shift happening right now is not AI writing content.<br>It's <em>AI running operations</em>.</p>
+      </div>
+    </div>
+  
+    <div class="divider"></div>
+  
+    <!-- ACT 4: THE SYSTEM -->
+    <div class="act">
+      <div class="act-eyebrow">
+        <span class="act-number">04</span>
+        <div class="act-line"></div>
+        <span class="act-tag">What an AI Operations Layer Actually Does</span>
+      </div>
+  
+      <div class="prose reveal">
+        <p>Not tools. Not scripts. Not basic automations.</p>
+        <p><strong>Operational systems that act.</strong></p>
+      </div>
+  
+      <div class="caps-grid" id="capsGrid">
+        <div class="cap-item"><div class="cap-icon"><i class="fas fa-user-check"></i></div><p>Capture and qualify leads automatically</p></div>
+        <div class="cap-item"><div class="cap-icon"><i class="fas fa-headset"></i></div><p>Respond to customers across chat, email, and voice</p></div>
+        <div class="cap-item"><div class="cap-icon"><i class="fas fa-calendar-check"></i></div><p>Schedule appointments and route requests</p></div>
+        <div class="cap-item"><div class="cap-icon"><i class="fas fa-database"></i></div><p>Update CRM records instantly</p></div>
+        <div class="cap-item"><div class="cap-icon"><i class="fas fa-gears"></i></div><p>Trigger internal workflows across teams</p></div>
+        <div class="cap-item"><div class="cap-icon"><i class="fas fa-file-lines"></i></div><p>Extract structured data from documents</p></div>
+        <div class="cap-item"><div class="cap-icon"><i class="fas fa-chart-line"></i></div><p>Monitor performance and operational health</p></div>
+        <div class="cap-item"><div class="cap-icon"><i class="fas fa-bolt"></i></div><p>Fire automations across every connected system</p></div>
+      </div>
+  
+      <div class="connect-card reveal">
 
-</section>
-
-<script>
-  /* Wave bars */
-  const waveCont = document.getElementById('waveBars');
-  if (waveCont) {
-    const BAR_COUNT = 32;
-    for (let i = 0; i < BAR_COUNT; i++) {
-      const b = document.createElement('div');
-      b.className = 'wave-bar';
-      const delay = (Math.random() * 1.4).toFixed(2);
-      const dur   = (1.0 + Math.random() * 0.8).toFixed(2);
-      b.style.animationDelay    = delay + 's';
-      b.style.animationDuration = dur + 's';
-      waveCont.appendChild(b);
-    }
+        <div class="connect-center">
+          <div class="connect-hub">
+            <div class="connect-hub-label">AI Operations Infrastructure</div>
+            <div class="connect-hub-name">AI Business OS</div>
+            <div class="connect-hub-sub">
+              Intelligent agents coordinating your entire business
+            </div>
+          </div>
+        </div>
+      
+        <div class="connect-nodes">
+      
+          <div class="connect-node">
+            <i class="fas fa-users"></i>
+            <span>CRM Systems</span>
+          </div>
+      
+          <div class="connect-node">
+            <i class="fas fa-comments"></i>
+            <span>Customer Chat</span>
+          </div>
+      
+          <div class="connect-node">
+            <i class="fas fa-envelope"></i>
+            <span>Email Channels</span>
+          </div>
+      
+          <div class="connect-node">
+            <i class="fas fa-phone-volume"></i>
+            <span>Voice & Calls</span>
+          </div>
+      
+          <div class="connect-node">
+            <i class="fas fa-file-lines"></i>
+            <span>Documents & Knowledge</span>
+          </div>
+      
+          <div class="connect-node">
+            <i class="fas fa-gears"></i>
+            <span>Workflows</span>
+          </div>
+      
+          <div class="connect-node">
+            <i class="fas fa-database"></i>
+            <span>Internal Data</span>
+          </div>
+      
+          <div class="connect-node">
+            <i class="fas fa-chart-line"></i>
+            <span>Analytics</span>
+          </div>
+      
+        </div>
+      
+      </div>
+  
+      <div class="prose reveal">
+        <p>Sales. Support. Operations. Analytics. <strong>All connected. All operating from one intelligent system.</strong></p>
+        <p>The business begins to run on infrastructure instead of memory.</p>
+      </div>
+    </div>
+  
+    <div class="divider"></div>
+  
+    <!-- ACT 5: THE OUTCOME -->
+    <div class="act">
+      <div class="act-eyebrow">
+        <span class="act-number">05</span>
+        <div class="act-line"></div>
+        <span class="act-tag">What Changes</span>
+      </div>
+  
+      <div class="prose reveal">
+        <p>When companies install an AI operations layer, something fundamental changes.</p>
+      </div>
+  
+      <div class="outcome-list" id="outcomeList">
+        <div class="outcome-item"><div class="outcome-check"><i class="fas fa-check"></i></div><p><strong>Leads stop waiting.</strong> Every inquiry is captured and responded to — instantly, automatically.</p></div>
+        <div class="outcome-item"><div class="outcome-check"><i class="fas fa-check"></i></div><p><strong>Customers get answers instantly.</strong> Across every channel, around the clock.</p></div>
+        <div class="outcome-item"><div class="outcome-check"><i class="fas fa-check"></i></div><p><strong>Emails stop piling up.</strong> Triage, routing, and responses happen without a human in the loop.</p></div>
+        <div class="outcome-item"><div class="outcome-check"><i class="fas fa-check"></i></div><p><strong>Appointments get scheduled automatically.</strong> No back-and-forth, no dropped balls.</p></div>
+        <div class="outcome-item"><div class="outcome-check"><i class="fas fa-check"></i></div><p><strong>Operations become predictable.</strong> Every step is tracked, triggered, and logged.</p></div>
+        <div class="outcome-item"><div class="outcome-check"><i class="fas fa-check"></i></div><p><strong>Teams stop drowning in tasks.</strong> People do the work that actually requires people.</p></div>
+        <div class="outcome-item"><div class="outcome-check"><i class="fas fa-check"></i></div><p><strong>Leadership finally gets time to think about growth again.</strong></p></div>
+      </div>
+  
+      <div class="pull-quote reveal" style="margin-top: 2.5rem;">
+        <p>The company stops running on memory.<br>And starts running on systems.</p>
+      </div>
+    </div>
+  
+    <!-- FINAL CTA -->
+    <div class="final-cta reveal">
+      <div class="final-cta-eyebrow">AI Assisted Business OS</div>
+      <h3>Not another AI tool.<br><em>An AI operations layer built to run your business.</em></h3>
+      <p>One intelligent system. Every channel. Every workflow. Connected.</p>
+      <div class="cta-row">
+        <a href="#catalogue" class="btn btn-primary">See the Catalogue <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></a>
+        <a href="#" class="btn btn-secondary"><i class="fas fa-calendar" style="font-size:0.75rem;"></i> Book a Demo</a>
+      </div>
+    </div>
+  
+  </section>
+  
+  <script>
+  // ── Intersection Observer for staggered reveals ──
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('visible');
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.12 });
+  
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  
+  // ── Staggered child animations ──
+  function staggerObserve(containerId, childSelector, delayStep = 80) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const children = container.querySelectorAll(childSelector);
+    const obs = new IntersectionObserver((entries) => {
+      if (!entries[0].isIntersecting) return;
+      children.forEach((child, i) => {
+        setTimeout(() => child.classList.add('visible'), i * delayStep);
+      });
+      obs.unobserve(container);
+    }, { threshold: 0.1 });
+    obs.observe(container);
   }
-
-  /* Count-up animation */
-  function countUp(el, target, decimals = 0, duration = 1800) {
+  
+  staggerObserve('symptomList', '.symptom', 100);
+  staggerObserve('chaosGrid', '.chaos-item', 80);
+  staggerObserve('capsGrid', '.cap-item', 70);
+  staggerObserve('outcomeList', '.outcome-item', 100);
+  
+  // ── Scale bars animation ──
+  const scaleCard = document.getElementById('scaleCard');
+  if (scaleCard) {
+    const scaleObs = new IntersectionObserver((entries) => {
+      if (!entries[0].isIntersecting) return;
+      const fills = scaleCard.querySelectorAll('.scale-bar-fill');
+      const vals = [
+        { el: document.getElementById('sv1'), target: 85 },
+        { el: document.getElementById('sv2'), target: 60 },
+        { el: document.getElementById('sv3'), target: 96 },
+      ];
+      fills.forEach((fill, i) => {
+        const w = fill.dataset.width;
+        setTimeout(() => {
+          fill.style.width = w + '%';
+          if (vals[i]) animateVal(vals[i].el, vals[i].target);
+        }, i * 200);
+      });
+      scaleObs.unobserve(scaleCard);
+    }, { threshold: 0.3 });
+    scaleObs.observe(scaleCard);
+  }
+  
+  function animateVal(el, target, duration = 1200) {
+    if (!el) return;
     const start = performance.now();
     function step(now) {
       const p = Math.min((now - start) / duration, 1);
       const ease = 1 - Math.pow(1 - p, 3);
-      el.textContent = (target * ease).toFixed(decimals);
+      el.textContent = Math.round(target * ease) + '%';
       if (p < 1) requestAnimationFrame(step);
-      else el.textContent = target.toFixed(decimals);
+      else el.textContent = target + '%';
     }
     requestAnimationFrame(step);
   }
-
-  window.addEventListener('load', () => {
-    const c1 = document.getElementById('counter1');
-    const c2 = document.getElementById('counter2');
-    const c3 = document.getElementById('counter3');
-    const c4 = document.getElementById('counter4');
-    if (c1 && c2 && c3 && c4) {
-      setTimeout(() => {
-        countUp(c1, 247, 0, 2000);
-        countUp(c2, 89,  0, 1600);
-        countUp(c3, 1.2, 1, 1800);
-        countUp(c4, 3841, 0, 2200);
-      }, 500);
-    }
-  });
-
-  /* Canvas node network */
-  const canvas = document.getElementById('node-canvas');
-  if (canvas) {
-    const ctx    = canvas.getContext('2d');
-
-    function resize() {
-      const parent = canvas.parentElement;
-      if (!parent) return;
-      canvas.width  = parent.offsetWidth;
-      canvas.height = parent.offsetHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    const nodes = [];
-    for (let i = 0; i < 18; i++) {
-      nodes.push({
-        x: Math.random(),
-        y: Math.random(),
-        vx: (Math.random() - 0.5) * 0.0003,
-        vy: (Math.random() - 0.5) * 0.0003,
-      });
-    }
-
-    function drawNetwork() {
-      const W = canvas.width, H = canvas.height;
-      ctx.clearRect(0, 0, W, H);
-
-      for (const n of nodes) {
-        n.x += n.vx; n.y += n.vy;
-        if (n.x < 0 || n.x > 1) n.vx *= -1;
-        if (n.y < 0 || n.y > 1) n.vy *= -1;
-      }
-
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const a = nodes[i], b = nodes[j];
-          const dx = (a.x - b.x) * W, dy = (a.y - b.y) * H;
-          const dist = Math.sqrt(dx*dx + dy*dy);
-          if (dist < 160) {
-            const alpha = (1 - dist / 160) * 0.18;
-            ctx.beginPath();
-            ctx.moveTo(a.x * W, a.y * H);
-            ctx.lineTo(b.x * W, b.y * H);
-            ctx.strokeStyle = `rgba(96, 165, 250, ${alpha})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        }
-      }
-
-      for (const n of nodes) {
-        ctx.beginPath();
-        ctx.arc(n.x * W, n.y * H, 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(96,165,250,0.35)';
-        ctx.fill();
-      }
-
-      requestAnimationFrame(drawNetwork);
-    }
-
-    drawNetwork();
-  }
-</script>
+  </script>
