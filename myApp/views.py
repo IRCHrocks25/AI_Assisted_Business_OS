@@ -5,6 +5,9 @@ from django.conf import settings
 from django.utils import timezone
 import json
 import openai
+import logging
+
+logger = logging.getLogger(__name__)
 import cloudinary
 import cloudinary.uploader
 import tempfile
@@ -285,15 +288,17 @@ def chat_api(request):
         if not message:
             return JsonResponse({'error': 'Message is required'}, status=400)
         
-        # Check if API key is configured
-        if not settings.OPENAI_API_KEY:
+        # Check if API key is configured (loaded from .env via dotenv in settings)
+        api_key = settings.OPENAI_API_KEY
+        if not api_key:
+            logger.error('OpenAI API key not configured. Make sure OPENAI_API_KEY is set in your .env file.')
             return JsonResponse({
                 'error': 'OpenAI API key not configured',
                 'response': 'I apologize, but the AI service is not currently configured. Please contact support.'
             }, status=500)
         
         # Initialize OpenAI client
-        client = openai.OpenAI(api_key=settings.OPENAI_API_KEY)
+        client = openai.OpenAI(api_key=api_key)
         
         # System prompt for the chatbot
         system_prompt = """You are a helpful AI assistant for AI Assisted Business OS, a company that provides AI-powered business solutions including chatbots, automation, customer support, sales qualification, and various AI integrations.
@@ -337,11 +342,19 @@ Always be helpful and encourage visitors to explore the catalogue or book a demo
         })
         
     except openai.APIError as e:
+        logger.error(f'OpenAI API error: {str(e)}')
         return JsonResponse({
             'error': 'OpenAI API error',
             'response': 'I apologize, but I encountered an error processing your request. Please try again.'
         }, status=500)
+    except json.JSONDecodeError as e:
+        logger.error(f'JSON decode error: {str(e)}')
+        return JsonResponse({
+            'error': 'Invalid request format',
+            'response': 'I apologize, but there was an error with your request. Please try again.'
+        }, status=400)
     except Exception as e:
+        logger.error(f'Chat API error: {str(e)}', exc_info=True)
         return JsonResponse({
             'error': 'Internal server error',
             'response': 'I apologize, but something went wrong. Please try again later.'
