@@ -19,7 +19,7 @@ from .extraction_utils import extract_text_from_pdf, extract_with_llm, validate_
 import requests
 
 def home(request):
-    return render(request, 'index.html')
+    return render(request, 'landing_page.html')
 
 def sop_bot_demo(request):
     return render(request, 'sop_bot_demo.html')
