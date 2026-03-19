@@ -31,13 +31,21 @@ SECRET_KEY = 'django-insecure-#w_!@vf#acog#g83*=m989g*omd$_37n9mfj+nlmxtby(=bv*6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'aiassistedbusinessos-production.up.railway.app']
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'aiassistedbusinessos-production.up.railway.app',
+    'katek-ai.com',
+    'www.katek-ai.com',
+]
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost',
     'http://localhost:8000',
     'http://127.0.0.1:8000',
     'https://aiassistedbusinessos-production.up.railway.app',
+    'https://katek-ai.com',
+    'https://www.katek-ai.com',
 ]
 
 # Application definition
