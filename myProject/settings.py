@@ -18,7 +18,7 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Load environment variables from .env file
-env_path = BASE_DIR / '.env'
+env_path = BASE_DIR / ".env"
 load_dotenv(dotenv_path=env_path)
 
 
@@ -26,93 +26,93 @@ load_dotenv(dotenv_path=env_path)
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#w_!@vf#acog#g83*=m989g*omd$_37n9mfj+nlmxtby(=bv*6'
+SECRET_KEY = "django-insecure-#w_!@vf#acog#g83*=m989g*omd$_37n9mfj+nlmxtby(=bv*6"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    'aiassistedbusinessos-production.up.railway.app',
-    'katek-ai.com',
-    'www.katek-ai.com',
+    "localhost",
+    "127.0.0.1",
+    "aiassistedbusinessos-production.up.railway.app",
+    "katek-ai.com",
+    "www.katek-ai.com",
+    "businessos.katek-ai.com",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://localhost',
-    'http://localhost:8000',
-    'http://127.0.0.1:8000',
-    'https://aiassistedbusinessos-production.up.railway.app',
-    'https://katek-ai.com',
-    'https://www.katek-ai.com',
+    "http://localhost",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "https://aiassistedbusinessos-production.up.railway.app",
+    "https://katek-ai.com",
+    "https://www.katek-ai.com",
 ]
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.humanize',
-    'pgvector.django',
-    'myApp',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django.contrib.humanize",
+    "pgvector.django",
+    "myApp",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'myProject.urls'
+ROOT_URLCONF = "myProject.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'myProject.wsgi.application'
+WSGI_APPLICATION = "myProject.wsgi.application"
 
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 # Use PostgreSQL if DATABASE_URL is set, otherwise fall back to SQLite
-DATABASE_URL = os.getenv('DATABASE_URL', '')
+DATABASE_URL = os.getenv("DATABASE_URL", "")
 
 if DATABASE_URL:
     import dj_database_url
+
     db_config = dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
     # Ensure we're using PostgreSQL engine for pgvector
-    if 'ENGINE' not in db_config or 'postgresql' not in db_config.get('ENGINE', ''):
-        db_config['ENGINE'] = 'django.db.backends.postgresql'
-    DATABASES = {
-        'default': db_config
-    }
+    if "ENGINE" not in db_config or "postgresql" not in db_config.get("ENGINE", ""):
+        db_config["ENGINE"] = "django.db.backends.postgresql"
+    DATABASES = {"default": db_config}
 else:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
         }
     }
 
@@ -122,16 +122,16 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -139,9 +139,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -151,20 +151,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # OpenAI API Key
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', '')
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 
 # Cloudinary Configuration
-CLOUDINARY_CLOUD_NAME = os.getenv('CLOUDINARY_CLOUD_NAME', '')
-CLOUDINARY_API_KEY = os.getenv('CLOUDINARY_API_KEY', '')
-CLOUDINARY_API_SECRET = os.getenv('CLOUDINARY_API_SECRET', '')
+CLOUDINARY_CLOUD_NAME = os.getenv("CLOUDINARY_CLOUD_NAME", "")
+CLOUDINARY_API_KEY = os.getenv("CLOUDINARY_API_KEY", "")
+CLOUDINARY_API_SECRET = os.getenv("CLOUDINARY_API_SECRET", "")
 
 # File Upload Settings
 FILE_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024  # 10MB
