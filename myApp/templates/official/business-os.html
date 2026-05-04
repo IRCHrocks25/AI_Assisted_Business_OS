@@ -4798,6 +4798,25 @@ footer {
   </div>
 </section>
 
+<script>
+/* FAQ accordion toggle */
+(function () {
+  const items = Array.from(document.querySelectorAll('.dark-faq-item'));
+  if (!items.length) return;
+
+  items.forEach((item) => {
+    const question = item.querySelector('.dark-faq-q');
+    if (!question || question.hasAttribute('onclick')) return;
+
+    question.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      items.forEach((el) => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+})();
+</script>
+
 
 <!-- ═══ FINAL CTA ═══ -->
 <div id="final-dot-stage" style="position:relative;width:100%;height:100vh;display:flex;align-items:center;justify-content:center;cursor:crosshair;background:#fafaf7;overflow:hidden;">
