@@ -1,0 +1,94 @@
+{% comment %}
+Pricing Section - Package tiers
+{% endcomment %}
+<section id="pricing" class="py-24 px-4">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-text-light mb-4">Pricing</h2>
+            <p class="text-xl text-text-mid">Choose the package that fits your needs</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            {% block pricing_starter %}
+            <div class="glass-card rounded-2xl p-8">
+                <h3 class="text-2xl font-bold text-text-light mb-2">Starter</h3>
+                <p class="text-text-mid mb-6">1 channel, 1 workflow</p>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-start text-sm text-text-mid">
+                        <i class="fas fa-check-circle text-blue-electric mr-2 mt-0.5"></i>
+                        <span>Single channel integration</span>
+                    </li>
+                    <li class="flex items-start text-sm text-text-mid">
+                        <i class="fas fa-check-circle text-blue-electric mr-2 mt-0.5"></i>
+                        <span>Basic workflow automation</span>
+                    </li>
+                    <li class="flex items-start text-sm text-text-mid">
+                        <i class="fas fa-check-circle text-blue-electric mr-2 mt-0.5"></i>
+                        <span>Standard support</span>
+                    </li>
+                </ul>
+                <p class="text-xs text-text-gray mb-4">Typical timeline: 1-2 weeks</p>
+                {% include 'legacycomponents/_cta_button.html' with text="Get a Quote" type="secondary" href="#" %}
+            </div>
+            {% endblock %}
+            
+            {% block pricing_growth %}
+            <div class="glass-card rounded-2xl p-8 border-2 border-blue-electric glow-blue">
+                <div class="inline-block mb-2">
+                    <span class="text-xs font-bold uppercase text-blue-light">Popular</span>
+                </div>
+                <h3 class="text-2xl font-bold text-text-light mb-2">Growth</h3>
+                <p class="text-text-mid mb-6">Multi-channel + CRM</p>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-start text-sm text-text-mid">
+                        <i class="fas fa-check-circle text-blue-electric mr-2 mt-0.5"></i>
+                        <span>Multiple channel support</span>
+                    </li>
+                    <li class="flex items-start text-sm text-text-mid">
+                        <i class="fas fa-check-circle text-blue-electric mr-2 mt-0.5"></i>
+                        <span>CRM integration</span>
+                    </li>
+                    <li class="flex items-start text-sm text-text-mid">
+                        <i class="fas fa-check-circle text-blue-electric mr-2 mt-0.5"></i>
+                        <span>Advanced workflows</span>
+                    </li>
+                    <li class="flex items-start text-sm text-text-mid">
+                        <i class="fas fa-check-circle text-blue-electric mr-2 mt-0.5"></i>
+                        <span>Priority support</span>
+                    </li>
+                </ul>
+                <p class="text-xs text-text-gray mb-4">Typical timeline: 2-3 weeks</p>
+                {% include 'legacycomponents/_cta_button.html' with text="Get a Quote" type="primary" href="#" %}
+            </div>
+            {% endblock %}
+            
+            {% block pricing_scale %}
+            <div class="glass-card rounded-2xl p-8">
+                <h3 class="text-2xl font-bold text-text-light mb-2">Scale</h3>
+                <p class="text-text-mid mb-6">Voice + advanced routing + reporting</p>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-start text-sm text-text-mid">
+                        <i class="fas fa-check-circle text-blue-electric mr-2 mt-0.5"></i>
+                        <span>Voice AI included</span>
+                    </li>
+                    <li class="flex items-start text-sm text-text-mid">
+                        <i class="fas fa-check-circle text-blue-electric mr-2 mt-0.5"></i>
+                        <span>Advanced routing</span>
+                    </li>
+                    <li class="flex items-start text-sm text-text-mid">
+                        <i class="fas fa-check-circle text-blue-electric mr-2 mt-0.5"></i>
+                        <span>Custom reporting</span>
+                    </li>
+                    <li class="flex items-start text-sm text-text-mid">
+                        <i class="fas fa-check-circle text-blue-electric mr-2 mt-0.5"></i>
+                        <span>Dedicated support</span>
+                    </li>
+                </ul>
+                <p class="text-xs text-text-gray mb-4">Typical timeline: 3-4 weeks</p>
+                {% include 'legacycomponents/_cta_button.html' with text="Get a Quote" type="secondary" href="#" %}
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+</section>
+

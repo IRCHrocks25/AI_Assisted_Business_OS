@@ -1,9 +1,0 @@
-{% comment %}
-IconBadge - Icon with circular/rounded background
-Usage: {% include 'components/_icon_badge.html' with icon="fa-home" size="md" color="blue" %}
-{% endcomment %}
-{% load static %}
-<div class="inline-flex items-center justify-center rounded-full bg-gradient-to-br from-blue-electric to-blue-accent p-3 {% if size == 'sm' %}w-10 h-10{% elif size == 'lg' %}w-16 h-16{% else %}w-12 h-12{% endif %}">
-    <i class="fas {{ icon }} {% if size == 'sm' %}text-sm{% elif size == 'lg' %}text-xl{% else %}text-base{% endif %} text-white"></i>
-</div>
-

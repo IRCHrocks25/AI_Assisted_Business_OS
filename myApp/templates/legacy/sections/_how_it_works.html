@@ -1,0 +1,71 @@
+{% comment %}
+How It Works - 4-step timeline with deployment options
+{% endcomment %}
+<section id="process" class="py-24 px-4">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-text-light mb-4">How It Works</h2>
+            <p class="text-xl text-text-mid">Our proven 4-step delivery system</p>
+        </div>
+        
+        <div class="grid md:grid-cols-4 gap-8 mb-12">
+            {% block step_1 %}
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="mb-4">
+                    {% include 'legacycomponents/_icon_badge.html' with icon="fa-search" size="lg" %}
+                </div>
+                <h3 class="text-xl font-bold text-text-light mb-2">1. Diagnosis</h3>
+                <p class="text-text-mid text-sm">Map channels, CRM, workflows, and pain points</p>
+            </div>
+            {% endblock %}
+            
+            {% block step_2 %}
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="mb-4">
+                    {% include 'legacycomponents/_icon_badge.html' with icon="fa-code" size="lg" %}
+                </div>
+                <h3 class="text-xl font-bold text-text-light mb-2">2. Build</h3>
+                <p class="text-text-mid text-sm">Prompts, flows, permissions, and integrations</p>
+            </div>
+            {% endblock %}
+            
+            {% block step_3 %}
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="mb-4">
+                    {% include 'legacycomponents/_icon_badge.html' with icon="fa-rocket" size="lg" %}
+                </div>
+                <h3 class="text-xl font-bold text-text-light mb-2">3. Deploy</h3>
+                <p class="text-text-mid text-sm">Staged rollout, approval mode, monitoring</p>
+            </div>
+            {% endblock %}
+            
+            {% block step_4 %}
+            <div class="glass-card rounded-2xl p-6 text-center">
+                <div class="mb-4">
+                    {% include 'legacycomponents/_icon_badge.html' with icon="fa-chart-line" size="lg" %}
+                </div>
+                <h3 class="text-xl font-bold text-text-light mb-2">4. Optimize</h3>
+                <p class="text-text-mid text-sm">Analytics, QA, iteration, A/B tests</p>
+            </div>
+            {% endblock %}
+        </div>
+        
+        <!-- Deployment Options -->
+        <div class="glass-card rounded-2xl p-8 text-center">
+            <h3 class="text-2xl font-bold text-text-light mb-6">Deployment Options</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="p-6 rounded-xl bg-dark-2 border border-blue-electric/30">
+                    <i class="fas fa-user-check text-blue-electric text-3xl mb-4"></i>
+                    <h4 class="text-lg font-bold text-text-light mb-2">Approval-based</h4>
+                    <p class="text-text-mid text-sm">AI drafts, humans send</p>
+                </div>
+                <div class="p-6 rounded-xl bg-dark-2 border border-pink-neon/30">
+                    <i class="fas fa-robot text-pink-neon text-3xl mb-4"></i>
+                    <h4 class="text-lg font-bold text-text-light mb-2">Fully automated</h4>
+                    <p class="text-text-mid text-sm">With guardrails and monitoring</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

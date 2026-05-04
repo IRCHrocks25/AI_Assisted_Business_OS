@@ -1,0 +1,57 @@
+{% comment %}
+Proof + Outcomes Strip - Horizontal band with outcome cards
+{% endcomment %}
+<section class="py-12 px-4 border-y border-text-dark/20">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {% block proof_card_1 %}
+            <div class="glass-card rounded-xl p-4 text-center">
+                {% include 'legacycomponents/_icon_badge.html' with icon="fa-chart-line" size="sm" %}
+                <p class="text-text-light font-semibold mt-2 text-sm">Reduce support load</p>
+                <p class="text-xs text-text-gray mt-1">automation + AI orchestration</p>
+            </div>
+            {% endblock %}
+            
+            {% block proof_card_2 %}
+            <div class="glass-card rounded-xl p-4 text-center">
+                {% include 'legacycomponents/_icon_badge.html' with icon="fa-phone" size="sm" %}
+                <p class="text-text-light font-semibold mt-2 text-sm">Book more qualified calls</p>
+                <p class="text-xs text-text-gray mt-1">automation + AI orchestration</p>
+            </div>
+            {% endblock %}
+            
+            {% block proof_card_3 %}
+            <div class="glass-card rounded-xl p-4 text-center">
+                {% include 'legacycomponents/_icon_badge.html' with icon="fa-clock" size="sm" %}
+                <p class="text-text-light font-semibold mt-2 text-sm">Reply in minutes, not hours</p>
+                <p class="text-xs text-text-gray mt-1">automation + AI orchestration</p>
+            </div>
+            {% endblock %}
+            
+            {% block proof_card_4 %}
+            <div class="glass-card rounded-xl p-4 text-center">
+                {% include 'legacycomponents/_icon_badge.html' with icon="fa-user-plus" size="sm" %}
+                <p class="text-text-light font-semibold mt-2 text-sm">No leads left behind</p>
+                <p class="text-xs text-text-gray mt-1">automation + AI orchestration</p>
+            </div>
+            {% endblock %}
+            
+            {% block proof_card_5 %}
+            <div class="glass-card rounded-xl p-4 text-center">
+                {% include 'legacycomponents/_icon_badge.html' with icon="fa-share-nodes" size="sm" %}
+                <p class="text-text-light font-semibold mt-2 text-sm">Auto-routing + escalation</p>
+                <p class="text-xs text-text-gray mt-1">automation + AI orchestration</p>
+            </div>
+            {% endblock %}
+            
+            {% block proof_card_6 %}
+            <div class="glass-card rounded-xl p-4 text-center">
+                {% include 'legacycomponents/_icon_badge.html' with icon="fa-chart-bar" size="sm" %}
+                <p class="text-text-light font-semibold mt-2 text-sm">Centralized reporting</p>
+                <p class="text-xs text-text-gray mt-1">automation + AI orchestration</p>
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+</section>
+

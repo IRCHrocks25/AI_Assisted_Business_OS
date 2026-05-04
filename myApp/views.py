@@ -19,27 +19,39 @@ from .extraction_utils import extract_text_from_pdf, extract_with_llm, validate_
 import requests
 
 def home(request):
-    return render(request, 'landing_page.html')
+    return render(request, 'official/katek_ai_index.html')
+
+def ikonik(request):
+    return render(request, 'official/ikonik.html')
+
+def enterprise(request):
+    return render(request, 'official/enterprise.html')
+
+def education(request):
+    return render(request, 'official/education.html')
+
+def business_os(request):
+    return render(request, 'official/business-os.html')
 
 def sop_bot_demo(request):
-    return render(request, 'sop_bot_demo.html')
+    return render(request, 'legacy/sop_bot_demo.html')
 
 def booking_bot_demo(request):
-    return render(request, 'booking_bot_demo.html')
+    return render(request, 'legacy/booking_bot_demo.html')
 
 def voice_agent_demo(request):
-    return render(request, 'voice_agent_demo.html')
+    return render(request, 'legacy/voice_agent_demo.html')
 
 def custom_ai_systems(request):
-    return render(request, 'custom_ai_systems.html')
+    return render(request, 'legacy/custom_ai_systems.html')
 
 def geo_demo(request):
-    return render(request, 'geo_demo.html')
+    return render(request, 'legacy/geo_demo.html')
 
 def email_automation_demo(request):
     """Email automation demo page"""
     emails = DemoEmail.objects.all()
-    return render(request, 'email_automation_demo.html', {'emails': emails})
+    return render(request, 'legacy/email_automation_demo.html', {'emails': emails})
 
 @csrf_exempt
 def process_email_api(request):
@@ -270,7 +282,7 @@ def extraction_demo(request):
     """Main extraction demo page"""
     templates = ExtractionTemplate.objects.all()
     documents = Document.objects.all()
-    return render(request, 'extraction_demo.html', {
+    return render(request, 'legacy/extraction_demo.html', {
         'templates': templates,
         'documents': documents
     })
@@ -598,26 +610,26 @@ def crm_webhook_api(request):
 def crm_demo(request):
     """Mini CRM demo page showing pushed extraction records"""
     records = CRMRecord.objects.all()
-    return render(request, 'crm_demo.html', {'records': records})
+    return render(request, 'legacy/crm_demo.html', {'records': records})
 
 def email_crm_demo(request):
     """Email Automation CRM demo page"""
     records = EmailCRMRecord.objects.all()
-    return render(request, 'email_crm_demo.html', {'records': records})
+    return render(request, 'legacy/email_crm_demo.html', {'records': records})
 
 def omnichannel_support_demo(request):
     """Omnichannel AI Customer Support demo page"""
     conversations = DemoConversation.objects.all()
-    return render(request, 'omnichannel_support_demo.html', {'conversations': conversations})
+    return render(request, 'legacy/omnichannel_support_demo.html', {'conversations': conversations})
 
 def support_crm_demo(request):
     """Omnichannel Support CRM demo page"""
     tickets = DemoTicket.objects.all()
-    return render(request, 'support_crm_demo.html', {'tickets': tickets})
+    return render(request, 'legacy/support_crm_demo.html', {'tickets': tickets})
 
 def qualification_demo(request):
     """AI Sales Lead Qualification demo page"""
-    return render(request, 'qualification_demo.html')
+    return render(request, 'legacy/qualification_demo.html')
 
 def qualification_leads_demo(request):
     """View all qualified leads"""
@@ -628,7 +640,7 @@ def qualification_leads_demo(request):
     warm_leads = qualifications.filter(score__gte=40, score__lt=70).count()
     demos_booked = qualifications.filter(demo_booked=True).count()
     
-    return render(request, 'qualification_leads_demo.html', {
+    return render(request, 'legacy/qualification_leads_demo.html', {
         'qualifications': qualifications,
         'hot_leads': hot_leads,
         'warm_leads': warm_leads,
@@ -638,12 +650,12 @@ def qualification_leads_demo(request):
 def automation_engine_demo(request):
     """Backend Automation Engine demo page"""
     events = DemoEvent.objects.all().order_by('-created_at')[:20]
-    return render(request, 'automation_engine_demo.html', {'events': events    })
+    return render(request, 'legacy/automation_engine_demo.html', {'events': events    })
 
 def automation_engine_demo(request):
     """Backend Automation Engine demo page"""
     events = DemoEvent.objects.all().order_by('-created_at')[:20]
-    return render(request, 'automation_engine_demo.html', {'events': events})
+    return render(request, 'legacy/automation_engine_demo.html', {'events': events})
 
 @csrf_exempt
 def run_automation_api(request):
@@ -1035,7 +1047,7 @@ def quality_control_demo(request):
     medium_severity = analyzed_conversations.filter(risk_analysis__severity_score__gte=4.0, risk_analysis__severity_score__lt=7.0).count()
     compliance_flags = analyzed_conversations.filter(risk_analysis__compliance_flag=True).count()
     
-    return render(request, 'quality_control_demo.html', {
+    return render(request, 'legacy/quality_control_demo.html', {
         'conversations': conversations,
         'total_alerts': total_alerts,
         'high_severity': high_severity,
@@ -1074,7 +1086,7 @@ def analytics_demo(request):
     pipeline_value = snapshot.deals_closed * 50000  # Estimated average deal size
     revenue_this_month = snapshot.deals_closed * 45000
     
-    return render(request, 'analytics_demo.html', {
+    return render(request, 'legacy/analytics_demo.html', {
         'snapshot': snapshot,
         'insights': insights,
         'pipeline_value': pipeline_value,
@@ -1652,7 +1664,7 @@ def crm_workflow_demo(request):
     contacts = CRMContact.objects.all().order_by('-created_at')[:50]
     tags = CRMTag.objects.all()
     
-    return render(request, 'crm_workflow_demo.html', {
+    return render(request, 'legacy/crm_workflow_demo.html', {
         'contacts': contacts,
         'tags': tags,
     })

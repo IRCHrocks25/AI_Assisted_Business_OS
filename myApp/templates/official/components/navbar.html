@@ -1,0 +1,167 @@
+<style>
+  .shared-official-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    background: transparent;
+  }
+  .shared-official-navbar .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .shared-official-navbar .logo img {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+  .shared-official-navbar.nav-logo-white .logo img {
+    filter: brightness(0) invert(1);
+  }
+  .shared-official-navbar .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .shared-official-navbar .logo-wordmark {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+    font-weight: 600;
+    line-height: 1;
+  }
+  .shared-official-navbar .nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+  }
+  .shared-official-navbar .nav-links > li > a {
+    color: var(--nav-link-color, rgba(255,255,255,0.68));
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    padding: 8px 14px;
+    border-radius: 10px;
+    transition: color .2s ease, background-color .2s ease;
+  }
+  .shared-official-navbar .nav-links > li > a:hover {
+    color: var(--nav-link-hover-color, #fff);
+    background: var(--nav-link-hover-bg, rgba(255,255,255,0.06));
+  }
+  .shared-official-navbar .nav-links-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(255,255,255,0.68);
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 14px;
+    transition: color 0.2s, background-color 0.2s;
+    letter-spacing: 0.01em;
+    border-radius: 10px;
+  }
+  .shared-official-navbar .nav-links-btn:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.06);
+  }
+  .shared-official-navbar.nav-theme-dark {
+    --nav-link-color: rgba(3,13,42,0.72);
+    --nav-link-hover-color: #030d2a;
+    --nav-link-hover-bg: rgba(3,13,42,0.08);
+  }
+  .shared-official-navbar.nav-theme-dark .nav-links-btn {
+    color: rgba(3,13,42,0.65);
+  }
+  .shared-official-navbar.nav-theme-dark .nav-links-btn:hover {
+    color: #030d2a;
+    background: rgba(3,13,42,0.08);
+  }
+  .shared-official-navbar #whatwebuild-li:hover #whatwebuild-drop {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+  }
+  .shared-official-navbar .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.22);
+    background: rgba(3,13,42,0.32);
+    backdrop-filter: blur(8px);
+  }
+  .shared-official-navbar .nav-cta:hover {
+    background: rgba(3,13,42,0.5);
+  }
+  @media (max-width: 980px) {
+    .shared-official-navbar .nav-links,
+    .shared-official-navbar .nav-cta {
+      display: none;
+    }
+    .shared-official-navbar .nav-inner {
+      padding: 18px 20px;
+    }
+  }
+</style>
+
+<nav class="shared-official-navbar{% if nav_theme == 'dark' %} nav-theme-dark{% endif %}{% if logo_white %} nav-logo-white{% endif %}">
+  <div class="nav-inner">
+    <a href="{% url 'home' %}" class="logo">
+      <img src="https://res.cloudinary.com/dcuswyfur/image/upload/v1776795634/katek_logo_white_p1evh7.svg" alt="KATEK AI" />
+      
+    </a>
+    <ul class="nav-links">
+      {% if compact_nav %}
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'home' %}#products">What We Build</a></li>
+      <li><a href="{% url 'home' %}#faq">FAQ</a></li>
+      {% else %}
+      <li style="position:relative;list-style:none;" id="whatwebuild-li">
+        <button class="nav-links-btn">
+          What We Build
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div id="whatwebuild-drop" style="position:absolute;top:calc(100% + 8px);left:0;min-width:220px;background:#0a0a14;border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:8px;box-shadow:0 20px 50px rgba(0,0,0,0.7);opacity:0;visibility:hidden;transition:opacity 0.2s,transform 0.2s;transform:translateY(-6px);z-index:999;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.25);padding:6px 10px 8px;">Products</div>
+          <a href="{% url 'business_os' %}" style="display:flex;align-items:center;justify-content:space-between;padding:9px 10px;border-radius:8px;text-decoration:none;color:rgba(255,255,255,0.6);font-size:13px;font-weight:500;transition:all 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.07)';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='rgba(255,255,255,0.6)'">AI Business OS <span style="font-size:9px;padding:2px 6px;border-radius:100px;background:rgba(0,64,255,0.3);color:#60aaff;font-weight:700;letter-spacing:0.05em;">FLAGSHIP</span></a>
+          <a href="{% url 'ikonik' %}" style="display:block;padding:9px 10px;border-radius:8px;text-decoration:none;color:rgba(255,255,255,0.6);font-size:13px;font-weight:500;transition:all 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.07)';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='rgba(255,255,255,0.6)'">Ikonik</a>
+          <a href="{% url 'enterprise' %}" style="display:block;padding:9px 10px;border-radius:8px;text-decoration:none;color:rgba(255,255,255,0.6);font-size:13px;font-weight:500;transition:all 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.07)';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='rgba(255,255,255,0.6)'">Enterprise Solutions</a>
+          <a href="{% url 'education' %}" style="display:block;padding:9px 10px;border-radius:8px;text-decoration:none;color:rgba(255,255,255,0.6);font-size:13px;font-weight:500;transition:all 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.07)';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='rgba(255,255,255,0.6)'">Education & Training</a>
+        </div>
+      </li>
+      <li><a href="{% url 'home' %}#why">Why Katek</a></li>
+      <li><a href="{% url 'home' %}#how">How It Works</a></li>
+      <li><a href="{% url 'home' %}#faq">FAQ</a></li>
+      {% endif %}
+    </ul>
+    <a href="{% url 'home' %}#final" class="nav-cta">
+      Book A Discovery Call
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M5 12h14M13 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+</nav>

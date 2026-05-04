@@ -1,0 +1,657 @@
+{% extends 'base.html' %}
+
+{% block title %}Internal SOP & Policy Bot Demo - AI Assisted Business OS{% endblock %}
+
+{% block content %}
+<!-- Navigation -->
+{% include 'legacysections/_nav.html' %}
+
+<!-- Demo Page Header -->
+<section class="pt-32 pb-16 px-4">
+  <div class="max-w-7xl mx-auto text-center">
+    <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/5 border border-white/10 mb-6">
+      <i class="fas fa-file-shield text-pink-neon text-2xl"></i>
+    </div>
+
+    <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-text-light mb-4">
+      Internal SOP &amp; Policy Bot
+    </h1>
+
+    <p class="text-lg md:text-xl text-text-mid mb-8 max-w-2xl mx-auto leading-relaxed">
+      Upload your documentation PDF to train the bot, then ask questions about your policies, procedures, and best practices.
+    </p>
+
+    <div class="flex flex-wrap items-center justify-center gap-2 text-sm text-text-mid">
+      <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">PDF Upload</span>
+      <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Docs</span>
+      <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Q&amp;A</span>
+      <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Secure access</span>
+    </div>
+  </div>
+</section>
+
+<!-- Two Column Layout: Upload + Chatbot -->
+<section class="pb-24 px-4">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      
+      <!-- Left Column: PDF Upload -->
+      <div class="rounded-3xl border border-white/10 bg-dark-2/60 backdrop-blur-xl shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] overflow-hidden">
+        <div class="h-px w-full bg-gradient-to-r from-pink-neon/60 via-blue-electric/40 to-transparent"></div>
+        
+        <div class="p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+              <i class="fas fa-file-pdf text-pink-neon text-sm"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-text-light">Upload Documentation</h3>
+              <p class="text-xs text-text-mid">Train the bot with your PDF</p>
+            </div>
+          </div>
+
+          <!-- Upload Area -->
+          <div id="upload-area" class="relative border-2 border-dashed border-white/20 rounded-2xl p-8 text-center transition-all hover:border-pink-neon/40 hover:bg-white/5 cursor-pointer">
+            <input 
+              type="file" 
+              id="pdf-input" 
+              accept=".pdf" 
+              class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+            />
+            
+            <div id="upload-content" class="space-y-4">
+              <div class="w-16 h-16 mx-auto rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
+                <i class="fas fa-cloud-arrow-up text-2xl text-text-mid"></i>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-text-light mb-1">
+                  Drag &amp; drop your PDF here
+                </p>
+                <p class="text-xs text-text-mid">
+                  or <span class="text-pink-neon">click to browse</span>
+                </p>
+              </div>
+            </div>
+
+            <!-- Upload Progress -->
+            <div id="upload-progress" class="hidden">
+              <div class="w-16 h-16 mx-auto rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4">
+                <i class="fas fa-spinner fa-spin text-2xl text-pink-neon"></i>
+              </div>
+              <p class="text-sm text-text-light">Uploading...</p>
+            </div>
+
+            <!-- Upload Success -->
+            <div id="upload-success" class="hidden">
+              <div class="w-16 h-16 mx-auto rounded-2xl bg-green-500/20 border border-green-500/30 flex items-center justify-center mb-4">
+                <i class="fas fa-check-circle text-2xl text-green-400"></i>
+              </div>
+              <p class="text-sm font-medium text-text-light mb-1">Upload Successful!</p>
+              <p class="text-xs text-text-mid">The bot is now trained and ready</p>
+            </div>
+          </div>
+
+          <!-- File Info -->
+          <div id="file-info" class="hidden mt-4 p-4 rounded-xl bg-white/5 border border-white/10">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3 min-w-0">
+                <i class="fas fa-file-pdf text-red-400"></i>
+                <span id="file-name" class="text-sm text-text-light truncate"></span>
+              </div>
+              <button id="remove-file" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center transition">
+                <i class="fas fa-times text-text-mid text-xs"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Chatbot -->
+      <div class="rounded-3xl border border-white/10 bg-dark-2/60 backdrop-blur-xl shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] overflow-hidden">
+        <div class="h-px w-full bg-gradient-to-r from-pink-neon/60 via-blue-electric/40 to-transparent"></div>
+
+        <!-- Chatbot Window -->
+        <div id="sop-chatbot-window" class="h-[720px] flex flex-col">
+          
+          <!-- Header -->
+          <div class="px-6 py-4 border-b border-white/10 bg-dark-2/70">
+            <div class="flex items-center justify-between gap-4">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
+                  <i class="fas fa-file-shield text-pink-neon text-sm"></i>
+                </div>
+
+                <div class="min-w-0">
+                  <h3 class="text-sm font-semibold text-text-light leading-tight truncate">
+                    SOP &amp; Policy Assistant
+                  </h3>
+                  <p class="text-xs text-text-mid leading-tight truncate">
+                    <span id="bot-status">Upload a PDF to activate</span>
+                  </p>
+                </div>
+
+                <span id="status-indicator" class="ml-2 hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-text-mid">
+                  <span class="w-1.5 h-1.5 rounded-full bg-gray-400"></span>
+                  Offline
+                </span>
+              </div>
+
+              <a href="/" class="w-9 h-9 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center transition-colors">
+                <i class="fas fa-times text-text-mid text-sm"></i>
+              </a>
+            </div>
+          </div>
+          
+          <!-- Messages Area -->
+          <div id="sop-chatbot-messages" class="flex-1 overflow-y-auto p-6 bg-dark-2/40">
+            <!-- Initial message -->
+            <div class="flex w-full justify-start">
+              <div class="chat-bubble-assistant">
+                Upload your documentation PDF on the left to train me, then I'll be ready to answer questions about your policies, procedures, and best practices!
+              </div>
+            </div>
+          </div>
+          
+          <!-- Input Area -->
+          <div class="px-6 py-4 border-t border-white/10 bg-dark-2/70">
+            <form id="sop-chatbot-form" class="flex items-end gap-3">
+              <div class="flex-1 relative">
+                <textarea 
+                  id="sop-chatbot-input"
+                  rows="1"
+                  placeholder="Upload a PDF first to activate the chatbot..."
+                  disabled
+                  class="w-full px-4 py-3 pr-12 rounded-2xl bg-white/5 border border-white/10 text-text-light text-sm placeholder-text-gray resize-none focus:outline-none focus:border-pink-neon/50 focus:ring-2 focus:ring-pink-neon/10 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                ></textarea>
+
+                <button 
+                  type="submit"
+                  id="sop-chatbot-send"
+                  disabled
+                  class="absolute right-2 bottom-2 w-9 h-9 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 flex items-center justify-center transition disabled:opacity-50 disabled:cursor-not-allowed"
+                  aria-label="Send"
+                >
+                  <i class="fas fa-paper-plane text-pink-neon text-xs"></i>
+                </button>
+              </div>
+            </form>
+
+            <div class="mt-2 flex items-center justify-between text-xs text-text-gray">
+              <span>Shift+Enter for new line</span>
+              <span class="tracking-wide">Powered by KATEKAI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const uploadArea = document.getElementById('upload-area');
+  const pdfInput = document.getElementById('pdf-input');
+  const uploadContent = document.getElementById('upload-content');
+  const uploadProgress = document.getElementById('upload-progress');
+  const uploadSuccess = document.getElementById('upload-success');
+  const fileInfo = document.getElementById('file-info');
+  const fileName = document.getElementById('file-name');
+  const removeFile = document.getElementById('remove-file');
+  
+  const chatbotForm = document.getElementById('sop-chatbot-form');
+  const chatbotInput = document.getElementById('sop-chatbot-input');
+  const chatbotMessages = document.getElementById('sop-chatbot-messages');
+  const chatbotSend = document.getElementById('sop-chatbot-send');
+  const botStatus = document.getElementById('bot-status');
+  const statusIndicator = document.getElementById('status-indicator');
+  
+  const uploadWebhookUrl = 'https://katalyst-crm2.fly.dev/webhook/a9d5a04a-0daf-43b6-b09d-6821888be6bd';
+  const chatWebhookUrl = 'https://katalyst-crm2.fly.dev/webhook/234f30d3-89d8-4679-8360-70783638f80a';
+  
+  let isBotActive = false;
+  let uploadedFileName = null;
+  
+  // Generate or retrieve session ID
+  let sessionId = sessionStorage.getItem('sop_bot_sessionId');
+  if (!sessionId) {
+    sessionId = 'sop-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+    sessionStorage.setItem('sop_bot_sessionId', sessionId);
+  }
+
+  // Drag and drop handlers
+  uploadArea.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    uploadArea.classList.add('border-pink-neon/60', 'bg-white/10');
+  });
+
+  uploadArea.addEventListener('dragleave', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    uploadArea.classList.remove('border-pink-neon/60', 'bg-white/10');
+  });
+
+  uploadArea.addEventListener('drop', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    uploadArea.classList.remove('border-pink-neon/60', 'bg-white/10');
+    
+    const files = e.dataTransfer.files;
+    if (files.length > 0 && files[0].type === 'application/pdf') {
+      handleFileUpload(files[0]);
+    } else {
+      alert('Please upload a PDF file.');
+    }
+  });
+
+  pdfInput.addEventListener('change', function(e) {
+    if (e.target.files.length > 0) {
+      handleFileUpload(e.target.files[0]);
+    }
+  });
+
+  removeFile.addEventListener('click', function() {
+    resetUpload();
+  });
+
+  async function handleFileUpload(file) {
+    if (file.type !== 'application/pdf') {
+      alert('Please upload a PDF file.');
+      return;
+    }
+
+    uploadedFileName = file.name;
+    
+    // Show progress
+    uploadContent.classList.add('hidden');
+    uploadProgress.classList.remove('hidden');
+    uploadSuccess.classList.add('hidden');
+    fileInfo.classList.add('hidden');
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await fetch(uploadWebhookUrl, {
+        method: 'POST',
+        body: formData,
+        // Don't set Content-Type header, let browser set it with boundary
+      });
+
+      // Check if response is ok
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Upload failed:', response.status, errorText);
+        throw new Error(`Upload failed: ${response.status} ${response.statusText}`);
+      }
+
+      let data;
+      const contentType = response.headers.get('content-type');
+      
+      if (contentType && contentType.includes('application/json')) {
+        data = await response.json();
+      } else {
+        // Try to parse as JSON anyway
+        const text = await response.text();
+        try {
+          data = JSON.parse(text);
+        } catch (e) {
+          // If response is not JSON, treat as success if status is 200
+          if (response.status === 200) {
+            data = { Response: { output: "Hi, I'm Kris from katalyst AI. How can I help you today?" } };
+          } else {
+            throw new Error('Invalid response format');
+          }
+        }
+      }
+
+      // Check for success response in various formats
+      let welcomeMessage = null;
+      if (data.Response && data.Response.output) {
+        welcomeMessage = data.Response.output;
+      } else if (data.response && data.response.output) {
+        welcomeMessage = data.response.output;
+      } else if (data.message) {
+        welcomeMessage = data.message;
+      } else if (data.output) {
+        welcomeMessage = data.output;
+      } else if (response.status === 200 || response.status === 201) {
+        // If status is success but no message, use default
+        welcomeMessage = "Hi, I'm Kris from katalyst AI. How can I help you today?";
+      }
+
+      if (welcomeMessage) {
+        // Upload successful
+        uploadProgress.classList.add('hidden');
+        uploadSuccess.classList.remove('hidden');
+        fileInfo.classList.remove('hidden');
+        fileName.textContent = uploadedFileName;
+        
+        // Activate chatbot
+        activateChatbot(welcomeMessage);
+      } else {
+        console.error('Unexpected response format:', data);
+        throw new Error('Unexpected response format from server');
+      }
+    } catch (error) {
+      console.error('Upload error:', error);
+      console.error('Error details:', {
+        name: error.name,
+        message: error.message,
+        stack: error.stack
+      });
+      
+      uploadProgress.classList.add('hidden');
+      uploadContent.classList.remove('hidden');
+      
+      // More user-friendly error message
+      let errorMsg = 'Upload failed. ';
+      if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+        errorMsg += 'Network error - please check your connection or CORS settings.';
+      } else if (error.message.includes('JSON')) {
+        errorMsg += 'Server response format error.';
+      } else {
+        errorMsg += error.message;
+      }
+      
+      alert(errorMsg + ' Please check the browser console (F12) for more details.');
+    }
+  }
+
+  function activateChatbot(welcomeMessage) {
+    isBotActive = true;
+    
+    // Enable chatbot
+    chatbotInput.disabled = false;
+    chatbotInput.placeholder = 'Ask about policies, procedures, or best practices...';
+    chatbotSend.disabled = false;
+    
+    // Update status
+    botStatus.textContent = 'Ready to answer questions';
+    statusIndicator.classList.remove('hidden');
+    statusIndicator.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Online';
+    
+    // Clear messages and show welcome message
+    chatbotMessages.innerHTML = '';
+    addMessage(welcomeMessage || "Hi, I'm Kris from katalyst AI. How can I help you today?", 'assistant');
+  }
+
+  function resetUpload() {
+    uploadedFileName = null;
+    isBotActive = false;
+    pdfInput.value = '';
+    
+    uploadContent.classList.remove('hidden');
+    uploadProgress.classList.add('hidden');
+    uploadSuccess.classList.add('hidden');
+    fileInfo.classList.add('hidden');
+    
+    // Deactivate chatbot
+    chatbotInput.disabled = true;
+    chatbotInput.placeholder = 'Upload a PDF first to activate the chatbot...';
+    chatbotSend.disabled = true;
+    botStatus.textContent = 'Upload a PDF to activate';
+    statusIndicator.classList.add('hidden');
+    
+    // Reset messages
+    chatbotMessages.innerHTML = '';
+    addMessage('Upload your documentation PDF on the left to train me, then I\'ll be ready to answer questions about your policies, procedures, and best practices!', 'assistant');
+  }
+
+  // Auto-resize textarea
+  chatbotInput.addEventListener('input', function () {
+    this.style.height = 'auto';
+    this.style.height = Math.min(this.scrollHeight, 140) + 'px';
+  });
+
+  // Send message
+  chatbotForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    if (!isBotActive) {
+      alert('Please upload a PDF first to activate the chatbot.');
+      return;
+    }
+
+    const message = chatbotInput.value.trim();
+    if (!message) return;
+
+    chatbotInput.disabled = true;
+    chatbotSend.disabled = true;
+
+    // Add user message
+    addMessage(message, 'user');
+
+    chatbotInput.value = '';
+    chatbotInput.style.height = 'auto';
+
+    const typingId = addTypingIndicator();
+
+    try {
+      const response = await fetch(chatWebhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          message: message,
+          sessionId: sessionId
+        })
+      });
+
+      const data = await response.json();
+      removeTypingIndicator(typingId);
+
+      // Handle nested Response.output format
+      if (data.Response && data.Response.output) {
+        addMessage(data.Response.output, 'assistant');
+      } else if (data.response || data.message || data.text) {
+        addMessage(data.response || data.message || data.text, 'assistant');
+      } else {
+        addMessage('I apologize, but I encountered an error processing your request. Please try again.', 'assistant');
+      }
+    } catch (error) {
+      removeTypingIndicator(typingId);
+      addMessage('I apologize, but I encountered an error. Please try again later.', 'assistant');
+    } finally {
+      chatbotInput.disabled = false;
+      chatbotSend.disabled = false;
+      chatbotInput.focus();
+    }
+  });
+
+  // Messenger / WhatsApp style bubbles
+  function addMessage(text, sender) {
+    const messageDiv = document.createElement('div');
+    const isUser = sender === 'user';
+
+    messageDiv.className = `flex w-full ${isUser ? 'justify-end' : 'justify-start'}`;
+
+    const bubble = document.createElement('div');
+    bubble.className = isUser ? 'chat-bubble-user' : 'chat-bubble-assistant';
+    bubble.innerHTML = formatMessage(text);
+
+    messageDiv.appendChild(bubble);
+    chatbotMessages.appendChild(messageDiv);
+
+    setTimeout(() => {
+      chatbotMessages.scrollTo({ top: chatbotMessages.scrollHeight, behavior: 'smooth' });
+    }, 50);
+  }
+
+  function formatMessage(text) {
+    if (!text) return '';
+
+    let safe = text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+
+    // Bold **text**
+    safe = safe.replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>');
+
+    // Inline code
+    safe = safe.replace(/`([^`]+)`/g,
+      '<code class="px-2 py-0.5 rounded-lg bg-black/20 text-white text-xs font-mono border border-white/10 inline-block">$1</code>'
+    );
+
+    const lines = safe.split('\n');
+    let html = '';
+    let inUL = false;
+    let inOL = false;
+
+    const closeLists = () => {
+      if (inUL) { html += '</ul>'; inUL = false; }
+      if (inOL) { html += '</ol>'; inOL = false; }
+    };
+
+    for (const rawLine of lines) {
+      const line = rawLine.trim();
+
+      if (!line) {
+        closeLists();
+        html += '<div class="chat-spacer"></div>';
+        continue;
+      }
+
+      const bulletMatch = rawLine.match(/^\s*[-•]\s+(.+)$/);
+      if (bulletMatch) {
+        if (inOL) { html += '</ol>'; inOL = false; }
+        if (!inUL) { html += '<ul class="chat-ul">'; inUL = true; }
+        html += `<li class="chat-li">${bulletMatch[1]}</li>`;
+        continue;
+      }
+
+      const numMatch = rawLine.match(/^\s*(\d+)\.\s+(.+)$/);
+      if (numMatch) {
+        if (inUL) { html += '</ul>'; inUL = false; }
+        if (!inOL) { html += '<ol class="chat-ol">'; inOL = true; }
+        html += `<li class="chat-li">${numMatch[2]}</li>`;
+        continue;
+      }
+
+      closeLists();
+      html += `<div class="chat-line">${rawLine}</div>`;
+    }
+
+    closeLists();
+    return html;
+  }
+
+  function addTypingIndicator() {
+    const typingId = 'typing-' + Date.now();
+
+    const typingDiv = document.createElement('div');
+    typingDiv.id = typingId;
+    typingDiv.className = 'flex w-full justify-start';
+
+    const bubble = document.createElement('div');
+    bubble.className = 'chat-bubble-assistant';
+
+    bubble.innerHTML = `
+      <div class="flex items-center gap-1.5">
+        <span class="typing-dot"></span>
+        <span class="typing-dot" style="animation-delay: .15s"></span>
+        <span class="typing-dot" style="animation-delay: .3s"></span>
+      </div>
+    `;
+
+    typingDiv.appendChild(bubble);
+    chatbotMessages.appendChild(typingDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+    return typingId;
+  }
+
+  function removeTypingIndicator(id) {
+    const typingElement = document.getElementById(id);
+    if (typingElement) typingElement.remove();
+  }
+
+  // Enter to send, Shift+Enter for newline
+  chatbotInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && !e.shiftKey && !e.target.disabled) {
+      e.preventDefault();
+      chatbotForm.dispatchEvent(new Event('submit'));
+    }
+  });
+});
+</script>
+
+<style>
+/* --- Scrollbar --- */
+#sop-chatbot-messages{
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.2) transparent;
+}
+#sop-chatbot-messages::-webkit-scrollbar{ width: 6px; }
+#sop-chatbot-messages::-webkit-scrollbar-track{ background: transparent; }
+#sop-chatbot-messages::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.18);
+  border-radius: 999px;
+}
+#sop-chatbot-messages::-webkit-scrollbar-thumb:hover{
+  background: rgba(255,255,255,0.26);
+}
+
+/* --- Chat spacing / rhythm --- */
+#sop-chatbot-messages{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* --- Bubble base typography --- */
+.chat-bubble-assistant,
+.chat-bubble-user{
+  max-width: 72%;
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.42;
+  word-break: break-word;
+}
+
+/* --- Assistant bubble (LEFT) --- */
+.chat-bubble-assistant{
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  color: #f3f4f6;
+  border-radius: 18px;
+  border-bottom-left-radius: 6px;
+}
+
+/* --- User bubble (RIGHT) --- */
+.chat-bubble-user{
+  background: linear-gradient(135deg, rgba(236,72,153,0.95), rgba(59,130,246,0.95));
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #ffffff;
+  border-radius: 18px;
+  border-bottom-right-radius: 6px;
+}
+
+/* --- Message formatting --- */
+.chat-line{ margin: 2px 0; }
+.chat-spacer{ height: 8px; }
+
+.chat-ul, .chat-ol{
+  margin: 6px 0 6px 16px;
+  padding: 0;
+}
+.chat-li{
+  margin: 3px 0;
+  line-height: 1.35;
+}
+
+/* --- Typing dots --- */
+.typing-dot{
+  width: 6px;
+  height: 6px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 999px;
+  animation: bounce 1.2s infinite ease-in-out;
+}
+
+@keyframes bounce{
+  0%,80%,100%{ transform: scale(0.7); opacity: 0.6; }
+  40%{ transform: scale(1); opacity: 1; }
+}
+</style>
+{% endblock %}

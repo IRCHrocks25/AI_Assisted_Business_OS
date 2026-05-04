@@ -1,0 +1,38 @@
+{% comment %}
+CatalogueCard - Premium capability card for the catalogue
+Usage: {% include 'legacycomponents/_catalogue_card.html' with title="..." description="..." tags="tag1,tag2" use_cases="case1,case2" includes="item1,item2" %}
+{% endcomment %}
+<div class="catalogue-card glass-card rounded-2xl p-6 hover:shadow-xl hover:shadow-blue-electric/20 transition-all duration-300 hover:-translate-y-1 group" data-tags="{{ tags }}" data-use-cases="{{ use_cases }}" data-includes="{{ includes }}">
+    <h3 class="text-xl font-bold text-text-light mb-3 group-hover:text-blue-light transition-colors">{{ title }}</h3>
+    <p class="text-text-mid mb-4 text-sm leading-relaxed">{{ description }}</p>
+    
+    {% if tags %}
+    <div class="flex flex-wrap gap-2 mb-4 catalogue-tags">
+        <!-- Tags will be populated by JavaScript -->
+    </div>
+    {% endif %}
+    
+    {% if use_cases %}
+    <div class="mb-4">
+        <p class="text-xs font-semibold text-text-gray mb-2 uppercase tracking-wide">Use Cases</p>
+        <ul class="space-y-1 catalogue-use-cases">
+            <!-- Use cases will be populated by JavaScript -->
+        </ul>
+    </div>
+    {% endif %}
+    
+    {% if includes %}
+    <div class="mb-4">
+        <p class="text-xs font-semibold text-text-gray mb-2 uppercase tracking-wide">Includes</p>
+        <ul class="space-y-1 catalogue-includes">
+            <!-- Includes will be populated by JavaScript -->
+        </ul>
+    </div>
+    {% endif %}
+    
+    <div class="flex flex-wrap gap-3 mt-6">
+        {% include 'legacycomponents/_cta_button.html' with text="See Example Flow" type="secondary" href="#" %}
+        {% include 'legacycomponents/_cta_button.html' with text="Request Build" type="primary" href="#" %}
+    </div>
+</div>
+

@@ -1,0 +1,383 @@
+{% extends 'base.html' %}
+
+{% block title %}AI Booking System Demo - AI Assisted Business OS{% endblock %}
+
+{% block content %}
+<!-- Navigation -->
+{% include 'legacysections/_nav.html' %}
+
+<!-- Demo Page Header -->
+<section class="pt-32 pb-16 px-4">
+  <div class="max-w-5xl mx-auto text-center">
+    <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/5 border border-white/10 mb-6">
+      <i class="fas fa-calendar-check text-blue-electric text-2xl"></i>
+    </div>
+
+    <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-text-light mb-4">
+      AI Booking System
+    </h1>
+
+    <p class="text-lg md:text-xl text-text-mid mb-8 max-w-2xl mx-auto leading-relaxed">
+      Your intelligent conversational booking assistant. Handles reservations, consultations, and appointments with natural, human-like interactions. Seamlessly manages availability and confirms bookings.
+    </p>
+
+    <div class="flex flex-wrap items-center justify-center gap-2 text-sm text-text-mid">
+      <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Reservations</span>
+      <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Consultations</span>
+      <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Calendar sync</span>
+      <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Availability</span>
+    </div>
+  </div>
+</section>
+
+<!-- Chatbot Demo Section -->
+<section class="pb-24 px-4">
+  <div class="max-w-5xl mx-auto">
+    <div class="rounded-3xl border border-white/10 bg-dark-2/60 backdrop-blur-xl shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] overflow-hidden">
+      
+      <!-- Top accent hairline -->
+      <div class="h-px w-full bg-gradient-to-r from-blue-electric/60 via-pink-neon/40 to-transparent"></div>
+
+      <!-- Chatbot Window -->
+      <div id="booking-chatbot-window" class="h-[720px] flex flex-col">
+        
+        <!-- Header -->
+        <div class="px-6 py-4 border-b border-white/10 bg-dark-2/70">
+          <div class="flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
+                <i class="fas fa-calendar-check text-blue-electric text-sm"></i>
+              </div>
+
+              <div class="min-w-0">
+                <h3 class="text-sm font-semibold text-text-light leading-tight truncate">
+                  Booking Assistant
+                </h3>
+                <p class="text-xs text-text-mid leading-tight truncate">
+                  Reservations • Consultations • Appointments
+                </p>
+              </div>
+
+              <span class="ml-2 hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-text-mid">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                Online
+              </span>
+            </div>
+
+            <a href="/" class="w-9 h-9 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center transition-colors">
+              <i class="fas fa-times text-text-mid text-sm"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Messages Area -->
+        <div id="booking-chatbot-messages" class="flex-1 overflow-y-auto p-6 bg-dark-2/40">
+          <!-- Initial assistant message -->
+          <div class="flex w-full justify-start">
+            <div class="chat-bubble-assistant">
+              Hi! I'm your AI Booking Assistant. I can help you schedule reservations, consultations, or appointments. 
+              Just let me know what you'd like to book and I'll check availability and confirm everything for you. What can I help you schedule today?
+            </div>
+          </div>
+        </div>
+        
+        <!-- Input Area -->
+        <div class="px-6 py-4 border-t border-white/10 bg-dark-2/70">
+          <form id="booking-chatbot-form" class="flex items-end gap-3">
+            <div class="flex-1 relative">
+              <textarea 
+                id="booking-chatbot-input"
+                rows="1"
+                placeholder="Tell me what you'd like to book..."
+                class="w-full px-4 py-3 pr-12 rounded-2xl bg-white/5 border border-white/10 text-text-light text-sm placeholder-text-gray resize-none focus:outline-none focus:border-blue-electric/50 focus:ring-2 focus:ring-blue-electric/10 transition"
+              ></textarea>
+
+              <button 
+                type="submit"
+                id="booking-chatbot-send"
+                class="absolute right-2 bottom-2 w-9 h-9 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 flex items-center justify-center transition disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Send"
+              >
+                <i class="fas fa-paper-plane text-blue-electric text-xs"></i>
+              </button>
+            </div>
+          </form>
+
+          <div class="mt-2 flex items-center justify-between text-xs text-text-gray">
+            <span>Shift+Enter for new line</span>
+            <span class="tracking-wide">Powered by KATEKAI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const chatbotForm = document.getElementById('booking-chatbot-form');
+  const chatbotInput = document.getElementById('booking-chatbot-input');
+  const chatbotMessages = document.getElementById('booking-chatbot-messages');
+  const chatbotSend = document.getElementById('booking-chatbot-send');
+  const webhookUrl = 'https://katalyst-crm2.fly.dev/webhook/22375d7e-57e9-4e8a-998a-11fc2ab7f1f8';
+  
+  // Generate or retrieve session ID
+  let sessionId = sessionStorage.getItem('booking_bot_sessionId');
+  if (!sessionId) {
+    sessionId = 'booking-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+    sessionStorage.setItem('booking_bot_sessionId', sessionId);
+  }
+
+  // Auto-resize textarea
+  chatbotInput.addEventListener('input', function () {
+    this.style.height = 'auto';
+    this.style.height = Math.min(this.scrollHeight, 140) + 'px';
+  });
+
+  // Send message
+  chatbotForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const message = chatbotInput.value.trim();
+    if (!message) return;
+
+    chatbotInput.disabled = true;
+    chatbotSend.disabled = true;
+
+    // Add user message
+    addMessage(message, 'user');
+
+    chatbotInput.value = '';
+    chatbotInput.style.height = 'auto';
+
+    const typingId = addTypingIndicator();
+
+    try {
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          message: message,
+          sessionId: sessionId
+        })
+      });
+
+      const data = await response.json();
+      removeTypingIndicator(typingId);
+
+      // Handle nested Response.output format
+      if (data.Response && data.Response.output) {
+        addMessage(data.Response.output, 'assistant');
+      } else if (data.response || data.message || data.text) {
+        addMessage(data.response || data.message || data.text, 'assistant');
+      } else {
+        addMessage('I apologize, but I encountered an error processing your request. Please try again.', 'assistant');
+      }
+    } catch (error) {
+      removeTypingIndicator(typingId);
+      addMessage('I apologize, but I encountered an error. Please try again later.', 'assistant');
+    } finally {
+      chatbotInput.disabled = false;
+      chatbotSend.disabled = false;
+      chatbotInput.focus();
+    }
+  });
+
+  // Messenger / WhatsApp style bubbles (no avatars)
+  function addMessage(text, sender) {
+    const messageDiv = document.createElement('div');
+    const isUser = sender === 'user';
+
+    messageDiv.className = `flex w-full ${isUser ? 'justify-end' : 'justify-start'}`;
+
+    const bubble = document.createElement('div');
+    bubble.className = isUser ? 'chat-bubble-user' : 'chat-bubble-assistant';
+    bubble.innerHTML = formatMessage(text);
+
+    messageDiv.appendChild(bubble);
+    chatbotMessages.appendChild(messageDiv);
+
+    setTimeout(() => {
+      chatbotMessages.scrollTo({ top: chatbotMessages.scrollHeight, behavior: 'smooth' });
+    }, 50);
+  }
+
+  function formatMessage(text) {
+    if (!text) return '';
+
+    let safe = text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+
+    // Bold **text**
+    safe = safe.replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>');
+
+    // Inline code
+    safe = safe.replace(/`([^`]+)`/g,
+      '<code class="px-2 py-0.5 rounded-lg bg-black/20 text-white text-xs font-mono border border-white/10 inline-block">$1</code>'
+    );
+
+    const lines = safe.split('\n');
+    let html = '';
+    let inUL = false;
+    let inOL = false;
+
+    const closeLists = () => {
+      if (inUL) { html += '</ul>'; inUL = false; }
+      if (inOL) { html += '</ol>'; inOL = false; }
+    };
+
+    for (const rawLine of lines) {
+      const line = rawLine.trim();
+
+      if (!line) {
+        closeLists();
+        html += '<div class="chat-spacer"></div>';
+        continue;
+      }
+
+      const bulletMatch = rawLine.match(/^\s*[-•]\s+(.+)$/);
+      if (bulletMatch) {
+        if (inOL) { html += '</ol>'; inOL = false; }
+        if (!inUL) { html += '<ul class="chat-ul">'; inUL = true; }
+        html += `<li class="chat-li">${bulletMatch[1]}</li>`;
+        continue;
+      }
+
+      const numMatch = rawLine.match(/^\s*(\d+)\.\s+(.+)$/);
+      if (numMatch) {
+        if (inUL) { html += '</ul>'; inUL = false; }
+        if (!inOL) { html += '<ol class="chat-ol">'; inOL = true; }
+        html += `<li class="chat-li">${numMatch[2]}</li>`;
+        continue;
+      }
+
+      closeLists();
+      html += `<div class="chat-line">${rawLine}</div>`;
+    }
+
+    closeLists();
+    return html;
+  }
+
+  function addTypingIndicator() {
+    const typingId = 'typing-' + Date.now();
+
+    const typingDiv = document.createElement('div');
+    typingDiv.id = typingId;
+    typingDiv.className = 'flex w-full justify-start';
+
+    const bubble = document.createElement('div');
+    bubble.className = 'chat-bubble-assistant';
+
+    bubble.innerHTML = `
+      <div class="flex items-center gap-1.5">
+        <span class="typing-dot"></span>
+        <span class="typing-dot" style="animation-delay: .15s"></span>
+        <span class="typing-dot" style="animation-delay: .3s"></span>
+      </div>
+    `;
+
+    typingDiv.appendChild(bubble);
+    chatbotMessages.appendChild(typingDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+    return typingId;
+  }
+
+  function removeTypingIndicator(id) {
+    const typingElement = document.getElementById(id);
+    if (typingElement) typingElement.remove();
+  }
+
+  // Enter to send, Shift+Enter for newline
+  chatbotInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      chatbotForm.dispatchEvent(new Event('submit'));
+    }
+  });
+});
+</script>
+
+<style>
+/* --- Scrollbar --- */
+#booking-chatbot-messages{
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.2) transparent;
+}
+#booking-chatbot-messages::-webkit-scrollbar{ width: 6px; }
+#booking-chatbot-messages::-webkit-scrollbar-track{ background: transparent; }
+#booking-chatbot-messages::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.18);
+  border-radius: 999px;
+}
+#booking-chatbot-messages::-webkit-scrollbar-thumb:hover{
+  background: rgba(255,255,255,0.26);
+}
+
+/* --- Chat spacing / rhythm --- */
+#booking-chatbot-messages{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* --- Bubble base typography --- */
+.chat-bubble-assistant,
+.chat-bubble-user{
+  max-width: 72%;
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.42;
+  word-break: break-word;
+}
+
+/* --- Assistant bubble (LEFT) --- */
+.chat-bubble-assistant{
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  color: #f3f4f6;
+  border-radius: 18px;
+  border-bottom-left-radius: 6px; /* tail feel */
+}
+
+/* --- User bubble (RIGHT) --- */
+.chat-bubble-user{
+  background: linear-gradient(135deg, rgba(59,130,246,0.95), rgba(236,72,153,0.95));
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #ffffff;
+  border-radius: 18px;
+  border-bottom-right-radius: 6px; /* tail feel */
+}
+
+/* --- Message formatting --- */
+.chat-line{ margin: 2px 0; }
+.chat-spacer{ height: 8px; }
+
+.chat-ul, .chat-ol{
+  margin: 6px 0 6px 16px;
+  padding: 0;
+}
+.chat-li{
+  margin: 3px 0;
+  line-height: 1.35;
+}
+
+/* --- Typing dots --- */
+.typing-dot{
+  width: 6px;
+  height: 6px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 999px;
+  animation: bounce 1.2s infinite ease-in-out;
+}
+
+@keyframes bounce{
+  0%,80%,100%{ transform: scale(0.7); opacity: 0.6; }
+  40%{ transform: scale(1); opacity: 1; }
+}
+</style>
+{% endblock %}
+

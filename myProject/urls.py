@@ -5,6 +5,10 @@ from myApp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
+    path('ikonik/', views.ikonik, name='ikonik'),
+    path('enterprise/', views.enterprise, name='enterprise'),
+    path('education/', views.education, name='education'),
+    path('business-os/', views.business_os, name='business_os'),
     path('api/chat/', views.chat_api, name='chat_api'),
     path('demo/sop-bot/', views.sop_bot_demo, name='sop_bot_demo'),
     path('demo/booking-bot/', views.booking_bot_demo, name='booking_bot_demo'),

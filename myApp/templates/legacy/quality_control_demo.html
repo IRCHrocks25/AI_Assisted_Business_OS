@@ -1,0 +1,402 @@
+{% extends 'base.html' %}
+
+{% block title %}Quality Control & Monitoring - AI Assisted Business OS{% endblock %}
+
+{% block content %}
+<!-- Navigation -->
+{% include 'legacysections/_nav.html' %}
+
+<div class="min-h-screen bg-dark-1 text-text-light">
+  <!-- Premium background effects -->
+  <div class="pointer-events-none fixed inset-0">
+    <div class="absolute -top-40 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-blue-electric/10 blur-[160px]"></div>
+    <div class="absolute -bottom-40 right-[-120px] h-[600px] w-[600px] rounded-full bg-pink-neon/10 blur-[180px]"></div>
+    <div class="absolute inset-0 opacity-[0.04] bg-[radial-gradient(circle_at_center,#ffffff_1px,transparent_1px)] bg-[length:44px_44px]"></div>
+  </div>
+
+  <!-- Header -->
+  <section class="pt-24 pb-8 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-6">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/5 border border-white/10 mb-4">
+          <i class="fas fa-shield-alt text-pink-neon text-2xl"></i>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-text-light mb-3">
+          Quality Control & Monitoring
+        </h1>
+        <p class="text-lg text-text-mid max-w-2xl mx-auto mb-4">
+          AI-powered risk detection, compliance monitoring, and automated escalation for customer conversations.
+        </p>
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs text-text-mid">
+          <i class="fas fa-info-circle"></i>
+          <span>Simulated demo — production monitors all channels in real-time</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Global Risk Summary -->
+  <section class="pb-6 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/10 shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] p-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+            <div class="text-2xl font-bold text-red-400 mb-1">{{ total_alerts }}</div>
+            <div class="text-sm text-text-mid">Active Alerts</div>
+          </div>
+          <div class="bg-white/5 rounded-xl border border-red-500/30 p-4">
+            <div class="text-2xl font-bold text-red-400 mb-1">{{ high_severity }}</div>
+            <div class="text-sm text-text-mid">High Severity</div>
+          </div>
+          <div class="bg-white/5 rounded-xl border border-yellow-500/30 p-4">
+            <div class="text-2xl font-bold text-yellow-400 mb-1">{{ medium_severity }}</div>
+            <div class="text-sm text-text-mid">Medium</div>
+          </div>
+          <div class="bg-white/5 rounded-xl border border-orange-500/30 p-4">
+            <div class="text-2xl font-bold text-orange-400 mb-1">{{ compliance_flags }}</div>
+            <div class="text-sm text-text-mid">Compliance Flags</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three Panel Layout -->
+  <section class="pb-24 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- LEFT: Live Conversation Feed -->
+        <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/10 shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] p-6 flex flex-col">
+          <div class="h-px w-full bg-gradient-to-r from-pink-neon/60 via-blue-electric/40 to-transparent mb-6"></div>
+          <h2 class="text-xl font-semibold text-text-light mb-4 flex items-center gap-2">
+            <i class="fas fa-comments text-blue-electric"></i>
+            Live Conversation Feed
+          </h2>
+          
+          <div id="conversation-feed" class="flex-1 overflow-y-auto space-y-3 min-h-[500px]">
+            {% for conversation in conversations %}
+            <div 
+              class="bg-white/5 rounded-xl border border-white/10 p-4 hover:bg-white/10 cursor-pointer transition conversation-item"
+              onclick="analyzeConversation('{{ conversation.id }}')"
+              data-conversation-id="{{ conversation.id }}"
+            >
+              <div class="flex items-start justify-between mb-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-semibold text-text-mid">{{ conversation.get_channel_display }}</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-xs border 
+                    {% if conversation.sender_type == 'customer' %}bg-blue-500/20 border-blue-500/30 text-blue-300
+                    {% else %}bg-green-500/20 border-green-500/30 text-green-300{% endif %}">
+                    {{ conversation.sender_type|title }}
+                  </span>
+                </div>
+                <span class="text-xs text-text-gray">{{ conversation.created_at|date:"H:i:s" }}</span>
+              </div>
+              <div class="text-sm text-text-light mb-2">{{ conversation.message|truncatewords:20 }}</div>
+              {% if conversation.sender_name %}
+              <div class="text-xs text-text-gray">From: {{ conversation.sender_name }}</div>
+              {% endif %}
+            </div>
+            {% empty %}
+            <div class="text-center text-text-mid text-sm py-8">
+              <i class="fas fa-comments text-4xl mb-3 opacity-30"></i>
+              <p>No conversations yet.</p>
+              <p class="text-xs text-text-gray mt-2">Run: <code class="bg-white/5 px-2 py-1 rounded">python manage.py seed_quality_conversations</code></p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- CENTER: AI Risk Analysis -->
+        <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/10 shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] p-6 flex flex-col">
+          <div class="h-px w-full bg-gradient-to-r from-pink-neon/60 via-blue-electric/40 to-transparent mb-6"></div>
+          <h2 class="text-xl font-semibold text-text-light mb-4 flex items-center gap-2">
+            <i class="fas fa-brain text-pink-neon"></i>
+            AI Risk Analysis
+          </h2>
+          
+          <div id="risk-analysis" class="flex-1 overflow-y-auto min-h-[500px]">
+            <div class="text-center text-text-mid text-sm py-8">
+              <i class="fas fa-shield-alt text-4xl mb-3 opacity-30"></i>
+              <p>Click a conversation to analyze risk</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Alerts & Escalations -->
+        <div class="bg-dark-2/40 backdrop-blur-xl rounded-2xl border border-white/10 shadow-[0_30px_90px_-40px_rgba(0,0,0,0.75)] p-6 flex flex-col">
+          <div class="h-px w-full bg-gradient-to-r from-pink-neon/60 via-blue-electric/40 to-transparent mb-6"></div>
+          <h2 class="text-xl font-semibold text-text-light mb-4 flex items-center gap-2">
+            <i class="fas fa-bell text-red-400"></i>
+            Alerts & Escalations
+          </h2>
+          
+          <div id="alerts-panel" class="flex-1 overflow-y-auto space-y-3 min-h-[500px]">
+            <div class="text-center text-text-mid text-sm py-8">
+              <i class="fas fa-bell-slash text-4xl mb-3 opacity-30"></i>
+              <p>Alerts will appear here when risks are detected</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+function analyzeConversation(conversationId) {
+  // Highlight selected conversation
+  document.querySelectorAll('.conversation-item').forEach(item => {
+    item.classList.remove('border-pink-neon/50', 'bg-pink-neon/10');
+  });
+  const selectedItem = document.querySelector(`[data-conversation-id="${conversationId}"]`);
+  if (selectedItem) {
+    selectedItem.classList.add('border-pink-neon/50', 'bg-pink-neon/10');
+  }
+  
+  // Show loading
+  const riskAnalysis = document.getElementById('risk-analysis');
+  riskAnalysis.innerHTML = `
+    <div class="space-y-4">
+      <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+        <div class="flex items-center gap-3">
+          <div class="w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></div>
+          <span class="text-sm font-semibold text-text-light">Analyzing conversation...</span>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  // Call API
+  fetch('/api/quality/analyze/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': getCookie('csrftoken')
+    },
+    body: JSON.stringify({ conversation_id: conversationId })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      displayRiskAnalysis(data.analysis);
+      displayAlerts(data.analysis);
+    } else {
+      console.error('Error:', data.error);
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
+
+function displayRiskAnalysis(analysis) {
+  const riskAnalysis = document.getElementById('risk-analysis');
+  
+  // Determine severity color
+  let severityColor = 'text-green-400';
+  let severityBg = 'bg-green-500/20 border-green-500/30';
+  if (analysis.severity_score >= 7) {
+    severityColor = 'text-red-400';
+    severityBg = 'bg-red-500/20 border-red-500/30';
+  } else if (analysis.severity_score >= 4) {
+    severityColor = 'text-yellow-400';
+    severityBg = 'bg-yellow-500/20 border-yellow-500/30';
+  }
+  
+  // Determine churn risk color
+  const churnColors = {
+    'high': 'text-red-400 bg-red-500/20 border-red-500/30',
+    'medium': 'text-yellow-400 bg-yellow-500/20 border-yellow-500/30',
+    'low': 'text-green-400 bg-green-500/20 border-green-500/30'
+  };
+  const churnColor = churnColors[analysis.churn_risk] || churnColors['low'];
+  
+  // Determine sentiment color
+  let sentimentColor = 'text-gray-400';
+  if (analysis.sentiment_score > 0.3) {
+    sentimentColor = 'text-green-400';
+  } else if (analysis.sentiment_score < -0.3) {
+    sentimentColor = 'text-red-400';
+  } else if (analysis.sentiment_score < 0) {
+    sentimentColor = 'text-yellow-400';
+  }
+  
+  riskAnalysis.innerHTML = `
+    <div class="space-y-4">
+      <!-- Severity Score Gauge -->
+      <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-sm font-semibold text-text-mid">Severity Score</span>
+          <span class="text-2xl font-bold ${severityColor}">${analysis.severity_score.toFixed(1)}<span class="text-sm text-text-mid">/10</span></span>
+        </div>
+        <div class="w-full h-3 bg-white/5 rounded-full overflow-hidden">
+          <div class="h-full bg-gradient-to-r from-green-400 via-yellow-400 to-red-500 transition-all duration-1000" style="width: ${(analysis.severity_score / 10) * 100}%"></div>
+        </div>
+        <div class="mt-2 flex items-center justify-between text-xs text-text-gray">
+          <span>Low</span>
+          <span>Medium</span>
+          <span>High</span>
+          <span>Critical</span>
+        </div>
+      </div>
+      
+      <!-- Sentiment -->
+      <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+        <span class="text-xs text-text-mid mb-2 block">Sentiment</span>
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-semibold ${sentimentColor}">${analysis.sentiment_label}</span>
+          <span class="text-xs text-text-gray">${(analysis.sentiment_score * 100).toFixed(0)}%</span>
+        </div>
+        <div class="w-full h-2 bg-white/5 rounded-full overflow-hidden mt-2">
+          <div class="h-full ${analysis.sentiment_score >= 0 ? 'bg-green-400' : 'bg-red-400'} transition-all duration-1000" style="width: ${Math.abs(analysis.sentiment_score) * 100}%"></div>
+        </div>
+      </div>
+      
+      <!-- Churn Risk -->
+      <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+        <span class="text-xs text-text-mid mb-2 block">Churn Risk</span>
+        <span class="inline-flex items-center px-3 py-1 rounded-lg text-sm font-medium border ${churnColor}">
+          ${analysis.churn_risk.charAt(0).toUpperCase() + analysis.churn_risk.slice(1)}
+        </span>
+      </div>
+      
+      <!-- Compliance Flag -->
+      ${analysis.compliance_flag ? `
+      <div class="bg-red-500/10 rounded-xl border border-red-500/30 p-4">
+        <div class="flex items-center gap-2 mb-2">
+          <i class="fas fa-exclamation-triangle text-red-400"></i>
+          <span class="text-sm font-semibold text-red-400">Compliance Risk Detected</span>
+        </div>
+        <div class="text-xs text-text-mid">Type: ${analysis.compliance_type || 'Unknown'}</div>
+      </div>
+      ` : `
+      <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+        <span class="text-xs text-text-mid mb-2 block">Compliance</span>
+        <span class="text-sm text-green-400">No flags</span>
+      </div>
+      `}
+      
+      <!-- Escalation Status -->
+      ${analysis.escalation_required ? `
+      <div class="bg-gradient-to-br from-red-500/10 to-orange-500/10 rounded-xl border border-red-500/30 p-4">
+        <div class="flex items-center gap-2 mb-2">
+          <i class="fas fa-exclamation-circle text-red-400"></i>
+          <span class="text-sm font-semibold text-red-400">🚨 Escalation Required</span>
+        </div>
+        <div class="space-y-2 text-xs mt-3">
+          <div class="flex items-center gap-2">
+            <i class="fas fa-check-circle text-green-400"></i>
+            <span class="text-text-mid">Create priority ticket</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="fas fa-check-circle text-green-400"></i>
+            <span class="text-text-mid">Notify Manager</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="fas fa-check-circle text-green-400"></i>
+            <span class="text-text-mid">Lock automation replies</span>
+          </div>
+        </div>
+      </div>
+      ` : ''}
+      
+      <!-- Automation Status -->
+      ${analysis.automation_paused ? `
+      <div class="bg-yellow-500/10 rounded-xl border border-yellow-500/30 p-4">
+        <div class="flex items-center gap-2">
+          <i class="fas fa-pause-circle text-yellow-400"></i>
+          <span class="text-sm font-semibold text-yellow-400">Automation Paused</span>
+        </div>
+        <div class="text-xs text-text-mid mt-1">Human review required</div>
+      </div>
+      ` : `
+      <div class="bg-white/5 rounded-xl border border-white/10 p-4">
+        <div class="flex items-center gap-2">
+          <i class="fas fa-play-circle text-green-400"></i>
+          <span class="text-sm font-semibold text-green-400">Automation Active</span>
+        </div>
+      </div>
+      `}
+    </div>
+  `;
+}
+
+function displayAlerts(analysis) {
+  const alertsPanel = document.getElementById('alerts-panel');
+  
+  if (analysis.alert_created) {
+    const now = new Date();
+    alertsPanel.innerHTML = `
+      <div class="bg-red-500/10 rounded-xl border border-red-500/30 p-4">
+        <div class="flex items-start justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <i class="fas fa-bell text-red-400"></i>
+            <span class="text-sm font-semibold text-red-400">Alert Created</span>
+          </div>
+          <span class="text-xs text-text-gray">${now.toLocaleTimeString()}</span>
+        </div>
+        <div class="text-xs text-text-mid mb-3">Severity: ${analysis.severity_score.toFixed(1)}/10</div>
+        <div class="space-y-2 text-xs">
+          <div class="flex items-center gap-2">
+            <i class="fas fa-check-circle text-green-400"></i>
+            <span class="text-text-mid">Alert sent to manager</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="fas fa-check-circle text-green-400"></i>
+            <span class="text-text-mid">Priority ticket created</span>
+          </div>
+          ${analysis.compliance_flag ? `
+          <div class="flex items-center gap-2">
+            <i class="fas fa-check-circle text-green-400"></i>
+            <span class="text-text-mid">Compliance team notified</span>
+          </div>
+          ` : ''}
+          <div class="flex items-center gap-2">
+            <i class="fas fa-check-circle text-green-400"></i>
+            <span class="text-text-mid">SLA timer started (2 hours)</span>
+          </div>
+        </div>
+      </div>
+    `;
+  } else {
+    alertsPanel.innerHTML = `
+      <div class="text-center text-text-mid text-sm py-8">
+        <i class="fas fa-check-circle text-green-400 text-4xl mb-3"></i>
+        <p>No alerts - conversation is within acceptable risk parameters</p>
+      </div>
+    `;
+  }
+}
+
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+</script>
+
+<style>
+#conversation-feed, #risk-analysis, #alerts-panel {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.2) transparent;
+}
+#conversation-feed::-webkit-scrollbar, #risk-analysis::-webkit-scrollbar, #alerts-panel::-webkit-scrollbar { width: 6px; }
+#conversation-feed::-webkit-scrollbar-track, #risk-analysis::-webkit-scrollbar-track, #alerts-panel::-webkit-scrollbar-track { background: transparent; }
+#conversation-feed::-webkit-scrollbar-thumb, #risk-analysis::-webkit-scrollbar-thumb, #alerts-panel::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.18);
+  border-radius: 999px;
+}
+</style>
+{% endblock %}
+
