@@ -3506,19 +3506,17 @@ p { font-size: 17px; line-height: 1.7; }
     <!-- Centered header — BOS style -->
     <div style="text-align:center;max-width:900px;margin:0 auto 60px;">
       <div class="breadcrumb" style="justify-content:center;margin-bottom:20px;">
-        <a href="{% url 'home' %}" style="color:rgba(3,13,42,0.5);">← What We Build</a>  /  <span style="color:#030d2a;">Ikonik</span>
+        <a href="index.html" style="color:rgba(3,13,42,0.5);">← What We Build</a>  /  <span style="color:#030d2a;">AI KONIK</span>
       </div>
-      
-      <h1 class="page-title" style="font-size:clamp(32px,4.5vw,64px);font-weight:600;letter-spacing:-0.03em;line-height:1.08;color:#030d2a;margin-bottom:24px;white-space:nowrap;">
-        <span style="display:block;">Enterprise AI advantage.</span>
-        <span style="display:block;">Finally accessible for SMBs.</span>
-      </h1>
-      <p style="font-size:19px;color:#374151;line-height:1.65;margin-bottom:36px;max-width:860px;margin-left:auto;margin-right:auto;">While your competitors with 10x your resources are deploying AI right now, you don't need their budgets or their tech teams to compete. Ikonik combines a specialized AI platform, 100+ industry-built agents, 60,000+ curated prompts, and a 6-phase consulting method — for companies doing $1M–$20M in revenue.</p>
+
+      <span class="eyebrow" style="display:inline-flex;margin-bottom:20px;">Intelligent Process Orchestration</span>
+      <h1 class="page-title" style="font-size:clamp(32px,4.5vw,64px);font-weight:600;letter-spacing:-0.03em;line-height:1.08;color:#030d2a;margin-bottom:24px;">Run complex operations without the chaos.</h1>
+      <p style="font-size:19px;color:#374151;line-height:1.65;margin-bottom:36px;max-width:860px;margin-left:auto;margin-right:auto;">AI KONIK is the orchestration layer for businesses where work spans teams, approvals, and systems — and nothing can afford to slip through the cracks.<br><br>Humans decide. AI KONIK coordinates. AI executes. Work moves forward without anyone chasing it.</p>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;">
         <a href="#final" class="btn-primary">Book A Discovery Call <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="position:relative;z-index:2;"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
         <a href="#platform" class="btn-ghost" style="color:#030d2a;border-color:rgba(3,13,42,0.2);background:rgba(3,13,42,0.04);">See what's inside ↓</a>
       </div>
-      <div style="font-size:13px;color:rgba(0,64,255,0.6);letter-spacing:0.06em;font-weight:500;">Compliance ready: <span style="color:#0040FF;font-weight:700;">HIPAA · SOC 2 · GDPR · EU AI Act</span></div>
+      <div style="font-size:13px;color:rgba(0,64,255,0.6);letter-spacing:0.06em;font-weight:500;">Compliance ready: <span style="color:#0040FF;font-weight:700;">HIPAA · SOC 2 · GDPR</span></div>
     </div>
 
   </div>
@@ -3564,25 +3562,74 @@ p { font-size: 17px; line-height: 1.7; }
     <div style="max-width:760px;margin:0 auto;text-align:center;">
 
       <span class="eyebrow">The Shift</span>
-      <h2 style="font-size:clamp(32px,4vw,52px);font-weight:600;color:#fff;letter-spacing:-0.03em;line-height:1.1;margin-bottom:24px;">A line is being drawn.</h2>
-      <p style="font-size:18px;color:rgba(255,255,255,0.7);line-height:1.75;margin-bottom:60px;">You're either leveraging AI, or being left behind by the companies that are. For most $1M–$20M businesses, the reality is harder than it looks. Limited time. No in-house data team. Too many tools promising too much. That's the gap Ikonik closes.</p>
+      <h2 class="section-title" style="color:#fff;">From managing work to engineering execution.</h2>
+      <p style="font-size:18px;color:rgba(255,255,255,0.7);line-height:1.75;margin-bottom:20px;">Most growing companies are stuck in the same loop:</p>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:28px;">
+        <div class="shift-box"><p class="shift-box-text">Forcing generic chatbots into compliance-heavy processes they were never built for.</p></div>
+        <div class="shift-box"><p class="shift-box-text">Chasing approvals and status updates across Slack, email, and three different dashboards.</p></div>
+        <div class="shift-box"><p class="shift-box-text">Patching missed steps after the fact, hoping nothing exposed the business to real risk.</p></div>
+        <div class="shift-box"><p class="shift-box-text">Holding the whole operation together with duct tape.</p></div>
+      </div>
+<style>
+.shift-headline{
+  font-size:clamp(32px,4.8vw,64px);
+  font-weight:700;
+  color:#ffffff;
+  letter-spacing:-0.03em;
+  line-height:1.1;
+  margin:0 0 24px;
+  text-align:center;
+  position:relative;
+  left:50%;
+  transform:translateX(-50%);
+  width:max-content;
+  max-width:100%;
+}
+@media (min-width: 992px){
+  .shift-headline{
+    white-space:nowrap;
+  }
+}
+.shift-box {
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.13);
+  border-radius:14px;
+  padding:28px 24px;
+  display:flex;
+  align-items:flex-start;
+  cursor:default;
+  transition:background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+.shift-box:hover {
+  background:rgba(77,124,255,0.15);
+  border-color:rgba(122,169,255,0.5);
+  box-shadow:0 0 40px rgba(77,124,255,0.3), 0 0 0 1px rgba(122,169,255,0.25) inset;
+  transform:translateY(-3px);
+}
+.shift-box-text {
+  font-size:16px;
+  color:rgba(255,255,255,0.75);
+  line-height:1.7;
+  margin:0;
+  text-align:left;
+  transition:color 0.35s ease;
+}
+.shift-box:hover .shift-box-text {
+  color:#fff;
+}
+</style>
 
     </div>
   </div>
 
   <!-- Fullwidth mockup image -->
-  <div style="width:100%;line-height:0;position:relative;z-index:2;">
+  <div style="width:100%;line-height:0;position:relative;z-index:2;margin-top:60px;">
     <img src="https://res.cloudinary.com/dcuswyfur/image/upload/v1777872065/mockup_xjrzmd.png" alt="" style="width:100%;height:auto;display:block;" />
   </div>
 
-  <!-- Quote below image -->
-  <div class="container" style="position:relative;z-index:2;padding-top:64px;padding-bottom:80px;">
-    <div style="max-width:600px;margin:0 auto;text-align:center;">
-      <div style="font-size:60px;color:rgba(255,255,255,0.08);line-height:0.8;margin-bottom:20px;font-family:Georgia,serif;">"</div>
-      <p style="font-size:22px;color:#fff;font-weight:400;line-height:1.65;letter-spacing:-0.01em;margin-bottom:28px;font-style:italic;">AI won't replace humans. But humans with AI will replace humans without it.</p>
-      <div style="width:40px;height:1px;background:rgba(255,255,255,0.15);margin:0 auto 16px;"></div>
-      <cite style="font-size:14px;color:#fff;font-style:normal;display:block;letter-spacing:0.04em;">Karim Lakhani<br><span style="color:rgba(255,255,255,0.7);font-size:12px;">Harvard Business School</span></cite>
-    </div>
+  <!-- Closing paragraph (below the image) -->
+  <div style="position:relative;z-index:2;padding:60px 100px 80px;max-width:1600px;margin:0 auto;box-sizing:border-box;text-align:center;">
+    <p style="font-size:clamp(22px,2.8vw,36px);font-weight:400;color:rgba(255,255,255,0.6);line-height:1.3;margin:0;letter-spacing:-0.01em;">Scaling from <span style="color:#fff;">$1M to $20M in revenue</span> breaks every one of those habits. The shift isn't more tools. It's a <span style="color:#fff;">system built to run the workflow for you</span>, one designed for your <span style="color:#fff;">industry</span>, your <span style="color:#fff;">compliance requirements</span>, and the way your team actually moves work.</p>
   </div>
 </section>
 
@@ -3604,633 +3651,2003 @@ p { font-size: 17px; line-height: 1.7; }
 
 
 <!-- ═══ WHAT IT IS ═══ -->
-<section id="platform" style="padding:100px 0;background:#fff;">
+<section id="platform" style="padding:100px 0;background:#fafaf7;">
   <div class="container">
     <div style="text-align:center;margin-bottom:64px;">
       <span class="eyebrow">What It Is</span>
-      <h2 class="section-title" style="color:#030d2a;font-weight:500;">One platform. Three layers. Zero guesswork.</h2>
-      <p class="section-sub">Ikonik is the full stack of what a modern AI-first company actually needs: the agents that do the work, the playbooks that guide them, and the humans who make sure it all ships. Most vendors give you one piece. We run all three.</p>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#e5e7eb;border-radius:16px;overflow:hidden;">
-      <div class="ik-layer-card" style="background:#fff;padding:40px;position:relative;">
-        <div style="font-size:11px;font-weight:700;color:#0040FF;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;font-family:monospace;">01 · The Platform</div>
-        <h3 style="font-size:26px;font-weight:600;color:#030d2a;margin-bottom:16px;letter-spacing:-0.02em;">100+ Specialized AI Agents</h3>
-        <p style="font-size:18px;color:#6b7280;line-height:1.75;">Purpose-built for your industry — not generic chatbots. 60,000+ tested prompts organized by use case. A curated directory of the best AI tools for your sector. Everything runs inside one clean workspace your team can actually adopt.</p>
-      </div>
-      <div class="ik-layer-card" style="background:#fff;padding:40px;position:relative;">
-        <div style="font-size:11px;font-weight:700;color:#0040FF;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;font-family:monospace;">02 · The Method</div>
-        <h3 style="font-size:26px;font-weight:600;color:#030d2a;margin-bottom:16px;letter-spacing:-0.02em;">6-Phase Consulting Framework</h3>
-        <p style="font-size:18px;color:#6b7280;line-height:1.75;">Takes you from "where do we start?" to measurable ROI in weeks, not years. Discovery → Assessment → Refinement → Design → Implementation → Optimization. Agile by design. Built for scaleups.</p>
-      </div>
-      <div class="ik-layer-card" style="background:#fff;padding:40px;position:relative;">
-        <div style="font-size:11px;font-weight:700;color:#0040FF;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;font-family:monospace;">03 · The People</div>
-        <h3 style="font-size:26px;font-weight:600;color:#030d2a;margin-bottom:16px;letter-spacing:-0.02em;">Senior Operators, Shipping</h3>
-        <p style="font-size:18px;color:#6b7280;line-height:1.75;">You get our senior team behind the work — AI strategists, data scientists, and engineers who've built 7- and 8-figure businesses across 40+ industries. No learning on your dime. No bloated consulting decks.</p>
+      <div style="max-width:1020px;margin:0 auto;">
+        <h2 class="section-title" style="color:#030d2a;font-weight:500;">Intelligent process orchestration,<br>built for the work you actually do.</h2>
+        <p class="section-sub">AI KONIK isn't task automation. It isn't a chatbot with a fresh skin. It's the operating layer that sits across your business and structures how work moves — who owns each step, what triggers the next one, where the dependencies are, and what has to happen before anything goes live.</p>
+        <p class="section-sub" style="margin-top:12px;">That comes down to four things the platform decides for you:</p>
       </div>
     </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;border-radius:16px;overflow:hidden;">
+      <div class="ik-layer-card" style="background:linear-gradient(135deg,#ffffff 0%,#eef3ff 60%,#dde8ff 100%);padding:44px;position:relative;border:1px solid rgba(0,64,255,0.12);border-radius:14px;overflow:hidden;">
+        <svg style="position:absolute;top:-30px;right:-30px;width:200px;height:200px;opacity:0.4;pointer-events:none;" viewBox="0 0 200 200" fill="none">
+          <circle cx="100" cy="100" r="80" stroke="rgba(0,64,255,0.2)" stroke-width="0.8"/>
+          <circle cx="100" cy="100" r="55" stroke="rgba(0,64,255,0.15)" stroke-width="0.8"/>
+          <circle cx="100" cy="100" r="3" fill="#0040FF"/>
+        </svg>
+        <div style="font-size:11px;font-weight:700;color:#0040FF;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;font-family:monospace;">Who does what</div>
+        <h3 style="font-size:clamp(18px,1.8vw,24px);font-weight:600;color:#030d2a;letter-spacing:-0.02em;line-height:1.2;margin-bottom:14px;">A fleet of agents. Each with a job.</h3>
+        <p style="font-size:15px;color:#4a5468;line-height:1.75;">100+ specialized AI agents, each built for a specific role inside one of nine industry verticals. They don't wait for instructions. They have jobs.</p>
+      </div>
+      <div class="ik-layer-card" style="background:linear-gradient(160deg,#fdfbff 0%,#f0ecff 60%,#e1d8ff 100%);padding:44px;position:relative;border:1px solid rgba(0,0,0,0.06);border-radius:14px;overflow:hidden;">
+        <svg style="position:absolute;top:-30px;right:-30px;width:200px;height:200px;opacity:0.4;pointer-events:none;" viewBox="0 0 200 200" fill="none">
+          <path d="M40,60 L80,60 L80,100 L120,100 L120,140 L160,140" stroke="rgba(120,80,255,0.3)" stroke-width="1" fill="none"/>
+          <circle cx="40" cy="60" r="4" fill="rgba(120,80,255,0.5)"/>
+          <circle cx="80" cy="100" r="4" fill="rgba(120,80,255,0.5)"/>
+          <circle cx="120" cy="140" r="4" fill="rgba(120,80,255,0.5)"/>
+          <circle cx="160" cy="140" r="4" fill="rgba(120,80,255,0.5)"/>
+        </svg>
+        <div style="font-size:11px;font-weight:700;color:#0040FF;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;font-family:monospace;">What happens next</div>
+        <h3 style="font-size:clamp(18px,1.8vw,24px);font-weight:600;color:#030d2a;letter-spacing:-0.02em;line-height:1.2;margin-bottom:14px;">Action in seconds, not after a prompt debate.</h3>
+        <p style="font-size:15px;color:#4a5468;line-height:1.75;">Every agent is paired with a tested prompt library — over 60K+ inputs organized by industry and use case — so action happens in seconds, not after someone figures out how to phrase the request.</p>
+      </div>
+      <div class="ik-layer-card" style="background:linear-gradient(140deg,#fbfdff 0%,#e8f1ff 60%,#d4e6ff 100%);padding:44px;position:relative;border:1px solid rgba(0,0,0,0.06);border-radius:14px;overflow:hidden;">
+        <svg style="position:absolute;top:-30px;right:-30px;width:200px;height:200px;opacity:0.4;pointer-events:none;" viewBox="0 0 200 200" fill="none">
+          <rect x="60" y="60" width="80" height="80" stroke="rgba(0,64,255,0.2)" stroke-width="0.8" rx="6"/>
+          <rect x="72" y="72" width="56" height="56" stroke="rgba(0,64,255,0.15)" stroke-width="0.8" rx="4"/>
+          <path d="M84,100 L94,110 L116,88" stroke="#0040FF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div style="font-size:11px;font-weight:700;color:#0040FF;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;font-family:monospace;">What depends on what</div>
+        <h3 style="font-size:clamp(18px,1.8vw,24px);font-weight:600;color:#030d2a;letter-spacing:-0.02em;line-height:1.2;margin-bottom:14px;">Compliance built into the architecture.</h3>
+        <p style="font-size:15px;color:#4a5468;line-height:1.75;">Approvals, handoffs, and dependencies live inside a compliance-ready architecture that supports HIPAA, SOC 2, and GDPR out of the box. Sensitive work stays sensitive.</p>
+      </div>
+      <div class="ik-layer-card" style="background:linear-gradient(150deg,#fffefb 0%,#fff4e6 60%,#ffe6c9 100%);padding:44px;position:relative;border:1px solid rgba(0,0,0,0.06);border-radius:14px;overflow:hidden;">
+        <svg style="position:absolute;top:-30px;right:-30px;width:200px;height:200px;opacity:0.4;pointer-events:none;" viewBox="0 0 200 200" fill="none">
+          <circle cx="60" cy="100" r="8" fill="rgba(255,150,40,0.5)"/>
+          <circle cx="100" cy="100" r="8" fill="rgba(255,150,40,0.7)"/>
+          <circle cx="140" cy="100" r="8" fill="rgba(255,150,40,0.5)"/>
+          <path d="M68,100 L92,100" stroke="rgba(255,150,40,0.5)" stroke-width="1.2" stroke-dasharray="2 3"/>
+          <path d="M108,100 L132,100" stroke="rgba(255,150,40,0.5)" stroke-width="1.2" stroke-dasharray="2 3"/>
+        </svg>
+        <div style="font-size:11px;font-weight:700;color:#0040FF;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;font-family:monospace;">What triggers action</div>
+        <h3 style="font-size:clamp(18px,1.8vw,24px);font-weight:600;color:#030d2a;letter-spacing:-0.02em;line-height:1.2;margin-bottom:14px;">A guided rollout by people who know your sector.</h3>
+        <p style="font-size:15px;color:#4a5468;line-height:1.75;">A guided 6-Sprint rollout, led by consultants who already know your industry, sets the logic for how your workflows run from day one — and tunes them as you scale.</p>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:18px;font-weight:500;color:#030d2a;margin-top:48px;letter-spacing:-0.01em;">End-to-end execution. Not a tool you operate. A system that operates with you.</p>
   </div>
 </section>
 
 
 <style>
 .ik-layer-card {
-  transition: border-left-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
-  border-left: 3px solid transparent;
+  transition:border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 .ik-layer-card:hover {
-  border-left: 3px solid #0040FF;
-  transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(0,64,255,0.1);
+  border-color:rgba(0,64,255,0.35) !important;
+  transform:translateY(-4px);
+  box-shadow:0 16px 48px -12px rgba(0,64,255,0.18);
 }
 </style>
-
-<!-- ═══ WHO IT'S FOR ═══ -->
-<section style="padding:100px 0;background:#f8f9ff;">
-  <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
-      <div style="position:sticky;top:120px;">
-        <span class="eyebrow">Who It's For</span>
-        <h2 class="section-title" style="color:#030d2a;font-weight:500;">Built for ambitious SMBs, not Fortune 500 HQs.</h2>
-        <p class="section-sub">If you're doing $1M–$20M in revenue and you're tired of choosing between enterprise consultancies that don't get you and one-person tech shops that overpromise — this was built for you.</p>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:0;padding-top:8px;">
-        <div style="padding:24px 0;border-bottom:1px solid #e5e7eb;display:flex;gap:16px;align-items:flex-start;">
-          <span style="width:20px;height:20px;border-radius:50%;background:#0040FF;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
-          <p style="font-size:16px;color:#374151;line-height:1.65;">You know you need AI — you don't need to be sold on the idea.</p>
-        </div>
-        <div style="padding:24px 0;border-bottom:1px solid #e5e7eb;display:flex;gap:16px;align-items:flex-start;">
-          <span style="width:20px;height:20px;border-radius:50%;background:#0040FF;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
-          <p style="font-size:16px;color:#374151;line-height:1.65;">You have a lean team and can't afford to hire specialized AI talent.</p>
-        </div>
-        <div style="padding:24px 0;border-bottom:1px solid #e5e7eb;display:flex;gap:16px;align-items:flex-start;">
-          <span style="width:20px;height:20px;border-radius:50%;background:#0040FF;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
-          <p style="font-size:16px;color:#374151;line-height:1.65;">Your data isn't perfectly clean (and you're tired of vendors pretending that's a dealbreaker).</p>
-        </div>
-        <div style="padding:24px 0;display:flex;gap:16px;align-items:flex-start;">
-          <span style="width:20px;height:20px;border-radius:50%;background:#0040FF;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
-          <p style="font-size:16px;color:#374151;line-height:1.65;">You want enterprise results — without the enterprise timeline or red tape.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ THE FRAMEWORK ═══ -->
-<section style="padding:100px 0;background:#04091a;overflow:hidden;position:relative;">
-  <canvas id="ikFrameworkStars" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
-  <div style="position:absolute;top:-200px;left:-200px;width:800px;height:800px;background:radial-gradient(ellipse,rgba(0,64,255,0.22) 0%,rgba(0,40,200,0.08) 50%,transparent 70%);pointer-events:none;z-index:1;filter:blur(40px);"></div>
-  <div style="position:absolute;bottom:-200px;right:-200px;width:800px;height:800px;background:radial-gradient(ellipse,rgba(0,64,255,0.19) 0%,rgba(0,40,200,0.07) 50%,transparent 70%);pointer-events:none;z-index:1;filter:blur(40px);"></div>
-  <div style="position:relative;z-index:2;">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:64px;">
-      <span class="eyebrow">The Framework</span>
-      <h2 class="section-title" style="color:#fff;font-weight:500;">Where others see automation, we see multiplication.</h2>
-      <p class="section-sub" style="color:rgba(255,255,255,0.5);">Most companies use AI to automate tasks. We use it to multiply performance across the whole business. Our proprietary 8 Value Drivers Framework pinpoints exactly where human + AI collaboration creates exponential value — and where it won't.</p>
-    </div>
-    <div id="vd-row" style="display:flex;gap:3px;height:480px;border-radius:16px;overflow:hidden;">
-      <div class="vd-panel" data-idx="0" style="background:url('https://res.cloudinary.com/dcuswyfur/image/upload/v1777413924/w54_v5cwwc.png') center/cover no-repeat">
-        <div class="vd-num">01</div><div class="vd-label">Financial<br>Impact</div>
-        <div class="vd-content"><div class="vd-tag">Value Driver 01</div><h4 class="vd-content-title">Financial Impact</h4><p class="vd-content-text">Invoice-QA agents that flag 98% of billing errors before they hit the books. Fraud detection that pays for the platform in a single catch.</p><div class="vd-output">OUTPUT — Measurable reduction in billing errors and fraud exposure within 30 days.</div></div>
-      </div>
-      <div class="vd-panel" data-idx="1" style="background:url('https://res.cloudinary.com/dcuswyfur/image/upload/v1777413923/3r43_muskd8.png') center/cover no-repeat">
-        <div class="vd-num">02</div><div class="vd-label">Customer<br>Engagement</div>
-        <div class="vd-content"><div class="vd-tag">Value Driver 02</div><h4 class="vd-content-title">Customer Engagement</h4><p class="vd-content-text">Multilingual AI concierges resolving 70% of tier-one tickets overnight. No extra hires. No dropped conversations.</p><div class="vd-output">OUTPUT — 70%+ tier-one resolution rate with zero headcount increase.</div></div>
-      </div>
-      <div class="vd-panel" data-idx="2" style="background:url('https://res.cloudinary.com/dcuswyfur/image/upload/v1777413920/3443e_lzcz5x.png') center/cover no-repeat">
-        <div class="vd-num">03</div><div class="vd-label">Operational<br>Efficiency</div>
-        <div class="vd-content"><div class="vd-tag">Value Driver 03</div><h4 class="vd-content-title">Operational Efficiency</h4><p class="vd-content-text">Predictive staffing that cut a recent client's contractor costs by 12% while improving delivery timelines.</p><div class="vd-output">OUTPUT — 12% contractor cost reduction with improved delivery performance.</div></div>
-      </div>
-      <div class="vd-panel active" data-idx="3" style="background:url('https://res.cloudinary.com/dcuswyfur/image/upload/v1777414340/hjhjb_qt63ua.jpg') center/cover no-repeat">
-        <div class="vd-num">04</div><div class="vd-label">Strategic<br>Advantage</div>
-        <div class="vd-content"><div class="vd-tag">Value Driver 04</div><h4 class="vd-content-title">Strategic Advantage</h4><p class="vd-content-text">Competitive intelligence systems that surface market moves 4x faster than manual research.</p><div class="vd-output">OUTPUT — Market intelligence 4x faster, enabling pre-emptive competitive positioning.</div></div>
-      </div>
-      <div class="vd-panel" data-idx="4" style="background:url('https://res.cloudinary.com/dcuswyfur/image/upload/v1777413919/23_slsafa.png') center/cover no-repeat">
-        <div class="vd-num">05</div><div class="vd-label">Brand<br>Amplification</div>
-        <div class="vd-content"><div class="vd-tag">Value Driver 05</div><h4 class="vd-content-title">Brand Amplification</h4><p class="vd-content-text">AI content engines that triple creative output while protecting brand voice — so your marketing compounds instead of burning the team out.</p><div class="vd-output">OUTPUT — 3x creative output without compromising brand integrity.</div></div>
-      </div>
-      <div class="vd-panel" data-idx="5" style="background:url('https://res.cloudinary.com/dcuswyfur/image/upload/v1777413919/er5tgt_qbheo5.png') center/cover no-repeat">
-        <div class="vd-num">06</div><div class="vd-label">Talent<br>Leverage</div>
-        <div class="vd-content"><div class="vd-tag">Value Driver 06</div><h4 class="vd-content-title">Talent Leverage</h4><p class="vd-content-text">AI handles the repetitive so your best people focus on the irreplaceable. Role-based AI tools that amplify every department without replacing anyone.</p><div class="vd-output">OUTPUT — Senior talent reclaims 40%+ of time from administrative burden.</div></div>
-      </div>
-      <div class="vd-panel" data-idx="6" style="background:url('https://res.cloudinary.com/dcuswyfur/image/upload/v1777414331/gvvg_aovjd7.jpg') center/cover no-repeat">
-        <div class="vd-num">07</div><div class="vd-label">Product<br>Velocity</div>
-        <div class="vd-content"><div class="vd-tag">Value Driver 07</div><h4 class="vd-content-title">Product Velocity</h4><p class="vd-content-text">Faster iteration cycles, AI-assisted QA, and intelligent roadmap prioritization — so you ship more of the right things, faster.</p><div class="vd-output">OUTPUT — Measurable reduction in time-to-market and QA cycle time.</div></div>
-      </div>
-      <div class="vd-panel" data-idx="7" style="background:url('https://res.cloudinary.com/dcuswyfur/image/upload/v1777413920/34_vzcwum.png') center/cover no-repeat">
-        <div class="vd-num">08</div><div class="vd-label">Process<br>Intelligence</div>
-        <div class="vd-content"><div class="vd-tag">Value Driver 08</div><h4 class="vd-content-title">Process Intelligence</h4><p class="vd-content-text">AI that watches your operations, surfaces inefficiencies, and recommends improvements before they become problems. Self-optimizing business systems.</p><div class="vd-output">OUTPUT — A living process map that gets smarter with every cycle.</div></div>
-      </div>
-    </div>
-  </div>
-  </div>
-</section>
-<style>
-.vd-panel{flex:1;min-width:58px;position:relative;cursor:pointer;transition:flex 0.5s cubic-bezier(0.4,0,0.2,1);overflow:hidden;}
-.vd-panel::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.82) 100%);transition:background 0.4s;}
-.vd-panel.active{flex:4;}
-.vd-panel.active::before{background:linear-gradient(to bottom,rgba(0,0,0,0.15) 0%,rgba(0,0,0,0.88) 100%);}
-.vd-num{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-size:clamp(48px,6vw,80px);font-weight:400;color:rgba(255,255,255,0.15);font-family:'Segoe UI',system-ui,sans-serif;letter-spacing:-0.04em;z-index:2;user-select:none;line-height:1;transition:opacity 0.25s;}
-.vd-label{display:none;}
-
-.vd-content{position:absolute;bottom:0;left:0;right:0;padding:32px;z-index:3;opacity:0;transform:translateY(12px);transition:opacity 0.3s ease 0.18s,transform 0.3s ease 0.18s;pointer-events:none;}
-.vd-panel.active .vd-content{opacity:1;transform:translateY(0);pointer-events:auto;}
-.vd-panel.active .vd-num{opacity:0;}
-.vd-tag{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);display:flex;align-items:center;gap:8px;margin-bottom:12px;}
-.vd-tag::before{content:'';width:24px;height:2px;background:rgba(255,255,255,0.5);display:inline-block;flex-shrink:0;}
-.vd-content-title{font-size:clamp(18px,1.8vw,26px);font-weight:700;color:#fff;letter-spacing:-0.02em;margin-bottom:10px;line-height:1.2;}
-.vd-content-text{font-size:16px;color:#fff;line-height:1.7;margin-bottom:18px;}
-.vd-output{font-size:16px;color:#fff;padding:10px 14px;border-left:2px solid rgba(255,255,255,0.4);background:rgba(255,255,255,0.08);border-radius:0 6px 6px 0;line-height:1.6;}
-</style>
-<script>
-(function(){
-  var panels=document.querySelectorAll('.vd-panel');
-  panels.forEach(function(p){
-    p.addEventListener('mouseenter',function(){
-      panels.forEach(function(pp){pp.classList.remove('active');});
-      p.classList.add('active');
-    });
-  });
-  document.getElementById('vd-row').addEventListener('mouseleave',function(){
-    panels.forEach(function(pp){pp.classList.remove('active');});
-    panels[3].classList.add('active');
-  });
-})();
-</script>
-
 <!-- ═══ WHAT'S INSIDE ═══ -->
-<section id="layers" style="padding:100px 0;background:#fff;">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:56px;">
-      <span class="eyebrow">What's Inside</span>
-      <h2 class="section-title" style="color:#030d2a;font-weight:500;">Everything you need to go AI-first.</h2>
-    </div>
-
-    <!-- Horizontal tab nav with dots and lines -->
-    <div style="display:flex;align-items:center;justify-content:center;margin-bottom:48px;gap:0;">
-
-      <div class="wi2-tab active" data-idx="0" onclick="wi2activate(0)">
-        <div class="wi2-dot"></div>
-        <div class="wi2-label">AI Agents</div>
-      </div>
-      <div class="wi2-line"></div>
-      <div class="wi2-tab" data-idx="1" onclick="wi2activate(1)">
-        <div class="wi2-dot"></div>
-        <div class="wi2-label">Prompt Library</div>
-      </div>
-      <div class="wi2-line"></div>
-      <div class="wi2-tab" data-idx="2" onclick="wi2activate(2)">
-        <div class="wi2-dot"></div>
-        <div class="wi2-label">Consulting Method</div>
-      </div>
-      <div class="wi2-line"></div>
-      <div class="wi2-tab" data-idx="3" onclick="wi2activate(3)">
-        <div class="wi2-dot"></div>
-        <div class="wi2-label">Tool Directory</div>
-      </div>
-      <div class="wi2-line"></div>
-      <div class="wi2-tab" data-idx="4" onclick="wi2activate(4)">
-        <div class="wi2-dot"></div>
-        <div class="wi2-label">Industry Solutions</div>
-      </div>
-
-    </div>
-
-    <!-- Content panels -->
-    <div style="position:relative;">
-
-      <div class="wi2-panel active" data-idx="0">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
-          <div>
-            <div style="font-size:48px;font-weight:700;color:#0040FF;letter-spacing:-0.04em;margin-bottom:12px;">100+</div>
-            <h3 style="font-size:28px;font-weight:600;color:#030d2a;letter-spacing:-0.025em;margin-bottom:16px;">Specialized AI Agents</h3>
-            <p style="font-size:17px;color:#6b7280;line-height:1.75;">Purpose-built for specific tasks across 9 industries — legal, healthcare, finance, marketing, technology, real estate, accounting, logistics, manufacturing. Not generic chatbots. Actual workflow tools.</p>
-          </div>
-          <div style="background:#f8f9ff;border:1px solid #e5e7eb;border-radius:16px;padding:28px;">
-            <div style="display:flex;flex-direction:column;gap:10px;">
-              <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;"><span style="width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0;"></span><span style="font-size:14px;color:#374151;font-weight:500;">Legal Contract Agent · Running</span></div>
-              <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;"><span style="width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0;"></span><span style="font-size:14px;color:#374151;font-weight:500;">Finance QA Agent · Running</span></div>
-              <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;"><span style="width:8px;height:8px;border-radius:50%;background:#f59e0b;flex-shrink:0;"></span><span style="font-size:14px;color:#374151;font-weight:500;">Marketing AI · Queued</span></div>
-              <div style="text-align:center;padding:10px;font-size:13px;color:#9ca3af;">+ 97 more agents across 9 industries</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="wi2-panel" data-idx="1">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
-          <div>
-            <div style="font-size:48px;font-weight:700;color:#0040FF;letter-spacing:-0.04em;margin-bottom:12px;">60K+</div>
-            <h3 style="font-size:28px;font-weight:600;color:#030d2a;letter-spacing:-0.025em;margin-bottom:16px;">Curated Prompt Library</h3>
-            <p style="font-size:17px;color:#6b7280;line-height:1.75;">Tested prompts organized by industry and use case. Save to collections, use directly in agents, or contribute your own. Your team stops guessing at prompts and starts getting results.</p>
-          </div>
-          <div style="background:#f8f9ff;border:1px solid #e5e7eb;border-radius:16px;padding:28px;">
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;"><span style="font-size:14px;color:#374151;font-weight:500;">Legal Prompts</span><span style="font-size:12px;color:#0040FF;font-weight:600;">8,200+</span></div>
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;"><span style="font-size:14px;color:#374151;font-weight:500;">Finance Prompts</span><span style="font-size:12px;color:#0040FF;font-weight:600;">7,400+</span></div>
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;"><span style="font-size:14px;color:#374151;font-weight:500;">Marketing Prompts</span><span style="font-size:12px;color:#0040FF;font-weight:600;">9,100+</span></div>
-              <div style="text-align:center;padding:10px;font-size:13px;color:#9ca3af;">Across 9 industries · Updated weekly</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="wi2-panel" data-idx="2">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
-          <div>
-            <div style="font-size:48px;font-weight:700;color:#0040FF;letter-spacing:-0.04em;margin-bottom:12px;">6</div>
-            <h3 style="font-size:28px;font-weight:600;color:#030d2a;letter-spacing:-0.025em;margin-bottom:16px;">6-Phase Consulting Method</h3>
-            <p style="font-size:17px;color:#6b7280;line-height:1.75;">Structured AI implementation from discovery through optimization delivered by senior consultants who know your industry. 4- to 6-week major milestones, baked into every engagement.</p>
-          </div>
-          <div style="background:#f8f9ff;border:1px solid #e5e7eb;border-radius:16px;padding:28px;">
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;"><span style="width:24px;height:24px;border-radius:50%;background:#22c55e;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0;">1</span><span style="font-size:14px;color:#374151;">Discovery Sprint</span></div>
-              <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;"><span style="width:24px;height:24px;border-radius:50%;background:#22c55e;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0;">2</span><span style="font-size:14px;color:#374151;">Assessment Sprint</span></div>
-              <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:#eff6ff;border-radius:10px;"><span style="width:24px;height:24px;border-radius:50%;background:#0040FF;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0;">3</span><span style="font-size:14px;color:#0040FF;font-weight:500;">Design Sprint · Active</span></div>
-              <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;opacity:0.4;"><span style="width:24px;height:24px;border-radius:50%;border:2px solid #d1d5db;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#6b7280;flex-shrink:0;">4</span><span style="font-size:14px;color:#6b7280;">Implementation Sprint</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="wi2-panel" data-idx="3">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
-          <div>
-            <div style="font-size:48px;font-weight:700;color:#0040FF;letter-spacing:-0.04em;margin-bottom:12px;">→</div>
-            <h3 style="font-size:28px;font-weight:600;color:#030d2a;letter-spacing:-0.025em;margin-bottom:16px;">AI Tool Directory</h3>
-            <p style="font-size:17px;color:#6b7280;line-height:1.75;">Curated directory of the best AI tools for your sector. Honest reviews, real pricing, community ratings. Stop wasting months evaluating the wrong stack.</p>
-          </div>
-          <div style="background:#f8f9ff;border:1px solid #e5e7eb;border-radius:16px;padding:28px;">
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;"><span style="font-size:14px;color:#374151;font-weight:500;">Legal AI Stack</span><div style="display:flex;gap:4px;"><span style="font-size:11px;color:#22c55e;">★★★★★</span></div></div>
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;"><span style="font-size:14px;color:#374151;font-weight:500;">Finance AI Tools</span><div style="display:flex;gap:4px;"><span style="font-size:11px;color:#22c55e;">★★★★☆</span></div></div>
-              <div style="text-align:center;padding:10px;font-size:13px;color:#9ca3af;">Honest reviews · Real pricing · Community-rated</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="wi2-panel" data-idx="4">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
-          <div>
-            <div style="font-size:48px;font-weight:700;color:#0040FF;letter-spacing:-0.04em;margin-bottom:12px;">✓</div>
-            <h3 style="font-size:28px;font-weight:600;color:#030d2a;letter-spacing:-0.025em;margin-bottom:16px;">Industry Solutions</h3>
-            <p style="font-size:17px;color:#6b7280;line-height:1.75;">Every agent, prompt, and workflow — purpose-built for your sector's specific challenges and compliance requirements. HIPAA, SOC 2, GDPR, EU AI Act ready.</p>
-          </div>
-          <div style="background:#f8f9ff;border:1px solid #e5e7eb;border-radius:16px;padding:28px;">
-            <div style="display:flex;flex-direction:column;gap:6px;">
-              <div style="display:flex;align-items:center;gap:10px;padding:8px 14px;"><span style="font-size:13px;color:#22c55e;font-weight:600;">HIPAA</span><div style="flex:1;height:1px;background:#e5e7eb;"></div><span style="font-size:12px;color:#6b7280;">Healthcare compliant</span></div>
-              <div style="display:flex;align-items:center;gap:10px;padding:8px 14px;"><span style="font-size:13px;color:#22c55e;font-weight:600;">SOC 2</span><div style="flex:1;height:1px;background:#e5e7eb;"></div><span style="font-size:12px;color:#6b7280;">Enterprise security</span></div>
-              <div style="display:flex;align-items:center;gap:10px;padding:8px 14px;"><span style="font-size:13px;color:#22c55e;font-weight:600;">GDPR</span><div style="flex:1;height:1px;background:#e5e7eb;"></div><span style="font-size:12px;color:#6b7280;">EU data privacy</span></div>
-              <div style="display:flex;align-items:center;gap:10px;padding:8px 14px;"><span style="font-size:13px;color:#22c55e;font-weight:600;">EU AI Act</span><div style="flex:1;height:1px;background:#e5e7eb;"></div><span style="font-size:12px;color:#6b7280;">Regulation-ready</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <style>
-.wi2-tab {
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-  cursor: pointer; padding: 0 8px;
+/* ─── What's Inside: layered architecture ─── */
+.wi-section {
+  --wi-blue: #4d7cff;
+  --wi-blue-strong: #0040FF;
+  --wi-purple: #8b5cf6;
+  --wi-text: #ffffff;
+  --wi-text-soft: rgba(255,255,255,0.65);
+  --wi-text-mute: rgba(255,255,255,0.42);
+  --wi-bg: #04091a;
+  --wi-card-bg: rgba(255,255,255,0.04);
+  --wi-card-border: rgba(255,255,255,0.08);
 }
-.wi2-dot {
-  width: 14px; height: 14px; border-radius: 50%;
-  border: 2px solid #d1d5db; background: #fff;
-  transition: all 0.25s ease;
+
+/* Layer toggle */
+.wi-toggle {
+  display:inline-flex;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:999px;
+  padding:5px;
+  gap:4px;
+  margin-bottom:48px;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
 }
-.wi2-tab:hover .wi2-dot { border-color: #0040FF; transform: scale(1.2); }
-.wi2-tab.active .wi2-dot { background: #0040FF; border-color: #0040FF; box-shadow: 0 0 0 4px rgba(0,64,255,0.15); }
-.wi2-label {
-  font-size: 13px; font-weight: 500; color: #9ca3af;
-  white-space: nowrap; transition: color 0.25s;
+.wi-toggle-btn {
+  background:none;
+  border:none;
+  outline:none;
+  cursor:pointer;
+  padding:11px 22px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:600;
+  color:rgba(255,255,255,0.5);
+  letter-spacing:0.02em;
+  transition:all 0.35s cubic-bezier(0.4,0,0.2,1);
+  font-family:inherit;
+  position:relative;
+  white-space:nowrap;
 }
-.wi2-tab:hover .wi2-label { color: #374151; }
-.wi2-tab.active .wi2-label { color: #030d2a; font-weight: 600; }
-.wi2-line {
-  flex: 1; height: 2px; background: #e5e7eb;
-  min-width: 40px; max-width: 120px;
+.wi-toggle-btn:hover { color:rgba(255,255,255,0.85); }
+.wi-toggle-btn.active {
+  background:linear-gradient(135deg, rgba(77,124,255,0.25), rgba(139,92,246,0.18));
+  color:#fff;
+  box-shadow:0 0 24px rgba(77,124,255,0.25), inset 0 1px 0 rgba(255,255,255,0.12);
 }
-.wi2-panel { display: none; animation: wi2fade 0.3s ease; }
-.wi2-panel.active { display: block; }
-@keyframes wi2fade { from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);} }
+
+/* Two-column layout */
+.wi-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:center;
+}
+@media (max-width:960px) {
+  .wi-grid { grid-template-columns:1fr; gap:60px; }
+}
+
+/* Left content: animated swap */
+.wi-content { position:relative; min-height:520px; }
+.wi-panel {
+  position:absolute;
+  inset:0;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(8px);
+  transition:opacity 0.45s ease, transform 0.45s ease, visibility 0s linear 0.45s;
+}
+.wi-panel.active {
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+  transition:opacity 0.5s ease, transform 0.5s ease, visibility 0s;
+}
+
+/* Stats cards */
+.wi-stat {
+  text-align:center;
+  padding:18px 24px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:14px;
+  transition:all 0.3s ease;
+  backdrop-filter:blur(10px);
+}
+.wi-stat:hover {
+  background:rgba(77,124,255,0.08);
+  border-color:rgba(77,124,255,0.3);
+  transform:translateY(-2px);
+}
+.wi-stat-num { font-size:28px; font-weight:700; color:#fff; letter-spacing:-0.02em; }
+.wi-stat-lbl { font-size:11px; color:rgba(255,255,255,0.5); margin-top:4px; letter-spacing:0.08em; text-transform:uppercase; font-weight:600; }
+
+/* ─── 3D layer stage (Xiaomi HyperOS-inspired) ─── */
+.wi-stage {
+  position:relative;
+  height:600px;
+  perspective:1800px;
+  perspective-origin:50% 30%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.wi-stage-inner {
+  position:relative;
+  width:100%;
+  max-width:520px;
+  height:100%;
+  transform-style:preserve-3d;
+  transform:rotateX(8deg);
+  transition:transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* Central core glow — sits between layers */
+.wi-core-glow {
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:260px;
+  height:260px;
+  transform:translate(-50%, -50%) translateZ(40px);
+  background:
+    radial-gradient(circle at center,
+      rgba(180,210,255,0.95) 0%,
+      rgba(120,170,255,0.7) 12%,
+      rgba(77,124,255,0.5) 28%,
+      rgba(77,124,255,0.18) 50%,
+      transparent 75%);
+  filter:blur(8px);
+  pointer-events:none;
+  opacity:1;
+  transition:all 0.6s cubic-bezier(0.4,0,0.2,1);
+  animation:wiCoreBreath 4s ease-in-out infinite;
+}
+@keyframes wiCoreBreath {
+  0%, 100% { transform:translate(-50%,-50%) translateZ(40px) scale(1); opacity:1; }
+  50% { transform:translate(-50%,-50%) translateZ(40px) scale(1.08); opacity:0.85; }
+}
+.wi-stage[data-active="2"] .wi-core-glow {
+  background:
+    radial-gradient(circle at center,
+      rgba(220,200,255,0.95) 0%,
+      rgba(170,140,255,0.7) 12%,
+      rgba(139,92,246,0.5) 28%,
+      rgba(139,92,246,0.18) 50%,
+      transparent 75%);
+}
+
+/* Vertical light beams between layers */
+.wi-beams {
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:380px;
+  height:200px;
+  transform:translate(-50%, -50%) rotateX(0deg);
+  transform-style:preserve-3d;
+  pointer-events:none;
+  z-index:5;
+}
+.wi-beam {
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:1px;
+  background:linear-gradient(to bottom,
+    transparent 0%,
+    rgba(150,190,255,0.0) 8%,
+    rgba(150,190,255,0.5) 30%,
+    rgba(190,220,255,0.85) 50%,
+    rgba(150,190,255,0.5) 70%,
+    rgba(150,190,255,0.0) 92%,
+    transparent 100%);
+  box-shadow:0 0 4px rgba(150,190,255,0.6);
+  animation:wiBeamFlicker 3s ease-in-out infinite;
+}
+@keyframes wiBeamFlicker {
+  0%, 100% { opacity:0.6; }
+  50% { opacity:1; }
+}
+.wi-stage[data-active="2"] .wi-beam {
+  background:linear-gradient(to bottom,
+    transparent 0%,
+    rgba(190,170,255,0.0) 8%,
+    rgba(190,170,255,0.5) 30%,
+    rgba(220,200,255,0.85) 50%,
+    rgba(190,170,255,0.5) 70%,
+    rgba(190,170,255,0.0) 92%,
+    transparent 100%);
+  box-shadow:0 0 4px rgba(190,170,255,0.6);
+}
+
+/* ─── Data rain (binary digits flowing through the layers) ─── */
+.wi-datarain {
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:420px;
+  height:340px;
+  transform:translate(-50%, -50%);
+  pointer-events:none;
+  z-index:6;
+  overflow:hidden;
+  mask-image:linear-gradient(to bottom,
+    transparent 0%,
+    rgba(0,0,0,0.4) 8%,
+    rgba(0,0,0,1) 25%,
+    rgba(0,0,0,1) 75%,
+    rgba(0,0,0,0.4) 92%,
+    transparent 100%);
+  -webkit-mask-image:linear-gradient(to bottom,
+    transparent 0%,
+    rgba(0,0,0,0.4) 8%,
+    rgba(0,0,0,1) 25%,
+    rgba(0,0,0,1) 75%,
+    rgba(0,0,0,0.4) 92%,
+    transparent 100%);
+}
+.wi-datacol {
+  position:absolute;
+  top:0;
+  width:auto;
+  font-family:'SF Mono', Monaco, 'Courier New', monospace;
+  font-size:10px;
+  font-weight:500;
+  line-height:1.5;
+  color:rgba(150,190,255,0.55);
+  text-shadow:0 0 6px rgba(120,170,255,0.7);
+  white-space:nowrap;
+  letter-spacing:0.05em;
+  writing-mode:vertical-rl;
+  text-orientation:upright;
+  animation:wiDataFall linear infinite;
+  opacity:0.7;
+}
+.wi-stage[data-active="2"] .wi-datacol {
+  color:rgba(190,170,255,0.55);
+  text-shadow:0 0 6px rgba(170,140,255,0.7);
+  transition:color 0.6s ease, text-shadow 0.6s ease;
+}
+@keyframes wiDataFall {
+  0%   { transform:translateY(-60%); opacity:0; }
+  10%  { opacity:0.7; }
+  85%  { opacity:0.7; }
+  100% { transform:translateY(100%); opacity:0; }
+}
+/* Some columns are "lead" — brighter trailing digit */
+.wi-datacol-lead {
+  color:rgba(220,235,255,0.95);
+  text-shadow:
+    0 0 8px rgba(180,210,255,0.95),
+    0 0 16px rgba(120,170,255,0.7);
+  font-weight:600;
+}
+.wi-stage[data-active="2"] .wi-datacol-lead {
+  color:rgba(245,235,255,0.95);
+  text-shadow:
+    0 0 8px rgba(220,200,255,0.95),
+    0 0 16px rgba(170,140,255,0.7);
+}
+
+/* ─── Slab (layer with real thickness) ─── */
+.wi-slab {
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:380px;
+  height:380px;
+  transform-style:preserve-3d;
+  transition:all 0.6s cubic-bezier(0.4,0,0.2,1);
+  cursor:pointer;
+}
+.wi-slab-face {
+  position:absolute;
+  transition:all 0.55s cubic-bezier(0.4,0,0.2,1);
+  backface-visibility:hidden;
+}
+
+/* Top face (visible from above due to rotation) */
+.wi-slab-top {
+  background:
+    linear-gradient(135deg,
+      rgba(120,160,255,0.28) 0%,
+      rgba(77,124,255,0.18) 40%,
+      rgba(50,80,180,0.22) 100%);
+  border:1px solid rgba(150,190,255,0.4);
+  border-radius:4px;
+  box-shadow:
+    inset 0 0 80px rgba(77,124,255,0.18),
+    inset 0 2px 0 rgba(200,220,255,0.3),
+    inset 0 -2px 0 rgba(40,60,140,0.4);
+  overflow:hidden;
+}
+.wi-slab-top::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    /* horizontal grid lines */
+    linear-gradient(to right, transparent 32%, rgba(180,210,255,0.18) 32%, rgba(180,210,255,0.18) 32.2%, transparent 32.2%, transparent 65%, rgba(180,210,255,0.18) 65%, rgba(180,210,255,0.18) 65.2%, transparent 65.2%),
+    /* vertical grid lines */
+    linear-gradient(to bottom, transparent 32%, rgba(180,210,255,0.18) 32%, rgba(180,210,255,0.18) 32.2%, transparent 32.2%, transparent 65%, rgba(180,210,255,0.18) 65%, rgba(180,210,255,0.18) 65.2%, transparent 65.2%);
+  pointer-events:none;
+}
+.wi-slab-top::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at center, rgba(255,255,255,0.12) 0%, transparent 50%);
+  pointer-events:none;
+}
+
+/* Side faces — give the slab depth */
+.wi-slab-side {
+  position:absolute;
+  background:linear-gradient(to bottom,
+    rgba(80,120,220,0.85) 0%,
+    rgba(50,80,180,0.95) 50%,
+    rgba(30,50,140,1) 100%);
+  border:1px solid rgba(150,190,255,0.35);
+  border-bottom:1px solid rgba(20,30,80,0.8);
+}
+.wi-slab-side::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    repeating-linear-gradient(90deg,
+      transparent 0,
+      transparent 14px,
+      rgba(180,210,255,0.08) 14px,
+      rgba(180,210,255,0.08) 15px);
+  pointer-events:none;
+}
+
+/* Bottom face (rarely seen) */
+.wi-slab-bottom {
+  background:rgba(20,30,80,0.95);
+  border:1px solid rgba(60,90,180,0.4);
+}
+
+/* ─── LAYER 1 (Execution) — top slab ─── */
+.wi-slab-1 {
+  /* slab is 380x380, thickness 50px */
+  transform:translate(-50%, -50%) translateY(-130px) rotateX(60deg);
+  animation:wiSlabFloat1 7s ease-in-out infinite;
+}
+.wi-slab-1 .wi-slab-top    { width:380px; height:380px; left:0; top:0; transform:translateZ(25px); }
+.wi-slab-1 .wi-slab-bottom { width:380px; height:380px; left:0; top:0; transform:translateZ(-25px) rotateX(180deg); }
+.wi-slab-1 .wi-slab-front  { width:380px; height:50px;  left:0; top:50%; margin-top:-25px; transform:rotateX(90deg) translateZ(190px); }
+.wi-slab-1 .wi-slab-back   { width:380px; height:50px;  left:0; top:50%; margin-top:-25px; transform:rotateX(90deg) translateZ(-190px) rotateY(180deg); }
+.wi-slab-1 .wi-slab-left   { width:50px;  height:380px; left:50%; top:0; margin-left:-25px; transform:rotateY(90deg) translateZ(-190px); }
+.wi-slab-1 .wi-slab-right  { width:50px;  height:380px; left:50%; top:0; margin-left:-25px; transform:rotateY(90deg) translateZ(190px) rotateX(180deg); }
+
+/* ─── LAYER 2 (Orchestration) — bottom slab ─── */
+.wi-slab-2 {
+  transform:translate(-50%, -50%) translateY(50px) rotateX(60deg);
+  animation:wiSlabFloat2 8s ease-in-out infinite 0.8s;
+}
+.wi-slab-2 .wi-slab-top    { width:380px; height:380px; left:0; top:0; transform:translateZ(25px); }
+.wi-slab-2 .wi-slab-bottom { width:380px; height:380px; left:0; top:0; transform:translateZ(-25px) rotateX(180deg); }
+.wi-slab-2 .wi-slab-front  { width:380px; height:50px;  left:0; top:50%; margin-top:-25px; transform:rotateX(90deg) translateZ(190px); }
+.wi-slab-2 .wi-slab-back   { width:380px; height:50px;  left:0; top:50%; margin-top:-25px; transform:rotateX(90deg) translateZ(-190px) rotateY(180deg); }
+.wi-slab-2 .wi-slab-left   { width:50px;  height:380px; left:50%; top:0; margin-left:-25px; transform:rotateY(90deg) translateZ(-190px); }
+.wi-slab-2 .wi-slab-right  { width:50px;  height:380px; left:50%; top:0; margin-left:-25px; transform:rotateY(90deg) translateZ(190px) rotateX(180deg); }
+
+@keyframes wiSlabFloat1 {
+  0%, 100% { margin-top:0; }
+  50%      { margin-top:-6px; }
+}
+@keyframes wiSlabFloat2 {
+  0%, 100% { margin-top:0; }
+  50%      { margin-top:-4px; }
+}
+
+/* ── State: Layer 1 active (default) ── */
+.wi-stage[data-active="1"] .wi-slab-1 {
+  transform:translate(-50%, -50%) translateY(-145px) rotateX(60deg) scale(1.03);
+}
+.wi-stage[data-active="1"] .wi-slab-1 .wi-slab-top {
+  background:
+    linear-gradient(135deg,
+      rgba(160,200,255,0.4) 0%,
+      rgba(100,150,255,0.3) 40%,
+      rgba(77,124,255,0.35) 100%);
+  border-color:rgba(180,210,255,0.7);
+  box-shadow:
+    inset 0 0 100px rgba(120,170,255,0.35),
+    inset 0 2px 0 rgba(220,235,255,0.5),
+    inset 0 -2px 0 rgba(50,80,180,0.5),
+    0 0 60px rgba(77,124,255,0.4);
+}
+.wi-stage[data-active="1"] .wi-slab-1 .wi-slab-side {
+  background:linear-gradient(to bottom,
+    rgba(120,160,255,0.95) 0%,
+    rgba(70,110,220,1) 50%,
+    rgba(40,60,160,1) 100%);
+  border-color:rgba(180,210,255,0.55);
+}
+.wi-stage[data-active="1"] .wi-slab-2 {
+  opacity:0.6;
+  transform:translate(-50%, -50%) translateY(60px) rotateX(60deg) scale(0.97);
+}
+
+/* ── State: Layer 2 active ── */
+.wi-stage[data-active="2"] .wi-slab-2 {
+  transform:translate(-50%, -50%) translateY(65px) rotateX(60deg) scale(1.03);
+}
+.wi-stage[data-active="2"] .wi-slab-2 .wi-slab-top {
+  background:
+    linear-gradient(135deg,
+      rgba(190,170,255,0.4) 0%,
+      rgba(150,120,250,0.3) 40%,
+      rgba(139,92,246,0.35) 100%);
+  border-color:rgba(210,190,255,0.7);
+  box-shadow:
+    inset 0 0 100px rgba(170,140,255,0.35),
+    inset 0 2px 0 rgba(235,225,255,0.5),
+    inset 0 -2px 0 rgba(80,50,180,0.5),
+    0 0 60px rgba(139,92,246,0.4);
+}
+.wi-stage[data-active="2"] .wi-slab-2 .wi-slab-side {
+  background:linear-gradient(to bottom,
+    rgba(170,140,255,0.95) 0%,
+    rgba(120,80,220,1) 50%,
+    rgba(70,40,160,1) 100%);
+  border-color:rgba(210,190,255,0.55);
+}
+.wi-stage[data-active="2"] .wi-slab-1 {
+  opacity:0.55;
+  transform:translate(-50%, -50%) translateY(-120px) rotateX(60deg) scale(0.97);
+}
+
+/* ─── Slab content (sits ON the top face) ─── */
+.wi-slab-content {
+  position:absolute;
+  inset:30px;
+  transform:translateZ(26px);
+  transform-style:preserve-3d;
+  pointer-events:none;
+}
+
+/* Layer 1 content — execution badge + agent dots */
+.wi-exec-grid {
+  position:relative;
+  width:100%;
+  height:100%;
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  grid-template-rows:repeat(3, 1fr);
+  gap:8px;
+}
+.wi-exec-cell {
+  position:relative;
+  border:1px solid rgba(180,210,255,0.18);
+  border-radius:3px;
+  background:rgba(77,124,255,0.04);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:all 0.4s ease;
+}
+.wi-stage[data-active="1"] .wi-exec-cell {
+  border-color:rgba(180,210,255,0.3);
+  background:rgba(77,124,255,0.08);
+  animation:wiCellPulse 4s ease-in-out infinite;
+}
+.wi-stage[data-active="1"] .wi-exec-cell:nth-child(1) { animation-delay:0s; }
+.wi-stage[data-active="1"] .wi-exec-cell:nth-child(2) { animation-delay:0.4s; }
+.wi-stage[data-active="1"] .wi-exec-cell:nth-child(3) { animation-delay:0.8s; }
+.wi-stage[data-active="1"] .wi-exec-cell:nth-child(4) { animation-delay:0.2s; }
+.wi-stage[data-active="1"] .wi-exec-cell:nth-child(6) { animation-delay:0.6s; }
+.wi-stage[data-active="1"] .wi-exec-cell:nth-child(7) { animation-delay:1.0s; }
+.wi-stage[data-active="1"] .wi-exec-cell:nth-child(8) { animation-delay:1.4s; }
+.wi-stage[data-active="1"] .wi-exec-cell:nth-child(9) { animation-delay:1.8s; }
+@keyframes wiCellPulse {
+  0%, 100% { box-shadow:inset 0 0 0 rgba(150,190,255,0); }
+  50%      { box-shadow:inset 0 0 12px rgba(150,190,255,0.4); }
+}
+.wi-exec-cell-icon {
+  width:18px;
+  height:18px;
+  color:rgba(220,235,255,0.8);
+  filter:drop-shadow(0 0 4px rgba(150,190,255,0.6));
+}
+.wi-exec-cell.wi-exec-cell-core {
+  background:linear-gradient(135deg, rgba(180,210,255,0.45), rgba(100,150,255,0.3));
+  border-color:rgba(220,235,255,0.85);
+  box-shadow:
+    inset 0 0 16px rgba(220,235,255,0.5),
+    0 0 20px rgba(150,190,255,0.7) !important;
+  animation:none !important;
+}
+.wi-exec-cell-core .wi-exec-cell-icon {
+  color:#fff;
+  filter:drop-shadow(0 0 6px rgba(255,255,255,0.9));
+}
+
+/* Floating "Execution" tag on slab */
+.wi-slab-tag {
+  position:absolute;
+  bottom:-26px;
+  right:8%;
+  transform:translateZ(28px) rotateX(-60deg);
+  font-size:10px;
+  font-weight:700;
+  color:rgba(40,60,140,0.95);
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  background:linear-gradient(135deg, rgba(220,235,255,0.95), rgba(180,210,255,0.85));
+  padding:5px 10px;
+  border-radius:3px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.3);
+  white-space:nowrap;
+  font-family:'SF Mono', Monaco, monospace;
+}
+.wi-stage[data-active="2"] .wi-slab-1 .wi-slab-tag { opacity:0.5; }
+
+.wi-slab-2 .wi-slab-tag {
+  color:rgba(70,40,160,0.95);
+  background:linear-gradient(135deg, rgba(235,225,255,0.95), rgba(210,190,255,0.85));
+}
+.wi-stage[data-active="1"] .wi-slab-2 .wi-slab-tag { opacity:0.5; }
+
+/* Layer 2 content — orchestration nodes */
+.wi-orch-svg {
+  width:100%;
+  height:100%;
+  display:block;
+}
+.wi-orch-link {
+  stroke:rgba(180,210,255,0.5);
+  stroke-width:1.2;
+  stroke-dasharray:3 4;
+  fill:none;
+}
+.wi-stage[data-active="2"] .wi-orch-link {
+  stroke:rgba(220,200,255,0.7);
+  animation:wiDash 12s linear infinite;
+}
+@keyframes wiDash {
+  to { stroke-dashoffset:-100; }
+}
+.wi-orch-node {
+  fill:rgba(150,190,255,0.3);
+  stroke:rgba(180,210,255,0.7);
+  stroke-width:1.5;
+}
+.wi-stage[data-active="2"] .wi-orch-node {
+  fill:rgba(190,170,255,0.5);
+  stroke:rgba(220,200,255,0.9);
+  filter:drop-shadow(0 0 6px rgba(190,170,255,0.7));
+}
+.wi-orch-node-active {
+  fill:rgba(220,200,255,0.85);
+  stroke:#fff;
+  stroke-width:2;
+}
+.wi-stage[data-active="2"] .wi-orch-node-active {
+  filter:drop-shadow(0 0 12px rgba(220,200,255,1));
+}
+.wi-stage[data-active="2"] .wi-orch-pulse {
+  animation:wiNodePulse 2.5s ease-in-out infinite;
+  transform-origin:center;
+  transform-box:fill-box;
+}
+.wi-stage[data-active="2"] .wi-orch-pulse:nth-child(2) { animation-delay:0.5s; }
+.wi-stage[data-active="2"] .wi-orch-pulse:nth-child(3) { animation-delay:1s; }
+.wi-stage[data-active="2"] .wi-orch-pulse:nth-child(4) { animation-delay:1.5s; }
+@keyframes wiNodePulse {
+  0%, 100% { opacity:0.55; }
+  50%      { opacity:1; }
+}
+
+/* Caption below stage */
+.wi-stage-caption {
+  position:absolute;
+  bottom:12px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:11px;
+  color:rgba(255,255,255,0.5);
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  font-weight:600;
+  white-space:nowrap;
+  z-index:20;
+}
+.wi-stage-caption-dot {
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#7aa9ff;
+  box-shadow:0 0 12px rgba(122,169,255,0.9);
+  animation:wiDotPulse 1.8s ease-in-out infinite;
+}
+@keyframes wiDotPulse {
+  0%, 100% { transform:scale(1); opacity:1; }
+  50%      { transform:scale(1.4); opacity:0.7; }
+}
+.wi-stage[data-active="2"] .wi-stage-caption-dot {
+  background:#b39dff;
+  box-shadow:0 0 12px rgba(179,157,255,0.9);
+}
 </style>
 
-<script>
-function wi2activate(idx){
-  document.querySelectorAll('.wi2-tab').forEach(function(t){ t.classList.remove('active'); });
-  document.querySelectorAll('.wi2-panel').forEach(function(p){ p.classList.remove('active'); });
-  document.querySelector('.wi2-tab[data-idx="'+idx+'"]').classList.add('active');
-  document.querySelector('.wi2-panel[data-idx="'+idx+'"]').classList.add('active');
-}
-</script>
-
-
-<!-- ═══ HOW IT WORKS ═══ -->
-<section style="background:#04091a url('https://res.cloudinary.com/dcuswyfur/image/upload/v1777869488/Frame_1707483485_jl79y6.png') center/cover no-repeat;padding:120px 0 100px;overflow:hidden;position:relative;">
+<section class="wi-section" style="padding:120px 0;background:#04091a;position:relative;overflow:hidden;">
+  <canvas id="insideStars" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+  <!-- Soft atmospheric blur blobs — layered sky feel -->
+  <div style="position:absolute;top:-300px;left:-300px;width:900px;height:900px;background:radial-gradient(ellipse,rgba(77,124,255,0.13) 0%,transparent 65%);pointer-events:none;z-index:1;filter:blur(80px);"></div>
+  <div style="position:absolute;bottom:-300px;right:-300px;width:800px;height:800px;background:radial-gradient(ellipse,rgba(139,92,246,0.11) 0%,transparent 65%);pointer-events:none;z-index:1;filter:blur(80px);"></div>
+  <div style="position:absolute;top:30%;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(50,100,255,0.07) 0%,transparent 70%);pointer-events:none;z-index:1;filter:blur(90px);"></div>
+  <div style="position:absolute;top:10%;right:5%;width:400px;height:400px;background:radial-gradient(ellipse,rgba(120,80,255,0.09) 0%,transparent 70%);pointer-events:none;z-index:1;filter:blur(60px);"></div>
+  <div style="position:absolute;bottom:15%;left:8%;width:350px;height:350px;background:radial-gradient(ellipse,rgba(0,80,255,0.08) 0%,transparent 70%);pointer-events:none;z-index:1;filter:blur(55px);"></div>
 
   <div class="container" style="position:relative;z-index:2;">
-    <div style="text-align:center;margin-bottom:72px;">
-      <span class="eyebrow">How It Works</span>
-      <h2 class="section-title" style="color:#fff;font-weight:500;">Six phases. One straight line to ROI.</h2>
-      <p class="section-sub" style="color:rgba(255,255,255,0.75);">Agile by design. Tailored for scaleups. Proven to drive measurable returns.</p>
+    <div style="text-align:center;margin-bottom:40px;">
+      <span class="eyebrow" style="background:rgba(0,64,255,0.18);border-color:rgba(0,64,255,0.35);color:#8899ff;">What's Inside</span>
+      <h2 class="section-title" style="color:#fff;font-weight:500;">Everything required to run execution at scale.</h2>
+      <p style="font-size:18px;color:rgba(255,255,255,0.6);max-width:620px;margin:0 auto;line-height:1.7;">AI KONIK isn't a single product — it's the stack a mid-market company needs to actually go AI-first. Three layers, working together.</p>
     </div>
 
-    <div style="display:grid;grid-template-columns:340px 1fr;gap:64px;align-items:start;">
-
-      <!-- Left: clickable list -->
-      <div style="position:sticky;top:120px;display:flex;flex-direction:column;gap:0;">
-        <div class="ph2-item active" data-idx="0"><span class="ph2-num">01</span><span class="ph2-label">Discovery Sprint</span></div>
-        <div class="ph2-item" data-idx="1"><span class="ph2-num">02</span><span class="ph2-label">Assessment Sprint</span></div>
-        <div class="ph2-item" data-idx="2"><span class="ph2-num">03</span><span class="ph2-label">Refinement Sprint</span></div>
-        <div class="ph2-item" data-idx="3"><span class="ph2-num">04</span><span class="ph2-label">Design Sprint</span></div>
-        <div class="ph2-item" data-idx="4"><span class="ph2-num">05</span><span class="ph2-label">Implementation Sprint</span></div>
-        <div class="ph2-item" data-idx="5"><span class="ph2-num">06</span><span class="ph2-label">Optimization Sprint</span></div>
+    <div style="text-align:center;">
+      <div class="wi-toggle" role="tablist" aria-label="Layer selector">
+        <button class="wi-toggle-btn active" data-wi-layer="1" role="tab" aria-selected="true">Layer 1 — Execution</button>
+        <button class="wi-toggle-btn" data-wi-layer="2" role="tab" aria-selected="false">Layer 2 — Orchestration</button>
       </div>
+    </div>
 
-      <!-- Right: content, no box -->
-      <div>
-        <div class="ph2-panel active" data-idx="0">
-          <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#0040FF;display:flex;align-items:center;gap:10px;margin-bottom:20px;"><span style="width:28px;height:2px;background:#0040FF;display:inline-block;"></span>Phase 01 · Discovery</div>
-          <h3 style="font-size:clamp(28px,3vw,42px);font-weight:600;color:#fff;letter-spacing:-0.025em;line-height:1.15;margin-bottom:20px;">Discover. Deploy. Deliver.</h3>
-          <p style="font-size:18px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:28px;">We analyze your business model, goals, and constraints to uncover where AI delivers the highest leverage. Clarity first. Noise cut.</p>
-          <div style="padding:16px 20px;border-left:2px solid #0040FF;background:rgba(0,64,255,0.1);border-radius:0 8px 8px 0;">
-            <div style="font-size:11px;font-weight:700;color:#60aaff;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Milestone</div>
-            <div style="font-size:16px;color:rgba(255,255,255,0.7);line-height:1.6;">A focused AI opportunity map and prioritized action plan — delivered in week one.</div>
-          </div>
+    <div class="wi-grid">
+      <!-- LEFT: Content panels -->
+      <div class="wi-content">
+
+        <!-- Layer 1: Execution -->
+        <div class="wi-panel active" data-wi-panel="1">
+          <p style="font-size:12px;font-weight:700;color:#8899ff;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:14px;">This is where work gets done.</p>
+          <h3 style="font-size:clamp(32px,3.4vw,46px);font-weight:500;color:#fff;letter-spacing:-0.025em;line-height:1.1;margin-bottom:28px;">The Execution Layer</h3>
+          <p style="font-size:17px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:20px;">A fleet of 100+ specialized agents handles the actual workflow — drafting contracts, reviewing claims, analyzing freight data, generating clinical notes, running risk assessments. Each agent is paired with a tested prompt library of more than 60K+ inputs, organized by industry and use case, so your team doesn't waste cycles figuring out how to brief the AI.</p>
+          <p style="font-size:17px;color:rgba(255,255,255,0.65);line-height:1.75;">Built on a compliance-ready architecture supporting HIPAA, SOC 2, and GDPR, with native integrations into the tools your team already uses.</p>
         </div>
 
-        <div class="ph2-panel" data-idx="1">
-          <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#0040FF;display:flex;align-items:center;gap:10px;margin-bottom:20px;"><span style="width:28px;height:2px;background:#0040FF;display:inline-block;"></span>Phase 02 · Assessment</div>
-          <h3 style="font-size:clamp(28px,3vw,42px);font-weight:600;color:#fff;letter-spacing:-0.025em;line-height:1.15;margin-bottom:20px;">Remove the friction.</h3>
-          <p style="font-size:18px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:28px;">Using the 8 Value Drivers Framework, we audit operations and pinpoint where AI will make the biggest impact — revenue, efficiency, capacity, competitive edge.</p>
-          <div style="padding:16px 20px;border-left:2px solid #0040FF;background:rgba(0,64,255,0.1);border-radius:0 8px 8px 0;">
-            <div style="font-size:11px;font-weight:700;color:#60aaff;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Milestone</div>
-            <div style="font-size:16px;color:rgba(255,255,255,0.7);line-height:1.6;">A scored value driver assessment — showing exactly where to act first for fastest ROI.</div>
-          </div>
-        </div>
-
-        <div class="ph2-panel" data-idx="2">
-          <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#0040FF;display:flex;align-items:center;gap:10px;margin-bottom:20px;"><span style="width:28px;height:2px;background:#0040FF;display:inline-block;"></span>Phase 03 · Refinement</div>
-          <h3 style="font-size:clamp(28px,3vw,42px);font-weight:600;color:#fff;letter-spacing:-0.025em;line-height:1.15;margin-bottom:20px;">Build on solid ground.</h3>
-          <p style="font-size:18px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:28px;">Before AI can scale, your systems need structure. We optimize what's under the hood so deployment doesn't collapse under its own weight.</p>
-          <div style="padding:16px 20px;border-left:2px solid #0040FF;background:rgba(0,64,255,0.1);border-radius:0 8px 8px 0;">
-            <div style="font-size:11px;font-weight:700;color:#60aaff;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Milestone</div>
-            <div style="font-size:16px;color:rgba(255,255,255,0.7);line-height:1.6;">Clean workflows, structured data, and a deployment-ready foundation.</div>
-          </div>
-        </div>
-
-        <div class="ph2-panel" data-idx="3">
-          <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#0040FF;display:flex;align-items:center;gap:10px;margin-bottom:20px;"><span style="width:28px;height:2px;background:#0040FF;display:inline-block;"></span>Phase 04 · Design</div>
-          <h3 style="font-size:clamp(28px,3vw,42px);font-weight:600;color:#fff;letter-spacing:-0.025em;line-height:1.15;margin-bottom:20px;">Vision meets precision.</h3>
-          <p style="font-size:18px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:28px;">Every workflow, agent, and system is engineered to solve a real-world problem. No science projects. No vanity builds.</p>
-          <div style="padding:16px 20px;border-left:2px solid #0040FF;background:rgba(0,64,255,0.1);border-radius:0 8px 8px 0;">
-            <div style="font-size:11px;font-weight:700;color:#60aaff;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Milestone</div>
-            <div style="font-size:16px;color:rgba(255,255,255,0.7);line-height:1.6;">Fully documented AI architecture — every agent, trigger, and integration mapped.</div>
-          </div>
-        </div>
-
-        <div class="ph2-panel" data-idx="4">
-          <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#0040FF;display:flex;align-items:center;gap:10px;margin-bottom:20px;"><span style="width:28px;height:2px;background:#0040FF;display:inline-block;"></span>Phase 05 · Implementation</div>
-          <h3 style="font-size:clamp(28px,3vw,42px);font-weight:600;color:#fff;letter-spacing:-0.025em;line-height:1.15;margin-bottom:20px;">Launch fast, disrupt nothing.</h3>
-          <p style="font-size:18px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:28px;">Short, high-impact phases that ship without breaking your operations. Your team stays on track. We do the heavy lifting.</p>
-          <div style="padding:16px 20px;border-left:2px solid #0040FF;background:rgba(0,64,255,0.1);border-radius:0 8px 8px 0;">
-            <div style="font-size:11px;font-weight:700;color:#60aaff;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Milestone</div>
-            <div style="font-size:16px;color:rgba(255,255,255,0.7);line-height:1.6;">Live AI systems running in production — without disrupting existing operations.</div>
-          </div>
-        </div>
-
-        <div class="ph2-panel" data-idx="5">
-          <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#0040FF;display:flex;align-items:center;gap:10px;margin-bottom:20px;"><span style="width:28px;height:2px;background:#0040FF;display:inline-block;"></span>Phase 06 · Optimization</div>
-          <h3 style="font-size:clamp(28px,3vw,42px);font-weight:600;color:#fff;letter-spacing:-0.025em;line-height:1.15;margin-bottom:20px;">Scale. Sharpen. Repeat.</h3>
-          <p style="font-size:18px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:28px;">After deployment, we keep partnering with you to refine performance and unlock new value as the business evolves.</p>
-          <div style="padding:16px 20px;border-left:2px solid #0040FF;background:rgba(0,64,255,0.1);border-radius:0 8px 8px 0;">
-            <div style="font-size:11px;font-weight:700;color:#60aaff;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Milestone</div>
-            <div style="font-size:16px;color:rgba(255,255,255,0.7);line-height:1.6;">Ongoing performance reporting, iteration sprints, and compounding ROI.</div>
+        <!-- Layer 2: Orchestration -->
+        <div class="wi-panel" data-wi-panel="2">
+          <p style="font-size:12px;font-weight:700;color:#a78bfa;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:14px;">This is where work moves.</p>
+          <h3 style="font-size:clamp(32px,3.4vw,46px);font-weight:500;color:#fff;letter-spacing:-0.025em;line-height:1.1;margin-bottom:28px;">The Orchestration Layer</h3>
+          <p style="font-size:17px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:32px;">Multi-step approvals, conditional logic, and dependencies are defined inside the platform — not patched together across Slack threads and shared docs.</p>
+          <div style="display:flex;flex-direction:column;gap:18px;">
+            <div style="display:flex;align-items:flex-start;gap:16px;"><div style="width:8px;height:8px;border-radius:50%;background:#8b5cf6;flex-shrink:0;margin-top:8px;box-shadow:0 0 10px rgba(139,92,246,0.7);"></div><p style="font-size:16px;color:rgba(255,255,255,0.75);line-height:1.65;margin:0;">When a step finishes, the next one triggers.</p></div>
+            <div style="display:flex;align-items:flex-start;gap:16px;"><div style="width:8px;height:8px;border-radius:50%;background:#8b5cf6;flex-shrink:0;margin-top:8px;box-shadow:0 0 10px rgba(139,92,246,0.7);"></div><p style="font-size:16px;color:rgba(255,255,255,0.75);line-height:1.65;margin:0;">When a decision is needed, the right person sees it.</p></div>
+            <div style="display:flex;align-items:flex-start;gap:16px;"><div style="width:8px;height:8px;border-radius:50%;background:#8b5cf6;flex-shrink:0;margin-top:8px;box-shadow:0 0 10px rgba(139,92,246,0.7);"></div><p style="font-size:16px;color:rgba(255,255,255,0.75);line-height:1.65;margin:0;">When something breaks, you see that too.</p></div>
           </div>
         </div>
 
       </div>
+
+      <!-- RIGHT: 3D layered stage (Xiaomi HyperOS-style slabs) -->
+      <div class="wi-stage" data-active="1" id="wiStage">
+        <div class="wi-stage-inner" id="wiStageInner">
+
+          <!-- Vertical light beams (between layers) -->
+          <div class="wi-beams">
+            <div class="wi-beam" style="left:8%;animation-delay:0s;"></div>
+            <div class="wi-beam" style="left:16%;animation-delay:0.3s;"></div>
+            <div class="wi-beam" style="left:24%;animation-delay:0.6s;"></div>
+            <div class="wi-beam" style="left:32%;animation-delay:0.2s;"></div>
+            <div class="wi-beam" style="left:40%;animation-delay:0.8s;"></div>
+            <div class="wi-beam" style="left:48%;animation-delay:0.5s;"></div>
+            <div class="wi-beam" style="left:56%;animation-delay:1.1s;"></div>
+            <div class="wi-beam" style="left:64%;animation-delay:0.4s;"></div>
+            <div class="wi-beam" style="left:72%;animation-delay:0.9s;"></div>
+            <div class="wi-beam" style="left:80%;animation-delay:0.7s;"></div>
+            <div class="wi-beam" style="left:88%;animation-delay:1.2s;"></div>
+            <div class="wi-beam" style="left:92%;animation-delay:0.1s;"></div>
+          </div>
+
+          <!-- Data rain (binary, populated by JS) -->
+          <div class="wi-datarain" id="wiDataRain"></div>
+
+          <!-- Central core glow -->
+          <div class="wi-core-glow"></div>
+
+          <!-- LAYER 1 (top slab) — Execution -->
+          <div class="wi-slab wi-slab-1" data-wi-layer-target="1">
+            <div class="wi-slab-face wi-slab-side wi-slab-front"></div>
+            <div class="wi-slab-face wi-slab-side wi-slab-back"></div>
+            <div class="wi-slab-face wi-slab-side wi-slab-left"></div>
+            <div class="wi-slab-face wi-slab-side wi-slab-right"></div>
+            <div class="wi-slab-face wi-slab-bottom"></div>
+            <div class="wi-slab-face wi-slab-top">
+              <div class="wi-slab-content">
+                <div class="wi-exec-grid">
+                  <!-- 9 cells, center is core -->
+                  <div class="wi-exec-cell">
+                    <svg class="wi-exec-cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M12 3 L4 7 L12 11 L20 7 Z"/><path d="M4 7 V13 L12 17 L20 13 V7"/>
+                    </svg>
+                  </div>
+                  <div class="wi-exec-cell">
+                    <svg class="wi-exec-cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect x="4" y="6" width="16" height="12" rx="1"/><path d="M4 10 H20"/><circle cx="8" cy="14" r="1.2"/>
+                    </svg>
+                  </div>
+                  <div class="wi-exec-cell">
+                    <svg class="wi-exec-cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M3 17 L9 11 L13 15 L21 7"/><path d="M15 7 H21 V13"/>
+                    </svg>
+                  </div>
+                  <div class="wi-exec-cell">
+                    <svg class="wi-exec-cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M12 3 V21"/><path d="M5 8 H19"/><path d="M5 16 H19"/><circle cx="12" cy="12" r="3"/>
+                    </svg>
+                  </div>
+                  <!-- center: core -->
+                  <div class="wi-exec-cell wi-exec-cell-core">
+                    <svg class="wi-exec-cell-icon" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M13 2 L4 14 H11 L9 22 L20 10 H13 Z"/>
+                    </svg>
+                  </div>
+                  <div class="wi-exec-cell">
+                    <svg class="wi-exec-cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect x="5" y="5" width="14" height="14" rx="1"/><path d="M5 9 H19"/><path d="M9 9 V19"/>
+                    </svg>
+                  </div>
+                  <div class="wi-exec-cell">
+                    <svg class="wi-exec-cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <circle cx="12" cy="8" r="3"/><path d="M5 20 C5 16 8 14 12 14 C16 14 19 16 19 20"/>
+                    </svg>
+                  </div>
+                  <div class="wi-exec-cell">
+                    <svg class="wi-exec-cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect x="3" y="4" width="18" height="14" rx="1"/><path d="M3 9 H21"/><circle cx="6" cy="6.5" r="0.5" fill="currentColor"/><circle cx="8" cy="6.5" r="0.5" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <div class="wi-exec-cell">
+                    <svg class="wi-exec-cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M3 21 V10 L8 6 V10 L13 6 V10 L21 6 V21 Z"/><path d="M3 21 H21"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="wi-slab-tag">Layer 01 / Execution</div>
+            </div>
+          </div>
+
+          <!-- LAYER 2 (bottom slab) — Orchestration -->
+          <div class="wi-slab wi-slab-2" data-wi-layer-target="2">
+            <div class="wi-slab-face wi-slab-side wi-slab-front"></div>
+            <div class="wi-slab-face wi-slab-side wi-slab-back"></div>
+            <div class="wi-slab-face wi-slab-side wi-slab-left"></div>
+            <div class="wi-slab-face wi-slab-side wi-slab-right"></div>
+            <div class="wi-slab-face wi-slab-bottom"></div>
+            <div class="wi-slab-face wi-slab-top">
+              <div class="wi-slab-content">
+                <svg class="wi-orch-svg" viewBox="0 0 320 320" preserveAspectRatio="xMidYMid meet">
+                  <!-- Network connections -->
+                  <path class="wi-orch-link" d="M70,90 Q160,40 250,90"/>
+                  <path class="wi-orch-link" d="M70,230 Q160,280 250,230"/>
+                  <path class="wi-orch-link" d="M70,90 Q40,160 70,230"/>
+                  <path class="wi-orch-link" d="M250,90 Q280,160 250,230"/>
+                  <path class="wi-orch-link" d="M70,90 L160,160"/>
+                  <path class="wi-orch-link" d="M250,90 L160,160"/>
+                  <path class="wi-orch-link" d="M70,230 L160,160"/>
+                  <path class="wi-orch-link" d="M250,230 L160,160"/>
+                  <!-- Outer corner nodes -->
+                  <circle class="wi-orch-node wi-orch-pulse" cx="70" cy="90" r="9"/>
+                  <circle class="wi-orch-node wi-orch-pulse" cx="250" cy="90" r="9"/>
+                  <circle class="wi-orch-node wi-orch-pulse" cx="70" cy="230" r="9"/>
+                  <circle class="wi-orch-node wi-orch-pulse" cx="250" cy="230" r="9"/>
+                  <!-- Center hub -->
+                  <circle class="wi-orch-node-active" cx="160" cy="160" r="14"/>
+                  <circle cx="160" cy="160" r="5" fill="#fff" opacity="0.95"/>
+                </svg>
+              </div>
+              <div class="wi-slab-tag">Layer 02 / Orchestration</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="wi-stage-caption">
+          <span class="wi-stage-caption-dot"></span>
+          <span id="wiCaption">Active — Execution Layer</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
+<script>
+(function(){
+  var stage = document.getElementById('wiStage');
+  var inner = document.getElementById('wiStageInner');
+  var caption = document.getElementById('wiCaption');
+  var buttons = document.querySelectorAll('.wi-toggle-btn');
+  var panels = document.querySelectorAll('.wi-panel');
+  var slabs = document.querySelectorAll('.wi-slab');
+
+  function setLayer(n) {
+    stage.setAttribute('data-active', n);
+    buttons.forEach(function(b){
+      var on = b.dataset.wiLayer === String(n);
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    panels.forEach(function(p){
+      p.classList.toggle('active', p.dataset.wiPanel === String(n));
+    });
+    caption.textContent = n === '1' || n === 1
+      ? 'Active — Execution Layer'
+      : 'Active — Orchestration Layer';
+  }
+
+  buttons.forEach(function(b){
+    b.addEventListener('click', function(){ setLayer(b.dataset.wiLayer); });
+  });
+
+  // Click on slab also toggles
+  slabs.forEach(function(s){
+    s.addEventListener('click', function(){
+      setLayer(s.dataset.wiLayerTarget);
+    });
+  });
+
+  // Subtle parallax on mouse move (preserve baseline rotateX(8deg))
+  var rafId = null;
+  var targetX = 0, targetY = 0, currentX = 0, currentY = 0;
+  function tick() {
+    currentX += (targetX - currentX) * 0.08;
+    currentY += (targetY - currentY) * 0.08;
+    if (inner) {
+      inner.style.transform = 'rotateX(' + (8 - currentY) + 'deg) rotateY(' + currentX + 'deg)';
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+  if (stage) {
+    stage.addEventListener('mousemove', function(e){
+      var r = stage.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width - 0.5;
+      var py = (e.clientY - r.top) / r.height - 0.5;
+      targetX = px * 5;
+      targetY = py * 3;
+    });
+    stage.addEventListener('mouseleave', function(){
+      targetX = 0; targetY = 0;
+    });
+    tick();
+  }
+
+  // Star canvas — rich parallax sky
+  var c = document.getElementById('insideStars');
+  if(c){
+    var ctx2 = c.getContext('2d');
+    var stars2 = [];
+    var mouseX = 0, mouseY = 0, targetMX = 0, targetMY = 0;
+
+    function resize2(){ c.width=c.offsetWidth; c.height=c.offsetHeight; }
+    resize2(); window.addEventListener('resize', resize2);
+
+    // 3 layers: far (tiny, slow), mid, near (large, fast)
+    var layers = [
+      { count:320, rMin:0.15, rMax:0.55, opMin:0.12, opMax:0.38, speed:0.3, color:'255,255,255' },
+      { count:180, rMin:0.4,  rMax:0.9,  opMin:0.25, opMax:0.55, speed:0.7, color:'200,220,255' },
+      { count: 60, rMin:0.8,  rMax:1.6,  opMin:0.45, opMax:0.85, speed:1.4, color:'180,210,255' }
+    ];
+    layers.forEach(function(l){
+      for(var i=0;i<l.count;i++){
+        stars2.push({
+          x: Math.random(), y: Math.random(),
+          r: l.rMin + Math.random()*(l.rMax-l.rMin),
+          baseOp: l.opMin + Math.random()*(l.opMax-l.opMin),
+          t: Math.random()*Math.PI*2,
+          speed: l.speed,
+          color: l.color
+        });
+      }
+    });
+
+    // Smooth mouse tracking
+    document.addEventListener('mousemove', function(e){
+      targetMX = (e.clientX / window.innerWidth  - 0.5);
+      targetMY = (e.clientY / window.innerHeight - 0.5);
+    });
+
+    function draw2(){
+      // Lerp mouse
+      mouseX += (targetMX - mouseX) * 0.05;
+      mouseY += (targetMY - mouseY) * 0.05;
+
+      ctx2.clearRect(0,0,c.width,c.height);
+      var now = Date.now() * 0.0006;
+
+      stars2.forEach(function(s){
+        var twinkle = 0.55 + 0.45 * Math.sin(now * 0.8 + s.t);
+        var op = s.baseOp * twinkle;
+
+        // Parallax offset — deeper layers move less
+        var px = (s.x * c.width  + mouseX * 28 * s.speed + c.width)  % c.width;
+        var py = (s.y * c.height + mouseY * 18 * s.speed + c.height) % c.height;
+
+        ctx2.beginPath();
+        ctx2.arc(px, py, s.r, 0, Math.PI*2);
+        ctx2.fillStyle = 'rgba('+s.color+','+op.toFixed(3)+')';
+        ctx2.fill();
+
+        // Occasional larger stars get a soft glow bloom
+        if(s.r > 1.2){
+          var grd = ctx2.createRadialGradient(px, py, 0, px, py, s.r*5);
+          grd.addColorStop(0, 'rgba('+s.color+','+(op*0.35).toFixed(3)+')');
+          grd.addColorStop(1, 'rgba('+s.color+',0)');
+          ctx2.beginPath();
+          ctx2.arc(px, py, s.r*5, 0, Math.PI*2);
+          ctx2.fillStyle = grd;
+          ctx2.fill();
+        }
+      });
+      requestAnimationFrame(draw2);
+    }
+    draw2();
+  }
+
+  // Data rain — binary digits flowing through the layers
+  var rain = document.getElementById('wiDataRain');
+  if (rain) {
+    var COLUMNS = 11;
+    function randomBinary(len) {
+      var s = '';
+      for (var i = 0; i < len; i++) s += (Math.random() > 0.5 ? '1' : '0');
+      return s;
+    }
+    for (var i = 0; i < COLUMNS; i++) {
+      var col = document.createElement('div');
+      col.className = 'wi-datacol';
+      // ~55% lead columns (brighter), rest are dim
+      if (Math.random() < 0.55) col.classList.add('wi-datacol-lead');
+      // Distribute across width with slight randomness, avoid edges
+      var leftPct = 6 + (i / (COLUMNS - 1)) * 88 + (Math.random() - 0.5) * 5;
+      var len = 14 + Math.floor(Math.random() * 12);   // 14-26 digits
+      var dur = 7 + Math.random() * 6;                 // 7-13s
+      var delay = -Math.random() * dur;                // negative => already mid-fall on load
+      col.style.left = leftPct + '%';
+      col.style.animationDuration = dur.toFixed(2) + 's';
+      col.style.animationDelay = delay.toFixed(2) + 's';
+      col.style.fontSize = (9 + Math.random() * 2.5).toFixed(1) + 'px';
+      col.textContent = randomBinary(len);
+      rain.appendChild(col);
+    }
+    // Periodically refresh column contents so the digits aren't static
+    setInterval(function(){
+      var cols = rain.querySelectorAll('.wi-datacol');
+      cols.forEach(function(c){
+        if (Math.random() < 0.3) c.textContent = randomBinary(c.textContent.length);
+      });
+    }, 1800);
+  }
+})();
+</script>
+
+
+<!-- ═══ WHO IT'S FOR ═══ -->
 <style>
-.ph2-item {
-  display:flex;align-items:center;gap:16px;
-  padding:18px 20px;
-  border-left:2px solid rgba(255,255,255,0.08);
-  cursor:pointer;
-  transition:border-color 0.25s,background 0.25s;
-  border-radius:0 8px 8px 0;
+.wif-section {
+  padding:100px 0 110px;
+  background:#ffffff;
+  overflow:hidden;
 }
-.ph2-item:hover { border-left-color:rgba(0,64,255,0.4);background:rgba(0,64,255,0.06); }
-.ph2-item.active { border-left-color:#0040FF;background:rgba(0,64,255,0.1); }
-.ph2-num { font-size:11px;font-weight:700;color:rgba(255,255,255,0.3);font-family:monospace;letter-spacing:0.06em;flex-shrink:0;transition:color 0.25s; }
-.ph2-item.active .ph2-num, .ph2-item:hover .ph2-num { color:#0040FF; }
-.ph2-label { font-size:16px;font-weight:500;color:rgba(255,255,255,0.4);transition:color 0.25s; }
-.ph2-item.active .ph2-label { color:#fff;font-weight:600; }
-.ph2-item:hover .ph2-label { color:rgba(255,255,255,0.8); }
-.ph2-panel { display:none; }
-.ph2-panel.active { display:block;animation:ph2fade 0.35s ease; }
-@keyframes ph2fade { from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);} }
+/* Top row: large heading left, description right */
+.wif-top {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:end;
+  margin-bottom:40px;
+}
+@media(max-width:760px){ .wif-top{ grid-template-columns:1fr; gap:24px; } }
+
+.wif-heading {
+  font-size:clamp(36px,4.5vw,60px);
+  font-weight:500;
+  color:#030d2a;
+  letter-spacing:-0.03em;
+  line-height:1.08;
+  margin:0;
+  font-family:'Segoe UI',system-ui,sans-serif;
+}
+.wif-eyebrow {
+  display:inline-block;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:#0040FF;
+  margin-bottom:20px;
+  font-family:'Segoe UI',system-ui,sans-serif;
+  padding:6px 16px;
+  background:rgba(0,64,255,0.08);
+  border:1px solid rgba(0,64,255,0.2);
+  border-radius:999px;
+}
+.wif-right {
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  gap:20px;
+}
+.wif-desc {
+  font-size:18px;
+  color:#4a5060;
+  line-height:1.7;
+  margin:0;
+}
+.wif-cta {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:#0a0d1a;
+  color:#fff;
+  font-size:14px;
+  font-weight:600;
+  padding:13px 22px;
+  border-radius:100px;
+  text-decoration:none;
+  width:fit-content;
+  transition:transform 0.25s ease, box-shadow 0.25s ease, gap 0.25s ease;
+  letter-spacing:0.01em;
+  border:1px solid transparent;
+  position:relative;
+  isolation:isolate;
+  z-index:0;
+}
+.wif-cta::before{
+  content:"";
+  position:absolute;
+  inset:-1.5px;
+  border-radius:100px;
+  background:conic-gradient(from var(--btn-angle), #0040FF, #c77dff, #FF6D18, #FAAC63, #0040FF);
+  opacity:0;
+  transition:opacity 0.3s ease;
+  z-index:-2;
+  pointer-events:none;
+  animation:btn-border-spin 2s linear infinite paused;
+}
+.wif-cta::after{
+  content:"";
+  position:absolute;
+  inset:1.5px;
+  border-radius:100px;
+  background:#0a0d1a;
+  z-index:-1;
+  pointer-events:none;
+}
+.wif-cta svg { transition:transform 0.25s ease; }
+.wif-cta:hover::before { opacity:1; animation-play-state:running; }
+.wif-cta:hover {
+  transform:translateY(-2px);
+  box-shadow:0 8px 32px rgba(0,64,255,0.15);
+  border-color:transparent;
+  gap:12px;
+}
+.wif-cta:hover svg { transform:translateX(4px); }
+
+/* Card row */
+.wif-cards {
+  display:flex;
+  gap:12px;
+  align-items:stretch;
+}
+
+/* Card base */
+.wif-card {
+  flex:1;
+  border-radius:20px;
+  padding:36px 32px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  min-height:480px;
+  cursor:default;
+  transition:flex 0.45s cubic-bezier(0.4,0,0.2,1), transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.wif-card:hover {
+  transform:translateY(-4px);
+  box-shadow:0 18px 45px rgba(3,13,42,0.3);
+}
+.wif-cards .wif-card-1 { flex:1.18; }
+.wif-cards:hover .wif-card { flex:0.95; }
+.wif-cards .wif-card:hover { flex:1.7; }
+/* Parallax image layer inside each card */
+.wif-card-bg {
+  position:absolute;
+  inset:-12px;
+  background-size:cover;
+  background-position:center;
+  transition:transform 0.1s linear;
+  will-change:transform;
+  pointer-events:none;
+}
+/* Dark gradient overlay on photo cards */
+.wif-card-overlay {
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(3,13,42,0.85) 0%, rgba(3,13,42,0.45) 55%, rgba(3,13,42,0.18) 100%);
+  pointer-events:none;
+  border-radius:inherit;
+  z-index:1;
+}
+.wif-card > *:not(.wif-card-bg):not(.wif-card-overlay) {
+  position:relative;
+  z-index:2;
+}
+
+/* Card 1 — wide */
+.wif-card-1 {
+  border:1px solid rgba(0,64,255,0.2);
+}
+.wif-card-1::after {
+  content:"";
+  position:absolute;
+  right:-60px;
+  bottom:-60px;
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(0,64,255,0.22) 0%, transparent 70%);
+  pointer-events:none;
+}
+/* Floating orb decoration */
+.wif-orb {
+  position:absolute;
+  right:32px;
+  top:50%;
+  transform:translateY(-50%);
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  background:linear-gradient(135deg, rgba(100,140,255,0.6) 0%, rgba(60,90,220,0.8) 100%);
+  box-shadow:0 20px 60px rgba(0,64,255,0.35), 0 0 0 1px rgba(255,255,255,0.3) inset;
+  animation:wifOrb 6s ease-in-out infinite;
+}
+.wif-orb::before {
+  content:"";
+  position:absolute;
+  top:12px;
+  left:16px;
+  width:30px;
+  height:16px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.35);
+  filter:blur(4px);
+  transform:rotate(-30deg);
+}
+@keyframes wifOrb {
+  0%, 100% { transform:translateY(-50%) translateY(0); }
+  50%       { transform:translateY(-50%) translateY(-8px); }
+}
+.wif-card-1 .wif-card-title {
+  font-size:26px;
+  font-weight:600;
+  color:#030d2a;
+  letter-spacing:-0.02em;
+  line-height:1.25;
+  max-width:100%;
+}
+.wif-card-1 .wif-card-desc {
+  font-size:17px;
+  color:rgba(3,13,42,0.65);
+  line-height:1.65;
+  max-width:100%;
+}
+
+/* Cards 2 & 3 — brand dark navy */
+.wif-card-2 {
+  background:#030d2a;
+  border:1px solid rgba(0,64,255,0.2);
+}
+.wif-card-3 {
+  background:#04091a;
+  border:1px solid rgba(0,64,255,0.15);
+}
+.wif-card-2::before, .wif-card-3::before {
+  content:"";
+  position:absolute;
+  top:-40px;
+  right:-40px;
+  width:200px;
+  height:200px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(0,64,255,0.2) 0%, transparent 70%);
+  pointer-events:none;
+}
+.wif-card-3::before {
+  background:radial-gradient(circle, rgba(136,153,255,0.15) 0%, transparent 70%);
+}
+.wif-card-dark .wif-card-title {
+  font-size:26px;
+  font-weight:600;
+  color:#fff;
+  letter-spacing:-0.02em;
+  line-height:1.25;
+}
+.wif-card-dark .wif-card-desc {
+  font-size:17px;
+  color:rgba(255,255,255,0.6);
+  line-height:1.65;
+}
+.wif-card-title,
+.wif-card-desc {
+  width:100%;
+}
+
+@media(max-width:900px){
+  .wif-cards{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+  .wif-card,
+  .wif-cards .wif-card-1,
+  .wif-cards:hover .wif-card,
+  .wif-cards .wif-card:hover {
+    flex:auto;
+  }
+}
+@media(max-width:580px){
+  .wif-cards{ grid-template-columns:1fr; }
+}
+.wif-card-icon {
+  width:40px;
+  height:40px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.12);
+  background:rgba(255,255,255,0.06);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:rgba(255,255,255,0.5);
+  margin-bottom:auto;
+}
+
+/* Bottom footer note */
+.wif-footer {
+  margin-top:36px;
+  padding-top:28px;
+  border-top:1px solid rgba(0,0,0,0.08);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  flex-wrap:wrap;
+}
+.wif-footer p {
+  font-size:16px;
+  color:#6b7280;
+  line-height:1.65;
+  max-width:600px;
+  margin:0;
+}
+.wif-footer strong { color:#0a0d1a; font-weight:600; }
 </style>
 
+<section class="wif-section" id="who">
+  <div class="container">
+
+    <!-- Top row -->
+    <div class="wif-top">
+      <div>
+        <span class="wif-eyebrow">Who It's For</span>
+        <h2 class="wif-heading">Built for the messy middle of growth.</h2>
+      </div>
+      <div class="wif-right">
+        <p class="wif-desc">AI KONIK is for companies between $1M and $20M in revenue — past the point where spreadsheets and Slack threads hold the operation together, not yet at the point where a seven-figure enterprise rollout makes sense.</p>
+        <p class="wif-desc" style="color:#8a93a8;font-size:16px;">If you recognize your team in any of these, you're in the right place.</p>
+        <a href="https://l.katalyst-crm.com/widget/bookings/discovery-call-ai-business-os" class="wif-cta">
+          Talk to our team
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Card row -->
+    <div class="wif-cards">
+
+      <!-- Card 1: Operations — with background image -->
+      <div class="wif-card wif-card-1" data-wif-card>
+        <div class="wif-card-bg" style="background-image:url('https://res.cloudinary.com/dcuswyfur/image/upload/v1778003869/khkhhj_xiqlhe.png');"></div>
+        <div class="wif-card-overlay"></div>
+        <div class="wif-card-title" style="color:#fff;">Operations &amp;<br>professional services</div>
+        <div class="wif-card-desc" style="color:rgba(255,255,255,0.8);margin-top:12px;">Legal, healthcare, finance teams running multi-step delivery work where one missed step has consequences — and where compliance isn't optional.</div>
+      </div>
+
+      <!-- Card 2: Logistics — with background image -->
+      <div class="wif-card wif-card-2 wif-card-dark" data-wif-card>
+        <div class="wif-card-bg" style="background-image:url('https://res.cloudinary.com/dcuswyfur/image/upload/v1778003781/jnnj_winj3a.png');"></div>
+        <div class="wif-card-overlay"></div>
+        <div class="wif-card-title">Logistics,<br>supply chain &amp;<br>manufacturing</div>
+        <div class="wif-card-desc" style="margin-top:12px;">Teams where coordination is the whole game. Small inefficiencies compound into real money.</div>
+      </div>
+
+      <!-- Card 3: Mid-market — with background image -->
+      <div class="wif-card wif-card-3 wif-card-dark" data-wif-card>
+        <div class="wif-card-bg" style="background-image:url('https://res.cloudinary.com/dcuswyfur/image/upload/v1778003855/kj_cy5zrv.png');"></div>
+        <div class="wif-card-overlay"></div>
+        <div class="wif-card-title">Mid-market teams<br>that have outgrown<br>their tooling</div>
+        <div class="wif-card-desc" style="margin-top:12px;">You need infrastructure, not another app. It worked at $3M. It's breaking at $8M.</div>
+      </div>
+
+    </div>
+
+    <!-- Footer note -->
+    <div class="wif-footer">
+      <p><strong>The common thread is coordination.</strong> Delays in one place create damage in another. That's the work AI KONIK is built for.</p>
+    </div>
+
+  </div>
+</section>
+
 <script>
-/* Starfield */
 (function(){
-  var c=document.getElementById('starCanvas2');
-  if(!c)return;
-  var ctx=c.getContext('2d');var stars=[];var mx=0,my=0;
-  function resize(){c.width=c.offsetWidth;c.height=c.offsetHeight;}
-  resize();window.addEventListener('resize',resize);
-  for(var i=0;i<160;i++) stars.push({x:Math.random(),y:Math.random(),r:Math.random()*1.2+0.2,opacity:Math.random()*0.6+0.15,layer:Math.random()});
-  document.addEventListener('mousemove',function(e){mx=(e.clientX/window.innerWidth-0.5)*2;my=(e.clientY/window.innerHeight-0.5)*2;});
-  function draw(){ctx.clearRect(0,0,c.width,c.height);stars.forEach(function(s){var px=(s.x*c.width+mx*16*s.layer+c.width)%c.width;var py=(s.y*c.height+my*16*s.layer+c.height)%c.height;ctx.beginPath();ctx.arc(px,py,s.r,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,'+s.opacity+')';ctx.fill();});requestAnimationFrame(draw);}
-  draw();
-})();
-/* Phase switcher */
-(function(){
-  var items=document.querySelectorAll('.ph2-item');
-  var panels=document.querySelectorAll('.ph2-panel');
-  items.forEach(function(item){
-    item.addEventListener('click',function(){
-      var idx=this.getAttribute('data-idx');
-      items.forEach(function(i){i.classList.remove('active');});
-      panels.forEach(function(p){p.classList.remove('active');});
-      this.classList.add('active');
-      document.querySelector('.ph2-panel[data-idx="'+idx+'"]').classList.add('active');
+  document.querySelectorAll('[data-wif-card]').forEach(function(card){
+    var bg = card.querySelector('.wif-card-bg');
+    if (!bg) return;
+    var targetX = 0, targetY = 0, curX = 0, curY = 0, raf;
+    function tick(){
+      curX += (targetX - curX) * 0.08;
+      curY += (targetY - curY) * 0.08;
+      bg.style.transform = 'translate(' + curX + 'px,' + curY + 'px) scale(1.07)';
+      raf = requestAnimationFrame(tick);
+    }
+    card.addEventListener('mouseenter', function(){ tick(); });
+    card.addEventListener('mouseleave', function(){
+      targetX = 0; targetY = 0;
+      setTimeout(function(){ cancelAnimationFrame(raf); }, 600);
+    });
+    card.addEventListener('mousemove', function(e){
+      var r = card.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width  - 0.5;
+      var py = (e.clientY - r.top)  / r.height - 0.5;
+      targetX = px * -18;
+      targetY = py * -14;
     });
   });
 })();
 </script>
 
+<!-- ═══ THE FRAMEWORK ═══ -->
+<section style="padding:120px 0;background:#f8f9fc;overflow:hidden;position:relative;">
+  <!-- Soft light atmospheric layers -->
+  <div style="position:absolute;top:-300px;left:-200px;width:800px;height:800px;background:radial-gradient(ellipse,rgba(0,64,255,0.06) 0%,transparent 70%);pointer-events:none;z-index:1;filter:blur(60px);"></div>
+  <div style="position:absolute;bottom:-300px;right:-200px;width:700px;height:700px;background:radial-gradient(ellipse,rgba(120,80,255,0.05) 0%,transparent 70%);pointer-events:none;z-index:1;filter:blur(60px);"></div>
+  <!-- Subtle grid pattern -->
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(0,64,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,64,255,0.025) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:1;mask-image:radial-gradient(ellipse at center, black 30%, transparent 75%);-webkit-mask-image:radial-gradient(ellipse at center, black 30%, transparent 75%);"></div>
 
-
-<!-- ═══ SERVICES ═══ -->
-<section style="padding:100px 0;background:#fff;">
-  <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;">
-
-      <!-- Left: sticky header -->
-      <div style="position:sticky;top:120px;">
-        <span class="eyebrow">Services</span>
-        <h2 class="section-title" style="color:#030d2a;font-weight:500;" style="margin-bottom:20px;">Built for the work you actually need done.</h2>
-        <p style="font-size:17px;color:#6b7280;line-height:1.7;margin-bottom:36px;">Focused on your unique needs, our team delivers AI solutions that blend deep industry knowledge and cutting-edge strategy to ensure measurable returns.</p>
-        <a href="https://l.katalyst-crm.com/widget/bookings/discovery-call-ai-business-os" class="btn-primary">Book A Discovery Call <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="position:relative;z-index:2;"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+  <div style="position:relative;z-index:2;">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:72px;">
+        <span class="eyebrow" style="background:rgba(0,64,255,0.08);border:1px solid rgba(0,64,255,0.18);color:#0040FF;">The Framework</span>
+        <h2 class="section-title" style="color:#030d2a;font-weight:500;">How AI KONIK structures execution.</h2>
+        <p style="font-size:18px;color:#5a6478;max-width:680px;margin:0 auto;line-height:1.75;">Most operational failures aren't task failures. They're gap failures — the handoff that didn't happen, the approval that stalled, the dependency nobody mapped. AI KONIK is built around that observation.</p>
+        <p style="font-size:17px;color:#8a93a8;margin-top:16px;">The platform structures four things every workflow needs:</p>
       </div>
 
-      <!-- Right: 2x3 grid, first card featured -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <!-- Accordion cards row -->
+      <div id="fw-row" style="display:flex;gap:8px;height:460px;border-radius:16px;overflow:hidden;margin-bottom:56px;">
 
-        <!-- Featured card — blue -->
-        <div class="svc2-card">
-          <div class="svc2-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+        <!-- Card 1 -->
+        <div class="fw-card active" data-fw="0" style="flex:4;min-width:0;position:relative;background:linear-gradient(135deg,#ffffff 0%,#eef3ff 60%,#dde8ff 100%);border:1px solid rgba(0,64,255,0.25);border-radius:14px;cursor:pointer;overflow:hidden;transition:flex 0.45s cubic-bezier(0.4,0,0.2,1),border-color 0.3s,box-shadow 0.3s;box-shadow:0 12px 40px -12px rgba(0,64,255,0.18);">
+          <!-- Decorative SVG corner accent -->
+          <svg style="position:absolute;top:-40px;right:-40px;width:280px;height:280px;opacity:0.5;pointer-events:none;" viewBox="0 0 200 200" fill="none">
+            <circle cx="100" cy="100" r="80" stroke="rgba(0,64,255,0.18)" stroke-width="0.8"/>
+            <circle cx="100" cy="100" r="55" stroke="rgba(0,64,255,0.14)" stroke-width="0.8"/>
+            <circle cx="100" cy="100" r="30" stroke="rgba(0,64,255,0.1)" stroke-width="0.8"/>
+            <circle cx="100" cy="100" r="3" fill="#0040FF"/>
+          </svg>
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,transparent 60%,rgba(0,64,255,0.04) 100%);transition:background 0.3s;pointer-events:none;"></div>
+          <div class="fw-collapsed" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:16px;opacity:0;pointer-events:none;transition:opacity 0.3s;">
+            <div style="font-size:10px;font-weight:700;color:rgba(3,13,42,0.55);letter-spacing:0.1em;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;">01 — The work itself</div>
           </div>
-          <h4 class="svc2-title">AI Strategy Roadmap</h4>
-          <p class="svc2-text">Turn "where do we start?" into a clear 12-month plan. Prioritized opportunities. ROI targets. A rollout you can defend to a board.</p>
+          <div class="fw-expanded" style="position:absolute;inset:0;padding:44px;display:flex;flex-direction:column;justify-content:center;opacity:1;pointer-events:auto;transition:opacity 0.35s;">
+            <div style="font-size:11px;font-weight:700;color:#0040FF;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:20px;font-family:monospace;">01 — The work itself</div>
+            <h3 style="font-size:clamp(20px,2vw,28px);font-weight:600;color:#030d2a;letter-spacing:-0.02em;line-height:1.2;margin-bottom:16px;">Execution by agents, driven by prompts.</h3>
+            <p style="font-size:15px;color:#4a5468;line-height:1.75;">Specialized agents do the actual execution — drafting, reviewing, analyzing, routing — with industry-specific prompts driving the output.</p>
+          </div>
         </div>
 
         <!-- Card 2 -->
-        <div class="svc2-card">
-          <div class="svc2-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2 C12 2 13.2 8.8 16 12 C13.2 15.2 12 22 12 22 C12 22 10.8 15.2 8 12 C10.8 8.8 12 2 12 2Z M2 12 C2 12 8.8 13.2 12 16 C15.2 13.2 22 12 22 12 C22 12 15.2 10.8 12 8 C8.8 10.8 2 12 2 12Z"/></svg>
+        <div class="fw-card" data-fw="1" style="flex:1;min-width:0;position:relative;background:linear-gradient(160deg,#fdfbff 0%,#f0ecff 60%,#e1d8ff 100%);border:1px solid rgba(0,0,0,0.06);border-radius:14px;cursor:pointer;overflow:hidden;transition:flex 0.45s cubic-bezier(0.4,0,0.2,1),border-color 0.3s,box-shadow 0.3s;">
+          <svg style="position:absolute;top:-40px;right:-40px;width:280px;height:280px;opacity:0.45;pointer-events:none;" viewBox="0 0 200 200" fill="none">
+            <path d="M40,60 L80,60 L80,100 L120,100 L120,140 L160,140" stroke="rgba(120,80,255,0.22)" stroke-width="1" fill="none"/>
+            <circle cx="40" cy="60" r="3" fill="#7850FF"/>
+            <circle cx="80" cy="100" r="3" fill="#7850FF"/>
+            <circle cx="120" cy="140" r="3" fill="#7850FF"/>
+            <circle cx="160" cy="140" r="3" fill="#7850FF"/>
+          </svg>
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,transparent 60%,rgba(120,80,255,0.04) 100%);transition:background 0.3s;pointer-events:none;"></div>
+          <div class="fw-collapsed" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:16px;opacity:1;pointer-events:auto;transition:opacity 0.3s;">
+            <div style="font-size:10px;font-weight:700;color:rgba(3,13,42,0.55);letter-spacing:0.1em;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;">02 — The logic</div>
           </div>
-          <h4 class="svc2-title">Custom AI Agents</h4>
-          <p class="svc2-text">Agents that embed into your operations as trusted colleagues. Grow profitably without inflating headcount.</p>
+          <div class="fw-expanded" style="position:absolute;inset:0;padding:44px;display:flex;flex-direction:column;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.35s;">
+            <div style="font-size:11px;font-weight:700;color:#0040FF;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:20px;font-family:monospace;">02 — The logic</div>
+            <h3 style="font-size:clamp(20px,2vw,28px);font-weight:600;color:#030d2a;letter-spacing:-0.02em;line-height:1.2;margin-bottom:16px;">Every step knows what comes next.</h3>
+            <p style="font-size:15px;color:#4a5468;line-height:1.75;">Dependencies, approvals, and handoffs are defined upfront, not discovered when something breaks. Each step knows what comes before it and what triggers next.</p>
+          </div>
         </div>
 
         <!-- Card 3 -->
-        <div class="svc2-card">
-          <div class="svc2-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        <div class="fw-card" data-fw="2" style="flex:1;min-width:0;position:relative;background:linear-gradient(140deg,#fbfdff 0%,#e8f1ff 60%,#d4e6ff 100%);border:1px solid rgba(0,0,0,0.06);border-radius:14px;cursor:pointer;overflow:hidden;transition:flex 0.45s cubic-bezier(0.4,0,0.2,1),border-color 0.3s,box-shadow 0.3s;">
+          <svg style="position:absolute;top:-40px;right:-40px;width:280px;height:280px;opacity:0.45;pointer-events:none;" viewBox="0 0 200 200" fill="none">
+            <rect x="55" y="55" width="90" height="90" stroke="rgba(0,64,255,0.2)" stroke-width="0.8" rx="6"/>
+            <rect x="65" y="65" width="70" height="70" stroke="rgba(0,64,255,0.16)" stroke-width="0.8" rx="4"/>
+            <path d="M85,100 L95,110 L115,90" stroke="#0040FF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,transparent 60%,rgba(0,64,255,0.04) 100%);transition:background 0.3s;pointer-events:none;"></div>
+          <div class="fw-collapsed" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:16px;opacity:1;pointer-events:auto;transition:opacity 0.3s;">
+            <div style="font-size:10px;font-weight:700;color:rgba(3,13,42,0.55);letter-spacing:0.1em;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;">03 — The guardrails</div>
           </div>
-          <h4 class="svc2-title">Custom AI Solutions & Integration</h4>
-          <p class="svc2-text">From whiteboard to functioning AI in weeks, not years. Chat agents, automation, NLP, predictive models — integrated into your existing stack.</p>
+          <div class="fw-expanded" style="position:absolute;inset:0;padding:44px;display:flex;flex-direction:column;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.35s;">
+            <div style="font-size:11px;font-weight:700;color:#0040FF;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:20px;font-family:monospace;">03 — The guardrails</div>
+            <h3 style="font-size:clamp(20px,2vw,28px);font-weight:600;color:#030d2a;letter-spacing:-0.02em;line-height:1.2;margin-bottom:16px;">Compliance built in, not bolted on.</h3>
+            <p style="font-size:15px;color:#4a5468;line-height:1.75;">Compliance isn't a checkbox at the end. HIPAA, SOC 2, and GDPR are part of how workflows are built, so sensitive data stays inside the lines from step one.</p>
+          </div>
         </div>
 
         <!-- Card 4 -->
-        <div class="svc2-card">
-          <div class="svc2-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        <div class="fw-card" data-fw="3" style="flex:1;min-width:0;position:relative;background:linear-gradient(150deg,#fffefb 0%,#fff4e6 60%,#ffe6c9 100%);border:1px solid rgba(0,0,0,0.06);border-radius:14px;cursor:pointer;overflow:hidden;transition:flex 0.45s cubic-bezier(0.4,0,0.2,1),border-color 0.3s,box-shadow 0.3s;">
+          <svg style="position:absolute;top:-40px;right:-40px;width:280px;height:280px;opacity:0.5;pointer-events:none;" viewBox="0 0 200 200" fill="none">
+            <circle cx="60" cy="100" r="6" fill="rgba(255,150,40,0.45)"/>
+            <circle cx="100" cy="100" r="6" fill="rgba(255,150,40,0.7)"/>
+            <circle cx="140" cy="100" r="6" fill="rgba(255,150,40,0.45)"/>
+            <path d="M66,100 L94,100" stroke="rgba(255,150,40,0.45)" stroke-width="1" stroke-dasharray="2 3"/>
+            <path d="M106,100 L134,100" stroke="rgba(255,150,40,0.45)" stroke-width="1" stroke-dasharray="2 3"/>
+          </svg>
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,transparent 60%,rgba(255,150,40,0.05) 100%);transition:background 0.3s;pointer-events:none;"></div>
+          <div class="fw-collapsed" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:16px;opacity:1;pointer-events:auto;transition:opacity 0.3s;">
+            <div style="font-size:10px;font-weight:700;color:rgba(3,13,42,0.55);letter-spacing:0.1em;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;">04 — The rollout</div>
           </div>
-          <h4 class="svc2-title">AI Data Readiness Assessment</h4>
-          <p class="svc2-text">Perfect data isn't required. We build a "minimum viable data" strategy and fast-track you to reliable ROI.</p>
+          <div class="fw-expanded" style="position:absolute;inset:0;padding:44px;display:flex;flex-direction:column;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.35s;">
+            <div style="font-size:11px;font-weight:700;color:#0040FF;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:20px;font-family:monospace;">04 — The rollout</div>
+            <h3 style="font-size:clamp(20px,2vw,28px);font-weight:600;color:#030d2a;letter-spacing:-0.02em;line-height:1.2;margin-bottom:16px;">Deployed by people who know your sector.</h3>
+            <p style="font-size:15px;color:#4a5468;line-height:1.75;">A 6-Sprint engagement with industry consultants gets the system running inside your business — mapping your real workflows, structuring the orchestration, and tuning it as your team adopts it.</p>
+          </div>
         </div>
 
-        <!-- Card 5 -->
-        <div class="svc2-card">
-          <div class="svc2-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-          </div>
-          <h4 class="svc2-title">Human-First AI Training</h4>
-          <p class="svc2-text">Role-based training for every department. Co-pilot mindset shifts. Change management built in.</p>
-        </div>
+      </div>
 
-        <!-- Card 6 — dark -->
-        <div class="svc2-card">
-          <div class="svc2-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          </div>
-          <h4 class="svc2-title">Rapid Impact Services</h4>
-          <p class="svc2-text">AI QuickStart (2 weeks). Opportunity Sprints (1–2 days). Pilot Programs (4–6 weeks). Fractional Chief AI Officer. Revenue Acceleration.</p>
-        </div>
-
+      <div style="text-align:center;border-top:1px solid rgba(0,64,255,0.1);padding-top:40px;">
+        <p style="font-size:18px;color:#4a5468;margin-bottom:24px;font-weight:400;">Together, these turn AI from a tool your team operates into infrastructure your business runs on.</p>
+        <a href="#industries" style="display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#0040FF;text-decoration:none;transition:gap 0.2s;" onmouseover="this.style.gap='12px';" onmouseout="this.style.gap='8px';">Want to see the framework applied to your industry? Browse industries <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+(function(){
+  /* ── Framework accordion (light theme) ── */
+  var cards = document.querySelectorAll(".fw-card");
+  function activate(idx) {
+    cards.forEach(function(c, i) {
+      var isActive = (i === idx);
+      c.style.flex = isActive ? "4" : "1";
+      c.classList.toggle("active", isActive);
+      // Preserve each card's gradient background — only adjust border + shadow on state change
+      c.style.borderColor = isActive ? "rgba(0,64,255,0.3)" : "rgba(0,0,0,0.06)";
+      c.style.boxShadow = isActive ? "0 16px 48px -12px rgba(0,64,255,0.22)" : "none";
+      var collapsed = c.querySelector(".fw-collapsed");
+      var expanded  = c.querySelector(".fw-expanded");
+      if (isActive) {
+        collapsed.style.opacity = "0"; collapsed.style.pointerEvents = "none";
+        expanded.style.opacity  = "1"; expanded.style.pointerEvents  = "auto";
+      } else {
+        collapsed.style.opacity = "1"; collapsed.style.pointerEvents = "auto";
+        expanded.style.opacity  = "0"; expanded.style.pointerEvents  = "none";
+      }
+    });
+  }
+  cards.forEach(function(c, i) {
+    c.addEventListener("mouseenter", function() { activate(i); });
+  });
+})();
+</script>
+<!-- ═══ HOW IT WORKS ═══ -->
 <style>
-.svc2-card {
-  background: #f8f9ff;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  padding: 28px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: default;
+/* ── 6-Phase horizontal timeline ── */
+.ph-timeline-wrap {
+  position:relative;
+  margin:0 auto 72px;
+  max-width:980px;
+  padding:60px 40px 80px;
 }
-.svc2-card:hover {
-  background: #0040FF;
-  border-color: #0040FF;
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0,64,255,0.3);
+
+/* The glowing rail (background line) */
+.ph-rail {
+  position:absolute;
+  left:40px;
+  right:40px;
+  top:50%;
+  height:2px;
+  transform:translateY(-50%);
+  background:linear-gradient(to right,
+    rgba(255,255,255,0.04) 0%,
+    rgba(255,255,255,0.12) 50%,
+    rgba(255,255,255,0.04) 100%);
+  border-radius:2px;
 }
-.svc2-card:hover .svc2-icon { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.3); color: #fff; }
-.svc2-card:hover .svc2-title { color: #fff; }
-.svc2-card:hover .svc2-text { color: rgba(255,255,255,0.8); }
-.svc2-featured {
-  background: #0040FF;
-  border-color: #0040FF;
-  box-shadow: 0 8px 24px rgba(0,64,255,0.25);
+
+/* The progress fill (animated, follows the active phase) */
+.ph-rail-fill {
+  position:absolute;
+  left:40px;
+  top:50%;
+  height:2px;
+  transform:translateY(-50%);
+  background:linear-gradient(to right,
+    rgba(77,124,255,0.4) 0%,
+    rgba(122,169,255,0.95) 50%,
+    rgba(77,124,255,0.4) 100%);
+  border-radius:2px;
+  box-shadow:
+    0 0 12px rgba(122,169,255,0.6),
+    0 0 24px rgba(77,124,255,0.4);
+  width:0;
+  transition:width 0.7s cubic-bezier(0.4,0,0.2,1);
 }
-.svc2-featured .svc2-icon { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.3); color: #fff; }
-.svc2-featured .svc2-title { color: #fff; }
-.svc2-featured .svc2-text { color: rgba(255,255,255,0.85); }
-.svc2-featured:hover { background: #0030cc; border-color: #0030cc; box-shadow: 0 16px 40px rgba(0,64,255,0.4); }
-.svc2-icon {
-  width: 44px; height: 44px; border-radius: 10px;
-  background: rgba(0,64,255,0.1); border: 1px solid rgba(0,64,255,0.2);
-  display: flex; align-items: center; justify-content: center;
-  color: #0040FF;
-  transition: background 0.3s, border-color 0.3s, color 0.3s;
+
+/* Animated traveling pulse along the rail */
+.ph-pulse {
+  position:absolute;
+  left:40px;
+  top:50%;
+  width:80px;
+  height:2px;
+  transform:translateY(-50%);
+  background:linear-gradient(to right,
+    transparent 0%,
+    rgba(180,210,255,0.0) 0%,
+    rgba(220,235,255,0.95) 50%,
+    rgba(180,210,255,0.0) 100%);
+  filter:blur(0.5px);
+  pointer-events:none;
+  animation:phPulseTravel 4s ease-in-out infinite;
+  opacity:0.85;
 }
-.svc2-title { font-size:22px; font-weight:600; color:#030d2a; letter-spacing:-0.02em; line-height:1.3; transition: color 0.3s; }
-.svc2-text { font-size:17px; color:#6b7280; line-height:1.75; margin:0; transition: color 0.3s; }
+@keyframes phPulseTravel {
+  0%   { left:40px; opacity:0; }
+  10%  { opacity:0.95; }
+  90%  { opacity:0.95; }
+  100% { left:calc(100% - 120px); opacity:0; }
+}
+
+/* Phase nodes container — flex distributes 6 evenly */
+.ph-nodes {
+  position:relative;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:2;
+}
+
+/* A single node (dot + label + number) */
+.ph-node {
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  cursor:pointer;
+  padding:0 4px;
+}
+.ph-node-dot {
+  position:relative;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:rgba(20,30,60,0.95);
+  border:1.5px solid rgba(255,255,255,0.18);
+  transition:all 0.45s cubic-bezier(0.4,0,0.2,1);
+  z-index:2;
+}
+.ph-node-dot::before {
+  content:"";
+  position:absolute;
+  inset:-12px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(77,124,255,0.5) 0%, transparent 65%);
+  opacity:0;
+  transform:scale(0.6);
+  transition:all 0.45s ease;
+  pointer-events:none;
+}
+.ph-node-dot::after {
+  content:"";
+  position:absolute;
+  inset:4px;
+  border-radius:50%;
+  background:transparent;
+  transition:all 0.4s ease;
+}
+
+/* Hover state */
+.ph-node:hover .ph-node-dot {
+  border-color:rgba(122,169,255,0.7);
+  background:rgba(40,60,120,0.95);
+}
+.ph-node:hover .ph-node-num {
+  color:rgba(122,169,255,0.9);
+}
+.ph-node:hover .ph-node-label {
+  color:rgba(255,255,255,0.85);
+}
+
+/* Completed nodes (passed phases) */
+.ph-node.done .ph-node-dot {
+  background:rgba(77,124,255,0.85);
+  border-color:rgba(180,210,255,0.6);
+  box-shadow:0 0 12px rgba(77,124,255,0.5);
+}
+.ph-node.done .ph-node-dot::after {
+  inset:5px;
+  background:rgba(220,235,255,0.95);
+}
+.ph-node.done .ph-node-num,
+.ph-node.done .ph-node-label {
+  color:rgba(255,255,255,0.55);
+}
+
+/* Active node (current phase) */
+.ph-node.active .ph-node-dot {
+  background:#fff;
+  border-color:rgba(220,235,255,1);
+  box-shadow:
+    0 0 0 3px rgba(77,124,255,0.4),
+    0 0 24px rgba(122,169,255,0.95),
+    0 0 48px rgba(77,124,255,0.5);
+  animation:phNodePulse 2.4s ease-in-out infinite;
+}
+.ph-node.active .ph-node-dot::before {
+  opacity:1;
+  transform:scale(1.4);
+}
+.ph-node.active .ph-node-num {
+  color:#7aa9ff;
+  font-weight:700;
+}
+.ph-node.active .ph-node-label {
+  color:#fff;
+  font-weight:600;
+}
+@keyframes phNodePulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 3px rgba(77,124,255,0.4),
+      0 0 24px rgba(122,169,255,0.95),
+      0 0 48px rgba(77,124,255,0.5);
+  }
+  50% {
+    box-shadow:
+      0 0 0 6px rgba(77,124,255,0.18),
+      0 0 36px rgba(122,169,255,1),
+      0 0 64px rgba(77,124,255,0.7);
+  }
+}
+
+/* Number above the dot */
+.ph-node-num {
+  position:absolute;
+  top:-46px;
+  font-family:'SF Mono', Monaco, 'Courier New', monospace;
+  font-size:11px;
+  font-weight:600;
+  color:rgba(255,255,255,0.3);
+  letter-spacing:0.18em;
+  transition:color 0.35s ease;
+  white-space:nowrap;
+}
+
+/* Label below the dot */
+.ph-node-label {
+  position:absolute;
+  top:38px;
+  font-size:13px;
+  font-weight:500;
+  color:rgba(255,255,255,0.45);
+  letter-spacing:0.04em;
+  transition:color 0.35s ease;
+  white-space:nowrap;
+}
+
+/* Decorative micro-tick lines below each node */
+.ph-node-tick {
+  position:absolute;
+  top:-14px;
+  width:1px;
+  height:8px;
+  background:linear-gradient(to bottom, transparent, rgba(255,255,255,0.15));
+  transition:all 0.35s ease;
+}
+.ph-node.active .ph-node-tick,
+.ph-node.done .ph-node-tick {
+  background:linear-gradient(to bottom, transparent, rgba(122,169,255,0.7));
+}
+
+/* Content panel sits below */
+.ph-panel-wrap {
+  position:relative;
+  max-width:780px;
+  margin:0 auto;
+  padding:0 20px;
+  min-height:240px;
+}
+.ph-panel {
+  display:none;
+  text-align:center;
+}
+.ph-panel.active {
+  display:block;
+  animation:phPanelFade 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes phPanelFade {
+  from { opacity:0; transform:translateY(12px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.ph-panel-tag {
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:#7aa9ff;
+  margin-bottom:18px;
+}
+.ph-panel-tag::before, .ph-panel-tag::after {
+  content:"";
+  width:32px;
+  height:1px;
+  background:linear-gradient(to right, transparent, rgba(122,169,255,0.5), transparent);
+}
+.ph-panel h3 {
+  font-size:clamp(32px,3.5vw,48px);
+  font-weight:600;
+  color:#fff;
+  letter-spacing:-0.025em;
+  line-height:1.1;
+  margin-bottom:20px;
+}
+.ph-panel p {
+  font-size:17px;
+  color:rgba(255,255,255,0.7);
+  line-height:1.75;
+  margin-bottom:28px;
+  max-width:640px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.ph-milestone {
+  display:inline-flex;
+  align-items:flex-start;
+  gap:14px;
+  padding:14px 22px;
+  background:linear-gradient(135deg, rgba(77,124,255,0.1), rgba(77,124,255,0.04));
+  border:1px solid rgba(77,124,255,0.25);
+  border-radius:10px;
+  text-align:left;
+  max-width:560px;
+  margin:0 auto;
+}
+.ph-milestone-icon {
+  flex-shrink:0;
+  width:24px;
+  height:24px;
+  margin-top:2px;
+  color:#7aa9ff;
+  filter:drop-shadow(0 0 6px rgba(122,169,255,0.7));
+}
+.ph-milestone-tag {
+  display:block;
+  font-size:10px;
+  font-weight:700;
+  color:#7aa9ff;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+.ph-milestone-text {
+  font-size:14px;
+  color:rgba(255,255,255,0.75);
+  line-height:1.55;
+}
+
+/* Mobile: stack vertically */
+@media (max-width:760px) {
+  .ph-timeline-wrap { padding:40px 20px 60px; }
+  .ph-nodes { flex-wrap:wrap; gap:36px 0; justify-content:space-around; }
+  .ph-rail, .ph-rail-fill, .ph-pulse { display:none; }
+  .ph-node-num { top:-30px; }
+  .ph-node-label { top:30px; font-size:12px; }
+}
 </style>
 
+<section style="background:#04091a url('https://res.cloudinary.com/dcuswyfur/image/upload/v1777869488/Frame_1707483485_jl79y6.png') center/cover no-repeat;padding:120px 0 100px;overflow:hidden;position:relative;">
+  <canvas id="howStars" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;"></canvas>
+  <!-- Soft blur blobs for depth -->
+  <div style="position:absolute;top:-200px;left:-200px;width:700px;height:700px;background:radial-gradient(ellipse,rgba(77,124,255,0.1) 0%,transparent 70%);pointer-events:none;z-index:1;filter:blur(70px);"></div>
+  <div style="position:absolute;bottom:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(ellipse,rgba(139,92,246,0.08) 0%,transparent 70%);pointer-events:none;z-index:1;filter:blur(70px);"></div>
+  <div style="position:absolute;top:40%;left:50%;transform:translateX(-50%);width:800px;height:400px;background:radial-gradient(ellipse,rgba(50,90,255,0.06) 0%,transparent 70%);pointer-events:none;z-index:1;filter:blur(90px);"></div>
 
-<!-- ═══ INDUSTRIES ═══ -->
-<section style="padding:100px 0;background:#fff;">
-  <div class="container">
-    <div style="display:grid;grid-template-columns:1.1fr 1px 1fr 1px 1fr;gap:0;align-items:stretch;">
+  <div class="container" style="position:relative;z-index:2;">
+    <div style="text-align:center;margin-bottom:24px;">
+      <span class="eyebrow">How It Works</span>
+      <h2 class="section-title" style="color:#fff;font-weight:500;">The 6-Phase Delivery Method.</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.75);">You shouldn't have to figure out AI integration on your own. AI KONIK pairs your team with consultants who already know your industry, and walks the deployment through six structured sprints — from first conversation to a system your team actually uses.</p>
+    </div>
 
-      <!-- Left: dark feature card -->
-      <div style="padding-right:32px;">
-        <div style="background:url('https://res.cloudinary.com/dcuswyfur/image/upload/v1777445545/ChatGPT_Image_29_Nis_2026_09_52_04_ad3qtz.png') center/cover no-repeat;border-radius:20px;padding:36px 32px;display:flex;flex-direction:column;justify-content:space-between;height:100%;min-height:360px;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(3,13,42,0.25);">
-          <!-- Glow -->
-          <div style="position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:radial-gradient(ellipse,rgba(0,64,255,0.28) 0%,transparent 70%);pointer-events:none;"></div>
-          <div style="position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,rgba(3,13,42,0.85) 0%,rgba(3,13,42,0.4) 50%,transparent 100%);pointer-events:none;z-index:1;border-radius:0 0 20px 20px;"></div>
-          <div style="position:relative;z-index:2;margin-top:auto;">
-            <span style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#fff;display:block;margin-bottom:18px;">Industries</span>
-            <h3 style="font-size:clamp(22px,2.5vw,30px);font-weight:600;color:#fff !important;letter-spacing:-0.025em;line-height:1.2;margin-bottom:14px;">Built for your sector,<br>not everyone's.</h3>
-            <p style="font-size:17px;color:#fff;line-height:1.7;">Every workflow, prompt, and automation tailored to your industry's specific needs and compliance requirements.</p>
-          </div>
-          <div style="position:relative;z-index:2;margin-top:28px;"></div>
+    <!-- Horizontal timeline -->
+    <div class="ph-timeline-wrap">
+      <div class="ph-rail"></div>
+      <div class="ph-rail-fill" id="phRailFill"></div>
+      <div class="ph-pulse"></div>
+
+      <div class="ph-nodes">
+        <div class="ph-node active" data-idx="0">
+          <span class="ph-node-num">01</span>
+          <div class="ph-node-tick"></div>
+          <div class="ph-node-dot"></div>
+          <span class="ph-node-label">Map</span>
+        </div>
+        <div class="ph-node" data-idx="1">
+          <span class="ph-node-num">02</span>
+          <div class="ph-node-tick"></div>
+          <div class="ph-node-dot"></div>
+          <span class="ph-node-label">Structure</span>
+        </div>
+        <div class="ph-node" data-idx="2">
+          <span class="ph-node-num">03</span>
+          <div class="ph-node-tick"></div>
+          <div class="ph-node-dot"></div>
+          <span class="ph-node-label">Integrate</span>
+        </div>
+        <div class="ph-node" data-idx="3">
+          <span class="ph-node-num">04</span>
+          <div class="ph-node-tick"></div>
+          <div class="ph-node-dot"></div>
+          <span class="ph-node-label">Deploy</span>
+        </div>
+        <div class="ph-node" data-idx="4">
+          <span class="ph-node-num">05</span>
+          <div class="ph-node-tick"></div>
+          <div class="ph-node-dot"></div>
+          <span class="ph-node-label">Train</span>
+        </div>
+        <div class="ph-node" data-idx="5">
+          <span class="ph-node-num">06</span>
+          <div class="ph-node-tick"></div>
+          <div class="ph-node-dot"></div>
+          <span class="ph-node-label">Optimize</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content panel (below timeline) -->
+    <div class="ph-panel-wrap">
+
+      <div class="ph-panel active" data-idx="0">
+        <div class="ph-panel-tag">Phase 01 · Map</div>
+        <h3>Map</h3>
+        <p>We start with how your business actually runs, not how the org chart says it does. Our consultants trace the real workflows and identify where specialized AI moves the needle hardest.</p>
+        <div class="ph-milestone">
+          <svg class="ph-milestone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+          <div><span class="ph-milestone-tag">Milestone</span><div class="ph-milestone-text">Real workflow map and identified AI opportunities — delivered before Sprint 2 begins.</div></div>
         </div>
       </div>
 
-      <!-- Divider 1 -->
-      <div style="background:#e5e7eb;margin:0 8px;"></div>
-
-      <!-- Middle: Core Industries -->
-      <div style="padding:0 32px;">
-        
-        <div style="display:flex;flex-direction:column;gap:4px;">
-          <div class="ind3-item"><div class="ind3-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg></div><div><div class="ind3-name">Legal</div><div class="ind3-desc">Contract review, compliance, IP research</div></div></div>
-          <div class="ind3-item"><div class="ind3-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div><div class="ind3-name">Healthcare</div><div class="ind3-desc">Clinical docs, billing automation, HIPAA</div></div></div>
-          <div class="ind3-item"><div class="ind3-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div><div><div class="ind3-name">Finance</div><div class="ind3-desc">Risk analysis, reporting, regulatory filings</div></div></div>
-          <div class="ind3-item"><div class="ind3-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><div><div class="ind3-name">Marketing</div><div class="ind3-desc">Content creation, SEO, brand voice</div></div></div>
-          <div class="ind3-item"><div class="ind3-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg></div><div><div class="ind3-name">Technology</div><div class="ind3-desc">Docs, code review, architecture, audits</div></div></div>
+      <div class="ph-panel" data-idx="1">
+        <div class="ph-panel-tag">Phase 02 · Structure</div>
+        <h3>Structure</h3>
+        <p>We design the orchestration layer: the logic, the dependencies, the approval paths. Compliance gets baked in here — not bolted on — so workflows are audit-ready before they go live.</p>
+        <div class="ph-milestone">
+          <svg class="ph-milestone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+          <div><span class="ph-milestone-tag">Milestone</span><div class="ph-milestone-text">Orchestration design and compliance-ready workflow architecture — ready for integration.</div></div>
         </div>
       </div>
 
-      <!-- Divider 2 -->
-      <div style="background:#e5e7eb;margin:0 8px;"></div>
+      <div class="ph-panel" data-idx="2">
+        <div class="ph-panel-tag">Phase 03 · Integrate</div>
+        <h3>Integrate</h3>
+        <p>Your tools become one system. We weave the agents into your existing stack so the team works inside the software they already know, not a separate AI window.</p>
+        <div class="ph-milestone">
+          <svg class="ph-milestone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+          <div><span class="ph-milestone-tag">Milestone</span><div class="ph-milestone-text">Agents connected to your existing stack — no new logins, no new dashboards.</div></div>
+        </div>
+      </div>
 
-      <!-- Right: Extended Industries -->
-      <div style="padding:0 0 0 32px;">
-        
-        <div style="display:flex;flex-direction:column;gap:4px;">
-          <div class="ind3-item"><div class="ind3-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div><div class="ind3-name">Real Estate</div><div class="ind3-desc">Property analysis, lease review, research</div></div></div>
-          <div class="ind3-item"><div class="ind3-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div><div><div class="ind3-name">Accounting</div><div class="ind3-desc">Tax prep, audit support, payroll</div></div></div>
-          <div class="ind3-item"><div class="ind3-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div><div class="ind3-name">Logistics</div><div class="ind3-desc">Supply chain, routing, vendor management</div></div></div>
-          <div class="ind3-item"><div class="ind3-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><div class="ind3-name">Manufacturing</div><div class="ind3-desc">Quality control, procurement, lean ops</div></div></div>
+      <div class="ph-panel" data-idx="3">
+        <div class="ph-panel-tag">Phase 04 · Deploy</div>
+        <h3>Deploy</h3>
+        <p>We launch in stages. Operations keep running. Your team sees the new workflows take over piece by piece instead of overnight, which is how adoption actually sticks.</p>
+        <div class="ph-milestone">
+          <svg class="ph-milestone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+          <div><span class="ph-milestone-tag">Milestone</span><div class="ph-milestone-text">Live workflows in production — running in parallel with your existing operations.</div></div>
+        </div>
+      </div>
+
+      <div class="ph-panel" data-idx="4">
+        <div class="ph-panel-tag">Phase 05 · Train</div>
+        <h3>Train</h3>
+        <p>A platform is only as good as the team using it. We train your staff on the workflows, the prompt library, and the agents until using AI KONIK is the default, not the new thing.</p>
+        <div class="ph-milestone">
+          <svg class="ph-milestone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+          <div><span class="ph-milestone-tag">Milestone</span><div class="ph-milestone-text">Your team runs the system independently — AI KONIK is the default, not the new thing.</div></div>
+        </div>
+      </div>
+
+      <div class="ph-panel" data-idx="5">
+        <div class="ph-panel-tag">Phase 06 · Optimize</div>
+        <h3>Optimize</h3>
+        <p>Deployment is the start. We tune the workflows as your business scales, refine the prompts as your edge cases surface, and add agents as new use cases come up. The system gets sharper the longer you run it.</p>
+        <div class="ph-milestone">
+          <svg class="ph-milestone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+          <div><span class="ph-milestone-tag">Milestone</span><div class="ph-milestone-text">Continuously improving system — sharper prompts, new agents, compounding output.</div></div>
         </div>
       </div>
 
@@ -4238,42 +5655,551 @@ function wi2activate(idx){
   </div>
 </section>
 
+<script>
+/* How It Works — parallax sky */
+(function(){
+  var c = document.getElementById('howStars');
+  if (!c) return;
+  var ctx = c.getContext('2d'), stars = [];
+  var mouseX = 0, mouseY = 0, tMX = 0, tMY = 0;
+  function resize(){ c.width = c.offsetWidth; c.height = c.offsetHeight; }
+  resize(); window.addEventListener('resize', resize);
+  var layers = [
+    { count:280, rMin:0.15, rMax:0.5,  opMin:0.1,  opMax:0.35, speed:0.25, col:'255,255,255' },
+    { count:140, rMin:0.4,  rMax:0.85, opMin:0.22, opMax:0.52, speed:0.65, col:'200,218,255' },
+    { count: 50, rMin:0.8,  rMax:1.5,  opMin:0.4,  opMax:0.8,  speed:1.3,  col:'180,210,255' }
+  ];
+  layers.forEach(function(l){
+    for (var i = 0; i < l.count; i++){
+      stars.push({
+        x: Math.random(), y: Math.random(),
+        r: l.rMin + Math.random() * (l.rMax - l.rMin),
+        baseOp: l.opMin + Math.random() * (l.opMax - l.opMin),
+        t: Math.random() * Math.PI * 2,
+        speed: l.speed, col: l.col
+      });
+    }
+  });
+  document.addEventListener('mousemove', function(e){
+    tMX = (e.clientX / window.innerWidth  - 0.5);
+    tMY = (e.clientY / window.innerHeight - 0.5);
+  });
+  function draw(){
+    mouseX += (tMX - mouseX) * 0.05;
+    mouseY += (tMY - mouseY) * 0.05;
+    ctx.clearRect(0, 0, c.width, c.height);
+    var now = Date.now() * 0.0006;
+    stars.forEach(function(s){
+      var twinkle = 0.55 + 0.45 * Math.sin(now * 0.8 + s.t);
+      var op = s.baseOp * twinkle;
+      var px = (s.x * c.width  + mouseX * 26 * s.speed + c.width)  % c.width;
+      var py = (s.y * c.height + mouseY * 16 * s.speed + c.height) % c.height;
+      ctx.beginPath();
+      ctx.arc(px, py, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(' + s.col + ',' + op.toFixed(3) + ')';
+      ctx.fill();
+      if (s.r > 1.1){
+        var g = ctx.createRadialGradient(px, py, 0, px, py, s.r * 5);
+        g.addColorStop(0, 'rgba(' + s.col + ',' + (op * 0.3).toFixed(3) + ')');
+        g.addColorStop(1, 'rgba(' + s.col + ',0)');
+        ctx.beginPath();
+        ctx.arc(px, py, s.r * 5, 0, Math.PI * 2);
+        ctx.fillStyle = g;
+        ctx.fill();
+      }
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
+<script>
+(function(){
+  var nodes  = document.querySelectorAll('.ph-node');
+  var panels = document.querySelectorAll('.ph-panel');
+  var fill   = document.getElementById('phRailFill');
+
+  function setPhase(idx) {
+    idx = parseInt(idx, 10);
+    nodes.forEach(function(n, i){
+      n.classList.remove('active','done');
+      if (i < idx) n.classList.add('done');
+      if (i === idx) n.classList.add('active');
+    });
+    panels.forEach(function(p, i){
+      p.classList.toggle('active', i === idx);
+    });
+    // Progress fill: spans from first node to active node
+    if (fill && nodes.length > 1) {
+      var pct = (idx / (nodes.length - 1)) * 100;
+      // Account for padding (40px each side ≈ 4% on a 980px wrap) — use calc-style approximation
+      var totalWidth = nodes[nodes.length-1].offsetLeft + nodes[nodes.length-1].offsetWidth/2
+                     - nodes[0].offsetLeft - nodes[0].offsetWidth/2;
+      var activeOffset = nodes[idx].offsetLeft + nodes[idx].offsetWidth/2
+                       - nodes[0].offsetLeft - nodes[0].offsetWidth/2;
+      var width = totalWidth > 0 ? (activeOffset / totalWidth) * (totalWidth) : 0;
+      fill.style.width = width + 'px';
+    }
+  }
+
+  nodes.forEach(function(n){
+    n.addEventListener('click', function(){
+      setPhase(this.getAttribute('data-idx'));
+    });
+  });
+
+  // Initialize fill width on load + resize
+  function initFill() { setPhase(document.querySelector('.ph-node.active') ? document.querySelector('.ph-node.active').getAttribute('data-idx') : 0); }
+  window.addEventListener('load', initFill);
+  window.addEventListener('resize', initFill);
+  // Run once immediately too
+  setTimeout(initFill, 0);
+})();
+</script>
+
+
+
+<!-- ═══ INDUSTRIES WE SERVE ═══ -->
 <style>
-.ind3-item{display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:12px;cursor:default;transition:background 0.2s ease,transform 0.2s ease;}
-.ind3-item:hover{background:#f3f4f6;transform:translateX(4px);}
-.ind3-item:hover .ind3-icon{background:rgba(0,64,255,0.1);border-color:rgba(0,64,255,0.3);}
-.ind3-item:hover .ind3-icon svg{color:#0040FF;}
-.ind3-icon{width:40px;height:40px;border-radius:10px;background:#f3f4f6;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#6b7280;transition:background 0.2s,border-color 0.2s;align-self:flex-start;margin-top:2px;}
-.ind3-icon svg{transition:color 0.2s;}
-.ind3-name{font-size:22px;font-weight:600;color:#030d2a;margin-bottom:4px;transition:color 0.2s;letter-spacing:-0.02em;}
-.ind3-item:hover .ind3-name{color:#0040FF;}
-.ind3-desc{font-size:17px;color:#6b7280;line-height:1.75;}
+.ind2-section {
+  background:#f8f9fc;
+  padding:0;
+  position:relative;
+  overflow:hidden;
+}
+.ind2-bento {
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+}
+@media(max-width:700px){ .ind2-bento{ grid-template-columns:1fr; } }
+
+.ind2-cell {
+  padding:72px 64px;
+  border:1px solid rgba(3,13,42,0.08);
+  position:relative;
+  overflow:hidden;
+  transition:background 0.35s ease;
+}
+.ind2-cell:hover { background:#ffffff; }
+
+.ind2-cell-intro {
+  grid-column:1 / -1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  background:#f8f9fc;
+  padding:80px 120px 72px;
+}
+.ind2-cell-intro:hover { background:#f8f9fc; }
+
+.ind2-label {
+  display:inline-block;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:#0040FF;
+  margin-bottom:20px;
+  font-family:'Segoe UI',system-ui,sans-serif;
+  padding:6px 16px;
+  background:rgba(0,64,255,0.08);
+  border:1px solid rgba(0,64,255,0.2);
+  border-radius:999px;
+}
+.ind2-main-heading {
+  font-size:clamp(36px,4.6vw,58px);
+  font-weight:500;
+  color:#030d2a;
+  letter-spacing:-0.03em;
+  line-height:1.08;
+  margin:0 0 24px;
+  font-family:'Segoe UI',system-ui,sans-serif;
+}
+.ind2-main-desc {
+  font-size:19px;
+  color:rgba(3,13,42,0.6);
+  line-height:1.75;
+  max-width:600px;
+  font-family:'Segoe UI',system-ui,sans-serif;
+}
+.ind2-count {
+  margin-top:32px;
+  font-size:16px;
+  color:rgba(3,13,42,0.35);
+  letter-spacing:0.04em;
+  font-family:'Segoe UI',system-ui,sans-serif;
+}
+
+.ind2-cell-industry {
+  background:#f8f9fc;
+  min-height:360px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.ind2-visual {
+  height:130px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  margin-bottom:28px;
+}
+.ind2-visual svg {
+  stroke:#0040FF;
+  fill:none;
+  overflow:visible;
+}
+.ind2-cell-name {
+  font-size:26px;
+  font-weight:500;
+  color:#030d2a;
+  letter-spacing:-0.025em;
+  line-height:1.15;
+  margin-bottom:8px;
+  font-family:'Segoe UI',system-ui,sans-serif;
+}
+.ind2-cell-tag {
+  font-size:14px;
+  font-weight:600;
+  color:#0040FF;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  margin-bottom:14px;
+  font-family:'Segoe UI',system-ui,sans-serif;
+}
+.ind2-cell-desc {
+  font-size:17px;
+  color:rgba(3,13,42,0.55);
+  line-height:1.7;
+  font-family:'Segoe UI',system-ui,sans-serif;
+}
+
+.ind2-row-bottom {
+  grid-column:1 / -1;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+@media(max-width:700px){ .ind2-row-bottom{ grid-template-columns:repeat(2,1fr); } }
+.ind2-cell-sm {
+  padding:44px 40px;
+  border:1px solid rgba(3,13,42,0.08);
+  background:#f8f9fc;
+  position:relative;
+  overflow:hidden;
+  transition:background 0.35s ease;
+  min-height:280px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.ind2-cell-sm:hover { background:#ffffff; }
+.ind2-sm-visual {
+  height:90px;
+  display:flex;
+  align-items:center;
+  margin-bottom:20px;
+}
+.ind2-sm-visual svg { stroke:#0040FF; fill:none; overflow:visible; }
+.ind2-sm-name {
+  font-size:26px;
+  font-weight:500;
+  color:#030d2a;
+  letter-spacing:-0.02em;
+  margin-bottom:8px;
+  font-family:'Segoe UI',system-ui,sans-serif;
+}
+.ind2-sm-desc {
+  font-size:16px;
+  color:rgba(3,13,42,0.5);
+  line-height:1.65;
+  font-family:'Segoe UI',system-ui,sans-serif;
+}
+
+.ind2-footer {
+  grid-column:1 / -1;
+  padding:72px 64px;
+  border-top:1px solid rgba(3,13,42,0.08);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:24px;
+  background:#f8f9fc;
+}
+.ind2-footer p {
+  font-size:18px;
+  color:rgba(3,13,42,0.55);
+  line-height:1.7;
+  max-width:680px;
+  margin:0;
+  font-family:'Segoe UI',system-ui,sans-serif;
+}
+.ind2-footer strong { color:#030d2a; font-weight:600; }
+.ind2-footer-link {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:16px;
+  font-weight:600;
+  color:#0040FF;
+  text-decoration:none;
+  white-space:nowrap;
+  letter-spacing:0.02em;
+  transition:gap 0.2s ease;
+  font-family:'Segoe UI',system-ui,sans-serif;
+}
+.ind2-footer-link:hover { gap:12px; }
 </style>
-<!-- ═══ WHY IKONIK ═══ -->
+
+<section class="ind2-section" id="industries">
+<div class="ind2-bento">
+
+  <!-- TOP: Intro text — full width, centered -->
+  <div class="ind2-cell ind2-cell-intro">
+    <div class="ind2-label">Industries We Serve</div>
+    <h2 class="ind2-main-heading">Built for your sector.<br>Not everyone's.</h2>
+    <p class="ind2-main-desc" style="max-width:600px;">Generic AI forces every business into the same workflow. AI KONIK doesn't. The agents, prompts, and compliance posture for a healthcare practice look nothing like the ones for a logistics firm — and they shouldn't.</p>
+    <div class="ind2-count" style="margin-top:24px;">Nine industry verticals. Deep specialisation in each.</div>
+  </div>
+
+  <!-- ROW 2: Legal, Healthcare, Finance — 3 equal columns -->
+  <div class="ind2-cell ind2-cell-industry">
+    <div class="ind2-visual">
+      <!-- Diamond / rhombus shape with arrow — matching reference top-right -->
+      <svg width="180" height="120" viewBox="0 0 220 120" stroke-width="1.2">
+        <!-- Scale/balance beam for Legal -->
+        <line x1="20" y1="60" x2="200" y2="60" stroke-dasharray="none"/>
+        <line x1="110" y1="20" x2="110" y2="100"/>
+        <!-- Left pan -->
+        <path d="M40,60 Q60,80 80,60"/>
+        <circle cx="40" cy="60" r="3" stroke-width="1"/>
+        <circle cx="80" cy="60" r="3" stroke-width="1"/>
+        <!-- Right pan -->
+        <path d="M130,60 Q150,80 170,60"/>
+        <circle cx="130" cy="60" r="3" stroke-width="1"/>
+        <circle cx="170" cy="60" r="3" stroke-width="1"/>
+        <!-- Centre top pivot -->
+        <circle cx="110" cy="20" r="4" stroke-width="1"/>
+        <!-- Arrow right -->
+        <line x1="185" y1="60" x2="205" y2="60"/>
+        <polyline points="199,55 205,60 199,65"/>
+      </svg>
+    </div>
+    <div>
+      <div class="ind2-cell-name">Legal</div>
+      <div class="ind2-cell-tag">M&A due diligence, contract review, IP research.</div>
+      <div class="ind2-cell-desc">Agents trained on the language of legal risk and the structure of legal work. Compliance monitoring built in from day one.</div>
+    </div>
+  </div>
+
+  <!-- BOTTOM-LEFT: Healthcare -->
+  <div class="ind2-cell ind2-cell-industry">
+    <div class="ind2-visual">
+      <!-- Interconnected circles — like reference bottom-left -->
+      <svg width="180" height="120" viewBox="0 0 220 120" stroke-width="1.2">
+        <!-- Central cross / plus for healthcare -->
+        <circle cx="110" cy="60" r="28"/>
+        <line x1="110" y1="40" x2="110" y2="80"/>
+        <line x1="90" y1="60" x2="130" y2="60"/>
+        <!-- Satellite nodes -->
+        <circle cx="40" cy="60" r="12"/>
+        <circle cx="180" cy="60" r="12"/>
+        <circle cx="110" cy="10" r="10"/>
+        <!-- Connecting lines -->
+        <line x1="52" y1="60" x2="82" y2="60"/>
+        <line x1="138" y1="60" x2="168" y2="60"/>
+        <line x1="110" y1="20" x2="110" y2="32"/>
+        <!-- Arrow -->
+        <line x1="192" y1="60" x2="210" y2="60"/>
+        <polyline points="204,55 210,60 204,65"/>
+      </svg>
+    </div>
+    <div>
+      <div class="ind2-cell-name">Healthcare</div>
+      <div class="ind2-cell-tag">Clinical documentation, billing, patient comms.</div>
+      <div class="ind2-cell-desc">All running inside HIPAA-compliant workflows from day one. Not retrofitted — architected for it.</div>
+    </div>
+  </div>
+
+  <!-- BOTTOM-RIGHT: Finance -->
+  <div class="ind2-cell ind2-cell-industry">
+    <div class="ind2-visual">
+      <!-- Pill/capsule shape with flow lines — like reference bottom-right -->
+      <svg width="180" height="120" viewBox="0 0 220 120" stroke-width="1.2">
+        <!-- Chart bars -->
+        <rect x="30" y="75" width="22" height="30" rx="2"/>
+        <rect x="64" y="55" width="22" height="50" rx="2"/>
+        <rect x="98" y="35" width="22" height="70" rx="2"/>
+        <rect x="132" y="45" width="22" height="60" rx="2"/>
+        <rect x="166" y="25" width="22" height="80" rx="2"/>
+        <!-- Trend line -->
+        <polyline points="41,70 75,50 109,32 143,42 177,22" stroke-dasharray="3 2"/>
+        <circle cx="177" cy="22" r="4"/>
+      </svg>
+    </div>
+    <div>
+      <div class="ind2-cell-name">Finance &amp; Accounting</div>
+      <div class="ind2-cell-tag">Risk analysis, filings, audit support.</div>
+      <div class="ind2-cell-desc">Built for deadline-driven, compliance-heavy work where errors compound fast. Tax prep to regulatory filings.</div>
+    </div>
+  </div>
+
+  <!-- BOTTOM ROW: 4 compact cells -->
+  <div class="ind2-row-bottom">
+
+    <!-- Logistics -->
+    <div class="ind2-cell-sm">
+      <div class="ind2-sm-visual">
+        <svg width="120" height="80" viewBox="0 0 140 90" stroke-width="1.2">
+          <rect x="5" y="28" width="80" height="44" rx="3"/>
+          <path d="M85,42 L85,42 L105,42 L118,62 L118,72 L85,72Z"/>
+          <circle cx="25" cy="78" r="9"/>
+          <circle cx="98" cy="78" r="9"/>
+          <line x1="5" y1="50" x2="85" y2="50" stroke-dasharray="3 3"/>
+        </svg>
+      </div>
+      <div>
+        <div class="ind2-sm-name">Logistics &amp; Manufacturing</div>
+        <div class="ind2-sm-desc">Route planning, freight analysis, lean operations. Small inefficiencies become real money.</div>
+      </div>
+    </div>
+
+    <!-- Marketing -->
+    <div class="ind2-cell-sm">
+      <div class="ind2-sm-visual">
+        <svg width="120" height="80" viewBox="0 0 140 90" stroke-width="1.2">
+          <!-- Megaphone / broadcast waves -->
+          <path d="M20,35 L55,22 L55,68 L20,55 Z"/>
+          <line x1="20" y1="35" x2="20" y2="55"/>
+          <rect x="8" y="35" width="13" height="20" rx="2"/>
+          <!-- Waves -->
+          <path d="M62,30 Q72,45 62,60" stroke-dasharray="none"/>
+          <path d="M70,22 Q86,45 70,68"/>
+          <path d="M78,15 Q100,45 78,75"/>
+        </svg>
+      </div>
+      <div>
+        <div class="ind2-sm-name">Marketing</div>
+        <div class="ind2-sm-desc">SEO operations, brand voice, content at scale. High volume, high creativity, high coordination.</div>
+      </div>
+    </div>
+
+    <!-- Real Estate -->
+    <div class="ind2-cell-sm">
+      <div class="ind2-sm-visual">
+        <svg width="120" height="80" viewBox="0 0 140 90" stroke-width="1.2">
+          <!-- House outline -->
+          <polyline points="10,80 10,42 70,10 130,42 130,80"/>
+          <line x1="10" y1="80" x2="130" y2="80"/>
+          <!-- Door -->
+          <rect x="52" y="54" width="36" height="26" rx="1"/>
+          <!-- Windows -->
+          <rect x="22" y="50" width="18" height="14" rx="1"/>
+          <rect x="100" y="50" width="18" height="14" rx="1"/>
+          <!-- Roof peak -->
+          <line x1="70" y1="10" x2="70" y2="42" stroke-dasharray="2 3"/>
+        </svg>
+      </div>
+      <div>
+        <div class="ind2-sm-name">Real Estate</div>
+        <div class="ind2-sm-desc">Property analysis, lease review, market research, client communications.</div>
+      </div>
+    </div>
+
+    <!-- Technology -->
+    <div class="ind2-cell-sm">
+      <div class="ind2-sm-visual">
+        <svg width="120" height="80" viewBox="0 0 140 90" stroke-width="1.2">
+          <!-- Code brackets -->
+          <polyline points="38,20 15,45 38,70"/>
+          <polyline points="102,20 125,45 102,70"/>
+          <!-- Slash -->
+          <line x1="75" y1="18" x2="65" y2="72"/>
+          <!-- Node dots -->
+          <circle cx="15" cy="45" r="3"/>
+          <circle cx="125" cy="45" r="3"/>
+        </svg>
+      </div>
+      <div>
+        <div class="ind2-sm-name">Technology</div>
+        <div class="ind2-sm-desc">Code review, security audits, architecture planning. Engineering-grade outputs.</div>
+      </div>
+    </div>
+
+  </div><!-- /row-bottom -->
+
+  <!-- Footer strip -->
+  <div class="ind2-footer">
+    <p>Each vertical ships with dedicated agents, an industry-specific prompt collection, and compliance configurations matched to its regulatory environment. <strong>Your team doesn't adapt to AI KONIK — AI KONIK arrives already adapted to you.</strong></p>
+    <a href="https://l.katalyst-crm.com/widget/bookings/discovery-call-ai-business-os" class="ind2-footer-link">
+      Talk to our team
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+</div><!-- /bento -->
+</section>
+
+<!-- ═══ SERVICES ═══ -->
 <section style="padding:100px 0;background:#fff;">
   <div class="container">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
 
       <!-- Left: header sticky -->
       <div style="position:sticky;top:120px;">
-        <span style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#0040FF;display:inline-flex;align-items:center;margin-bottom:16px;padding:5px 14px;background:rgba(0,64,255,0.1);border:1px solid rgba(0,64,255,0.2);border-radius:100px;">Why Ikonik</span>
-        <h2 style="font-size:clamp(28px,3.5vw,46px);font-weight:600;letter-spacing:-0.025em;color:#030d2a;line-height:1.1;">Affordable access to world-class AI experts who've done it themselves.</h2>
+        <span style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#0040FF;display:inline-flex;align-items:center;margin-bottom:16px;padding:5px 14px;background:rgba(0,64,255,0.1);border:1px solid rgba(0,64,255,0.2);border-radius:100px;">Why AI KONIK</span>
+        <h2 style="font-size:clamp(28px,3.5vw,46px);font-weight:500;letter-spacing:-0.025em;color:#030d2a;line-height:1.1;margin-bottom:20px;">The mid-market AI platform that actually fits.</h2>
+        <p style="font-size:19px;color:#6b7280;line-height:1.75;margin-bottom:28px;">Most AI tools are built for one of two extremes — consumer chatbots that don't understand your work, or enterprise rollouts that don't fit your budget. AI KONIK is built for the businesses in between, where the work is too complex for generic tools and too specific for off-the-shelf enterprise software.</p>
+        <p style="font-size:17px;font-weight:600;color:#030d2a;margin-bottom:28px;">Four things make it work.</p>
+        <p style="font-size:17px;color:#6b7280;margin-bottom:16px;">See if AI KONIK fits your operation.</p>
+        <a href="https://l.katalyst-crm.com/widget/bookings/discovery-call-ai-business-os" class="btn-primary">Book A Discovery Call <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="position:relative;z-index:2;"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
       </div>
 
       <!-- Right: stacked items -->
       <div style="display:flex;flex-direction:column;gap:0;padding-top:6px;">
-        <div class="wi-item">Cross-industry experience across 40+ verticals. We don't learn on your dime.</div>
-        <div class="wi-item">SMB-specific pricing and scope. Built for $1M–$20M, not $1B.</div>
-        <div class="wi-item">Ethical AI by design — fairness, transparency, and compliance baked in.</div>
-        <div class="wi-item">Fast ROI mandate — every engagement has a 4–6 week major milestone.</div>
-        <div class="wi-item">Transparent, stage-based pricing. No hidden fees. No runaway scope.</div>
-        <div class="wi-item">Human-first DNA — AI that amplifies your people, not replaces them.</div>
-        <div class="wi-item">Department-level playbooks your whole team can adopt with confidence.</div>
+        <div class="wi-accord">
+
+          <div class="wi-accord-item">
+            <button class="wi-accord-trigger" aria-expanded="false">
+              <span>It arrives configured for your industry</span>
+              <svg class="wi-accord-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="wi-accord-body">agents trained on your sector's work, prompts organized for your use cases, compliance aligned to your regulatory environment. Time-to-value is measured in days, not quarters.</div>
+          </div>
+
+          <div class="wi-accord-item">
+            <button class="wi-accord-trigger" aria-expanded="false">
+              <span>It's built for compliance from the foundation up</span>
+              <svg class="wi-accord-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="wi-accord-body">HIPAA, SOC 2, and GDPR aren't add-on modules. They're how the platform is architected. Sensitive workflows operate inside the same secure environment your auditors are already comfortable with.</div>
+          </div>
+
+          <div class="wi-accord-item">
+            <button class="wi-accord-trigger" aria-expanded="false">
+              <span>It comes with a deployment, not just a login</span>
+              <svg class="wi-accord-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="wi-accord-body">the 6-Sprint engagement maps your real workflows, structures the orchestration, trains your team, and tunes the system as you scale. You don't figure AI out alone.</div>
+          </div>
+
+          <div class="wi-accord-item">
+            <button class="wi-accord-trigger" aria-expanded="false">
+              <span>It scales with your team, not your headcount</span>
+              <svg class="wi-accord-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="wi-accord-body">one person can run workflows that used to need three. As your business grows, the platform absorbs the volume. No new hires, no new tools, no new approval bottlenecks.</div>
+          </div>
+
+        </div>
       </div>
 
     </div>
   </div>
 </section>
+
 <style>
 .wi-item {
   padding: 22px 0;
@@ -4295,7 +6221,77 @@ function wi2activate(idx){
   margin-top: 1px;
 }
 .wi-item:hover { color: #030d2a; }
+
+/* Accordion */
+.wi-accord { display:flex; flex-direction:column; }
+.wi-accord-item {
+  border-bottom:1px solid #e5e7eb;
+  overflow:hidden;
+}
+.wi-accord-item:first-child { border-top:1px solid #e5e7eb; }
+.wi-accord-trigger {
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:22px 0;
+  background:none;
+  border:none;
+  cursor:pointer;
+  text-align:left;
+  font-family:inherit;
+  font-size:19px;
+  font-weight:600;
+  color:#030d2a;
+  letter-spacing:-0.01em;
+  transition:color 0.2s;
+}
+.wi-accord-trigger:hover { color:#0040FF; }
+.wi-accord-trigger[aria-expanded="true"] { color:#0040FF; }
+.wi-accord-icon {
+  flex-shrink:0;
+  color:#0040FF;
+  transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.wi-accord-trigger[aria-expanded="true"] .wi-accord-icon {
+  transform:rotate(180deg);
+}
+.wi-accord-body {
+  font-size:17px;
+  color:#6b7280;
+  line-height:1.75;
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.35s ease;
+  padding:0;
+}
+.wi-accord-body.open {
+  max-height:200px;
+  padding-bottom:20px;
+}
 </style>
+
+<script>
+(function(){
+  document.querySelectorAll('.wi-accord-trigger').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+      var body = btn.nextElementSibling;
+      // Close all
+      document.querySelectorAll('.wi-accord-trigger').forEach(function(b){
+        b.setAttribute('aria-expanded','false');
+        b.nextElementSibling.classList.remove('open');
+      });
+      // Open clicked if it was closed
+      if(!isOpen){
+        btn.setAttribute('aria-expanded','true');
+        body.classList.add('open');
+      }
+    });
+  });
+})();
+</script>
 
 <!-- ═══ FAQ ═══ -->
 <style>
@@ -4328,7 +6324,7 @@ function wi2activate(idx){
       <!-- Left — sticky title + CTA -->
       <div style="position:sticky;top:100px;">
         <span style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8899ff;display:inline-flex;align-items:center;margin-bottom:16px;padding:5px 14px;background:rgba(0,64,255,0.18);border:1px solid rgba(0,64,255,0.35);border-radius:100px;">FAQ</span>
-        <h2 style="font-size:clamp(28px,3vw,40px);font-weight:600;letter-spacing:-0.025em;line-height:1.15;color:#fff;margin-bottom:20px;">Questions about Ikonik</h2>
+        <h2 style="font-size:clamp(28px,3vw,40px);font-weight:600;letter-spacing:-0.025em;line-height:1.15;color:#fff;margin-bottom:20px;">Questions about AI KONIK</h2>
         <a href="https://l.katalyst-crm.com/widget/bookings/discovery-call-ai-business-os" class="btn-primary hero-primary-btn" style="font-size:14px;padding:12px 22px;">
           Book A Discovery Call →
         </a>
@@ -4338,31 +6334,53 @@ function wi2activate(idx){
       <div class="dark-faq-list">
 
         <div class="dark-faq-item open">
-          <div class="dark-faq-q">How fast can we see ROI?<svg class="dark-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-          <div class="dark-faq-a">Most clients recoup their investment within four months. We target high-leverage value drivers, not vanity projects.</div>
+          <div class="dark-faq-q">Who is AI KONIK built for?<svg class="dark-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="dark-faq-a">AI KONIK is built for businesses between $1M and $20M in revenue — companies that have outgrown manual systems and generic AI tools, but aren't ready for a multi-million-dollar enterprise rollout. If your team is coordinating complex workflows across multiple stakeholders, you're in the right band.</div>
         </div>
 
         <div class="dark-faq-item">
-          <div class="dark-faq-q">Will my team resist the technology?<svg class="dark-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-          <div class="dark-faq-a">Our human-first approach positions AI as a tool that makes people more valuable, not replaceable. Adoption workshops are built into the rollout.</div>
+          <div class="dark-faq-q">How is AI KONIK different from a generic AI chatbot?<svg class="dark-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="dark-faq-a">A chatbot waits for you to figure out what to ask. AI KONIK ships with specialized agents that already know the work — drafting contracts, reviewing claims, analyzing freight data, generating clinical notes — and a tested prompt library organized by industry and use case. You start with a system, not a blank window.</div>
         </div>
 
         <div class="dark-faq-item">
-          <div class="dark-faq-q">Do we need clean, organized data first?<svg class="dark-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-          <div class="dark-faq-a">No — less than 3% of clients do. Data readiness is a project in itself, and we can take you through it. You don't need to be perfect. You need to start.</div>
+          <div class="dark-faq-q">Is our data secure? Are you compliant with our regulations?<svg class="dark-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="dark-faq-a">Yes. AI KONIK is built on a compliance-ready architecture that supports HIPAA, SOC 2, and GDPR natively. Sensitive workflows — patient records, M&A documents, financial filings — operate inside the same secure environment your auditors are already comfortable with.</div>
         </div>
 
         <div class="dark-faq-item">
-          <div class="dark-faq-q">We're not tech experts — can we really implement AI successfully?<svg class="dark-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-          <div class="dark-faq-a">That's exactly what we're here for. We handle the heavy lifting and train your team as we go.</div>
+          <div class="dark-faq-q">Which industries do you support?<svg class="dark-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="dark-faq-a">Nine industry verticals today: Legal, Healthcare, Finance, Accounting, Marketing, Real Estate, Technology, Logistics, and Manufacturing. Each one ships with its own agents, prompt collections, and compliance configurations.</div>
         </div>
 
         <div class="dark-faq-item">
-          <div class="dark-faq-q">What about privacy, security, and ethics?<svg class="dark-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-          <div class="dark-faq-a">Foundational, not optional. Our team includes AI ethics specialists with global experience in regulated deployments — GDPR, SOC 2, HIPAA, EU AI Act.</div>
+          <div class="dark-faq-q">We're not great at writing AI prompts. Will that be a problem?<svg class="dark-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="dark-faq-a">No. The platform includes a curated library of more than 60,000 tested prompts, organized by industry and use case. Your team can use them directly, save them to collections, modify them for your workflows, or contribute your own as you go.</div>
+        </div>
+
+        <div class="dark-faq-item">
+          <div class="dark-faq-q">What exactly is the 6-Sprint Delivery Method?<svg class="dark-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="dark-faq-a">It's the structured engagement that comes with the platform. Six sprints — Map, Structure, Integrate, Deploy, Train, Optimize — led by consultants who already work in your industry. They take you from first conversation to a fully running system, then keep tuning it as you scale.</div>
+        </div>
+
+        <div class="dark-faq-item">
+          <div class="dark-faq-q">What does AI KONIK look like for a Legal or Healthcare team specifically?<svg class="dark-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="dark-faq-a">For a legal team: agents for M&A due diligence, contract review, IP research, and compliance monitoring, with prompts written for legal language and risk patterns. For a healthcare team: agents for clinical documentation, billing automation, and patient communication, with workflows that stay HIPAA-compliant from the first step. The pattern repeats across every supported vertical.</div>
+        </div>
+
+        <div class="dark-faq-item">
+          <div class="dark-faq-q">Can our team learn AI through the platform?<svg class="dark-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="dark-faq-a">Yes. AI KONIK includes live workshops and masterclasses from practitioners across 40+ industries, plus a curated AI Tool Directory with honest community reviews. The platform is built as much for upskilling as for execution.</div>
+        </div>
+
+        <div class="dark-faq-item">
+          <div class="dark-faq-q">What does it cost to start?<svg class="dark-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="dark-faq-a">You can start free, no credit card required. Your first agent runs in minutes. From there, you can scale into a full deployment when you're ready, with the 6-Sprint engagement bringing your team and your workflows fully onto the platform.</div>
         </div>
 
       </div>
+
+      <!-- FAQ CTA removed -->
     </div>
   </div>
 </section>
@@ -4387,7 +6405,7 @@ function wi2activate(idx){
   <canvas id="final-canvas" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;will-change:transform;"></canvas>
 
   <div style="position:relative;z-index:2;text-align:center;padding:0 5vw;pointer-events:none;max-width:860px;">
-    <h2 style="font-family:'Segoe UI',system-ui,sans-serif;font-size:clamp(36px,4.5vw,64px);font-weight:500;letter-spacing:-0.03em;line-height:1.1;max-width:860px;margin:0 auto 40px;color:var(--ink);">Your competitors are already automating.<br>Are you?</h2>
+    <h2 style="font-family:'Segoe UI',system-ui,sans-serif;font-size:clamp(36px,4.5vw,64px);font-weight:500;letter-spacing:-0.03em;line-height:1.1;max-width:860px;margin:0 auto 24px;color:var(--ink);">Stop managing the chaos.<br>Start engineering the execution.</h2>
     <a href="https://l.katalyst-crm.com/widget/bookings/discovery-call-ai-business-os" class="btn-primary" style="pointer-events:auto;">
       Book Your Discovery Call
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
@@ -4552,68 +6570,7 @@ function wi2activate(idx){
 })();
 </script>
 
-<footer style="background:#060608;color:#fff;padding:60px 0 0;">
-
-
-  <div style="max-width:1280px;margin:0 auto;padding:0 32px 60px;">
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:40px;">
-
-      <div style="display:flex;flex-direction:column;gap:20px;">
-        <a href="{% url 'home' %}" class="logo" style="display:inline-block;">
-          <img src="https://res.cloudinary.com/dcuswyfur/image/upload/v1776795634/katek_logo_white_p1evh7.svg" alt="KATEK AI" style="height:28px;width:auto;" />
-        </a>
-        <p style="font-size:13px;color:rgba(255,255,255,0.35);line-height:1.6;">We handle the AI.<br>You run the business.</p>
-        <div style="display:flex;align-items:center;gap:6px;">
-          <span style="width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block;"></span>
-          <span style="font-size:12px;color:rgba(255,255,255,0.35);">All systems operational</span>
-        </div>
-        <div style="display:flex;gap:10px;">
-          <a href="#" style="width:34px;height:34px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.45);text-decoration:none;font-size:13px;">𝕏</a>
-          <a href="#" style="width:34px;height:34px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.45);text-decoration:none;font-size:13px;">in</a>
-          <a href="#" style="width:34px;height:34px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.45);text-decoration:none;font-size:13px;">▶</a>
-        </div>
-      </div>
-
-      <div>
-        <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px;">Products</div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <a href="{% url 'business_os' %}" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">AI Business OS</a>
-          <a href="{% url 'ikonik' %}" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Ikonik</a>
-          <a href="{% url 'enterprise' %}" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Enterprise Solutions</a>
-          <a href="{% url 'education' %}" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Education & Training</a>
-        </div>
-      </div>
-
-      <div>
-        <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px;">Company</div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <a href="#why" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Why KATEK</a>
-          <a href="#how" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">How It Works</a>
-          <a href="#results" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Case Studies</a>
-          <a href="#faq" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">FAQ</a>
-        </div>
-      </div>
-
-      <div>
-        <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px;">Legal</div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <a href="#" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Privacy Policy</a>
-          <a href="#" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Terms of Service</a>
-          <a href="#" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Cookie Policy</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div style="border-top:1px solid rgba(255,255,255,0.06);padding:20px 32px;">
-    <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;">
-      <span style="font-size:13px;color:rgba(255,255,255,0.25);">© 2026 KATEK AI. All rights reserved.</span>
-      <a href="https://l.katalyst-crm.com/widget/bookings/discovery-call-ai-business-os" style="font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;">Book a Discovery Call →</a>
-    </div>
-  </div>
-
-</footer>
+{% include 'official/components/footer.html' with footer_no_border_top='1' %}
 
 </script>
 </script>
