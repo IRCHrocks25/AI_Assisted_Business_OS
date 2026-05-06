@@ -385,9 +385,6 @@ footer .logo img { filter: brightness(0) invert(1); }
   transition: opacity 0.2s;
 }
 .mega-footer-cta:hover { opacity: 0.75; }
-  display: flex; align-items: center; justify-content: space-between;
-  padding-left: 12px; padding-right: 12px;
-}
 .mega-footer-text { font-size: 13px; color: var(--gray-500); }
 .mega-footer-cta {
   font-size: 13px; font-weight: 600; color: var(--purple-600);
@@ -923,6 +920,59 @@ footer {
 @media (max-width: 580px) {
   .hero { padding: 100px 0 60px; }
   section { padding: 60px 0; }
+}
+
+/* Cross-page mobile hardening */
+img, video, canvas, iframe, svg {
+  max-width: 100%;
+}
+iframe {
+  width: 100%;
+}
+
+@media (max-width: 968px) {
+  .container { padding: 0 20px; }
+  .hero { min-height: auto; }
+  .hero-grid,
+  .section-header,
+  .hero-sub { max-width: 100%; }
+  .hero-cta-row { gap: 12px; }
+  .trust-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    padding-top: 28px;
+  }
+  .trust-item {
+    border-right: none;
+    padding: 0 12px;
+  }
+  .btn-primary,
+  .btn-ghost,
+  .btn-white {
+    width: 100%;
+    justify-content: center;
+  }
+  .final-card { border-radius: 24px; }
+}
+
+@media (max-width: 580px) {
+  .container { padding: 0 16px; }
+  .trust-strip { grid-template-columns: 1fr; }
+  .trust-item { padding: 0; }
+  .faq-item summary,
+  .faq-summary {
+    padding: 18px 16px;
+    font-size: 16px;
+  }
+  .faq-answer,
+  .faq-item.open .faq-answer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns: repeat(2"] {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 </style>
@@ -3852,10 +3902,10 @@ footer {
 <!-- ═══ WHO IT'S FOR ═══ -->
 <section style="padding:100px 0;background:#fff;">
   <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
+    <div class="aud-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
 
       <!-- Left: sticky header -->
-      <div style="position:sticky;top:120px;">
+      <div class="aud-left" style="position:sticky;top:120px;">
         <span class="eyebrow">Built For</span>
         <h2 class="section-title" style="color:#030d2a;">If you're any of these, the OS was built for you.</h2>
         <p class="section-sub" style="margin-top:16px;">Three types of business. One system. All running on autopilot.</p>
@@ -3986,6 +4036,26 @@ footer {
   font-size: 14px;
   font-weight: 600;
   color: #0040FF;
+}
+.aud-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.aud-left {
+  position: sticky;
+  top: 120px;
+}
+@media (max-width: 768px) {
+  .aud-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+  .aud-left {
+    position: static !important;
+    top: auto !important;
+  }
 }
 </style>
 
@@ -4206,18 +4276,18 @@ footer {
   <div style="position:absolute;bottom:-150px;right:-150px;width:700px;height:700px;background:radial-gradient(ellipse,rgba(222,119,165,0.06) 0%,transparent 70%);pointer-events:none;z-index:1;filter:blur(60px);"></div>
 
   <div class="container" style="position:relative;z-index:2;">
-    <div style="text-align:center;margin-bottom:72px;">
+    <div class="loop-head" style="text-align:center;margin-bottom:72px;">
       <span class="eyebrow">The Compound Effect</span>
       <h2 class="section-title" style="color:#030d2a;font-weight:500;">These aren't multiple tools. It's one loop.</h2>
-      <p style="font-size:18px;color:#6b7280;max-width:600px;margin:0 auto;line-height:1.65;text-align:center;">Each engine feeds the next. The longer it runs, the smarter it gets. No human in the loop.</p>
+      <p class="loop-head-sub" style="font-size:18px;color:#6b7280;max-width:600px;margin:0 auto;line-height:1.65;text-align:center;">Each engine feeds the next. The longer it runs, the smarter it gets. No human in the loop.</p>
     </div>
 
     <!-- Orbital animation -->
-    <div style="position:relative;width:620px;height:620px;margin:0 auto;">
+    <div class="loop-orbit-wrap" style="position:relative;width:620px;height:620px;margin:0 auto;">
       <canvas id="orbitCanvas" width="620" height="620" style="position:absolute;inset:0;z-index:2;"></canvas>
 
       <!-- Center image — no blur/box -->
-      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;text-align:center;cursor:pointer;" id="center-hub">
+      <div class="loop-center-hub" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;text-align:center;cursor:pointer;" id="center-hub">
         <img src="https://res.cloudinary.com/dcuswyfur/image/upload/v1777894903/Group_1171275763_yeye2l.png" alt="AI Engine" style="width:264px;height:264px;object-fit:contain;display:block;transition:transform 0.15s ease;cursor:pointer;" id="hub-img" />
         <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(132,0,255,0.6);margin-top:8px;font-family:monospace;">Press & Hold to Run</div>
       </div>
@@ -4228,6 +4298,44 @@ footer {
 
   </div>
 </section>
+
+<style>
+@media (max-width: 768px) {
+  #loop-section {
+    padding: 72px 0 64px !important;
+  }
+  #loop-section .loop-head {
+    margin-bottom: 34px !important;
+  }
+  #loop-section .loop-head .section-title {
+    font-size: clamp(30px, 9.5vw, 44px) !important;
+    line-height: 1.08 !important;
+    margin-bottom: 12px;
+  }
+  #loop-section .loop-head-sub {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    max-width: 340px !important;
+  }
+  #loop-section .loop-orbit-wrap {
+    width: 320px !important;
+    height: 320px !important;
+  }
+  #loop-section #orbitCanvas {
+    width: 320px !important;
+    height: 320px !important;
+  }
+  #loop-section .loop-center-hub img,
+  #loop-section #hub-img {
+    width: 146px !important;
+    height: 146px !important;
+  }
+  #loop-section #orbit-nodes > div > div {
+    font-size: 9px !important;
+    letter-spacing: 0.08em !important;
+  }
+}
+</style>
 
 <script>
 /* ── Starfield with parallax ── */
@@ -4426,7 +4534,7 @@ footer {
 
 <!-- ═══ TESTIMONIALS ═══ -->
 <section id="results" style="background:#fff;overflow:hidden;position:relative;">
-  <div style="position:relative;height:620px;">
+  <div class="results-stage" style="position:relative;height:620px;">
 
         <div class="t-avatar" data-idx="0" style="position:absolute;left:12%;bottom:10%;cursor:pointer;z-index:3;">
       <div class="t-av-ring"><div class="t-av-inner" style="background:none;overflow:hidden;"><img src="https://res.cloudinary.com/dcuswyfur/image/upload/v1777552360/Group_1171275774_rybtqw.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;" /></div></div>
@@ -4442,12 +4550,12 @@ footer {
     </div>
 
     <!-- Center: eyebrow + title + quote -->
-    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 28%;pointer-events:none;z-index:2;gap:8px;text-align:center;">
+    <div class="results-copy" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 28%;pointer-events:none;z-index:2;gap:8px;text-align:center;">
       <span class="eyebrow">Results</span>
       <h2 class="section-title" style="margin-bottom:4px;">Service pros who stopped being the bottleneck.</h2>
-      <div style="min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;margin-top:4px;">
-        <p id="testiQ" style="font-size:clamp(18px,2vw,26px);font-weight:400;line-height:1.6;color:#374151;letter-spacing:-0.02em;transition:opacity 0.4s ease;opacity:0;"></p>
-        <div id="testiMeta" style="opacity:0;transition:opacity 0.4s ease 0.1s;display:flex;align-items:center;gap:6px;">
+      <div class="results-copy-body" style="min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;margin-top:4px;">
+        <p id="testiQ" class="results-quote" style="font-size:clamp(18px,2vw,26px);font-weight:400;line-height:1.6;color:#374151;letter-spacing:-0.02em;transition:opacity 0.4s ease;opacity:0;"></p>
+        <div id="testiMeta" class="results-meta" style="opacity:0;transition:opacity 0.4s ease 0.1s;display:flex;align-items:center;gap:6px;">
           <span id="testiN" style="font-size:15px;font-weight:600;color:#030d2a;"></span>
           <span style="color:#d1d5db;">·</span>
           <span id="testiR" style="font-size:15px;color:#6b7280;"></span>
@@ -4499,6 +4607,44 @@ footer {
   font-weight: 400;
   color: #6b7280;
   font-size: 11px;
+}
+#results .results-stage { height: 620px; }
+#results .results-copy { padding: 0 28%; }
+
+@media (max-width: 900px) {
+  #results .results-stage { height: 720px !important; }
+  #results .results-copy { padding: 190px 16px 120px !important; }
+}
+
+@media (max-width: 640px) {
+  #results .results-stage { height: 780px !important; }
+  #results .results-copy .section-title {
+    font-size: clamp(34px, 10.5vw, 46px);
+    line-height: 1.08;
+  }
+  #results .results-quote {
+    font-size: clamp(18px, 6vw, 24px) !important;
+    line-height: 1.5 !important;
+  }
+  #results .results-meta {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  #results .t-avatar { transform: none !important; }
+  #results .t-avatar[data-idx="0"] { left: 6% !important; top: 4% !important; bottom: auto !important; }
+  #results .t-avatar[data-idx="1"] { left: 50% !important; top: 4% !important; bottom: auto !important; transform: translateX(-50%) !important; }
+  #results .t-avatar[data-idx="2"] { right: 6% !important; top: 4% !important; bottom: auto !important; }
+  #results .t-av-ring {
+    width: 56px;
+    height: 56px;
+  }
+  #results .t-av-label {
+    white-space: normal;
+    max-width: 114px;
+    font-size: 11px;
+    line-height: 1.25;
+    padding: 4px 8px;
+  }
 }
 </style>
 

@@ -151,6 +151,28 @@
       border: 1px solid rgba(214, 226, 255, 0.35);
       background: rgba(255, 255, 255, 0.04);
     }
+    @media (max-width: 768px) {
+      .hero {
+        padding: 120px 16px 56px;
+        min-height: auto;
+      }
+      h1 {
+        font-size: clamp(30px, 10vw, 44px);
+      }
+      .sub {
+        font-size: 16px;
+        line-height: 1.55;
+      }
+      .card {
+        padding: 18px;
+        border-radius: 16px;
+      }
+      .actions .btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body>

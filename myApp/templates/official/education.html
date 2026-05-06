@@ -304,9 +304,6 @@ footer .logo:hover img, .footer .logo:hover img {
   transition: opacity 0.2s;
 }
 .mega-footer-cta:hover { opacity: 0.75; }
-  display: flex; align-items: center; justify-content: space-between;
-  padding-left: 12px; padding-right: 12px;
-}
 .mega-footer-text { font-size: 13px; color: var(--gray-500); }
 .mega-footer-cta {
   font-size: 13px; font-weight: 600; color: var(--purple-600);
@@ -822,6 +819,59 @@ footer {
 @media (max-width: 580px) {
   .hero { padding: 100px 0 60px; }
   section { padding: 60px 0; }
+}
+
+/* Cross-page mobile hardening */
+img, video, canvas, iframe, svg {
+  max-width: 100%;
+}
+iframe {
+  width: 100%;
+}
+
+@media (max-width: 968px) {
+  .container { padding: 0 20px; }
+  .hero { min-height: auto; }
+  .hero-grid,
+  .section-header,
+  .hero-sub { max-width: 100%; }
+  .hero-cta-row { gap: 12px; }
+  .trust-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    padding-top: 28px;
+  }
+  .trust-item {
+    border-right: none;
+    padding: 0 12px;
+  }
+  .btn-primary,
+  .btn-ghost,
+  .btn-white {
+    width: 100%;
+    justify-content: center;
+  }
+  .final-card { border-radius: 24px; }
+}
+
+@media (max-width: 580px) {
+  .container { padding: 0 16px; }
+  .trust-strip { grid-template-columns: 1fr; }
+  .trust-item { padding: 0; }
+  .faq-item summary,
+  .faq-summary {
+    padding: 18px 16px;
+    font-size: 16px;
+  }
+  .faq-answer,
+  .faq-item.open .faq-answer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns: repeat(2"] {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 </style>
@@ -3427,11 +3477,11 @@ nav .nav-links a.active { color: #0040FF !important; }
     </div>
 
     <!-- 11 Features -->
-    <div style="margin-bottom:80px;">
-      <div style="display:grid;grid-template-columns:300px 1fr;gap:24px;align-items:start;">
+    <div class="sop-features-block">
+      <div class="sop-features-layout">
 
         <!-- Left: image column with section heading -->
-        <div style="background:url('https://res.cloudinary.com/dcuswyfur/image/upload/v1777557082/AI_SOLUTIONS_BG_gxbzhy.png') center/cover no-repeat;border-radius:20px;padding:32px;position:relative;overflow:hidden;min-height:100%;">
+        <div class="sop-features-intro" style="background:url('https://res.cloudinary.com/dcuswyfur/image/upload/v1777557082/AI_SOLUTIONS_BG_gxbzhy.png') center/cover no-repeat;border-radius:20px;padding:32px;position:relative;overflow:hidden;min-height:100%;">
           <div style="position:relative;z-index:2;">
             <span style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);display:block;margin-bottom:12px;">11 Features</span>
             <h3 style="font-size:clamp(22px,2.5vw,30px);font-weight:600;color:#fff;letter-spacing:-0.025em;line-height:1.2;">Built to elevate every employee.</h3>
@@ -3439,7 +3489,7 @@ nav .nav-links a.active { color: #0040FF !important; }
         </div>
 
         <!-- Right: feature list -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+        <div class="sop-features-list">
           <div class="sop-feat"><span class="sop-feat-n">01</span><div><div class="sop-feat-t">Course Catalog + Student Dashboard</div><div class="sop-feat-d">Students always know what to take next.</div></div></div>
           <div class="sop-feat sop-feat-right"><span class="sop-feat-n">02</span><div><div class="sop-feat-t">Video Lessons + Progress Tracking</div><div class="sop-feat-d">Pick up exactly where you left off, no manual tracking.</div></div></div>
           <div class="sop-feat"><span class="sop-feat-n">03</span><div><div class="sop-feat-t">Lesson Quizzes</div><div class="sop-feat-d">Build fast or generate instantly with AI.</div></div></div>
@@ -3450,7 +3500,7 @@ nav .nav-links a.active { color: #0040FF !important; }
           <div class="sop-feat sop-feat-right"><span class="sop-feat-n">08</span><div><div class="sop-feat-t">Bulk Access Management + Full Audit Trail</div><div class="sop-feat-d">Enterprise-grade control over who can access what, and why.</div></div></div>
           <div class="sop-feat"><span class="sop-feat-n">09</span><div><div class="sop-feat-t">Bundles, Cohorts & Learning Paths</div><div class="sop-feat-d">Sell packages, run groups, guide structured journeys.</div></div></div>
           <div class="sop-feat sop-feat-right"><span class="sop-feat-n">10</span><div><div class="sop-feat-t">Analytics Dashboard + Activity Feed</div><div class="sop-feat-d">See what's working, who's stuck, and where drop-off happens.</div></div></div>
-          <div class="sop-feat sop-feat-last" style="grid-column:span 2;border-bottom:none;"><span class="sop-feat-n" style="color:#8400FF;">11</span><div><div class="sop-feat-t" style="color:#8400FF;">AI Chatbot Inside Lessons</div><div class="sop-feat-d">In-lesson support that reduces tickets and accelerates mastery.</div></div></div>
+          <div class="sop-feat sop-feat-last"><span class="sop-feat-n" style="color:#8400FF;">11</span><div><div class="sop-feat-t" style="color:#8400FF;">AI Chatbot Inside Lessons</div><div class="sop-feat-d">In-lesson support that reduces tickets and accelerates mastery.</div></div></div>
         </div>
 
       </div>
@@ -3458,13 +3508,33 @@ nav .nav-links a.active { color: #0040FF !important; }
 
 
     <style>
+    .sop-features-block { margin-bottom: 80px; }
+    .sop-features-layout { display:grid;grid-template-columns:300px 1fr;gap:24px;align-items:start; }
+    .sop-features-list { display:grid;grid-template-columns:1fr 1fr;gap:0; }
     .sop-feat { display:flex;align-items:flex-start;gap:16px;padding:20px 24px 20px 0;border-bottom:1px solid #e5e7eb;transition:background 0.2s; }
     .sop-feat-right { padding:20px 0 20px 32px;border-left:1px solid #e5e7eb; }
+    .sop-feat-last { grid-column: span 2; border-bottom:none; }
     .sop-feat:hover { background:rgba(132,0,255,0.03); }
     .sop-feat:hover .sop-feat-t { color:#8400FF; }
     .sop-feat-n { font-size:11px;font-weight:700;color:#8400FF;text-transform:uppercase;letter-spacing:0.08em;min-width:28px;flex-shrink:0;margin-top:3px; }
     .sop-feat-t { font-size:17px;font-weight:600;color:#030d2a;margin-bottom:4px;letter-spacing:-0.01em;transition:color 0.2s; }
     .sop-feat-d { font-size:15px;color:#6b7280;line-height:1.6; }
+    @media (max-width: 980px) {
+      .sop-features-block { margin-bottom: 56px; }
+      .sop-features-layout { grid-template-columns:1fr; gap:18px; }
+      .sop-features-intro { min-height: 0 !important; padding:24px !important; }
+    }
+    @media (max-width: 640px) {
+      .sop-features-list { grid-template-columns:1fr; }
+      .sop-feat,
+      .sop-feat-right {
+        border-left: none;
+        padding: 16px 0;
+      }
+      .sop-feat-last { grid-column: auto; }
+      .sop-feat-t { font-size:16px; }
+      .sop-feat-d { font-size:14px; line-height:1.55; }
+    }
     </style>
 
 
@@ -3550,15 +3620,110 @@ nav .nav-links a.active { color: #0040FF !important; }
       </div>
     </div>
 
+    <style>
+      .sop-cta-strip {
+        background: #000;
+        border-radius: 20px;
+        margin-top: 32px;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+      }
+      .sop-cta-content {
+        padding: 48px;
+      }
+      .sop-cta-title {
+        font-size: clamp(20px,2.5vw,28px);
+        font-weight: 600;
+        color: #fff;
+        letter-spacing: -0.02em;
+        margin-bottom: 20px;
+      }
+      .sop-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 28px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #fff;
+        background: #8400FF;
+        border-radius: 100px;
+        text-decoration: none;
+        box-shadow: 0 4px 16px rgba(132,0,255,0.4);
+        margin-bottom: 10px;
+        transition: all 0.25s ease;
+      }
+      .sop-cta-btn:hover {
+        background: #6a00cc;
+        transform: translateY(-2px);
+      }
+      .sop-cta-note {
+        font-size: 12px;
+        color: rgba(255,255,255,0.4);
+        margin-top: 2px;
+      }
+      .sop-cta-media {
+        height: 100%;
+        min-height: 220px;
+        width: 260px;
+        flex-shrink: 0;
+        padding-right: 0;
+        border-radius: 0 20px 20px 0;
+        overflow: hidden;
+      }
+      .sop-cta-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: left center;
+        display: block;
+      }
+      @media (max-width: 900px) {
+        .sop-cta-strip {
+          grid-template-columns: 1fr;
+        }
+        .sop-cta-content {
+          padding: 32px 24px 20px;
+        }
+        .sop-cta-media {
+          width: 100%;
+          min-height: 180px;
+          border-radius: 0;
+        }
+      }
+      @media (max-width: 640px) {
+        .sop-cta-content {
+          padding: 24px 16px 16px;
+        }
+        .sop-cta-title {
+          font-size: 24px;
+          line-height: 1.25;
+        }
+        .sop-cta-btn {
+          width: 100%;
+          justify-content: center;
+          padding: 13px 18px;
+        }
+        .sop-cta-note {
+          line-height: 1.5;
+        }
+        .sop-cta-media {
+          min-height: 150px;
+        }
+      }
+    </style>
+
     <!-- CTA strip -->
-    <div style="background:#000;border-radius:20px;margin-top:32px;overflow:hidden;display:grid;grid-template-columns:1fr auto;align-items:center;">
-      <div style="padding:48px;">
-        <p style="font-size:clamp(20px,2.5vw,28px);font-weight:600;color:#fff;letter-spacing:-0.02em;margin-bottom:20px;">Stop losing money to undertrained teams.</p>
-        <a href="#final" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;font-size:15px;font-weight:600;color:#fff;background:#8400FF;border-radius:100px;text-decoration:none;box-shadow:0 4px 16px rgba(132,0,255,0.4);margin-bottom:10px;transition:all 0.25s ease;" onmouseover="this.style.background='#6a00cc';this.style.transform='translateY(-2px)';" onmouseout="this.style.background='#8400FF';this.style.transform='translateY(0)';">Book a Demo →</a>
-        <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:2px;">Setup in under an hour · No credit card required · Cancel anytime</div>
+    <div class="sop-cta-strip">
+      <div class="sop-cta-content">
+        <p class="sop-cta-title">Stop losing money to undertrained teams.</p>
+        <a href="#final" class="sop-cta-btn">Book a Demo →</a>
+        <div class="sop-cta-note">Setup in under an hour · No credit card required · Cancel anytime</div>
       </div>
-      <div style="height:100%;min-height:220px;width:260px;flex-shrink:0;padding-right:0;border-radius:0 20px 20px 0;overflow:hidden;">
-        <img src="https://res.cloudinary.com/dcuswyfur/image/upload/v1777561597/ChatGPT_Image_30_Nis_2026_18_00_12_xykwu1.png" style="width:100%;height:100%;object-fit:cover;object-position:left center;display:block;"/>
+      <div class="sop-cta-media">
+        <img src="https://res.cloudinary.com/dcuswyfur/image/upload/v1777561597/ChatGPT_Image_30_Nis_2026_18_00_12_xykwu1.png" />
       </div>
     </div>
   </div>
@@ -3566,7 +3731,7 @@ nav .nav-links a.active { color: #0040FF !important; }
 
 <!-- ═══ TESTIMONIALS ═══ -->
 <section id="sop-results" style="background:#fff;overflow:hidden;position:relative;">
-  <div style="position:relative;height:620px;">
+  <div class="sop-results-stage" style="position:relative;height:620px;">
 
     <div class="t-avatar" data-idx="0" style="position:absolute;left:14%;top:12%;cursor:pointer;z-index:3;">
       <div class="t-av-ring"><div class="t-av-inner" style="background:none;overflow:hidden;"><img src="https://res.cloudinary.com/dcuswyfur/image/upload/v1777552360/Group_1171275774_rybtqw.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;" /></div></div>
@@ -3582,18 +3747,18 @@ nav .nav-links a.active { color: #0040FF !important; }
     </div>
 
     <!-- Center: eyebrow + title + quote -->
-    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 28%;pointer-events:none;z-index:2;gap:8px;text-align:center;">
+    <div class="sop-results-copy" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 28%;pointer-events:none;z-index:2;gap:8px;text-align:center;">
       <span class="eyebrow" style="background:linear-gradient(90deg,#8400FF,#FAAC63);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;">What Success Looks Like</span>
       <h2 class="section-title" style="margin-bottom:4px;color:#030d2a !important;-webkit-text-fill-color:#030d2a !important;font-weight:500;">Teams that ship training, <em style="color:#030d2a !important;-webkit-text-fill-color:#030d2a !important;font-weight:500;font-style:normal;">not spreadsheets.</em></h2>
-      <div style="min-height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;margin-top:4px;">
-        <p id="testiTitle" style="font-size:13px;font-weight:700;color:#8400FF;text-transform:uppercase;letter-spacing:0.06em;transition:opacity 0.4s;opacity:0;margin-bottom:6px;"></p>
-        <p id="testiQ" style="font-size:clamp(18px,2vw,26px);font-weight:400;line-height:1.6;color:#374151;letter-spacing:-0.02em;transition:opacity 0.4s ease;opacity:0;"></p>
-        <div id="testiMeta" style="opacity:0;transition:opacity 0.4s ease 0.1s;display:flex;align-items:center;gap:6px;">
+      <div class="sop-results-copy-body" style="min-height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;margin-top:4px;">
+        <p id="testiTitle" class="sop-testi-title" style="font-size:13px;font-weight:700;color:#8400FF;text-transform:uppercase;letter-spacing:0.06em;transition:opacity 0.4s;opacity:0;margin-bottom:6px;"></p>
+        <p id="testiQ" class="sop-testi-quote" style="font-size:clamp(18px,2vw,26px);font-weight:400;line-height:1.6;color:#374151;letter-spacing:-0.02em;transition:opacity 0.4s ease;opacity:0;"></p>
+        <div id="testiMeta" class="sop-testi-meta" style="opacity:0;transition:opacity 0.4s ease 0.1s;display:flex;align-items:center;gap:6px;">
           <span id="testiN" style="font-size:15px;font-weight:600;color:#030d2a;"></span>
           <span style="color:#d1d5db;">·</span>
           <span id="testiR" style="font-size:15px;color:#6b7280;"></span>
         </div>
-        <p id="testiHint" style="font-size:11px;color:#9ca3af;letter-spacing:0.08em;text-transform:uppercase;margin-top:4px;">Click a profile to read</p>
+        <p id="testiHint" class="sop-testi-hint" style="font-size:11px;color:#9ca3af;letter-spacing:0.08em;text-transform:uppercase;margin-top:4px;">Click a profile to read</p>
       </div>
     </div>
 
@@ -3640,6 +3805,71 @@ nav .nav-links a.active { color: #0040FF !important; }
   font-weight: 400;
   color: #6b7280;
   font-size: 11px;
+}
+
+#sop-results .sop-results-stage {
+  height: 620px;
+}
+#sop-results .sop-results-copy {
+  padding: 0 28%;
+}
+
+@media (max-width: 900px) {
+  #sop-results .sop-results-stage {
+    height: 700px !important;
+  }
+  #sop-results .sop-results-copy {
+    padding: 110px 14% 180px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  #sop-results .sop-results-stage {
+    height: 760px !important;
+  }
+  #sop-results .sop-results-copy {
+    padding: 210px 16px 160px !important;
+  }
+  #sop-results .section-title {
+    font-size: clamp(34px, 10vw, 44px);
+    line-height: 1.1;
+  }
+  #sop-results .sop-testi-title {
+    font-size: 11px !important;
+  }
+  #sop-results .sop-testi-quote {
+    font-size: clamp(18px, 5vw, 22px) !important;
+    line-height: 1.45 !important;
+  }
+  #sop-results .sop-testi-meta {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  #sop-results .sop-testi-hint {
+    margin-top: 8px !important;
+  }
+  #sop-results .t-avatar {
+    transform: none !important;
+  }
+  #sop-results .t-avatar[data-idx="0"] { left: 7% !important; top: 5% !important; }
+  #sop-results .t-avatar[data-idx="1"] { right: 7% !important; top: 5% !important; }
+  #sop-results .t-avatar[data-idx="2"] {
+    left: 50% !important;
+    top: 5% !important;
+    bottom: auto !important;
+    transform: translateX(-50%) !important;
+  }
+  #sop-results .t-av-ring {
+    width: 56px;
+    height: 56px;
+  }
+  #sop-results .t-av-label {
+    white-space: normal;
+    max-width: 120px;
+    font-size: 11px;
+    line-height: 1.25;
+    padding: 4px 8px;
+  }
 }
 </style>
 
@@ -3800,11 +4030,11 @@ nav .nav-links a.active { color: #0040FF !important; }
     </div>
 
     <!-- How It Works -->
-    <div style="background:url('https://res.cloudinary.com/dcuswyfur/image/upload/v1777554510/option_20_tbtkmj.png') center/cover no-repeat;border-radius:20px;padding:48px;margin-bottom:64px;">
-      <span style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#FFB380;display:block;margin-bottom:12px;">How It Works</span>
-      <h3 style="font-size:clamp(24px,3vw,36px);font-weight:600;color:#fff;letter-spacing:-0.025em;margin-bottom:8px;">From expertise to income. This is the machine.</h3>
-      <p style="font-size:17px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:40px;">CourseForge handles the platform, the payments, and the presentation. You bring the expertise — the one thing only you can do.</p>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+    <div class="cf-hiw-section" style="background:url('https://res.cloudinary.com/dcuswyfur/image/upload/v1777554510/option_20_tbtkmj.png') center/cover no-repeat;border-radius:20px;padding:48px;margin-bottom:64px;">
+      <span class="cf-hiw-kicker">How It Works</span>
+      <h3 class="cf-hiw-title">From expertise to income. This is the machine.</h3>
+      <p class="cf-hiw-sub">CourseForge handles the platform, the payments, and the presentation. You bring the expertise — the one thing only you can do.</p>
+      <div class="cf-hiw-grid">
         <div class="cf-hiw-card">
           <div style="font-size:32px;font-weight:700;color:#FF6D18;margin-bottom:16px;letter-spacing:-0.03em;">01</div>
           <h4 style="font-size:19px;font-weight:600;color:#fff;margin-bottom:10px;">Extract what you know</h4>
@@ -3873,22 +4103,158 @@ nav .nav-links a.active { color: #0040FF !important; }
     @keyframes spin-border {
       to { --angle: 360deg; }
     }
+    .cf-hiw-kicker {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #FFB380;
+      display: block;
+      margin-bottom: 12px;
+    }
+    .cf-hiw-title {
+      font-size: clamp(24px,3vw,36px);
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -0.025em;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .cf-hiw-sub {
+      font-size: 17px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .cf-hiw-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 980px) {
+      .cf-hiw-section { padding: 30px 22px !important; }
+      .cf-hiw-grid { grid-template-columns: 1fr; gap: 14px; }
+      .cf-hiw-sub { margin-bottom: 24px; }
+      .cf-hiw-card { padding: 20px; }
+    }
+    @media (max-width: 640px) {
+      .cf-hiw-section { padding: 24px 16px !important; border-radius: 16px; }
+      .cf-hiw-title { font-size: clamp(22px, 7vw, 30px); }
+      .cf-hiw-sub { font-size: 15px; line-height: 1.6; margin-bottom: 18px; }
+      .cf-hiw-card { padding: 16px; border-radius: 12px; }
+    }
+
+    .cf-features-section {
+      margin-bottom: 64px;
+    }
+    .cf-features-head {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .cf-features-kicker {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #FF6D18;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    .cf-features-title {
+      font-size: clamp(24px,3vw,36px);
+      font-weight: 600;
+      color: #030d2a;
+      letter-spacing: -0.025em;
+    }
+    .cf-features-sub {
+      font-size: 17px;
+      color: #6b7280;
+      margin-top: 12px;
+      line-height: 1.65;
+    }
+    .cf-features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .cf-feature-card {
+      background: #FFFAF6;
+      border: 1px solid #FFD4B3;
+      border-radius: 14px;
+      padding: 28px;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .cf-feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(255,109,24,0.12);
+    }
+    .cf-feature-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #030d2a;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .cf-feature-desc {
+      font-size: 15px;
+      color: #6b7280;
+      line-height: 1.65;
+    }
+    @media (max-width: 980px) {
+      .cf-features-head {
+        text-align: left;
+        margin-bottom: 24px;
+      }
+      .cf-features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .cf-feature-card {
+        padding: 20px;
+      }
+    }
+    @media (max-width: 640px) {
+      .cf-features-section {
+        margin-bottom: 48px;
+      }
+      .cf-features-title {
+        font-size: clamp(22px, 7vw, 30px);
+      }
+      .cf-features-sub {
+        font-size: 15px;
+        margin-top: 8px;
+      }
+      .cf-features-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .cf-feature-card {
+        padding: 16px;
+        border-radius: 12px;
+      }
+      .cf-feature-title {
+        font-size: 16px;
+      }
+      .cf-feature-desc {
+        font-size: 14px;
+        line-height: 1.55;
+      }
+    }
     </style>
 
     <!-- Features -->
-    <div style="margin-bottom:64px;">
-      <div style="text-align:center;margin-bottom:40px;">
-        <span style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#FF6D18;display:inline-block;margin-bottom:12px;">Features</span>
-        <h3 style="font-size:clamp(24px,3vw,36px);font-weight:600;color:#030d2a;letter-spacing:-0.025em;">Every feature answers one question.</h3>
-        <p style="font-size:17px;color:#6b7280;margin-top:12px;">Does this make me more money or save me time? If the answer isn't yes, it's not in here.</p>
+    <div class="cf-features-section">
+      <div class="cf-features-head">
+        <span class="cf-features-kicker">Features</span>
+        <h3 class="cf-features-title">Every feature answers one question.</h3>
+        <p class="cf-features-sub">Does this make me more money or save me time? If the answer isn't yes, it's not in here.</p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
-        <div style="background:#FFF4EC;border:1px solid #FFD4B3;border-radius:14px;padding:28px;background:#FFFAF6;transition:transform 0.25s,box-shadow 0.25s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(255,109,24,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''"><h4 style="font-size:18px;font-weight:600;color:#030d2a;margin-bottom:8px;">AI Content Builder</h4><p style="font-size:15px;color:#6b7280;line-height:1.65;">Takes what you know and turns it into a fully structured course — curriculum, lessons, and assessments — ready to launch. No prompting. No structuring. No trial and error.</p></div>
-        <div style="background:#FFF4EC;border:1px solid #FFD4B3;border-radius:14px;padding:28px;background:#FFFAF6;transition:transform 0.25s,box-shadow 0.25s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(255,109,24,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''"><h4 style="font-size:18px;font-weight:600;color:#030d2a;margin-bottom:8px;">White-Label Platform</h4><p style="font-size:15px;color:#6b7280;line-height:1.65;">Your name, your domain, your colors. Clients see your brand, not a tool. That trust closes sales before the conversation starts.</p></div>
-        <div style="background:#FFF4EC;border:1px solid #FFD4B3;border-radius:14px;padding:28px;background:#FFFAF6;transition:transform 0.25s,box-shadow 0.25s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(255,109,24,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''"><h4 style="font-size:18px;font-weight:600;color:#030d2a;margin-bottom:8px;">Flexible Monetization</h4><p style="font-size:15px;color:#6b7280;line-height:1.65;">Sell once, monthly, or by cohort. Set your price. Stripe handles collection and payouts. You get paid on your terms.</p></div>
-        <div style="background:#FFF4EC;border:1px solid #FFD4B3;border-radius:14px;padding:28px;background:#FFFAF6;transition:transform 0.25s,box-shadow 0.25s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(255,109,24,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''"><h4 style="font-size:18px;font-weight:600;color:#030d2a;margin-bottom:8px;">Client Intelligence</h4><p style="font-size:15px;color:#6b7280;line-height:1.65;">See exactly where people engage, drop, and succeed. Data that helps you improve — and justify premium pricing to future clients.</p></div>
-        <div style="background:#FFF4EC;border:1px solid #FFD4B3;border-radius:14px;padding:28px;background:#FFFAF6;transition:transform 0.25s,box-shadow 0.25s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(255,109,24,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''"><h4 style="font-size:18px;font-weight:600;color:#030d2a;margin-bottom:8px;">Instant Visuals</h4><p style="font-size:15px;color:#6b7280;line-height:1.65;">On-brand program covers and visuals generated in seconds. Polished from day one — no Canva, no agency, no waiting.</p></div>
-        <div style="background:#FFF4EC;border:1px solid #FFD4B3;border-radius:14px;padding:28px;background:#FFFAF6;transition:transform 0.25s,box-shadow 0.25s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(255,109,24,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''"><h4 style="font-size:18px;font-weight:600;color:#030d2a;margin-bottom:8px;">Branded Certificates</h4><p style="font-size:15px;color:#6b7280;line-height:1.65;">Auto-issue certificates on completion. Your clients share them on LinkedIn. Your program becomes a credential — not just content.</p></div>
+      <div class="cf-features-grid">
+        <div class="cf-feature-card"><h4 class="cf-feature-title">AI Content Builder</h4><p class="cf-feature-desc">Takes what you know and turns it into a fully structured course — curriculum, lessons, and assessments — ready to launch. No prompting. No structuring. No trial and error.</p></div>
+        <div class="cf-feature-card"><h4 class="cf-feature-title">White-Label Platform</h4><p class="cf-feature-desc">Your name, your domain, your colors. Clients see your brand, not a tool. That trust closes sales before the conversation starts.</p></div>
+        <div class="cf-feature-card"><h4 class="cf-feature-title">Flexible Monetization</h4><p class="cf-feature-desc">Sell once, monthly, or by cohort. Set your price. Stripe handles collection and payouts. You get paid on your terms.</p></div>
+        <div class="cf-feature-card"><h4 class="cf-feature-title">Client Intelligence</h4><p class="cf-feature-desc">See exactly where people engage, drop, and succeed. Data that helps you improve — and justify premium pricing to future clients.</p></div>
+        <div class="cf-feature-card"><h4 class="cf-feature-title">Instant Visuals</h4><p class="cf-feature-desc">On-brand program covers and visuals generated in seconds. Polished from day one — no Canva, no agency, no waiting.</p></div>
+        <div class="cf-feature-card"><h4 class="cf-feature-title">Branded Certificates</h4><p class="cf-feature-desc">Auto-issue certificates on completion. Your clients share them on LinkedIn. Your program becomes a credential — not just content.</p></div>
       </div>
     </div>
 

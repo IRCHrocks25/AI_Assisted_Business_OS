@@ -385,9 +385,6 @@ nav {
   transition: opacity 0.2s;
 }
 .mega-footer-cta:hover { opacity: 0.75; }
-  display: flex; align-items: center; justify-content: space-between;
-  padding-left: 12px; padding-right: 12px;
-}
 .mega-footer-text { font-size: 13px; color: var(--gray-500); }
 .mega-footer-cta {
   font-size: 13px; font-weight: 600; color: var(--purple-600);
@@ -938,8 +935,62 @@ footer {
 }
 
 @media (max-width: 580px) {
-  .hero { padding: 100px 0 60px; }
+  .hero { padding: 156px 0 60px; }
+  .hero #heroTitle { margin-top: 28px !important; }
   section { padding: 60px 0; }
+}
+
+/* Cross-page mobile hardening */
+img, video, canvas, iframe, svg {
+  max-width: 100%;
+}
+iframe {
+  width: 100%;
+}
+
+@media (max-width: 968px) {
+  .container { padding: 0 20px; }
+  .hero { min-height: auto; }
+  .hero-grid,
+  .section-header,
+  .hero-sub { max-width: 100%; }
+  .hero-cta-row { gap: 12px; }
+  .trust-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    padding-top: 28px;
+  }
+  .trust-item {
+    border-right: none;
+    padding: 0 12px;
+  }
+  .btn-primary,
+  .btn-ghost,
+  .btn-white {
+    width: 100%;
+    justify-content: center;
+  }
+  .final-card { border-radius: 24px; }
+}
+
+@media (max-width: 580px) {
+  .container { padding: 0 16px; }
+  .trust-strip { grid-template-columns: 1fr; }
+  .trust-item { padding: 0; }
+  .faq-item summary,
+  .faq-summary {
+    padding: 18px 16px;
+    font-size: 16px;
+  }
+  .faq-answer,
+  .faq-item.open .faq-answer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns: repeat(2"] {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 </style>
@@ -4563,7 +4614,7 @@ canvas { pointer-events: none !important; }
 
 <!-- ═══ TESTIMONIALS ═══ -->
 <section id="results" style="background:#fff;overflow:hidden;position:relative;">
-  <div style="position:relative;height:620px;">
+  <div class="results-stage" style="position:relative;height:620px;">
 
     <div class="t-avatar" data-idx="0" style="position:absolute;left:18%;top:8%;cursor:pointer;z-index:3;">
       <div class="t-av-ring"><div class="t-av-inner" style="background:none;overflow:hidden;"><img src="https://randomuser.me/api/portraits/women/44.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;" /></div></div>
@@ -4587,17 +4638,17 @@ canvas { pointer-events: none !important; }
     </div>
 
     <!-- Center: eyebrow + title + quote -->
-    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 28%;pointer-events:none;z-index:2;gap:8px;text-align:center;">
+    <div class="results-copy" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 28%;pointer-events:none;z-index:2;gap:8px;text-align:center;">
       <span class="eyebrow">Results</span>
       <h2 class="section-title" style="margin-bottom:4px;">Businesses that decided to <em>stop being the bottleneck.</em></h2>
-      <div style="min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;margin-top:4px;">
-        <p id="testiQ" style="font-size:clamp(18px,2vw,26px);font-weight:400;line-height:1.6;color:#374151;letter-spacing:-0.02em;transition:opacity 0.4s ease;opacity:0;"></p>
-        <div id="testiMeta" style="opacity:0;transition:opacity 0.4s ease 0.1s;display:flex;align-items:center;gap:6px;">
+      <div class="results-copy-body" style="min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;margin-top:4px;">
+        <p id="testiQ" class="testi-quote" style="font-size:clamp(18px,2vw,26px);font-weight:400;line-height:1.6;color:#374151;letter-spacing:-0.02em;transition:opacity 0.4s ease;opacity:0;"></p>
+        <div id="testiMeta" class="testi-meta" style="opacity:0;transition:opacity 0.4s ease 0.1s;display:flex;align-items:center;gap:6px;">
           <span id="testiN" style="font-size:15px;font-weight:600;color:#030d2a;"></span>
           <span style="color:#d1d5db;">·</span>
           <span id="testiR" style="font-size:15px;color:#6b7280;"></span>
         </div>
-        <p id="testiHint" style="font-size:11px;color:#9ca3af;letter-spacing:0.08em;text-transform:uppercase;margin-top:4px;">Click a profile to read</p>
+        <p id="testiHint" class="testi-hint" style="font-size:11px;color:#9ca3af;letter-spacing:0.08em;text-transform:uppercase;margin-top:4px;">Click a profile to read</p>
       </div>
     </div>
 
@@ -4644,6 +4695,81 @@ canvas { pointer-events: none !important; }
   font-weight: 400;
   color: #6b7280;
   font-size: 11px;
+}
+
+.results-stage {
+  height: 620px;
+}
+.results-copy {
+  padding: 96px 28% 120px;
+}
+.results-copy-body {
+  min-height: 100px;
+}
+
+@media (max-width: 900px) {
+  .results-stage {
+    height: 700px !important;
+  }
+  .results-copy {
+    padding: 118px 16% 190px !important;
+    gap: 10px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .results-stage {
+    height: 820px !important;
+  }
+  .results-copy {
+    padding: 140px 16px 300px !important;
+  }
+  .results-copy .section-title {
+    font-size: clamp(40px, 11vw, 48px);
+    line-height: 1.08;
+  }
+  .testi-quote {
+    font-size: clamp(20px, 5vw, 24px) !important;
+    line-height: 1.45 !important;
+  }
+  .testi-meta {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 4px;
+  }
+  .testi-hint {
+    margin-top: 8px !important;
+  }
+  #results .t-avatar {
+    transform: none !important;
+  }
+  #results .t-avatar[data-idx="0"] { left: 8% !important; top: 3% !important; }
+  #results .t-avatar[data-idx="1"] { right: 8% !important; top: 3% !important; }
+  #results .t-avatar[data-idx="3"] { left: 6% !important; bottom: 5% !important; }
+  #results .t-avatar[data-idx="4"] { right: 6% !important; bottom: 5% !important; }
+  #results .t-avatar[data-idx="2"] { left: 50% !important; bottom: 16% !important; }
+  .t-av-ring {
+    width: 56px;
+    height: 56px;
+  }
+  .t-av-label {
+    white-space: normal;
+    max-width: 110px;
+    font-size: 10px;
+    line-height: 1.25;
+    padding: 4px 7px;
+  }
+}
+
+@media (max-width: 420px) {
+  #results .t-avatar[data-idx="0"] { left: 4% !important; }
+  #results .t-avatar[data-idx="1"] { right: 4% !important; }
+  #results .t-avatar[data-idx="3"] { left: 4% !important; }
+  #results .t-avatar[data-idx="4"] { right: 4% !important; }
+  #results .t-avatar[data-idx="2"] { bottom: 18% !important; }
+  .t-av-label {
+    max-width: 100px;
+  }
 }
 </style>
 
@@ -4755,18 +4881,89 @@ canvas { pointer-events: none !important; }
   padding: 0;
 }
 .dark-faq-item.open .dark-faq-a {
-  max-height: 600px;
+  max-height: 1600px;
   padding-bottom: 24px;
+}
+.faq-shell {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 32px;
+  position: relative;
+  z-index: 1;
+}
+.faq-grid {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  gap: 80px;
+  align-items: start;
+}
+.faq-intro {
+  position: sticky;
+  top: 100px;
+}
+.faq-intro-pill {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8899ff;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 5px 14px;
+  background: rgba(0,64,255,0.2);
+  border: 1px solid rgba(0,64,255,0.3);
+  border-radius: 100px;
+}
+.faq-intro-title {
+  font-size: clamp(24px, 2.5vw, 36px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: #fff;
+  margin-bottom: 20px;
+}
+@media (max-width: 980px) {
+  .faq-shell {
+    padding: 64px 20px;
+  }
+  .faq-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .faq-intro {
+    position: static;
+  }
+}
+@media (max-width: 640px) {
+  .faq-shell {
+    padding: 52px 16px;
+  }
+  .faq-intro-title {
+    font-size: clamp(26px, 8vw, 34px);
+  }
+  .dark-faq-q {
+    font-size: 16px;
+    padding: 16px 0;
+    gap: 10px;
+  }
+  .dark-faq-a {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .dark-faq-item.open .dark-faq-a {
+    padding-bottom: 18px;
+  }
 }
 </style>
 <section id="faq" style="background:url('https://res.cloudinary.com/dcuswyfur/image/upload/v1777816065/education_tbz027.png') center/cover no-repeat;padding:0;position:relative;">
-  <div style="max-width:1280px;margin:0 auto;padding:80px 32px;position:relative;z-index:1;">
-    <div style="display:grid;grid-template-columns:340px 1fr;gap:80px;align-items:start;">
+  <div class="faq-shell">
+    <div class="faq-grid">
 
       <!-- Left — title + CTA -->
-      <div style="position:sticky;top:100px;">
-        <span style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8899ff;display:inline-flex;align-items:center;margin-bottom:16px;padding:5px 14px;background:rgba(0,64,255,0.2);border:1px solid rgba(0,64,255,0.3);border-radius:100px;">FAQ</span>
-        <h2 style="font-size:clamp(24px,2.5vw,36px);font-weight:500;letter-spacing:-0.025em;line-height:1.15;color:#fff;margin-bottom:20px;">Get all your questions<br>answered here.</h2>
+      <div class="faq-intro">
+        <span class="faq-intro-pill">FAQ</span>
+        <h2 class="faq-intro-title">Get all your questions<br>answered here.</h2>
       </div>
 
       <!-- Right — accordion -->
@@ -5003,68 +5200,7 @@ canvas { pointer-events: none !important; }
 })();
 </script>
 
-<footer style="background:#060608;color:#fff;padding:60px 0 0;">
-
-
-  <div style="max-width:1280px;margin:0 auto;padding:0 32px 60px;">
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:40px;">
-
-      <div style="display:flex;flex-direction:column;gap:20px;">
-        <a href="{% url 'home' %}" class="logo" style="display:inline-block;">
-          <img src="https://res.cloudinary.com/dcuswyfur/image/upload/v1776795634/katek_logo_white_p1evh7.svg" alt="KATEK AI" style="height:28px;width:auto;" />
-        </a>
-        <p style="font-size:13px;color:rgba(255,255,255,0.35);line-height:1.6;">We handle the AI.<br>You run the business.</p>
-        <div style="display:flex;align-items:center;gap:6px;">
-          <span style="width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block;"></span>
-          <span style="font-size:12px;color:rgba(255,255,255,0.35);">All systems operational</span>
-        </div>
-        <div style="display:flex;gap:10px;">
-          <a href="#" style="width:34px;height:34px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.45);text-decoration:none;font-size:13px;">𝕏</a>
-          <a href="#" style="width:34px;height:34px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.45);text-decoration:none;font-size:13px;">in</a>
-          <a href="#" style="width:34px;height:34px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.45);text-decoration:none;font-size:13px;">▶</a>
-        </div>
-      </div>
-
-      <div>
-        <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px;">Products</div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <a href="{% url 'business_os' %}" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">AI Business OS</a>
-          <a href="{% url 'ikonik' %}" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Ikonik</a>
-          <a href="{% url 'enterprise' %}" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Enterprise Solutions</a>
-          <a href="{% url 'education' %}" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Education & Training</a>
-        </div>
-      </div>
-
-      <div>
-        <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px;">Company</div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <a href="#why" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Why KATEK</a>
-          <a href="#how" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">How It Works</a>
-          <a href="#results" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Case Studies</a>
-          <a href="#faq" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">FAQ</a>
-        </div>
-      </div>
-
-      <div>
-        <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px;">Legal</div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <a href="#" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Privacy Policy</a>
-          <a href="#" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Terms of Service</a>
-          <a href="#" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Cookie Policy</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div style="border-top:1px solid rgba(255,255,255,0.06);padding:20px 32px;">
-    <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;">
-      <span style="font-size:13px;color:rgba(255,255,255,0.25);">© 2026 KATEK AI. All rights reserved.</span>
-      <a href="https://l.katalyst-crm.com/widget/bookings/discovery-call-ai-business-os" style="font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;">Book a Discovery Call →</a>
-    </div>
-  </div>
-
-</footer>
+{% include 'official/components/footer.html' %}
 <script>
 /* ── Hero sub typewriter ── */
 (function () {
