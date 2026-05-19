@@ -3678,8 +3678,8 @@ p { font-size: 17px; line-height: 1.7; }
   </div>
 
   <!-- Closing paragraph (below the image) -->
-  <div style="position:relative;z-index:2;padding:60px 100px 80px;max-width:1600px;margin:0 auto;box-sizing:border-box;text-align:center;">
-    <p style="font-size:clamp(22px,2.8vw,36px);font-weight:400;color:rgba(255,255,255,0.6);line-height:1.3;margin:0;letter-spacing:-0.01em;">Scaling from <span style="color:#fff;">$1M to $20M in revenue</span> breaks every one of those habits. The shift isn't more tools. It's a <span style="color:#fff;">system built to run the workflow for you</span>, one designed for your <span style="color:#fff;">industry</span>, your <span style="color:#fff;">compliance requirements</span>, and the way your team actually moves work.</p>
+  <div class="ikonik-scaling-wrap" style="position:relative;z-index:2;padding:60px 100px 80px;max-width:1600px;margin:0 auto;box-sizing:border-box;text-align:center;">
+    <p class="ikonik-scaling-text" style="font-size:clamp(22px,2.8vw,36px);font-weight:400;color:rgba(255,255,255,0.6);line-height:1.3;margin:0;letter-spacing:-0.01em;">Scaling from <span style="color:#fff;">$1M to $20M in revenue</span> breaks every one of those habits. The shift isn't more tools. It's a <span style="color:#fff;">system built to run the workflow for you</span>, one designed for your <span style="color:#fff;">industry</span>, your <span style="color:#fff;">compliance requirements</span>, and the way your team actually moves work.</p>
   </div>
 </section>
 
@@ -3701,7 +3701,7 @@ p { font-size: 17px; line-height: 1.7; }
 
 
 <!-- ═══ WHAT IT IS ═══ -->
-<section id="platform" style="padding:100px 0;background:#fafaf7;">
+<section id="platform" class="ikonik-what-section" style="padding:100px 0;background:#fafaf7;">
   <div class="container">
     <div style="text-align:center;margin-bottom:64px;">
       <span class="eyebrow">What It Is</span>
@@ -3711,7 +3711,7 @@ p { font-size: 17px; line-height: 1.7; }
         <p class="section-sub" style="margin-top:12px;">That comes down to four things the platform decides for you:</p>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;border-radius:16px;overflow:hidden;">
+    <div class="ikonik-what-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;border-radius:16px;overflow:hidden;">
       <div class="ik-layer-card" style="background:linear-gradient(135deg,#ffffff 0%,#eef3ff 60%,#dde8ff 100%);padding:44px;position:relative;border:1px solid rgba(0,64,255,0.12);border-radius:14px;overflow:hidden;">
         <svg style="position:absolute;top:-30px;right:-30px;width:200px;height:200px;opacity:0.4;pointer-events:none;" viewBox="0 0 200 200" fill="none">
           <circle cx="100" cy="100" r="80" stroke="rgba(0,64,255,0.2)" stroke-width="0.8"/>
@@ -5124,7 +5124,7 @@ p { font-size: 17px; line-height: 1.7; }
 </script>
 
 <!-- ═══ THE FRAMEWORK ═══ -->
-<section style="padding:120px 0;background:#f8f9fc;overflow:hidden;position:relative;">
+<section class="ikonik-framework-section" style="padding:120px 0;background:#f8f9fc;overflow:hidden;position:relative;">
   <!-- Soft light atmospheric layers -->
   <div style="position:absolute;top:-300px;left:-200px;width:800px;height:800px;background:radial-gradient(ellipse,rgba(0,64,255,0.06) 0%,transparent 70%);pointer-events:none;z-index:1;filter:blur(60px);"></div>
   <div style="position:absolute;bottom:-300px;right:-200px;width:700px;height:700px;background:radial-gradient(ellipse,rgba(120,80,255,0.05) 0%,transparent 70%);pointer-events:none;z-index:1;filter:blur(60px);"></div>
@@ -5133,7 +5133,7 @@ p { font-size: 17px; line-height: 1.7; }
 
   <div style="position:relative;z-index:2;">
     <div class="container">
-      <div style="text-align:center;margin-bottom:72px;">
+      <div class="ikonik-framework-head" style="text-align:center;margin-bottom:72px;">
         <span class="eyebrow" style="background:rgba(0,64,255,0.08);border:1px solid rgba(0,64,255,0.18);color:#0040FF;">The Framework</span>
         <h2 class="section-title" style="color:#030d2a;font-weight:500;">How AI KONIK structures execution.</h2>
         <p style="font-size:18px;color:#5a6478;max-width:680px;margin:0 auto;line-height:1.75;">Most operational failures aren't task failures. They're gap failures — the handoff that didn't happen, the approval that stalled, the dependency nobody mapped. AI KONIK is built around that observation.</p>
@@ -5141,7 +5141,7 @@ p { font-size: 17px; line-height: 1.7; }
       </div>
 
       <!-- Accordion cards row -->
-      <div id="fw-row" style="display:flex;gap:8px;height:460px;border-radius:16px;overflow:hidden;margin-bottom:56px;">
+      <div id="fw-row" class="ikonik-fw-row" style="display:flex;gap:8px;height:460px;border-radius:16px;overflow:hidden;margin-bottom:56px;">
 
         <!-- Card 1 -->
         <div class="fw-card active" data-fw="0" style="flex:4;min-width:0;position:relative;background:linear-gradient(135deg,#ffffff 0%,#eef3ff 60%,#dde8ff 100%);border:1px solid rgba(0,64,255,0.25);border-radius:14px;cursor:pointer;overflow:hidden;transition:flex 0.45s cubic-bezier(0.4,0,0.2,1),border-color 0.3s,box-shadow 0.3s;box-shadow:0 12px 40px -12px rgba(0,64,255,0.18);">
@@ -6193,12 +6193,12 @@ p { font-size: 17px; line-height: 1.7; }
 </section>
 
 <!-- ═══ SERVICES ═══ -->
-<section style="padding:100px 0;background:#fff;">
+<section class="ikonik-why-section" style="padding:100px 0;background:#fff;">
   <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
+    <div class="ikonik-why-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
 
       <!-- Left: header sticky -->
-      <div style="position:sticky;top:120px;">
+      <div class="ikonik-why-left" style="position:sticky;top:120px;">
         <span style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#0040FF;display:inline-flex;align-items:center;margin-bottom:16px;padding:5px 14px;background:rgba(0,64,255,0.1);border:1px solid rgba(0,64,255,0.2);border-radius:100px;">Why AI KONIK</span>
         <h2 style="font-size:clamp(28px,3.5vw,46px);font-weight:500;letter-spacing:-0.025em;color:#030d2a;line-height:1.1;margin-bottom:20px;">The mid-market AI platform that actually fits.</h2>
         <p style="font-size:19px;color:#6b7280;line-height:1.75;margin-bottom:28px;">Most AI tools are built for one of two extremes — consumer chatbots that don't understand your work, or enterprise rollouts that don't fit your budget. AI KONIK is built for the businesses in between, where the work is too complex for generic tools and too specific for off-the-shelf enterprise software.</p>
@@ -6343,6 +6343,174 @@ p { font-size: 17px; line-height: 1.7; }
 })();
 </script>
 
+<style>
+/* Targeted mobile hardening for Ikonik landing sections */
+@media (max-width: 968px) {
+  .ikonik-scaling-wrap {
+    padding: 34px 20px 46px !important;
+    max-width: 100% !important;
+  }
+  .ikonik-scaling-text {
+    font-size: clamp(18px, 4.8vw, 28px) !important;
+    line-height: 1.38 !important;
+    letter-spacing: -0.005em !important;
+  }
+
+  .ikonik-what-section { padding: 68px 0 !important; }
+  .ikonik-what-section .container { padding: 0 20px !important; }
+  .ikonik-what-section .section-title {
+    font-size: clamp(30px, 7.5vw, 42px) !important;
+    line-height: 1.14 !important;
+  }
+  .ikonik-what-section .section-sub {
+    font-size: 15px !important;
+    line-height: 1.65 !important;
+  }
+  .ikonik-what-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  .ikonik-what-grid .ik-layer-card {
+    padding: 24px 18px !important;
+    border-radius: 14px !important;
+  }
+  .ikonik-what-grid .ik-layer-card h3 {
+    font-size: 22px !important;
+    line-height: 1.28 !important;
+    margin-bottom: 10px !important;
+  }
+  .ikonik-what-grid .ik-layer-card p {
+    font-size: 14px !important;
+    line-height: 1.62 !important;
+  }
+  .ikonik-what-section p[style*="End-to-end execution"] {
+    font-size: 16px !important;
+    line-height: 1.45 !important;
+    margin-top: 28px !important;
+  }
+
+  .ikonik-framework-section { padding: 72px 0 !important; }
+  .ikonik-framework-section .container { padding: 0 20px !important; }
+  .ikonik-framework-head { margin-bottom: 34px !important; }
+  .ikonik-framework-head .section-title {
+    font-size: clamp(30px, 7.5vw, 42px) !important;
+    line-height: 1.14 !important;
+  }
+  .ikonik-framework-head p[style*="font-size:18px"] {
+    font-size: 15px !important;
+    line-height: 1.65 !important;
+  }
+  .ikonik-framework-head p[style*="font-size:17px"] {
+    font-size: 14px !important;
+    margin-top: 10px !important;
+  }
+  .ikonik-fw-row {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    height: auto !important;
+    gap: 10px !important;
+    overflow: visible !important;
+    margin-bottom: 32px !important;
+  }
+  .ikonik-fw-row .fw-card {
+    flex: unset !important;
+    min-height: 220px !important;
+    border-radius: 14px !important;
+    box-shadow: none !important;
+    border-color: rgba(0,0,0,0.08) !important;
+  }
+  .ikonik-fw-row .fw-collapsed { display: none !important; }
+  .ikonik-fw-row .fw-expanded {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    position: relative !important;
+    inset: auto !important;
+    padding: 24px 18px !important;
+  }
+  .ikonik-fw-row .fw-expanded h3 {
+    font-size: 22px !important;
+    line-height: 1.28 !important;
+    margin-bottom: 10px !important;
+  }
+  .ikonik-fw-row .fw-expanded p {
+    font-size: 14px !important;
+    line-height: 1.62 !important;
+  }
+  .ikonik-framework-section a[href="#industries"] {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    text-align: center;
+    white-space: normal !important;
+  }
+
+  .ind2-section .ind2-cell,
+  .ind2-section .ind2-cell-intro,
+  .ind2-section .ind2-cell-sm {
+    padding: 28px 18px !important;
+  }
+  .ind2-section .ind2-main-heading {
+    font-size: clamp(30px, 7.5vw, 40px) !important;
+    line-height: 1.15 !important;
+  }
+  .ind2-section .ind2-main-desc,
+  .ind2-section .ind2-cell-desc,
+  .ind2-section .ind2-sm-desc {
+    font-size: 14px !important;
+    line-height: 1.62 !important;
+  }
+  .ind2-section .ind2-cell-name,
+  .ind2-section .ind2-sm-name {
+    font-size: 21px !important;
+    line-height: 1.2 !important;
+  }
+  .ind2-section .ind2-cell-tag { font-size: 12px !important; }
+
+  .ikonik-why-section { padding: 68px 0 !important; }
+  .ikonik-why-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+  .ikonik-why-left {
+    position: static !important;
+    top: auto !important;
+  }
+  .ikonik-why-left h2 {
+    font-size: clamp(30px, 7.5vw, 40px) !important;
+    line-height: 1.15 !important;
+    margin-bottom: 14px !important;
+  }
+  .ikonik-why-left p[style*="font-size:19px"] {
+    font-size: 15px !important;
+    line-height: 1.65 !important;
+  }
+  .ikonik-why-left p[style*="font-size:17px"] {
+    font-size: 14px !important;
+    margin-bottom: 14px !important;
+  }
+  .ikonik-why-left .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+  .wi-accord-trigger {
+    padding: 16px 0 !important;
+    font-size: 16px !important;
+    line-height: 1.35 !important;
+  }
+  .wi-accord-body {
+    font-size: 14px !important;
+    line-height: 1.62 !important;
+  }
+}
+
+@media (max-width: 580px) {
+  .ikonik-scaling-wrap { padding: 28px 16px 40px !important; }
+  .ikonik-scaling-text {
+    font-size: clamp(16px, 5.2vw, 22px) !important;
+    line-height: 1.42 !important;
+  }
+}
+</style>
+
 <!-- ═══ FAQ ═══ -->
 <style>
 .dark-faq-list { display: flex; flex-direction: column; }
@@ -6364,15 +6532,45 @@ p { font-size: 17px; line-height: 1.7; }
   line-height: 1.75; padding: 0;
   transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.3s ease;
 }
-.dark-faq-item.open .dark-faq-a { max-height: 800px; padding-bottom: 22px; }
+.dark-faq-item.open .dark-faq-a { max-height: 1600px; padding-bottom: 22px; }
+
+@media (max-width: 968px) {
+  .ikonik-faq-wrap { padding: 56px 20px !important; }
+  .ikonik-faq-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .ikonik-faq-left { position: static !important; top: auto !important; }
+  .ikonik-faq-left h2 {
+    font-size: clamp(26px, 7vw, 34px) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 14px !important;
+  }
+  .ikonik-faq-left .btn-primary { width: 100%; justify-content: center; }
+
+  .dark-faq-q {
+    align-items: flex-start;
+    gap: 10px;
+    padding: 16px 0;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+  .dark-faq-chevron { margin-top: 2px; }
+  .dark-faq-a {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .dark-faq-item.open .dark-faq-a { max-height: 2200px; padding-bottom: 16px; }
+}
+
+@media (max-width: 580px) {
+  .ikonik-faq-wrap { padding: 48px 16px !important; }
+}
 </style>
 
 <section id="faq" style="background:url('https://res.cloudinary.com/dcuswyfur/image/upload/v1777816065/education_tbz027.png') center/cover no-repeat;padding:0;">
-  <div style="max-width:1280px;margin:0 auto;padding:80px 32px;">
-    <div style="display:grid;grid-template-columns:340px 1fr;gap:80px;align-items:start;">
+  <div class="ikonik-faq-wrap" style="max-width:1280px;margin:0 auto;padding:80px 32px;">
+    <div class="ikonik-faq-grid" style="display:grid;grid-template-columns:340px 1fr;gap:80px;align-items:start;">
 
       <!-- Left — sticky title + CTA -->
-      <div style="position:sticky;top:100px;">
+      <div class="ikonik-faq-left" style="position:sticky;top:100px;">
         <span style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8899ff;display:inline-flex;align-items:center;margin-bottom:16px;padding:5px 14px;background:rgba(0,64,255,0.18);border:1px solid rgba(0,64,255,0.35);border-radius:100px;">FAQ</span>
         <h2 style="font-size:clamp(28px,3vw,40px);font-weight:600;letter-spacing:-0.025em;line-height:1.15;color:#fff;margin-bottom:20px;">Questions about AI KONIK</h2>
         <a href="https://l.katalyst-crm.com/widget/bookings/katek-ai-discovery-call" class="btn-primary hero-primary-btn" style="font-size:14px;padding:12px 22px;" target="_blank" rel="noopener noreferrer">
