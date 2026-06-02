@@ -2042,3 +2042,10 @@ def run_crm_automation_api(request, contact_id):
     except Exception as e:
         import traceback
         return JsonResponse({'error': str(e), 'traceback': traceback.format_exc()}, status=500)
+
+def privacy_policy(request):
+    return render(request, 'official/privacy-policy.html')
+
+
+def terms_and_conditions(request):
+    return render(request, 'official/terms-and-conditions.html')
