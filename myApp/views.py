@@ -14,12 +14,52 @@ import tempfile
 import os
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill
-from .models import ExtractionTemplate, Document, ExtractionRun, CRMRecord, DemoEmail, DemoEmailResult, EmailCRMRecord, DemoConversation, DemoMessage, DemoTicket, DemoLead, DemoQualification, DemoEvent, DemoWorkflowRun, QualityConversation, DemoRiskAnalysis, DemoAnalyticsSnapshot, DemoInsight, CRMContact, CRMTag, CRMTask, CRMTicket, CRMActivity, CRMAutomationRun
+from .models import ExtractionTemplate, Document, ExtractionRun, CRMRecord, DemoEmail, DemoEmailResult, EmailCRMRecord, DemoConversation, DemoMessage, DemoTicket, DemoLead, DemoQualification, DemoEvent, DemoWorkflowRun, QualityConversation, DemoRiskAnalysis, DemoAnalyticsSnapshot, DemoInsight, CRMContact, CRMTag, CRMTask, CRMTicket, CRMActivity, CRMAutomationRun, BlogPost
 from .extraction_utils import extract_text_from_pdf, extract_with_llm, validate_extraction
 import requests
 
 def home(request):
     return render(request, 'official/katek_ai_index.html')
+
+def blog_list(request):
+    """Insights / blog index — grid of published articles."""
+    posts = BlogPost.objects.filter(is_published=True)
+    categories = list(
+        BlogPost.objects.filter(is_published=True)
+        .exclude(category='')
+        .values_list('category', flat=True)
+        .distinct()
+        .order_by('category')
+    )
+    active_category = request.GET.get('category', '').strip()
+    if active_category:
+        posts = posts.filter(category=active_category)
+    posts = list(posts)
+    featured = posts[0] if posts else None
+    rest = posts[1:] if featured and not active_category else posts
+    return render(request, 'official/blog_list.html', {
+        'posts': rest,
+        'featured': None if active_category else featured,
+        'categories': categories,
+        'active_category': active_category,
+        'total_count': BlogPost.objects.filter(is_published=True).count(),
+    })
+
+
+def blog_detail(request, slug):
+    """Single article page."""
+    post = get_object_or_404(BlogPost, slug=slug, is_published=True)
+    related = BlogPost.objects.filter(is_published=True, category=post.category).exclude(id=post.id)[:3]
+    if related.count() < 3:
+        extra = BlogPost.objects.filter(is_published=True).exclude(id=post.id).exclude(
+            id__in=[p.id for p in related]
+        )[:3 - related.count()]
+        related = list(related) + list(extra)
+    return render(request, 'official/blog_detail.html', {
+        'post': post,
+        'related': related,
+    })
+
 
 def ikonik(request):
     return render(request, 'official/ikonik.html')

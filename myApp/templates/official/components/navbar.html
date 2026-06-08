@@ -240,6 +240,7 @@
       {% if compact_nav %}
       <li><a href="{% url 'home' %}">Home</a></li>
       <li><a href="{% url 'home' %}#products">What We Build</a></li>
+      <li><a href="{% url 'blog_list' %}">Insights</a></li>
       <li><a href="{% url 'home' %}#faq">FAQ</a></li>
       {% else %}
       <li style="position:relative;list-style:none;" id="whatwebuild-li">
@@ -257,6 +258,7 @@
       </li>
       <li><a href="{% url 'home' %}#why">Why Katek</a></li>
       <li><a href="{% url 'home' %}#how">How It Works</a></li>
+      <li><a href="{% url 'blog_list' %}">Insights</a></li>
       <li><a href="{% url 'home' %}#faq">FAQ</a></li>
       {% endif %}
     </ul>
@@ -277,6 +279,7 @@
       {% if compact_nav %}
       <li><a href="{% url 'home' %}">Home</a></li>
       <li><a href="{% url 'home' %}#products">What We Build</a></li>
+      <li><a href="{% url 'blog_list' %}">Insights</a></li>
       <li><a href="{% url 'home' %}#faq">FAQ</a></li>
       {% else %}
       <li><a href="{% url 'business_os' %}">AI Business OS</a></li>
@@ -285,6 +288,7 @@
       <li><a href="{% url 'education' %}">Education &amp; Training</a></li>
       <li><a href="{% url 'home' %}#why">Why Katek</a></li>
       <li><a href="{% url 'home' %}#how">How It Works</a></li>
+      <li><a href="{% url 'blog_list' %}">Insights</a></li>
       <li><a href="{% url 'home' %}#faq">FAQ</a></li>
       {% endif %}
     </ul>

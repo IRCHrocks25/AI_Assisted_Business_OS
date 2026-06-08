@@ -571,7 +571,33 @@ class CRMAutomationRun(models.Model):
     
     class Meta:
         ordering = ['-created_at']
-    
+
     def __str__(self):
         return f"Automation Run - {self.contact.name}"
+
+
+class BlogPost(models.Model):
+    """Blog / Insights article rendered in the KATEK AI marketing site."""
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    title = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True)
+    category = models.CharField(max_length=80, blank=True)
+    accent = models.CharField(max_length=20, default='#0040FF')  # hex accent for cards/hero
+    keyword = models.CharField(max_length=255, blank=True)
+    meta_title = models.CharField(max_length=255, blank=True)
+    meta_description = models.TextField(blank=True)
+    excerpt = models.TextField(blank=True)
+    body_html = models.TextField(blank=True)
+    read_minutes = models.IntegerField(default=5)
+    author = models.CharField(max_length=120, default='KATEK AI')
+    published_at = models.DateField()
+    is_published = models.BooleanField(default=True)
+    order = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['order', '-published_at']
+
+    def __str__(self):
+        return self.title
 

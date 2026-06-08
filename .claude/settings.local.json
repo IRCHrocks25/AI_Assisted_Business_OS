@@ -3,7 +3,9 @@
     "allow": [
       "WebFetch(domain:www.josefhadeedmd.com)",
       "WebFetch(domain:www.katek-ai.com)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(python -c \"import docx; print\\('python-docx available'\\)\")",
+      "Bash(python -c ' *)"
     ]
   }
 }

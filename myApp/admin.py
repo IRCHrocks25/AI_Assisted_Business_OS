@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ExtractionTemplate, Document, ExtractionRun, CRMRecord, DemoEmail, DemoEmailResult, EmailCRMRecord, DemoConversation, DemoMessage, DemoTicket, DemoLead, DemoQualification, DemoEvent, DemoWorkflowRun, QualityConversation, DemoRiskAnalysis, DemoAnalyticsSnapshot, DemoInsight, CRMContact, CRMTag, CRMTask, CRMTicket, CRMActivity, CRMAutomationRun
+from .models import ExtractionTemplate, Document, ExtractionRun, CRMRecord, DemoEmail, DemoEmailResult, EmailCRMRecord, DemoConversation, DemoMessage, DemoTicket, DemoLead, DemoQualification, DemoEvent, DemoWorkflowRun, QualityConversation, DemoRiskAnalysis, DemoAnalyticsSnapshot, DemoInsight, CRMContact, CRMTag, CRMTask, CRMTicket, CRMActivity, CRMAutomationRun, BlogPost
 
 @admin.register(ExtractionTemplate)
 class ExtractionTemplateAdmin(admin.ModelAdmin):
@@ -141,4 +141,19 @@ class CRMAutomationRunAdmin(admin.ModelAdmin):
     list_display = ['contact', 'triggered_by', 'confidence_score', 'created_at']
     list_filter = ['triggered_by', 'created_at']
     search_fields = ['contact__name']
+
+@admin.register(BlogPost)
+class BlogPostAdmin(admin.ModelAdmin):
+    list_display = ['title', 'category', 'read_minutes', 'published_at', 'is_published', 'order']
+    list_filter = ['category', 'is_published', 'published_at']
+    list_editable = ['is_published', 'order']
+    search_fields = ['title', 'keyword', 'meta_description', 'body_html']
+    prepopulated_fields = {'slug': ('title',)}
+    date_hierarchy = 'published_at'
+    fieldsets = (
+        (None, {'fields': ('title', 'slug', 'category', 'accent', 'author')}),
+        ('SEO', {'fields': ('keyword', 'meta_title', 'meta_description', 'excerpt')}),
+        ('Content', {'fields': ('body_html', 'read_minutes')}),
+        ('Publishing', {'fields': ('is_published', 'order', 'published_at')}),
+    )
 
