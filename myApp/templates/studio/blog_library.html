@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog Studio | KATEK AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #030d2a;
+  --ink-soft: #0a1840;
+  --blue: #0040FF;
+  --blue-soft: #3d6fff;
+  --sky: #0099EE;
+  --gray-700: #2e3a5c;
+  --gray-600: #4a5578;
+  --gray-500: #6b7494;
+  --gray-400: #9ca3bf;
+  --gray-300: #d1d5e8;
+  --gray-200: #e5e8f5;
+  --gray-100: #f0f2fa;
+  --bg: #f4f6fc;
+  --white: #fff;
+  --success: #059669;
+  --warn: #d97706;
+  --danger: #dc2626;
+  --shadow: 0 10px 40px rgba(3, 13, 42, 0.08);
+  --radius: 16px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background:
+    radial-gradient(900px 420px at 100% -10%, rgba(0,64,255,0.10), transparent 55%),
+    radial-gradient(700px 360px at -5% 100%, rgba(0,153,238,0.08), transparent 50%),
+    var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button, input, select { font: inherit; }
+
+.shell { max-width: 1120px; margin: 0 auto; padding: 28px 24px 80px; }
+
+/* Top bar */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  margin-bottom: 36px;
+  animation: rise 0.5s var(--ease) both;
+}
+.brand {
+  display: flex; align-items: center; gap: 12px;
+}
+.brand-mark {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--blue), var(--sky));
+  display: grid; place-items: center;
+  color: #fff; font-weight: 800; font-size: 13px; letter-spacing: -0.02em;
+  box-shadow: 0 8px 20px rgba(0,64,255,0.28);
+}
+.brand-text { display: flex; flex-direction: column; gap: 1px; }
+.brand-text strong { font-size: 15px; font-weight: 700; letter-spacing: -0.02em; }
+.brand-text span { font-size: 12px; color: var(--gray-500); font-weight: 500; }
+.top-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 42px; padding: 0 18px; border-radius: 12px;
+  border: 1px solid transparent; cursor: pointer;
+  font-size: 14px; font-weight: 600; letter-spacing: -0.01em;
+  transition: transform 0.18s var(--ease), background 0.18s, border-color 0.18s, box-shadow 0.18s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+.btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.btn-ghost {
+  background: rgba(255,255,255,0.7); border-color: var(--gray-200); color: var(--gray-700);
+}
+.btn-ghost:hover { background: #fff; border-color: var(--gray-300); }
+.btn-primary {
+  background: var(--blue); color: #fff;
+  box-shadow: 0 8px 22px rgba(0,64,255,0.28);
+}
+.btn-primary:hover { background: var(--blue-soft); }
+.btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+/* Hero */
+.hero {
+  margin-bottom: 28px;
+  animation: rise 0.55s var(--ease) 0.05s both;
+}
+.hero h1 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(34px, 5vw, 48px);
+  font-weight: 400; letter-spacing: -0.03em; line-height: 1.1;
+  margin-bottom: 10px;
+}
+.hero h1 em { font-style: italic; color: var(--blue); }
+.hero p { color: var(--gray-600); font-size: 16px; max-width: 520px; }
+
+/* Messages */
+.flash {
+  margin-bottom: 18px; padding: 12px 16px; border-radius: 12px;
+  font-size: 14px; font-weight: 500;
+  animation: rise 0.4s var(--ease) both;
+}
+.flash-success { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+.flash-error, .flash-warning { background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; }
+
+/* Controls */
+.controls {
+  display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: center;
+  margin-bottom: 22px;
+  animation: rise 0.55s var(--ease) 0.1s both;
+}
+.search {
+  position: relative;
+}
+.search svg {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  width: 18px; height: 18px; color: var(--gray-400); pointer-events: none;
+}
+.search input {
+  width: 100%; height: 48px; padding: 0 16px 0 44px;
+  border: 1px solid var(--gray-200); border-radius: 14px;
+  background: rgba(255,255,255,0.85); color: var(--ink);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search input::placeholder { color: var(--gray-400); }
+.search input:focus {
+  outline: none; border-color: color-mix(in srgb, var(--blue) 45%, var(--gray-300));
+  box-shadow: 0 0 0 4px rgba(0,64,255,0.10);
+  background: #fff;
+}
+.stats {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.stat {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 40px; padding: 0 14px; border-radius: 999px;
+  border: 1px solid var(--gray-200); background: rgba(255,255,255,0.7);
+  font-size: 13px; font-weight: 600; color: var(--gray-600);
+  transition: all 0.2s var(--ease);
+}
+.stat:hover { background: #fff; color: var(--ink); }
+.stat.active {
+  background: var(--ink); color: #fff; border-color: var(--ink);
+}
+.stat .n {
+  min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px;
+  display: inline-grid; place-items: center;
+  background: rgba(0,0,0,0.06); font-size: 12px;
+}
+.stat.active .n { background: rgba(255,255,255,0.18); }
+
+.filters {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 28px;
+  animation: rise 0.55s var(--ease) 0.14s both;
+}
+.chip {
+  height: 34px; padding: 0 14px; border-radius: 999px;
+  border: 1px solid var(--gray-200); background: rgba(255,255,255,0.65);
+  font-size: 13px; font-weight: 600; color: var(--gray-600);
+  display: inline-flex; align-items: center;
+  transition: all 0.18s var(--ease);
+}
+.chip:hover { border-color: var(--gray-300); color: var(--ink); background: #fff; }
+.chip.active { background: #fff; border-color: var(--blue); color: var(--blue); box-shadow: 0 0 0 3px rgba(0,64,255,0.08); }
+
+/* Grid */
+.grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px;
+}
+.card {
+  position: relative;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 20px 20px 16px;
+  box-shadow: 0 2px 8px rgba(3,13,42,0.03);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s;
+  animation: rise 0.5s var(--ease) both;
+  display: flex; flex-direction: column; min-height: 210px;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+  border-color: color-mix(in srgb, var(--blue) 20%, var(--gray-200));
+}
+.card-accent {
+  position: absolute; left: 0; top: 18px; bottom: 18px; width: 3px;
+  border-radius: 0 3px 3px 0;
+}
+.card-top {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  margin-bottom: 14px;
+}
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 5px 10px; border-radius: 999px;
+}
+.badge-live { background: #ecfdf5; color: var(--success); }
+.badge-draft { background: #fff7ed; color: var(--warn); }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.card-cat {
+  font-size: 12px; font-weight: 600; color: var(--gray-500);
+  max-width: 50%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.card h2 {
+  font-size: 18px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.3;
+  margin-bottom: 8px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.card p {
+  font-size: 13.5px; color: var(--gray-600); line-height: 1.55;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  flex: 1;
+}
+.card-meta {
+  margin-top: 16px; padding-top: 14px;
+  border-top: 1px solid var(--gray-100);
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  font-size: 12px; color: var(--gray-500); font-weight: 500;
+}
+.card-actions { display: flex; gap: 6px; }
+.icon-btn {
+  width: 34px; height: 34px; border-radius: 10px;
+  border: 1px solid var(--gray-200); background: var(--gray-100);
+  display: grid; place-items: center; cursor: pointer; color: var(--gray-600);
+  transition: all 0.15s;
+}
+.icon-btn:hover { background: #fff; color: var(--ink); border-color: var(--gray-300); }
+.icon-btn.danger:hover { color: var(--danger); border-color: #fecaca; background: #fef2f2; }
+.icon-btn svg { width: 15px; height: 15px; }
+.icon-btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+.empty {
+  grid-column: 1 / -1;
+  text-align: center; padding: 72px 24px;
+  background: rgba(255,255,255,0.7); border: 1px dashed var(--gray-300);
+  border-radius: 20px;
+}
+.empty h3 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 28px; font-weight: 400; margin-bottom: 8px;
+}
+.empty p { color: var(--gray-500); margin-bottom: 22px; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+@media (max-width: 720px) {
+  .controls { grid-template-columns: 1fr; }
+  .topbar { flex-direction: column; align-items: stretch; }
+  .top-actions { justify-content: stretch; }
+  .top-actions .btn { flex: 1; }
+}
+</style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">B</div>
+        <div class="brand-text">
+          <strong>Blog Studio</strong>
+          <span>Create &amp; publish Insights</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <a class="btn btn-ghost" href="{% url 'blog_list' %}" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          View live
+        </a>
+        <a class="btn btn-primary" href="{% url 'blog_studio_create' %}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          New article
+        </a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1>Write something <em>worth reading</em></h1>
+      <p>A calm workspace to draft, shape, and publish Insights — without fighting the admin form.</p>
+    </section>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="flash flash-{{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+    <form class="controls" method="get" action="{% url 'blog_studio_list' %}" role="search">
+      {% if status and status != 'all' %}<input type="hidden" name="status" value="{{ status }}">{% endif %}
+      {% if active_category %}<input type="hidden" name="category" value="{{ active_category }}">{% endif %}
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" name="q" value="{{ q }}" placeholder="Search title, keyword, category…" aria-label="Search articles" autofocus>
+      </div>
+      <div class="stats" role="tablist" aria-label="Filter by status">
+        <a class="stat {% if status == 'all' %}active{% endif %}" href="?status=all{% if q %}&q={{ q|urlencode }}{% endif %}{% if active_category %}&category={{ active_category|urlencode }}{% endif %}">All <span class="n">{{ counts.all }}</span></a>
+        <a class="stat {% if status == 'published' %}active{% endif %}" href="?status=published{% if q %}&q={{ q|urlencode }}{% endif %}{% if active_category %}&category={{ active_category|urlencode }}{% endif %}">Live <span class="n">{{ counts.published }}</span></a>
+        <a class="stat {% if status == 'draft' %}active{% endif %}" href="?status=draft{% if q %}&q={{ q|urlencode }}{% endif %}{% if active_category %}&category={{ active_category|urlencode }}{% endif %}">Drafts <span class="n">{{ counts.draft }}</span></a>
+      </div>
+    </form>
+
+    {% if categories %}
+    <nav class="filters" aria-label="Categories">
+      <a class="chip {% if not active_category %}active{% endif %}" href="?status={{ status }}{% if q %}&q={{ q|urlencode }}{% endif %}">All topics</a>
+      {% for cat in categories %}
+        <a class="chip {% if active_category == cat %}active{% endif %}" href="?status={{ status }}&category={{ cat|urlencode }}{% if q %}&q={{ q|urlencode }}{% endif %}">{{ cat }}</a>
+      {% endfor %}
+    </nav>
+    {% endif %}
+
+    <div class="grid">
+      {% for post in posts %}
+      <article class="card" style="animation-delay: {{ forloop.counter0|add:0 }}0ms">
+        <span class="card-accent" style="background: {{ post.accent|default:'#0040FF' }}" aria-hidden="true"></span>
+        <div class="card-top">
+          {% if post.is_published %}
+            <span class="badge badge-live"><span class="dot"></span> Live</span>
+          {% else %}
+            <span class="badge badge-draft"><span class="dot"></span> Draft</span>
+          {% endif %}
+          {% if post.category %}<span class="card-cat">{{ post.category }}</span>{% endif %}
+        </div>
+        <h2><a href="{% url 'blog_studio_edit' post.id %}">{{ post.title }}</a></h2>
+        <p>{% if post.excerpt %}{{ post.excerpt }}{% else %}No excerpt yet — open to keep writing.{% endif %}</p>
+        <div class="card-meta">
+          <span>{{ post.published_at|date:"M j, Y" }} · {{ post.read_minutes }} min</span>
+          <div class="card-actions">
+            {% if post.is_published %}
+            <a class="icon-btn" href="{% url 'blog_detail' post.slug %}" target="_blank" rel="noopener" title="View live" aria-label="View live">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+            {% endif %}
+            <a class="icon-btn" href="{% url 'blog_studio_edit' post.id %}" title="Edit" aria-label="Edit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </a>
+            <form method="post" action="{% url 'blog_studio_duplicate' post.id %}" style="display:inline">
+              {% csrf_token %}
+              <button type="submit" class="icon-btn" title="Duplicate" aria-label="Duplicate">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </form>
+            <form method="post" action="{% url 'blog_studio_delete' post.id %}" style="display:inline" onsubmit="return confirm('Delete “{{ post.title|escapejs }}”? This cannot be undone.');">
+              {% csrf_token %}
+              <button type="submit" class="icon-btn danger" title="Delete" aria-label="Delete">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </article>
+      {% empty %}
+      <div class="empty">
+        <h3>Nothing here yet</h3>
+        <p>{% if q or active_category or status != 'all' %}Try clearing filters, or start a fresh piece.{% else %}Your first Insight is one click away.{% endif %}</p>
+        <a class="btn btn-primary" href="{% url 'blog_studio_create' %}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          New article
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <script>
+    const search = document.querySelector('.search input');
+    if (search) {
+      let t;
+      search.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') search.form.submit();
+      });
+    }
+  </script>
+</body>
+</html>

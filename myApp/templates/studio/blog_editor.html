@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% if is_new %}New article{% else %}Edit · {{ form.title }}{% endif %} | Blog Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
+<style>
+:root {
+  --ink: #030d2a;
+  --ink-soft: #0a1840;
+  --blue: #0040FF;
+  --blue-soft: #3d6fff;
+  --sky: #0099EE;
+  --gray-700: #2e3a5c;
+  --gray-600: #4a5578;
+  --gray-500: #6b7494;
+  --gray-400: #9ca3bf;
+  --gray-300: #d1d5e8;
+  --gray-200: #e5e8f5;
+  --gray-100: #f0f2fa;
+  --bg: #f4f6fc;
+  --white: #fff;
+  --success: #059669;
+  --warn: #d97706;
+  --danger: #dc2626;
+  --accent: {{ form.accent|default:"#0040FF" }};
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --panel: 340px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+
+.app {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* ── Topbar ── */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.88);
+  border-bottom: 1px solid var(--gray-200);
+  backdrop-filter: blur(12px);
+  z-index: 40;
+}
+.top-left, .top-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.back {
+  width: 40px; height: 40px; border-radius: 12px;
+  border: 1px solid var(--gray-200); background: var(--white);
+  display: grid; place-items: center; color: var(--gray-600);
+  transition: all 0.15s;
+}
+.back:hover { color: var(--ink); border-color: var(--gray-300); }
+.back:focus-visible, .btn:focus-visible, .tab:focus-visible, .block-btn:focus-visible, .swatch:focus-visible {
+  outline: 2px solid var(--blue); outline-offset: 2px;
+}
+.crumb { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.crumb .label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-400); }
+.crumb .name {
+  font-size: 14px; font-weight: 600; color: var(--ink);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 280px;
+}
+.status-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 30px; padding: 0 12px; border-radius: 999px;
+  font-size: 12px; font-weight: 700;
+}
+.status-live { background: #ecfdf5; color: var(--success); }
+.status-draft { background: #fff7ed; color: var(--warn); }
+.status-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  height: 40px; padding: 0 16px; border-radius: 12px;
+  border: 1px solid transparent; font-size: 13.5px; font-weight: 600;
+  transition: transform 0.15s var(--ease), background 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn svg { width: 15px; height: 15px; }
+.btn-ghost { background: var(--white); border-color: var(--gray-200); color: var(--gray-700); }
+.btn-ghost:hover { border-color: var(--gray-300); color: var(--ink); }
+.btn-primary {
+  background: var(--blue); color: #fff;
+  box-shadow: 0 8px 20px rgba(0,64,255,0.25);
+}
+.btn-primary:hover { background: var(--blue-soft); }
+.btn-soft {
+  background: color-mix(in srgb, var(--blue) 8%, #fff);
+  color: var(--blue); border-color: color-mix(in srgb, var(--blue) 18%, var(--gray-200));
+}
+.btn.active {
+  background: var(--ink); color: #fff; border-color: var(--ink);
+}
+
+.flash-bar {
+  position: absolute; top: 62px; left: 50%; transform: translateX(-50%);
+  z-index: 50; display: flex; flex-direction: column; gap: 8px; max-width: 480px; width: calc(100% - 32px);
+  pointer-events: none;
+}
+.flash {
+  pointer-events: auto;
+  padding: 10px 14px; border-radius: 12px; font-size: 13.5px; font-weight: 500;
+  box-shadow: 0 10px 30px rgba(3,13,42,0.12);
+  animation: drop 0.35s var(--ease) both;
+}
+.flash-success { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+.flash-error, .flash-warning { background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; }
+
+/* ── Workspace ── */
+.workspace {
+  display: grid;
+  grid-template-columns: 1fr var(--panel);
+  min-height: 0;
+}
+.workspace.panel-collapsed { grid-template-columns: 1fr 0; }
+.workspace.preview-on { grid-template-columns: 1fr 1fr; }
+.workspace.preview-on .side { display: none; }
+.workspace.preview-on .preview-pane { display: flex; }
+
+.canvas {
+  min-width: 0; min-height: 0;
+  overflow: auto;
+  padding: 28px 24px 80px;
+  scroll-behavior: smooth;
+}
+.canvas-inner {
+  max-width: 760px; margin: 0 auto;
+  animation: rise 0.45s var(--ease) both;
+}
+
+.title-input {
+  width: 100%; border: 0; background: transparent; resize: none;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(32px, 4.5vw, 44px);
+  font-weight: 400; letter-spacing: -0.03em; line-height: 1.15;
+  color: var(--ink); margin-bottom: 10px;
+}
+.title-input::placeholder { color: var(--gray-300); }
+.title-input:focus { outline: none; }
+
+.meta-row {
+  display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  margin-bottom: 22px; color: var(--gray-500); font-size: 13px; font-weight: 500;
+}
+.meta-row .sep { width: 3px; height: 3px; border-radius: 50%; background: var(--gray-300); }
+#readEstimate { font-variant-numeric: tabular-nums; }
+
+/* Block palette */
+.blocks {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 16px;
+  padding: 10px;
+  background: rgba(255,255,255,0.75);
+  border: 1px solid var(--gray-200);
+  border-radius: 14px;
+}
+.block-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 34px; padding: 0 12px; border-radius: 10px;
+  border: 1px solid transparent; background: transparent;
+  font-size: 12.5px; font-weight: 600; color: var(--gray-600);
+  transition: all 0.15s;
+}
+.block-btn:hover { background: var(--gray-100); color: var(--ink); }
+.block-btn svg { width: 14px; height: 14px; opacity: 0.8; }
+
+/* Editor shell */
+.editor-shell {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(3,13,42,0.04);
+  transition: box-shadow 0.25s;
+}
+.editor-shell:focus-within {
+  box-shadow: 0 0 0 3px rgba(0,64,255,0.08), 0 12px 32px rgba(3,13,42,0.06);
+}
+#editor { min-height: 420px; }
+.ql-toolbar.ql-snow {
+  border: 0; border-bottom: 1px solid var(--gray-100);
+  background: #fafbff; padding: 10px 12px;
+  font-family: inherit;
+}
+.ql-container.ql-snow {
+  border: 0; font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 16.5px; color: var(--gray-700);
+}
+.ql-editor { min-height: 420px; padding: 28px 32px 48px; line-height: 1.7; }
+.ql-editor.ql-blank::before {
+  color: var(--gray-400); font-style: normal; left: 32px; right: 32px;
+}
+.ql-editor h2 { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); margin: 1.4em 0 0.5em; }
+.ql-editor h3 { font-size: 19px; font-weight: 700; color: var(--ink-soft); margin: 1.2em 0 0.4em; }
+.ql-editor a { color: var(--blue); }
+.ql-snow .ql-stroke { stroke: var(--gray-600); }
+.ql-snow .ql-fill { fill: var(--gray-600); }
+.ql-snow .ql-picker { color: var(--gray-600); }
+
+.source-wrap { display: none; }
+.source-wrap.active { display: block; }
+#editor.hidden { display: none; }
+.ql-toolbar.hidden { display: none; }
+#sourceHtml {
+  width: 100%; min-height: 420px; border: 0; padding: 24px 28px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px; line-height: 1.55; resize: vertical; background: #0b1228; color: #d7e0ff;
+}
+#sourceHtml:focus { outline: none; }
+
+/* Side panel */
+.side {
+  min-width: 0; min-height: 0; overflow: auto;
+  background: rgba(255,255,255,0.92);
+  border-left: 1px solid var(--gray-200);
+  display: flex; flex-direction: column;
+}
+.tabs {
+  display: flex; gap: 4px; padding: 12px 12px 0;
+  border-bottom: 1px solid var(--gray-100);
+  position: sticky; top: 0; background: rgba(255,255,255,0.96); z-index: 2;
+  backdrop-filter: blur(8px);
+}
+.tab {
+  flex: 1; height: 38px; border: 0; border-radius: 10px 10px 0 0;
+  background: transparent; color: var(--gray-500);
+  font-size: 13px; font-weight: 650;
+}
+.tab.active { background: var(--gray-100); color: var(--ink); }
+.panel-body { padding: 18px 16px 40px; display: none; }
+.panel-body.active { display: block; animation: rise 0.3s var(--ease) both; }
+
+.field { margin-bottom: 16px; }
+.field label {
+  display: block; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--gray-500); margin-bottom: 7px;
+}
+.field .hint { font-size: 12px; color: var(--gray-400); margin-top: 6px; font-weight: 500; text-transform: none; letter-spacing: 0; }
+.field input, .field select, .field textarea {
+  width: 100%; border: 1px solid var(--gray-200); border-radius: 12px;
+  background: var(--white); padding: 11px 12px; font-size: 14px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.field textarea { min-height: 96px; resize: vertical; line-height: 1.5; }
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none; border-color: color-mix(in srgb, var(--blue) 40%, var(--gray-300));
+  box-shadow: 0 0 0 3px rgba(0,64,255,0.1);
+}
+.swatches { display: flex; flex-wrap: wrap; gap: 8px; }
+.swatch {
+  width: 28px; height: 28px; border-radius: 50%; border: 2px solid #fff;
+  box-shadow: 0 0 0 1px var(--gray-200); cursor: pointer; padding: 0;
+}
+.swatch.active { box-shadow: 0 0 0 2px var(--ink); }
+.cat-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.cat-pill {
+  height: 28px; padding: 0 10px; border-radius: 999px;
+  border: 1px solid var(--gray-200); background: var(--gray-100);
+  font-size: 12px; font-weight: 600; color: var(--gray-600);
+}
+.cat-pill:hover, .cat-pill.active { background: color-mix(in srgb, var(--blue) 10%, #fff); border-color: color-mix(in srgb, var(--blue) 30%, var(--gray-200)); color: var(--blue); }
+
+.toggle-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 14px; border-radius: 14px; background: var(--gray-100); margin-bottom: 16px;
+}
+.toggle-row strong { display: block; font-size: 14px; }
+.toggle-row span { font-size: 12px; color: var(--gray-500); font-weight: 500; }
+.switch {
+  position: relative; width: 44px; height: 26px; flex-shrink: 0;
+}
+.switch input { opacity: 0; width: 0; height: 0; }
+.switch .slider {
+  position: absolute; inset: 0; border-radius: 999px; background: var(--gray-300);
+  transition: 0.2s; cursor: pointer;
+}
+.switch .slider::before {
+  content: ''; position: absolute; width: 20px; height: 20px; left: 3px; top: 3px;
+  border-radius: 50%; background: #fff; transition: 0.2s; box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+.switch input:checked + .slider { background: var(--blue); }
+.switch input:checked + .slider::before { transform: translateX(18px); }
+.switch input:focus-visible + .slider { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+.seo-score {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px; border-radius: 12px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--blue) 8%, #fff), #fff);
+  border: 1px solid var(--gray-200); margin-bottom: 16px;
+}
+.seo-ring {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: conic-gradient(var(--blue) calc(var(--pct) * 1%), var(--gray-200) 0);
+  display: grid; place-items: center;
+}
+.seo-ring span {
+  width: 34px; height: 34px; border-radius: 50%; background: #fff;
+  display: grid; place-items: center; font-size: 12px; font-weight: 800;
+}
+.seo-score p { font-size: 13px; color: var(--gray-600); font-weight: 500; }
+.seo-score strong { display: block; font-size: 14px; color: var(--ink); margin-bottom: 2px; }
+
+/* Preview pane */
+.preview-pane {
+  display: none; flex-direction: column; min-width: 0; min-height: 0;
+  border-left: 1px solid var(--gray-200); background: var(--white); overflow: auto;
+}
+.preview-label {
+  position: sticky; top: 0; z-index: 2;
+  padding: 10px 16px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gray-500);
+  background: rgba(255,255,255,0.94); border-bottom: 1px solid var(--gray-100);
+  backdrop-filter: blur(8px);
+}
+.preview-hero {
+  background:
+    radial-gradient(700px 280px at 85% -20%, color-mix(in srgb, var(--accent) 50%, transparent), transparent 60%),
+    linear-gradient(165deg, #020821 0%, #061233 55%, #030d2a 100%);
+  color: #fff; padding: 36px 28px 28px;
+}
+.preview-chip {
+  display: inline-flex; font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 4px 10px; border-radius: 999px; margin-bottom: 12px;
+  background: color-mix(in srgb, var(--accent) 40%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 60%, transparent);
+}
+.preview-hero h1 {
+  font-size: 28px; line-height: 1.2; font-weight: 800; letter-spacing: -0.02em;
+}
+.preview-meta { margin-top: 14px; font-size: 13px; color: rgba(255,255,255,0.62); }
+.preview-body {
+  padding: 28px; font-size: 16px; color: var(--gray-700); line-height: 1.7;
+  max-width: 680px;
+}
+.preview-body > p { margin: 0 0 18px; }
+.preview-body h2 {
+  font-size: 24px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink);
+  margin: 36px 0 14px;
+}
+.preview-body h3 {
+  font-size: 18px; font-weight: 700; color: var(--ink-soft); margin: 28px 0 10px;
+}
+.preview-body a { color: var(--blue); }
+.preview-body .blog-callout {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 8%, #fff), #fff);
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--gray-200));
+  border-left: 4px solid var(--accent);
+  border-radius: 14px; padding: 18px 20px; margin: 22px 0;
+}
+.preview-body .blog-callout-label {
+  font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 6px;
+}
+.preview-body ul.blog-takeaways {
+  list-style: none; padding: 0; margin: 8px 0 24px; display: grid; gap: 10px;
+}
+.preview-body ul.blog-takeaways li {
+  position: relative; padding: 12px 16px 12px 42px;
+  background: #fff; border: 1px solid var(--gray-200); border-radius: 12px; font-size: 15px;
+}
+.preview-body ul.blog-takeaways li::before {
+  content: '✓'; position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  width: 18px; height: 18px; border-radius: 50%; background: var(--accent); color: #fff;
+  font-size: 11px; display: grid; place-items: center; font-weight: 800;
+}
+.preview-body .blog-faq { margin: 18px 0; border-top: 1px solid var(--gray-200); }
+.preview-body .blog-faq details {
+  border-bottom: 1px solid var(--gray-200); padding: 14px 0;
+}
+.preview-body .blog-faq summary {
+  font-weight: 700; color: var(--ink); cursor: pointer;
+}
+.preview-body .blog-table-wrap {
+  margin: 20px 0; overflow-x: auto; border-radius: 12px; border: 1px solid var(--gray-200);
+}
+.preview-body table.blog-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.preview-body table.blog-table th,
+.preview-body table.blog-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--gray-100); }
+.preview-body table.blog-table th { background: var(--gray-100); font-weight: 700; color: var(--ink); }
+
+.mobile-panel-toggle {
+  display: none;
+  position: fixed; right: 16px; bottom: 16px; z-index: 60;
+  width: 52px; height: 52px; border-radius: 16px; border: 0;
+  background: var(--ink); color: #fff;
+  box-shadow: 0 12px 28px rgba(3,13,42,0.28);
+}
+.mobile-panel-toggle svg { width: 20px; height: 20px; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes drop {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+@media (max-width: 980px) {
+  body { overflow: auto; }
+  .app { height: auto; min-height: 100vh; }
+  .workspace, .workspace.preview-on, .workspace.panel-collapsed {
+    grid-template-columns: 1fr;
+  }
+  .side {
+    position: fixed; inset: 0 0 0 auto; width: min(100%, 360px);
+    transform: translateX(105%); transition: transform 0.3s var(--ease);
+    z-index: 70; box-shadow: -12px 0 40px rgba(3,13,42,0.15);
+  }
+  .side.open { transform: translateX(0); }
+  .preview-pane {
+    border-left: 0; border-top: 1px solid var(--gray-200);
+    display: none;
+  }
+  .workspace.preview-on .preview-pane { display: flex; }
+  .workspace.preview-on .canvas { display: none; }
+  .mobile-panel-toggle { display: grid; place-items: center; }
+  .crumb .name { max-width: 140px; }
+}
+</style>
+</head>
+<body>
+<form class="app" method="post" id="studioForm" action="{% if is_new %}{% url 'blog_studio_create' %}{% else %}{% url 'blog_studio_edit' post.id %}{% endif %}">
+  {% csrf_token %}
+  <input type="hidden" name="body_html" id="bodyHtml" value="">
+  <input type="hidden" name="action" id="formAction" value="save">
+  <input type="hidden" name="is_published" id="isPublished" value="{% if form.is_published %}1{% else %}0{% endif %}">
+
+  <header class="topbar">
+    <div class="top-left">
+      <a class="back" href="{% url 'blog_studio_list' %}" aria-label="Back to library">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+      </a>
+      <div class="crumb">
+        <span class="label">Blog Studio</span>
+        <span class="name" id="crumbTitle">{% if form.title %}{{ form.title }}{% else %}Untitled article{% endif %}</span>
+      </div>
+      <span class="status-pill {% if form.is_published %}status-live{% else %}status-draft{% endif %}" id="statusPill">
+        <span class="dot"></span>
+        <span id="statusText">{% if form.is_published %}Live{% else %}Draft{% endif %}</span>
+      </span>
+    </div>
+    <div class="top-right">
+      <button type="button" class="btn btn-ghost" id="btnSource" title="Toggle HTML source">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        HTML
+      </button>
+      <button type="button" class="btn btn-ghost" id="btnPreview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview
+      </button>
+      <button type="button" class="btn btn-ghost" id="btnPanel" title="Details panel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M15 3v18"/></svg>
+      </button>
+      {% if not is_new and form.is_published %}
+      <a class="btn btn-ghost" href="{% url 'blog_detail' form.slug %}" target="_blank" rel="noopener">Live page</a>
+      {% endif %}
+      <button type="submit" class="btn btn-soft" data-action="draft">Save draft</button>
+      <button type="submit" class="btn btn-primary" data-action="publish">Publish</button>
+    </div>
+  </header>
+
+  {% if messages %}
+  <div class="flash-bar" id="flashBar">
+    {% for message in messages %}
+      <div class="flash flash-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="workspace" id="workspace">
+    <main class="canvas">
+      <div class="canvas-inner">
+        <textarea class="title-input" name="title" id="titleInput" rows="2" placeholder="Article title…" required maxlength="255">{{ form.title }}</textarea>
+        <div class="meta-row">
+          <span id="authorLabel">{{ form.author|default:"KATEK AI" }}</span>
+          <span class="sep"></span>
+          <span id="readEstimate">{{ form.read_minutes|default:5 }} min read</span>
+          <span class="sep"></span>
+          <span id="wordCount">0 words</span>
+        </div>
+
+        <div class="blocks" role="toolbar" aria-label="Insert content blocks">
+          <button type="button" class="block-btn" data-block="callout" title="Quick answer callout">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            Callout
+          </button>
+          <button type="button" class="block-btn" data-block="takeaways" title="Key takeaways list">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Takeaways
+          </button>
+          <button type="button" class="block-btn" data-block="faq" title="FAQ accordion">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            FAQ
+          </button>
+          <button type="button" class="block-btn" data-block="table" title="Comparison table">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/></svg>
+            Table
+          </button>
+          <button type="button" class="block-btn" data-block="h2" title="Section heading">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h8"/><path d="M4 6h16"/><path d="M4 18h16"/></svg>
+            Heading
+          </button>
+        </div>
+
+        <div class="editor-shell">
+          <div id="editor"></div>
+          <div class="source-wrap" id="sourceWrap">
+            <textarea id="sourceHtml" spellcheck="false" aria-label="HTML source"></textarea>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <aside class="side" id="sidePanel" aria-label="Article details">
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab active" data-tab="details" role="tab" aria-selected="true">Details</button>
+        <button type="button" class="tab" data-tab="seo" role="tab" aria-selected="false">SEO</button>
+        <button type="button" class="tab" data-tab="publish" role="tab" aria-selected="false">Publish</button>
+      </div>
+
+      <div class="panel-body active" data-panel="details">
+        <div class="field">
+          <label for="category">Category</label>
+          <input type="text" name="category" id="category" list="categoryList" value="{{ form.category }}" placeholder="e.g. Automation" maxlength="80">
+          <datalist id="categoryList">
+            {% for cat in categories %}<option value="{{ cat }}">{% endfor %}
+          </datalist>
+          <div class="cat-pills">
+            {% for cat in categories|slice:":8" %}
+            <button type="button" class="cat-pill {% if form.category == cat %}active{% endif %}" data-cat="{{ cat }}">{{ cat }}</button>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="field">
+          <label for="author">Author</label>
+          <input type="text" name="author" id="author" value="{{ form.author }}" maxlength="120">
+        </div>
+        <div class="field">
+          <label for="excerpt">Excerpt</label>
+          <textarea name="excerpt" id="excerpt" maxlength="800" placeholder="One or two sentences for cards and previews…">{{ form.excerpt }}</textarea>
+          <div class="hint"><span id="excerptCount">0</span>/220 ideal</div>
+        </div>
+        <div class="field">
+          <label>Accent color</label>
+          <input type="hidden" name="accent" id="accent" value="{{ form.accent|default:'#0040FF' }}">
+          <div class="swatches" role="listbox" aria-label="Accent presets">
+            {% for color in accent_presets %}
+            <button type="button" class="swatch {% if form.accent == color %}active{% endif %}" data-color="{{ color }}" style="background:{{ color }}" aria-label="{{ color }}"></button>
+            {% endfor %}
+          </div>
+          <div class="hint" style="margin-top:10px">
+            <input type="color" id="accentPicker" value="{{ form.accent|default:'#0040FF' }}" style="width:100%;height:36px;border:0;background:transparent;padding:0;cursor:pointer">
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-body" data-panel="seo">
+        <div class="seo-score">
+          <div class="seo-ring" id="seoRing" style="--pct:0"><span id="seoPct">0</span></div>
+          <div>
+            <strong id="seoLabel">SEO checklist</strong>
+            <p id="seoHint">Fill title, excerpt, and keyword.</p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="slug">URL slug</label>
+          <input type="text" name="slug" id="slug" value="{{ form.slug }}" maxlength="255" placeholder="auto-from-title">
+          <div class="hint">katek.ai/blog/<span id="slugPreview">{{ form.slug|default:"…" }}</span>/</div>
+        </div>
+        <div class="field">
+          <label for="keyword">Focus keyword</label>
+          <input type="text" name="keyword" id="keyword" value="{{ form.keyword }}" maxlength="255" placeholder="primary search phrase">
+        </div>
+        <div class="field">
+          <label for="meta_title">Meta title</label>
+          <input type="text" name="meta_title" id="meta_title" value="{{ form.meta_title }}" maxlength="255" placeholder="Defaults to article title">
+          <div class="hint"><span id="metaTitleCount">0</span>/60</div>
+        </div>
+        <div class="field">
+          <label for="meta_description">Meta description</label>
+          <textarea name="meta_description" id="meta_description" maxlength="320" placeholder="Defaults to excerpt">{{ form.meta_description }}</textarea>
+          <div class="hint"><span id="metaDescCount">0</span>/155</div>
+        </div>
+      </div>
+
+      <div class="panel-body" data-panel="publish">
+        <div class="toggle-row">
+          <div>
+            <strong>Published</strong>
+            <span>Show on the public Insights page</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="publishToggle" {% if form.is_published %}checked{% endif %}>
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="field">
+          <label for="published_at">Publish date</label>
+          <input type="date" name="published_at" id="published_at" value="{{ form.published_at }}">
+        </div>
+        <div class="field">
+          <label for="read_minutes">Read time (minutes)</label>
+          <input type="number" name="read_minutes" id="read_minutes" min="1" max="60" value="{{ form.read_minutes|default:5 }}">
+          <div class="hint">Leave as-is to auto-estimate from word count on save (set 0 to force auto).</div>
+        </div>
+        <div class="field">
+          <label for="order">Sort order</label>
+          <input type="number" name="order" id="order" value="{{ form.order|default:0 }}">
+          <div class="hint">Lower numbers appear first in listings.</div>
+        </div>
+        {% if not is_new %}
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+          <button type="submit" formaction="{% url 'blog_studio_duplicate' post.id %}" class="btn btn-ghost" style="width:100%">Duplicate as draft</button>
+          <button type="submit" formaction="{% url 'blog_studio_delete' post.id %}" class="btn btn-ghost" style="width:100%;color:var(--danger)" onclick="return confirm('Delete this article permanently?');">Delete article</button>
+        </div>
+        {% endif %}
+      </div>
+    </aside>
+
+    <section class="preview-pane" id="previewPane" aria-label="Live preview">
+      <div class="preview-label">Live preview · Insights article</div>
+      <div class="preview-hero">
+        <div class="preview-chip" id="pvCategory">{% if form.category %}{{ form.category }}{% else %}Insights{% endif %}</div>
+        <h1 id="pvTitle">{% if form.title %}{{ form.title }}{% else %}Your title appears here{% endif %}</h1>
+        <div class="preview-meta"><span id="pvAuthor">{{ form.author|default:"KATEK AI" }}</span> · <span id="pvRead">{{ form.read_minutes|default:5 }} min read</span></div>
+      </div>
+      <div class="preview-body" id="pvBody"></div>
+    </section>
+  </div>
+</form>
+
+<button type="button" class="mobile-panel-toggle" id="mobilePanel" aria-label="Open details">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+{{ form.body_html|json_script:"initial-body" }}
+
+<script>
+(function () {
+  const initialEl = document.getElementById('initial-body');
+  const initialHtml = initialEl ? JSON.parse(initialEl.textContent) : '';
+
+  const quill = new Quill('#editor', {
+    theme: 'snow',
+    placeholder: 'Start writing… Use the blocks above for callouts, takeaways, and FAQs.',
+    modules: {
+      toolbar: [
+        [{ header: [2, 3, false] }],
+        ['bold', 'italic', 'underline', 'link'],
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        ['blockquote', 'code-block'],
+        ['clean']
+      ]
+    }
+  });
+
+  if (initialHtml) {
+    quill.clipboard.dangerouslyPasteHTML(initialHtml);
+  }
+
+  const form = document.getElementById('studioForm');
+  const bodyHtml = document.getElementById('bodyHtml');
+  const titleInput = document.getElementById('titleInput');
+  const slugInput = document.getElementById('slug');
+  const excerpt = document.getElementById('excerpt');
+  const author = document.getElementById('author');
+  const category = document.getElementById('category');
+  const keyword = document.getElementById('keyword');
+  const metaTitle = document.getElementById('meta_title');
+  const metaDesc = document.getElementById('meta_description');
+  const accent = document.getElementById('accent');
+  const accentPicker = document.getElementById('accentPicker');
+  const publishToggle = document.getElementById('publishToggle');
+  const isPublished = document.getElementById('isPublished');
+  const formAction = document.getElementById('formAction');
+  const readMinutes = document.getElementById('read_minutes');
+  const workspace = document.getElementById('workspace');
+  const sidePanel = document.getElementById('sidePanel');
+  const sourceWrap = document.getElementById('sourceWrap');
+  const sourceHtml = document.getElementById('sourceHtml');
+  const editorEl = document.getElementById('editor');
+  const toolbar = document.querySelector('.ql-toolbar');
+  let sourceMode = false;
+  let slugTouched = {% if form.slug %}true{% else %}false{% endif %};
+  let previewOn = false;
+
+  function slugify(text) {
+    return text.toLowerCase().trim()
+      .replace(/['"]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .slice(0, 200);
+  }
+
+  function getHtml() {
+    if (sourceMode) return sourceHtml.value;
+    return quill.root.innerHTML === '<p><br></p>' ? '' : quill.root.innerHTML;
+  }
+
+  function wordCount(html) {
+    const text = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    if (!text) return 0;
+    return text.split(' ').filter(Boolean).length;
+  }
+
+  function syncCounts() {
+    const html = getHtml();
+    const words = wordCount(html);
+    const mins = Math.max(1, Math.round(words / 200) || 5);
+    document.getElementById('wordCount').textContent = words + ' words';
+    document.getElementById('readEstimate').textContent = mins + ' min read';
+    document.getElementById('pvRead').textContent = mins + ' min read';
+    document.getElementById('excerptCount').textContent = (excerpt.value || '').length;
+    document.getElementById('metaTitleCount').textContent = (metaTitle.value || '').length;
+    document.getElementById('metaDescCount').textContent = (metaDesc.value || '').length;
+    updateSeo();
+  }
+
+  function updateSeo() {
+    let score = 0;
+    const checks = [];
+    if ((titleInput.value || '').trim().length >= 12) { score += 25; } else checks.push('Add a clear title');
+    if ((excerpt.value || '').trim().length >= 40) { score += 20; } else checks.push('Write a short excerpt');
+    if ((keyword.value || '').trim().length >= 2) { score += 20; } else checks.push('Set a focus keyword');
+    if ((metaDesc.value || excerpt.value || '').trim().length >= 50) { score += 20; } else checks.push('Add meta description');
+    if (wordCount(getHtml()) >= 300) { score += 15; } else checks.push('Aim for 300+ words');
+    document.getElementById('seoRing').style.setProperty('--pct', score);
+    document.getElementById('seoPct').textContent = score;
+    document.getElementById('seoLabel').textContent = score >= 80 ? 'Looking strong' : score >= 50 ? 'Getting there' : 'SEO checklist';
+    document.getElementById('seoHint').textContent = checks[0] || 'Ready to publish';
+  }
+
+  function syncPreview() {
+    const title = titleInput.value.trim() || 'Your title appears here';
+    document.getElementById('crumbTitle').textContent = titleInput.value.trim() || 'Untitled article';
+    document.getElementById('pvTitle').textContent = title;
+    document.getElementById('pvAuthor').textContent = author.value || 'KATEK AI';
+    document.getElementById('authorLabel').textContent = author.value || 'KATEK AI';
+    document.getElementById('pvCategory').textContent = category.value || 'Insights';
+    document.getElementById('pvBody').innerHTML = getHtml() || '<p style="color:var(--gray-400)">Your article preview will appear here as you write.</p>';
+    document.documentElement.style.setProperty('--accent', accent.value || '#0040FF');
+    document.getElementById('slugPreview').textContent = slugInput.value || slugify(titleInput.value) || '…';
+  }
+
+  function updateStatusUI() {
+    const live = publishToggle.checked;
+    isPublished.value = live ? '1' : '0';
+    const pill = document.getElementById('statusPill');
+    const text = document.getElementById('statusText');
+    pill.classList.toggle('status-live', live);
+    pill.classList.toggle('status-draft', !live);
+    text.textContent = live ? 'Live' : 'Draft';
+  }
+
+  // Title → slug
+  titleInput.addEventListener('input', () => {
+    titleInput.style.height = 'auto';
+    titleInput.style.height = titleInput.scrollHeight + 'px';
+    if (!slugTouched) {
+      slugInput.value = slugify(titleInput.value);
+    }
+    syncPreview();
+    syncCounts();
+  });
+  titleInput.dispatchEvent(new Event('input'));
+
+  slugInput.addEventListener('input', () => { slugTouched = true; syncPreview(); });
+
+  [excerpt, author, category, keyword, metaTitle, metaDesc].forEach(el => {
+    el.addEventListener('input', () => { syncPreview(); syncCounts(); });
+  });
+
+  quill.on('text-change', () => { syncPreview(); syncCounts(); });
+
+  // Accent
+  document.querySelectorAll('.swatch').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      accent.value = btn.dataset.color;
+      accentPicker.value = btn.dataset.color;
+      syncPreview();
+    });
+  });
+  accentPicker.addEventListener('input', () => {
+    accent.value = accentPicker.value;
+    document.querySelectorAll('.swatch').forEach(s => s.classList.toggle('active', s.dataset.color.toLowerCase() === accentPicker.value.toLowerCase()));
+    syncPreview();
+  });
+
+  // Categories
+  document.querySelectorAll('.cat-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      category.value = btn.dataset.cat;
+      document.querySelectorAll('.cat-pill').forEach(c => c.classList.toggle('active', c === btn));
+      syncPreview();
+    });
+  });
+
+  publishToggle.addEventListener('change', updateStatusUI);
+
+  // Tabs
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => {
+        t.classList.toggle('active', t === tab);
+        t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+      });
+      document.querySelectorAll('.panel-body').forEach(p => {
+        p.classList.toggle('active', p.dataset.panel === tab.dataset.tab);
+      });
+    });
+  });
+
+  // Panel / preview toggles
+  document.getElementById('btnPanel').addEventListener('click', () => {
+    if (window.matchMedia('(max-width: 980px)').matches) {
+      sidePanel.classList.toggle('open');
+      return;
+    }
+    if (previewOn) {
+      previewOn = false;
+      workspace.classList.remove('preview-on');
+      document.getElementById('btnPreview').classList.remove('active');
+    }
+    workspace.classList.toggle('panel-collapsed');
+  });
+
+  document.getElementById('mobilePanel').addEventListener('click', () => {
+    sidePanel.classList.toggle('open');
+  });
+
+  document.getElementById('btnPreview').addEventListener('click', () => {
+    previewOn = !previewOn;
+    syncPreview();
+    workspace.classList.toggle('preview-on', previewOn);
+    document.getElementById('btnPreview').classList.toggle('active', previewOn);
+    if (previewOn) workspace.classList.remove('panel-collapsed');
+  });
+
+  document.getElementById('btnSource').addEventListener('click', () => {
+    sourceMode = !sourceMode;
+    document.getElementById('btnSource').classList.toggle('active', sourceMode);
+    if (sourceMode) {
+      sourceHtml.value = quill.root.innerHTML === '<p><br></p>' ? '' : quill.root.innerHTML;
+      sourceWrap.classList.add('active');
+      editorEl.classList.add('hidden');
+      if (toolbar) toolbar.classList.add('hidden');
+    } else {
+      quill.setContents([]);
+      quill.clipboard.dangerouslyPasteHTML(sourceHtml.value || '');
+      sourceWrap.classList.remove('active');
+      editorEl.classList.remove('hidden');
+      if (toolbar) toolbar.classList.remove('hidden');
+    }
+    syncPreview();
+    syncCounts();
+  });
+  sourceHtml.addEventListener('input', () => { syncPreview(); syncCounts(); });
+
+  // Content blocks
+  const BLOCKS = {
+    callout: `<div class="blog-callout"><div class="blog-callout-label">Quick answer</div><p>Summarize the key point in one or two clear sentences.</p></div><p><br></p>`,
+    takeaways: `<h2>Key takeaways</h2><ul class="blog-takeaways"><li>First actionable insight</li><li>Second actionable insight</li><li>Third actionable insight</li></ul><p><br></p>`,
+    faq: `<h2>FAQ</h2><div class="blog-faq"><details open><summary>What question do readers ask first?</summary><p>Answer in plain language.</p></details><details><summary>What is a common misconception?</summary><p>Clarify it briefly.</p></details></div><p><br></p>`,
+    table: `<div class="blog-table-wrap"><table class="blog-table"><thead><tr><th>Option</th><th>Best for</th><th>Trade-off</th></tr></thead><tbody><tr><td>Option A</td><td>Speed</td><td>Less control</td></tr><tr><td>Option B</td><td>Control</td><td>More setup</td></tr></tbody></table></div><p><br></p>`,
+    h2: `<h2>New section</h2><p>Write the section body here.</p>`
+  };
+
+  document.querySelectorAll('[data-block]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (sourceMode) {
+        sourceHtml.value = (sourceHtml.value || '') + BLOCKS[btn.dataset.block];
+      } else {
+        const range = quill.getSelection(true);
+        const index = range ? range.index : quill.getLength();
+        quill.clipboard.dangerouslyPasteHTML(index, BLOCKS[btn.dataset.block]);
+        quill.setSelection(index + 1);
+      }
+      syncPreview();
+      syncCounts();
+    });
+  });
+
+  // Submit
+  form.querySelectorAll('[data-action]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      formAction.value = btn.dataset.action;
+      if (btn.dataset.action === 'publish') {
+        publishToggle.checked = true;
+        updateStatusUI();
+      } else if (btn.dataset.action === 'draft') {
+        publishToggle.checked = false;
+        updateStatusUI();
+      }
+    });
+  });
+
+  form.addEventListener('submit', () => {
+    bodyHtml.value = getHtml();
+    if (!readMinutes.value || Number(readMinutes.value) <= 0) {
+      readMinutes.value = Math.max(1, Math.round(wordCount(bodyHtml.value) / 200) || 5);
+    }
+  });
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 's') {
+      e.preventDefault();
+      formAction.value = 'draft';
+      publishToggle.checked = false;
+      updateStatusUI();
+      bodyHtml.value = getHtml();
+      form.requestSubmit();
+    }
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'p' && e.shiftKey) {
+      e.preventDefault();
+      document.getElementById('btnPreview').click();
+    }
+  });
+
+  // Auto-dismiss flashes
+  setTimeout(() => {
+    const bar = document.getElementById('flashBar');
+    if (bar) bar.style.opacity = '0';
+  }, 4200);
+
+  updateStatusUI();
+  syncPreview();
+  syncCounts();
+})();
+</script>
+</body>
+</html>

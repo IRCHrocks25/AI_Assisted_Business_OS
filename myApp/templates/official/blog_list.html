@@ -209,6 +209,16 @@ a { color: inherit; }
 .shared-official-navbar .nav-cta { color: #fff; border-color: rgba(255,255,255,0.25); }
 .shared-official-navbar .nav-cta:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.5); }
 .shared-official-navbar .nav-toggle { color: #fff; border-color: rgba(255,255,255,0.22); background: rgba(255,255,255,0.06); }
+.studio-entry {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 18px; padding: 8px 14px; border-radius: 999px;
+  font-size: 12px; font-weight: 650; letter-spacing: 0.02em;
+  color: #fff; text-decoration: none;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  transition: background 0.2s, border-color 0.2s;
+}
+.studio-entry:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.35); }
 </style>
 </head>
 <body>
@@ -226,6 +236,9 @@ a { color: inherit; }
         <a href="{% url 'blog_list' %}?category={{ cat|urlencode }}" class="blog-pill {% if active_category == cat %}active{% endif %}">{{ cat }}</a>
       {% endfor %}
     </div>
+    {% if user.is_staff %}
+    <a class="studio-entry" href="{% url 'blog_studio_list' %}">Open Blog Studio →</a>
+    {% endif %}
   </div>
 </header>
 

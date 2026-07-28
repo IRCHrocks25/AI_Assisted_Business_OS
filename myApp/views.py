@@ -1,11 +1,18 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib import messages
 from django.conf import settings
 from django.utils import timezone
+from django.utils.text import slugify
+from django.db.models import Q
+from datetime import date
 import json
 import openai
 import logging
+import re
 
 logger = logging.getLogger(__name__)
 import cloudinary
@@ -2089,3 +2096,278 @@ def privacy_policy(request):
 
 def terms_and_conditions(request):
     return render(request, 'official/terms-and-conditions.html')
+
+
+# ── Blog Studio (staff authoring) ──────────────────────────────────────────
+
+STUDIO_LOGIN = '/admin/login/'
+ACCENT_PRESETS = ['#0040FF', '#0099EE', '#0EA5E9', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899']
+CATEGORY_PRESETS = [
+    'GEO', 'Automation', 'Platform', 'Agents', 'RAG', 'Operations', 'Strategy', 'Product',
+]
+
+
+def _unique_blog_slug(title, exclude_id=None):
+    base = slugify(title)[:200] or 'untitled'
+    slug = base
+    n = 2
+    while True:
+        qs = BlogPost.objects.filter(slug=slug)
+        if exclude_id:
+            qs = qs.exclude(id=exclude_id)
+        if not qs.exists():
+            return slug
+        slug = f'{base}-{n}'
+        n += 1
+
+
+def _estimate_read_minutes(html):
+    text = re.sub(r'<[^>]+>', ' ', html or '')
+    words = len(re.findall(r'\w+', text))
+    return max(1, round(words / 200)) if words else 5
+
+
+def _blog_studio_categories():
+    from_db = list(
+        BlogPost.objects.exclude(category='')
+        .values_list('category', flat=True)
+        .distinct()
+        .order_by('category')
+    )
+    seen = set()
+    ordered = []
+    for c in CATEGORY_PRESETS + from_db:
+        if c and c not in seen:
+            seen.add(c)
+            ordered.append(c)
+    return ordered
+
+
+def _save_blog_from_request(request, post=None):
+    """Create or update a BlogPost from studio form POST. Returns (post, errors)."""
+    data = request.POST
+    title = (data.get('title') or '').strip()
+    errors = []
+    if not title:
+        errors.append('Title is required.')
+
+    body_html = data.get('body_html') or ''
+    excerpt = (data.get('excerpt') or '').strip()
+    category = (data.get('category') or '').strip()
+    accent = (data.get('accent') or '#0040FF').strip() or '#0040FF'
+    keyword = (data.get('keyword') or '').strip()
+    meta_title = (data.get('meta_title') or '').strip()
+    meta_description = (data.get('meta_description') or '').strip()
+    author = (data.get('author') or 'KATEK AI').strip() or 'KATEK AI'
+    is_published = data.get('is_published') == '1'
+    action = (data.get('action') or 'save').strip()
+    if action == 'publish':
+        is_published = True
+    elif action == 'draft':
+        is_published = False
+
+    slug_input = (data.get('slug') or '').strip()
+    exclude_id = post.id if post else None
+    slug = slugify(slug_input)[:255] if slug_input else _unique_blog_slug(title or 'untitled', exclude_id)
+    if slug:
+        clash = BlogPost.objects.filter(slug=slug)
+        if exclude_id:
+            clash = clash.exclude(id=exclude_id)
+        if clash.exists():
+            slug = _unique_blog_slug(title or slug, exclude_id)
+
+    try:
+        order = int(data.get('order') or 0)
+    except (TypeError, ValueError):
+        order = 0
+
+    try:
+        read_minutes = int(data.get('read_minutes') or 0)
+    except (TypeError, ValueError):
+        read_minutes = 0
+    if read_minutes <= 0:
+        read_minutes = _estimate_read_minutes(body_html)
+
+    published_raw = (data.get('published_at') or '').strip()
+    try:
+        published_at = date.fromisoformat(published_raw) if published_raw else (post.published_at if post else date.today())
+    except ValueError:
+        published_at = post.published_at if post else date.today()
+        errors.append('Invalid publish date — kept previous/today.')
+
+    if errors and not title:
+        return post, errors
+
+    if post is None:
+        post = BlogPost(published_at=published_at)
+
+    post.title = title
+    post.slug = slug
+    post.category = category
+    post.accent = accent
+    post.keyword = keyword
+    post.meta_title = meta_title or title
+    post.meta_description = meta_description or excerpt
+    post.excerpt = excerpt
+    post.body_html = body_html
+    post.read_minutes = read_minutes
+    post.author = author
+    post.published_at = published_at
+    post.is_published = is_published
+    post.order = order
+    post.save()
+    return post, errors
+
+
+@staff_member_required(login_url=STUDIO_LOGIN)
+def blog_studio_list(request):
+    """Blog creator library — browse, filter, and open posts."""
+    q = (request.GET.get('q') or '').strip()
+    status = (request.GET.get('status') or 'all').strip()
+    category = (request.GET.get('category') or '').strip()
+
+    posts = BlogPost.objects.all()
+    if q:
+        posts = posts.filter(
+            Q(title__icontains=q)
+            | Q(excerpt__icontains=q)
+            | Q(keyword__icontains=q)
+            | Q(category__icontains=q)
+        )
+    if status == 'published':
+        posts = posts.filter(is_published=True)
+    elif status == 'draft':
+        posts = posts.filter(is_published=False)
+    if category:
+        posts = posts.filter(category=category)
+
+    posts = posts.order_by('-published_at', 'order')
+    all_posts = BlogPost.objects.all()
+    return render(request, 'studio/blog_library.html', {
+        'posts': posts,
+        'q': q,
+        'status': status,
+        'active_category': category,
+        'categories': _blog_studio_categories(),
+        'counts': {
+            'all': all_posts.count(),
+            'published': all_posts.filter(is_published=True).count(),
+            'draft': all_posts.filter(is_published=False).count(),
+        },
+    })
+
+
+@staff_member_required(login_url=STUDIO_LOGIN)
+def blog_studio_create(request):
+    """Create a new article in the focused studio editor."""
+    if request.method == 'POST':
+        post, errors = _save_blog_from_request(request)
+        if errors and post is None:
+            messages.error(request, ' '.join(errors))
+            return render(request, 'studio/blog_editor.html', {
+                'post': None,
+                'form': request.POST,
+                'categories': _blog_studio_categories(),
+                'accent_presets': ACCENT_PRESETS,
+                'is_new': True,
+            })
+        for err in errors:
+            messages.warning(request, err)
+        messages.success(request, 'Draft saved.' if not post.is_published else 'Published.')
+        return redirect('blog_studio_edit', post_id=post.id)
+
+    return render(request, 'studio/blog_editor.html', {
+        'post': None,
+        'form': {
+            'title': '',
+            'slug': '',
+            'category': '',
+            'accent': '#0040FF',
+            'author': 'KATEK AI',
+            'excerpt': '',
+            'body_html': '',
+            'keyword': '',
+            'meta_title': '',
+            'meta_description': '',
+            'read_minutes': 5,
+            'order': 0,
+            'published_at': date.today().isoformat(),
+            'is_published': False,
+        },
+        'categories': _blog_studio_categories(),
+        'accent_presets': ACCENT_PRESETS,
+        'is_new': True,
+    })
+
+
+@staff_member_required(login_url=STUDIO_LOGIN)
+def blog_studio_edit(request, post_id):
+    """Edit an existing article in the studio editor."""
+    post = get_object_or_404(BlogPost, id=post_id)
+    if request.method == 'POST':
+        post, errors = _save_blog_from_request(request, post)
+        for err in errors:
+            messages.warning(request, err)
+        if not errors or post.title:
+            messages.success(
+                request,
+                'Published to Insights.' if post.is_published else 'Draft saved.',
+            )
+            return redirect('blog_studio_edit', post_id=post.id)
+
+    return render(request, 'studio/blog_editor.html', {
+        'post': post,
+        'form': {
+            'title': post.title,
+            'slug': post.slug,
+            'category': post.category,
+            'accent': post.accent,
+            'author': post.author,
+            'excerpt': post.excerpt,
+            'body_html': post.body_html,
+            'keyword': post.keyword,
+            'meta_title': post.meta_title,
+            'meta_description': post.meta_description,
+            'read_minutes': post.read_minutes,
+            'order': post.order,
+            'published_at': post.published_at.isoformat() if post.published_at else date.today().isoformat(),
+            'is_published': post.is_published,
+        },
+        'categories': _blog_studio_categories(),
+        'accent_presets': ACCENT_PRESETS,
+        'is_new': False,
+    })
+
+
+@staff_member_required(login_url=STUDIO_LOGIN)
+@require_POST
+def blog_studio_delete(request, post_id):
+    post = get_object_or_404(BlogPost, id=post_id)
+    title = post.title
+    post.delete()
+    messages.success(request, f'Deleted “{title}”.')
+    return redirect('blog_studio_list')
+
+
+@staff_member_required(login_url=STUDIO_LOGIN)
+@require_POST
+def blog_studio_duplicate(request, post_id):
+    src = get_object_or_404(BlogPost, id=post_id)
+    copy = BlogPost.objects.create(
+        title=f'{src.title} (copy)',
+        slug=_unique_blog_slug(f'{src.title} copy'),
+        category=src.category,
+        accent=src.accent,
+        keyword=src.keyword,
+        meta_title=src.meta_title,
+        meta_description=src.meta_description,
+        excerpt=src.excerpt,
+        body_html=src.body_html,
+        read_minutes=src.read_minutes,
+        author=src.author,
+        published_at=date.today(),
+        is_published=False,
+        order=src.order,
+    )
+    messages.success(request, 'Duplicated as draft.')
+    return redirect('blog_studio_edit', post_id=copy.id)

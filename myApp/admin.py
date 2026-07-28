@@ -144,16 +144,26 @@ class CRMAutomationRunAdmin(admin.ModelAdmin):
 
 @admin.register(BlogPost)
 class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'category', 'read_minutes', 'published_at', 'is_published', 'order']
+    list_display = ['title', 'category', 'read_minutes', 'published_at', 'is_published', 'order', 'open_in_studio']
     list_filter = ['category', 'is_published', 'published_at']
     list_editable = ['is_published', 'order']
     search_fields = ['title', 'keyword', 'meta_description', 'body_html']
     prepopulated_fields = {'slug': ('title',)}
     date_hierarchy = 'published_at'
+    change_list_template = 'admin/myApp/blogpost/change_list.html'
     fieldsets = (
         (None, {'fields': ('title', 'slug', 'category', 'accent', 'author')}),
         ('SEO', {'fields': ('keyword', 'meta_title', 'meta_description', 'excerpt')}),
         ('Content', {'fields': ('body_html', 'read_minutes')}),
         ('Publishing', {'fields': ('is_published', 'order', 'published_at')}),
     )
+
+    @admin.display(description='Studio')
+    def open_in_studio(self, obj):
+        from django.urls import reverse
+        from django.utils.html import format_html
+        return format_html(
+            '<a href="{}">Edit in Studio</a>',
+            reverse('blog_studio_edit', args=[obj.id]),
+        )
 
