@@ -47,6 +47,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://aiassistedbusinessos-production.up.railway.app",
     "https://katek-ai.com",
     "https://www.katek-ai.com",
+    "https://businessos.katek-ai.com",
 ]
 
 # Application definition
